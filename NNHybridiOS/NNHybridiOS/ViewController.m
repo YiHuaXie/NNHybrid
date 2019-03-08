@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "RNPageViewController.h"
 
 @interface ViewController ()
 
@@ -19,5 +20,8 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (IBAction)_didButtonPressed:(id)sender {
+    [self presentViewController:[RNPageViewController new] animated:YES completion:nil];
+}
 
 @end

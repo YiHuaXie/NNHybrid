@@ -15,6 +15,7 @@
 		AE09FE4E2231FFAD003C2F97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE4D2231FFAD003C2F97 /* main.m */; };
 		AE09FE582231FFAE003C2F97 /* NNHybridiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE572231FFAE003C2F97 /* NNHybridiOSTests.m */; };
 		AE09FE632231FFAE003C2F97 /* NNHybridiOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE622231FFAE003C2F97 /* NNHybridiOSUITests.m */; };
+		AE09FE722232476B003C2F97 /* RNPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE712232476B003C2F97 /* RNPageViewController.m */; };
 		DA25355ADD5DDB78958C84A3 /* libPods-NNHybridiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9139C07AF0B060C16694F05 /* libPods-NNHybridiOS.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		AE09FE5E2231FFAE003C2F97 /* NNHybridiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NNHybridiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE09FE622231FFAE003C2F97 /* NNHybridiOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNHybridiOSUITests.m; sourceTree = "<group>"; };
 		AE09FE642231FFAE003C2F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE09FE702232476B003C2F97 /* RNPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNPageViewController.h; sourceTree = "<group>"; };
+		AE09FE712232476B003C2F97 /* RNPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNPageViewController.m; sourceTree = "<group>"; };
 		D9139C07AF0B060C16694F05 /* libPods-NNHybridiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NNHybridiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF5F4F98FCDEE5740E12233 /* Pods-NNHybridiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NNHybridiOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +115,8 @@
 				AE09FE3F2231FFAD003C2F97 /* AppDelegate.m */,
 				AE09FE412231FFAD003C2F97 /* ViewController.h */,
 				AE09FE422231FFAD003C2F97 /* ViewController.m */,
+				AE09FE702232476B003C2F97 /* RNPageViewController.h */,
+				AE09FE712232476B003C2F97 /* RNPageViewController.m */,
 				AE09FE442231FFAD003C2F97 /* Main.storyboard */,
 				AE09FE472231FFAD003C2F97 /* Assets.xcassets */,
 				AE09FE492231FFAD003C2F97 /* LaunchScreen.storyboard */,
@@ -313,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE09FE432231FFAD003C2F97 /* ViewController.m in Sources */,
+				AE09FE722232476B003C2F97 /* RNPageViewController.m in Sources */,
 				AE09FE4E2231FFAD003C2F97 /* main.m in Sources */,
 				AE09FE402231FFAD003C2F97 /* AppDelegate.m in Sources */,
 			);
@@ -488,6 +494,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NNHybridiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -505,6 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = NNHybridiOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
