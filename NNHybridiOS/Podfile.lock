@@ -82,7 +82,6 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - Reveal-SDK (21)
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
@@ -112,7 +111,6 @@ DEPENDENCIES:
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
-  - Reveal-SDK
   - SDWebImage
   - SDWebImage/GIF
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -132,7 +130,6 @@ SPEC REPOS:
     - MBProgressHUD
     - MJRefresh
     - NNEasyKit
-    - Reveal-SDK
     - SDWebImage
 
 EXTERNAL SOURCES:
@@ -165,10 +162,9 @@ SPEC CHECKSUMS:
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   NNEasyKit: 978b86c069beca5750e57dbd525eb558ec24c48c
   React: 16c4fb7ce3fc30c041bce809ceae33bf57e7c142
-  Reveal-SDK: 3523e0eb7c562811c51bb71da6e523a6373702c8
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: 09ab3f02e64730cb545b9a94fe8a1c9a8329923c
+PODFILE CHECKSUM: b092988df7d36998ea3f0f21a456ff697a3c12f5
 
 COCOAPODS: 1.5.3

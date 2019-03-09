@@ -33,6 +33,6 @@ target 'NNHybridiOS' do
   pod 'NNEasyKit'
   pod 'DGActivityIndicatorView'
   pod 'lottie-ios'
-  pod 'Reveal-SDK', :configurations => ['Debug']
+#  pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'AMapLocation'
 end
