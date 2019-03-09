@@ -4,7 +4,27 @@
 
 # Xcode
 #
-build/
+# build/
+# *.pbxuser
+# !default.pbxuser
+# *.mode1v3
+# !default.mode1v3
+# *.mode2v3
+# !default.mode2v3
+# *.perspectivev3
+# !default.perspectivev3
+# xcuserdata
+# *.xccheckout
+# *.moved-aside
+# DerivedData
+# *.hmap
+# *.ipa
+# *.xcuserstate
+# project.xcworkspace
+
+# Xcode
+.DS_Store
+*/build/*
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -14,13 +34,19 @@ build/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata
-*.xccheckout
+profile
 *.moved-aside
 DerivedData
+.idea/
 *.hmap
-*.ipa
-*.xcuserstate
-project.xcworkspace
+*.xccheckout
+*.xcworkspace
+!default.xcworkspace
+
+#CocoaPods
+Pods
+!Podfile
+!Podfile.lock
 
 # Android/IntelliJ
 #
