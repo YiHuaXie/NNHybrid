@@ -1,0 +1,174 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - AMapFoundation (1.5.6)
+  - AMapLocation (2.6.1):
+    - AMapFoundation (~> 1.4)
+  - boost-for-react-native (1.63.0)
+  - DGActivityIndicatorView (2.1.1)
+  - DoubleConversion (1.1.6)
+  - FLAnimatedImage (1.0.12)
+  - Folly (2018.10.22.00):
+    - boost-for-react-native
+    - DoubleConversion
+    - glog
+  - glog (0.3.5)
+  - IQKeyboardManager (6.2.0)
+  - JSONModel (1.8.0)
+  - lottie-ios (2.5.3)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.1.0)
+  - MJRefresh (3.1.15.7)
+  - NNEasyKit (0.0.1.6):
+    - NNEasyKit/NNComponent (= 0.0.1.6)
+    - NNEasyKit/NNExtension (= 0.0.1.6)
+  - NNEasyKit/NNComponent (0.0.1.6):
+    - NNEasyKit/NNComponent/NNAlertView (= 0.0.1.6)
+    - NNEasyKit/NNComponent/NNCarousel (= 0.0.1.6)
+    - NNEasyKit/NNComponent/NNGCDTimer (= 0.0.1.6)
+    - NNEasyKit/NNComponent/NNPFSLabel (= 0.0.1.6)
+    - NNEasyKit/NNComponent/NNPinYin (= 0.0.1.6)
+  - NNEasyKit/NNComponent/NNAlertView (0.0.1.6)
+  - NNEasyKit/NNComponent/NNCarousel (0.0.1.6)
+  - NNEasyKit/NNComponent/NNGCDTimer (0.0.1.6)
+  - NNEasyKit/NNComponent/NNPFSLabel (0.0.1.6)
+  - NNEasyKit/NNComponent/NNPinYin (0.0.1.6):
+    - NNEasyKit/NNExtension
+  - NNEasyKit/NNExtension (0.0.1.6)
+  - React/Core (0.58.6):
+    - yoga (= 0.58.6.React)
+  - React/CxxBridge (0.58.6):
+    - Folly (= 2018.10.22.00)
+    - React/Core
+    - React/cxxreact
+    - React/jsiexecutor
+  - React/cxxreact (0.58.6):
+    - boost-for-react-native (= 1.63.0)
+    - Folly (= 2018.10.22.00)
+    - React/jsinspector
+  - React/DevSupport (0.58.6):
+    - React/Core
+    - React/RCTWebSocket
+  - React/fishhook (0.58.6)
+  - React/jsi (0.58.6):
+    - Folly (= 2018.10.22.00)
+  - React/jsiexecutor (0.58.6):
+    - Folly (= 2018.10.22.00)
+    - React/cxxreact
+    - React/jsi
+  - React/jsinspector (0.58.6)
+  - React/RCTAnimation (0.58.6):
+    - React/Core
+  - React/RCTBlob (0.58.6):
+    - React/Core
+  - React/RCTNetwork (0.58.6):
+    - React/Core
+  - React/RCTText (0.58.6):
+    - React/Core
+  - React/RCTWebSocket (0.58.6):
+    - React/Core
+    - React/fishhook
+    - React/RCTBlob
+  - Reveal-SDK (21)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - SDWebImage/GIF (4.4.6):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
+  - yoga (0.58.6.React)
+
+DEPENDENCIES:
+  - AFNetworking
+  - AMapLocation
+  - DGActivityIndicatorView
+  - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
+  - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - IQKeyboardManager
+  - JSONModel
+  - lottie-ios
+  - Masonry
+  - MBProgressHUD
+  - MJRefresh
+  - NNEasyKit
+  - React/Core (from `../node_modules/react-native`)
+  - React/CxxBridge (from `../node_modules/react-native`)
+  - React/DevSupport (from `../node_modules/react-native`)
+  - React/RCTAnimation (from `../node_modules/react-native`)
+  - React/RCTNetwork (from `../node_modules/react-native`)
+  - React/RCTText (from `../node_modules/react-native`)
+  - React/RCTWebSocket (from `../node_modules/react-native`)
+  - Reveal-SDK
+  - SDWebImage
+  - SDWebImage/GIF
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - AMapFoundation
+    - AMapLocation
+    - boost-for-react-native
+    - DGActivityIndicatorView
+    - FLAnimatedImage
+    - IQKeyboardManager
+    - JSONModel
+    - lottie-ios
+    - Masonry
+    - MBProgressHUD
+    - MJRefresh
+    - NNEasyKit
+    - Reveal-SDK
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  DoubleConversion:
+    :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  Folly:
+    :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
+  glog:
+    :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  React:
+    :path: "../node_modules/react-native"
+  yoga:
+    :path: "../node_modules/react-native/ReactCommon/yoga"
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
+  AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
+  boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
+  DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  Folly: de497beb10f102453a1afa9edbf8cf8a251890de
+  glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
+  lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  NNEasyKit: 978b86c069beca5750e57dbd525eb558ec24c48c
+  React: 16c4fb7ce3fc30c041bce809ceae33bf57e7c142
+  Reveal-SDK: 3523e0eb7c562811c51bb71da6e523a6373702c8
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  yoga: 0885622311729a02c2bc02dca97167787a51488b
+
+PODFILE CHECKSUM: 09ab3f02e64730cb545b9a94fe8a1c9a8329923c
+
+COCOAPODS: 1.5.3
