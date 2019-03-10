@@ -12,6 +12,7 @@ target 'NNHybridiOS' do
     'RCTNetwork',
     'RCTWebSocket', # Needed for debugging
     'RCTAnimation', # Needed for FlatList and animations running on native UI thread
+    'RCTLinkingIOS',
     # Add any other subspecs you want to use in your project
   ]
   # Explicitly include Yoga if you are using RN >= 0.42.0
@@ -35,4 +36,6 @@ target 'NNHybridiOS' do
   pod 'lottie-ios'
 #  pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'AMapLocation'
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
 end

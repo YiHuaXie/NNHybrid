@@ -48,6 +48,8 @@ PODS:
   - NNEasyKit/NNComponent/NNPinYin (0.0.1.6):
     - NNEasyKit/NNExtension
   - NNEasyKit/NNExtension (0.0.1.6)
+  - React (0.58.6):
+    - React/Core (= 0.58.6)
   - React/Core (0.58.6):
     - yoga (= 0.58.6.React)
   - React/CxxBridge (0.58.6):
@@ -74,6 +76,8 @@ PODS:
     - React/Core
   - React/RCTBlob (0.58.6):
     - React/Core
+  - React/RCTLinkingIOS (0.58.6):
+    - React/Core
   - React/RCTNetwork (0.58.6):
     - React/Core
   - React/RCTText (0.58.6):
@@ -82,6 +86,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNGestureHandler (1.1.0):
+    - React
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
@@ -108,9 +114,11 @@ DEPENDENCIES:
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
   - React/RCTAnimation (from `../node_modules/react-native`)
+  - React/RCTLinkingIOS (from `../node_modules/react-native`)
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - SDWebImage
   - SDWebImage/GIF
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -141,6 +149,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -162,9 +172,10 @@ SPEC CHECKSUMS:
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   NNEasyKit: 978b86c069beca5750e57dbd525eb558ec24c48c
   React: 16c4fb7ce3fc30c041bce809ceae33bf57e7c142
+  RNGestureHandler: afde2addc517e85cc97a25bfe119acbee779a7ce
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: b092988df7d36998ea3f0f21a456ff697a3c12f5
+PODFILE CHECKSUM: 1edefe018743a97395bd8adb38ca4b8547ab19f1
 
 COCOAPODS: 1.5.3

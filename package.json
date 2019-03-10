@@ -7,10 +7,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "16.6.3",
     "react-native": "0.58.6",
+    "react-native-gesture-handler": "^1.1.0",
+    "react-navigation": "^3.3.2",
+    "react-navigation-redux-helpers": "^3.0.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
+    "redux-devtools": "^3.5.0",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
