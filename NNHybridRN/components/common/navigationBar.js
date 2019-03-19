@@ -1,0 +1,109 @@
+import React, { Component } from 'react';
+import {
+    ViewPropTypes,
+    Text,
+    View,
+    StatusBar,
+    StyleSheet,
+    Platform,
+    TouchableOpacity,
+    DeviceInfo
+} from 'react-native';
+import { PropTypes } from 'prop-types';
+import AppDefine from '../../Define/AppDefine';
+
+/**
+ * 自定义NavigationBar
+ */
+export default class NavigationBar extends Component {
+
+    static propTypes = {
+        leftButton: PropTypes.element,
+        rightButton: PropTypes.element,
+        backOrClose: PropTypes.string,
+        backOrCloseHandler: PropTypes.func,
+        title: PropTypes.string,
+        titleView: PropTypes.element,
+        hidden: PropTypes.bool,
+    };
+
+    _backOrCloseButton(text) {
+        if (!text) return null;
+
+        let result = text === 'back' ? '后退' : '关闭';
+
+        return (
+            <TouchableOpacity onPress={() => this.props.backOrCloseHandler()}>
+                <Text style={{ fontSize: 16, color: AppDefine.app_black }}>{result}</Text>
+            </TouchableOpacity>
+        );
+    }
+
+    _defaultTitleView() {
+        return (
+            <Text
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={styles.navigationBarTitle}>
+                {this.props.title}
+            </Text>
+        );
+    }
+
+    render() {
+        console.log(AppDefine.full_navigation_bar_height);
+        if (this.props.hidden) return null;
+        return (
+            <View style={styles.navigationBar}>
+                <View style={styles.navigationBarContent}>
+                    <View style={styles.navigationBarButton}>
+                        {this.props.leftButton ? this.props.leftButton : this._backOrCloseButton(this.props.backOrClose)}
+                    </View>
+
+                    <View style={styles.navigationBarTitleView}>
+                        {this.props.titleView ? this.props.titleView : this._defaultTitleView()}
+                    </View>
+
+                    <View style={styles.navigationBarButton}>
+                        {this.props.rightButton}
+                    </View>
+                </View>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    navigationBar: {
+        backgroundColor: '#FFFFFF',
+        height: AppDefine.full_navigation_bar_height
+    },
+    navigationBarContent: {
+        backgroundColor: AppDefine.app_clear,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',//两边元素顶边显示
+        height: AppDefine.navigation_bar_height,
+        marginTop: AppDefine.status_bar_height,
+    },
+
+    navigationBarTitle: {
+        fontSize: AppDefine.navigation_title_font,
+        textAlign: 'center',
+        color: AppDefine.app_black,
+    },
+    navigationBarButton: {
+        marginLeft: 15,
+        marginRight: 15,
+        alignItems: 'center',
+    },
+    navigationBarTitleView: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',//这里使用绝对布局，因为titleView的位置不能因为左右元素的变化而变化
+        left: 40,
+        right: 40,
+        top: 0,
+        bottom: 0,
+    }
+});

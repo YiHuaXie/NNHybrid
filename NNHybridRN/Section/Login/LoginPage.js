@@ -1,42 +1,43 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import AppDefine from '../../Define/AppDefine';
+import NavigationBar from '../../components/common/navigationBar';
 
 export default class LoginPage extends Component {
 
   _closeHandler() {
-
+    console.log('dsds');
   }
 
   _registerHandler() {
+    console.log('dsds');
+  }
 
+  _rightButton() {
+    return (
+      <View style={styles.registerButton}>
+        <Text
+          style={{ fontSize: 16, color: AppDefine.app_black }}
+          onPress={() => this._registerHandler()}
+        >
+          注册
+        </Text>
+      </View>
+    );
   }
 
   _addContentView() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={() => this._closeHandler()}
-          underlayColor={'transparent'}
-        >
-          <View style={styles.closeButton}>
-            <Text style={{ fontSize: 16, color: AppDefine.app_black }}>关闭</Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => this._registerHandler()}
-          underlayColor={'transparent'}
-        >
-          <View style={styles.registerButton}>
-            <Text style={{ fontSize: 16, color: AppDefine.app_black }}>注册</Text>
-          </View>
-        </TouchableOpacity>
-
+        <NavigationBar
+          backOrClose='close'
+          title='登录页面'
+          rightButton={this._rightButton()}
+          backOrCloseHandler={() => this._closeHandler()}
+        />
         <View style={styles.titleView}>
           <Text style={styles.title}>欢迎来到麦邻租房</Text>
         </View>
-
       </View>
     );
   }
@@ -58,16 +59,9 @@ const styles = StyleSheet.create({
     height: 25,
     width: 60,
   },
-  registerButton: {
-    backgroundColor: 'red',
-    marginRight: 30,
-    marginTop: AppDefine.status_bar_height,
-    height: 25,
-    width: 60,
-  },
   titleView: {
     marginLeft: 30,
-    marginTop: 30 + AppDefine.full_navigation_bar_height,
+    marginTop: 30,
   },
   title: {
     fontSize: 24,
