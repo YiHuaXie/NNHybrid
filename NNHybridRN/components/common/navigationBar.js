@@ -51,7 +51,7 @@ export default class NavigationBar extends Component {
     }
 
     render() {
-        console.log(AppDefine.full_navigation_bar_height);
+        console.log(AppDefine.fullNavigationBarHeight);
         if (this.props.hidden) return null;
         return (
             <View style={styles.navigationBar}>
@@ -76,19 +76,19 @@ export default class NavigationBar extends Component {
 const styles = StyleSheet.create({
     navigationBar: {
         backgroundColor: '#FFFFFF',
-        height: AppDefine.full_navigation_bar_height
+        height: AppDefine.fullNavigationBarHeight
     },
     navigationBarContent: {
         backgroundColor: AppDefine.app_clear,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',//两边元素顶边显示
-        height: AppDefine.navigation_bar_height,
-        marginTop: AppDefine.status_bar_height,
+        height: AppDefine.navigationBarHeight,
+        marginTop: AppDefine.statusBarHeight,
     },
 
     navigationBarTitle: {
-        fontSize: AppDefine.navigation_title_font,
+        fontSize: AppDefine.navigationTitleFont,
         textAlign: 'center',
         color: AppDefine.app_black,
     },

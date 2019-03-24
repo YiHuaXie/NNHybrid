@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import AppDefine from '../../Define/AppDefine';
-import NavigationBar from '../../components/common/navigationBar';
+import NavigationBar from '../../Components/Common/NavigationBar';
+import Network, { handleUrl } from '../../Components/Network';
 
 export default class LoginPage extends Component {
 
@@ -27,6 +28,21 @@ export default class LoginPage extends Component {
   }
 
   _addContentView() {
+    let params = {
+      v: '1.0',
+      method: 'initCityData',
+      reqId: 'abcd',
+      appVersionNum: '3.7.3',
+      equType: 'iPhone 7',
+      manufacturerBrand: 'Apple',
+      params: {}
+    };
+
+    let tmp1 = handleUrl('https://api.mdguanjia.com/myhome/api/estate', params);
+    console.log(tmp1);
+
+
+    Network.postRequest('https://api.mdguanjia.com/myhome/api/estate', params);
     return (
       <View style={styles.container}>
         <NavigationBar
@@ -55,7 +71,7 @@ const styles = StyleSheet.create({
   closeButton: {
     backgroundColor: 'red',
     marginLeft: 30,
-    marginTop: AppDefine.status_bar_height,
+    marginTop: AppDefine.statusBarHeight,
     height: 25,
     width: 60,
   },

@@ -8,14 +8,14 @@ export default {
     app_black: '#030303',
     app_clear: 'transparent',
 
-    navigation_bar_height: Platform.OS === 'ios' ? 44 : 50,
-    full_navigation_bar_height: Platform.OS === 'ios' ? (DeviceInfo.isIPhoneX_deprecated ? 88 : 64) : 50,
-    status_bar_height: Platform.OS === 'ios' ? (DeviceInfo.isIPhoneX_deprecated ? 44 : 20) : 0,
-    tab_bar_height: DeviceInfo.isIPhoneX_deprecated ? 83 : 49,
-    window_width: window.width,
-    window_height: window.height,
+    navigationBarHeight: Platform.OS === 'ios' ? 44 : 50,
+    fullNavigationBarHeight: Platform.OS === 'ios' ? (DeviceInfo.isIPhoneX_deprecated ? 88 : 64) : 50,
+    statusBarHeight: Platform.OS === 'ios' ? (DeviceInfo.isIPhoneX_deprecated ? 44 : 20) : 0,
+    tabBarHeight: DeviceInfo.isIPhoneX_deprecated ? 83 : 49,
+    windowWidth: window.width,
+    windowHeight: window.height,
 
-    navigation_title_font: 17,
+    navigationTitleFont: 17,
 }
 
 
