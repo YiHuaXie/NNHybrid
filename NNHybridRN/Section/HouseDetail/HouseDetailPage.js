@@ -8,7 +8,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-export default class LoginPage extends Component {
+export default class HouseDetailPage extends Component {
 
   _closeHandler() {
     console.log('dsds');

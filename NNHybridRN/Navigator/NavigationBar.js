@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import {
-    ViewPropTypes,
     Text,
     View,
-    StatusBar,
     StyleSheet,
-    Platform,
     TouchableOpacity,
-    TextInput
 } from 'react-native';
 import { PropTypes } from 'prop-types';
 import AppDefine from '../Define/AppDefine';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 /**
  * 自定义NavigationBar
@@ -30,11 +27,11 @@ export default class NavigationBar extends Component {
     _backOrCloseButton(text) {
         if (!text) return null;
 
-        let result = text === 'back' ? '后退' : '关闭';
+        let result = text === 'back' ? 'ios-arrow-round-back' : 'md-close';
 
         return (
             <TouchableOpacity onPress={() => this.props.backOrCloseHandler()}>
-                <Text style={{ fontSize: 16, color: AppDefine.app_black }}>{result}</Text>
+                <Ionicons name={result} size={24} style={{ tintColor: AppDefine.app_black }} />
             </TouchableOpacity>
         );
     }

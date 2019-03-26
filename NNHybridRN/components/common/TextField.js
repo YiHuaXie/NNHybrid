@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: 'yellow',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
     },
     defaultLeftView: {
 
