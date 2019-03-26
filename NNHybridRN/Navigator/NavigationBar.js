@@ -7,10 +7,10 @@ import {
     StyleSheet,
     Platform,
     TouchableOpacity,
-    DeviceInfo
+    TextInput
 } from 'react-native';
 import { PropTypes } from 'prop-types';
-import AppDefine from '../../Define/AppDefine';
+import AppDefine from '../Define/AppDefine';
 
 /**
  * 自定义NavigationBar
