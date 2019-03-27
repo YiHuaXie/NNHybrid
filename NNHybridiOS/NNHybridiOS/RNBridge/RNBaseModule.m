@@ -10,4 +10,6 @@
 
 @implementation RNBaseModule
 
+RCT_EXPORT_MODULE();
+
 @end

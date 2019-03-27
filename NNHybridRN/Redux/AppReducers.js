@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { rootCom, RootNavigator } from '../Navigator/AppNavigator';
+// import home from '../Section/Home/HomeReducer';
 
 /**
  * 1.create default navigation state
@@ -19,5 +20,6 @@ const navReducer = (state = defaultNavState, action) => {
  * @type {Reducer<any> | Reducer<any, AnyAction>}
  */
 export default combineReducers({
-    nav: navReducer
+    nav: navReducer,
+    // home: home,
 });

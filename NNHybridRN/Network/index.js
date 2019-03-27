@@ -1,3 +1,7 @@
+import { NativeModules } from 'react-native';
+
+const AppDeviceModule = NativeModules.AppDeviceModule;
+
 export const HttpMethod = {
     GET: 'GET',
     POST: 'POST'
