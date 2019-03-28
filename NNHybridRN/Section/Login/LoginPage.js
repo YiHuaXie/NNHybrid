@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView, Image } from 'react-native';
 import AppDefine from '../../Define/AppDefine';
 import NavigationBar from '../../Navigator/NavigationBar';
 import Network, { HttpMethod } from '../../Network';
 import TextField from '../../Components/Common/TextField';
-import Entypo from 'react-native-vector-icons/Entypo';
+// import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { ApiPath } from '../../Network/ApiService';
-import DeviceInfo from 'react-native-device-info';
+// import { ApiPath } from '../../Network/ApiService';
+// import DeviceInfo from 'react-native-device-info';
 
+
+let phoneIcon = <FontAwesome5
+  name={'mobile'}
+  size={30}
+  style={{ color: AppDefine.app_theme }}
+/>
+
+let lockIcon = <FontAwesome
+  name={'lock'}
+  size={30}
+  style={{ color: AppDefine.app_theme }}
+/>
 
 export default class LoginPage extends Component {
 
@@ -60,8 +72,37 @@ export default class LoginPage extends Component {
     );
   }
 
-  _addTextFields() {
-    
+  _addPhoneTextField() {
+    let image = <Image
+      style={styles.image}
+      source={require('../../resource/images/mobile_phone.png')}
+    />
+    return (
+      <TextField
+        textFieldStyle={[styles.textField, { marginTop: 65 }]}
+        leftView={image}
+        textInputStyle={{ width: styles.textField.width - 50 }}
+      />
+    );
+  }
+
+  _addPassWordTextField() {
+    let leftImage = <Image
+      style={styles.image}
+      source={require('../../resource/images/lock.png')}
+    />
+    let rightImage = <Image
+      style={{ marginLeft: 2, width: 18, height: 30, resizeMode: 'contain' }}
+      source={require('../../resource/images/password_invisible.png')}
+    />
+    return (
+      <TextField
+        textFieldStyle={[styles.textField, { marginTop: 30 }]}
+        leftView={leftImage}
+        rightView={rightImage}
+        textInputStyle={{ width: styles.textField.width - 50 }}
+      />
+    );
   }
 
   _addContentView() {
@@ -70,46 +111,32 @@ export default class LoginPage extends Component {
     //   .then(response => console.log(response))
     //   .catch(error => console.error(error));
 
-    let phoneIcon = <FontAwesome5
-      name={'mobile'}
-      size={30}
-      style={{ color: AppDefine.app_theme }}
-    />
+    // let phoneIcon = <FontAwesome5
+    //   name={'mobile'}
+    //   size={30}
+    //   style={{ color: AppDefine.app_theme }}
+    // />
 
-    let lockIcon = <FontAwesome
-      name={'lock'}
-      size={30}
-      style={{ color: AppDefine.app_theme }}
-    />
+    // let lockIcon = <FontAwesome
+    //   name={'lock'}
+    //   size={30}
+    //   style={{ color: AppDefine.app_theme }}
+    // />
     return (
       <View style={styles.container}>
         <NavigationBar
+          navBarStyle={{ backgroundColor: AppDefine.app_clear }}
           backOrClose='close'
-          title='登录页面'
           rightButton={this._rightButton()}
           backOrCloseHandler={() => this._closeHandler()}
         />
-        <ScrollView>
+        <ScrollView style={{ marginTop: - AppDefine.navigationBarHeight }}>
           {this._addTitleView()}
+          {this._addPhoneTextField()}
+          <View style={styles.line}/>
+          {this._addPassWordTextField()}
+          <View style={styles.line}/>
 
-          <TextField
-            textFieldStyle={{
-              width: AppDefine.windowWidth - 60,
-              height: 30,
-              marginLeft: 30,
-              marginTop: 65
-            }}
-            leftView={phoneIcon}
-          />
-          <TextField
-            textFieldStyle={{
-              width: AppDefine.windowWidth - 60,
-              height: 30,
-              marginLeft: 30,
-              marginTop: 30
-            }}
-            leftView={lockIcon}
-          />
           <View style={{
             backgroundColor: 'red',
             flexDirection: 'row',
@@ -158,13 +185,40 @@ const styles = StyleSheet.create({
   },
   titleView: {
     marginLeft: 30,
-    marginTop: 30,
+    marginTop: 30 + AppDefine.navigationBarHeight,
   },
   title: {
     fontSize: 24,
     textAlign: 'left',
     color: AppDefine.app_black
   },
+  image: {
+    width: 30,
+    height: 30,
+    resizeMode: 'center'
+  },
+  textField: {
+    width: AppDefine.windowWidth - 60,
+    height: 30,
+    marginLeft: 30,
+  },
+  line: {
+    width: AppDefine.windowWidth - 60,
+    marginLeft: 30,
+    marginTop: 5,
+    height: 1,
+    backgroundColor: '#DDDDDD',
+  }
+  // phoneTextField: {
+
+  //   marginTop: 65
+  // },
+  // passWordTextField: {
+  //   width: AppDefine.windowWidth - 60,
+  //   height: 30,
+  //   marginLeft: 30,
+  //   marginTop: 30
+  // }
 
 });
 
@@ -188,5 +242,5 @@ const btnStyles = StyleSheet.create({
     //alignItems和justifyContent,否则justifyContent会无效，textAlign仅支持水平居中
     fontSize: 18,
     color: '#FFFFFF',
-  }
+  },
 });

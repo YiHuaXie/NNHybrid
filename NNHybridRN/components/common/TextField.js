@@ -6,10 +6,11 @@ export default class TextField extends Component {
 
     static propTypes = {
         leftView: PropTypes.element,
-        letViewStyle: PropTypes.object,
+        leftViewStyle: PropTypes.object,
         rightView: PropTypes.element,
         rightViewStyle: PropTypes.object,
         textFieldStyle: PropTypes.object,
+        textInputStyle: PropTypes.object,
     };
 
     constructor(props) {
@@ -20,16 +21,16 @@ export default class TextField extends Component {
     render() {
         return (
             <View style={[styles.container, this.props.textFieldStyle]}>
-                <View style={this.props.letViewStyle}>
+                <View style={[styles.defaultLeftView, this.props.leftViewStyle]}>
                     {this.props.leftView}
                 </View>
-                <TextInput style={{borderColor: 'gray', borderWidth: 1}}
+                <TextInput style={this.props.textInputStyle}
                     onChangeText={(text) => this.setState({ text })}
                     clearButtonMode={'while-editing'}
                     value={this.state.text}>
 
                 </TextInput>
-                <View style={this.props.rightViewStyle}>
+                <View style={[styles.defaultRightView, this.props.rightViewStyle]}>
                     {this.props.rightView}
                 </View>
             </View>
@@ -39,14 +40,14 @@ export default class TextField extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'yellow',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
     },
     defaultLeftView: {
-
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     defaultRightView: {
-
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });

@@ -22,6 +22,7 @@ export default class NavigationBar extends Component {
         title: PropTypes.string,
         titleView: PropTypes.element,
         hidden: PropTypes.bool,
+        navBarStyle: PropTypes.Object,
     };
 
     _backOrCloseButton(text) {
@@ -48,10 +49,9 @@ export default class NavigationBar extends Component {
     }
 
     render() {
-        console.log(AppDefine.fullNavigationBarHeight);
         if (this.props.hidden) return null;
         return (
-            <View style={styles.navigationBar}>
+            <View style={[styles.navigationBar, this.props.navBarStyle]}>
                 <View style={styles.navigationBarContent}>
                     <View style={styles.navigationBarButton}>
                         {this.props.leftButton ? this.props.leftButton : this._backOrCloseButton(this.props.backOrClose)}
