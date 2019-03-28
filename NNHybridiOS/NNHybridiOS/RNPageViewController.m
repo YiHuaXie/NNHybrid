@@ -28,9 +28,9 @@
 
 - (void)_initRCTRootView{
     NSURL *jsCodeLocation;
-    // jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios"]; //手动拼接jsCodeLocation用于开发环境
+     jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.101:8081/index.bundle?platform=ios"]; //手动拼接jsCodeLocation用于开发环境
     //       jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"]; //release之后从包中读取名为main的静态js bundle
-    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil]; // 通过RCTBundleURLProvider生成，用于开发环境
+//    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil]; // 通过RCTBundleURLProvider生成，用于开发环境
     self.view = [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
                                             moduleName: @"App"//self.moduleName //这个"App1"名字一定要和我们在index.js中注册的名字保持一致
                                      initialProperties: nil //@{@"params":self.paramsInit}//RN初始化时传递给JS的初始化数据

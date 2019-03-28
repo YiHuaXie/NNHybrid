@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, NativeModules } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
 import AppDefine from '../../Define/AppDefine';
 import NavigationBar from '../../Navigator/NavigationBar';
 import Network, { HttpMethod } from '../../Network';
@@ -52,11 +52,23 @@ export default class LoginPage extends Component {
     );
   }
 
+  _addTitleView() {
+    return (
+      <View style={styles.titleView}>
+        <Text style={styles.title}>欢迎来到麦邻租房</Text>
+      </View>
+    );
+  }
+
+  _addTextFields() {
+    
+  }
+
   _addContentView() {
-    Network
-      .my_request(ApiPath.ESTATE, 'initCityData', '1.0')
-      .then(response => console.log(response))
-      .catch(error => console.error(error));
+    // Network
+    //   .my_request(ApiPath.ESTATE, 'initCityData', '1.0')
+    //   .then(response => console.log(response))
+    //   .catch(error => console.error(error));
 
     let phoneIcon = <FontAwesome5
       name={'mobile'}
@@ -77,52 +89,52 @@ export default class LoginPage extends Component {
           rightButton={this._rightButton()}
           backOrCloseHandler={() => this._closeHandler()}
         />
-        <View style={styles.titleView}>
-          <Text style={styles.title}>欢迎来到麦邻租房</Text>
-        </View>
+        <ScrollView>
+          {this._addTitleView()}
 
-        {/* <TextField
-          textFieldStyle={{
-            width: AppDefine.windowWidth - 60,
-            height: 30,
+          <TextField
+            textFieldStyle={{
+              width: AppDefine.windowWidth - 60,
+              height: 30,
+              marginLeft: 30,
+              marginTop: 65
+            }}
+            leftView={phoneIcon}
+          />
+          <TextField
+            textFieldStyle={{
+              width: AppDefine.windowWidth - 60,
+              height: 30,
+              marginLeft: 30,
+              marginTop: 30
+            }}
+            leftView={lockIcon}
+          />
+          <View style={{
+            backgroundColor: 'red',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 20,
             marginLeft: 30,
-            marginTop: 65
-          }}
-          leftView={phoneIcon}
-        />
-        <TextField
-          textFieldStyle={{
             width: AppDefine.windowWidth - 60,
-            height: 30,
-            marginLeft: 30,
-            marginTop: 30
-          }}
-          leftView={lockIcon}
-        />
-        <View style={{
-          backgroundColor: 'red',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: 20,
-          marginLeft: 30,
-          width: AppDefine.windowWidth - 60,
-          height: 30
-        }}>
-          <View style={{ justifyContent: 'center' }}>
-            <Text style={{ fontSize: 12, color: AppDefine.app_black, textAlign: 'left' }}
-              onPress={() => {
-                console.log('验证码登录');
-              }}>验证码登录</Text>
+            height: 30
+          }}>
+            <View style={{ justifyContent: 'center' }}>
+              <Text style={{ fontSize: 12, color: AppDefine.app_black, textAlign: 'left' }}
+                onPress={() => {
+                  console.log('验证码登录');
+                }}>验证码登录</Text>
+            </View>
+            <View style={{ justifyContent: 'center' }}>
+              <Text style={{ fontSize: 12, color: AppDefine.app_black, textAlign: 'right' }}
+                onPress={() => {
+                  console.log('忘记密码');
+                }}>忘记密码</Text>
+            </View>
           </View>
-          <View style={{ justifyContent: 'center' }}>
-            <Text style={{ fontSize: 12, color: AppDefine.app_black, textAlign: 'right' }}
-              onPress={() => {
-                console.log('忘记密码');
-              }}>忘记密码</Text>
-          </View>
-        </View>
 
-        {this._addConfirmButton()} */}
+          {this._addConfirmButton()}
+        </ScrollView>
       </View>
     );
   }
