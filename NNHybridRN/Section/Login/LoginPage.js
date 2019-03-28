@@ -8,6 +8,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { ApiPath } from '../../Network/ApiService';
+import DeviceInfo from 'react-native-device-info';
 
 
 export default class LoginPage extends Component {
@@ -52,9 +53,12 @@ export default class LoginPage extends Component {
   }
 
   _addContentView() {
-    Network.my_request(ApiPath.ESTATE, 'initCityData', '1.0')
-    .then(response => console.log(response))
-    .catch(error => console.error(error));
+    console.log("Device Name", DeviceInfo.getSystemName());
+
+    Network
+      .my_request(ApiPath.ESTATE, 'initCityData', '1.0')
+      .then(response => console.log(response))
+      .catch(error => console.error(error));
 
     let phoneIcon = <FontAwesome5
       name={'mobile'}
