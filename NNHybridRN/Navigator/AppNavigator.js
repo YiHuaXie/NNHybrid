@@ -2,17 +2,17 @@ import { createStackNavigator, createSwitchNavigator, createAppContainer } from 
 import { connect } from 'react-redux';
 import { createReactNavigationReduxMiddleware, createReduxContainer } from 'react-navigation-redux-helpers';
 
-import MomentsPage from '../Section/Moments/MomentsPage';
+// import MomentsPage from '../Section/Moments/MomentsPage';
 import LoginPage from '../Section/Login/LoginPage';
 
 export const rootCom = 'Login';
 
-const MainNavigator = createStackNavigator({
-    MomentsPage: {
-        screen: MomentsPage,
-        navigationOptions: { header: null }
-    }
-});
+// const MainNavigator = createStackNavigator({
+//     MomentsPage: {
+//         screen: MomentsPage,
+//         navigationOptions: { header: null }
+//     }
+// });
 
 const LoginNavigator = createStackNavigator({
     LoginPage: {
@@ -24,7 +24,7 @@ const LoginNavigator = createStackNavigator({
 export const RootNavigator = createAppContainer(createSwitchNavigator(
     {
         Login: LoginNavigator,
-        Main: MainNavigator
+        // Main: MainNavigator
     }, {
         navigationOptions: {
             header: null,
