@@ -31,7 +31,7 @@ export default class NavigationBar extends Component {
 
         return (
             <TouchableOpacity onPress={() => this.props.backOrCloseHandler()}>
-                <Ionicons name={result} size={24} style={{ tintColor: AppDefine.app_black }} />
+                <Ionicons name={result} size={24} style={{ color: AppDefine.app_black }} />
             </TouchableOpacity>
         );
     }

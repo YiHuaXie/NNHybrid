@@ -1,4 +1,5 @@
 import { NativeModules } from 'react-native';
+import { CodeType, EnvironmentType, baseUrl } from './ApiService';
 
 const AppDeviceModule = NativeModules.AppDeviceModule;
 
@@ -7,15 +8,7 @@ export const HttpMethod = {
     POST: 'POST'
 };
 
-export const CodeType = {
-    SUCCESS: 0, // 请求成功
-    API_KEY_ERROR: 1, // 用户未登录
-    INFO_ERROR: 4,
-    THIRD_FAILED: 1006,
-    OTHER_DEVICE: 1015,
-    SESSION_LOSE: 1016,
-    AUTH_FAILED: 1007,
-};
+const my_baseUrl = baseUrl(EnvironmentType.PRODUCTION);
 
 let header = {
     'Accept': 'application/json',
@@ -93,21 +86,14 @@ export default class Network {
     static request(aFetch) {
         return timeoutFetch(aFetch)
             .then(response => {
-                // console.log(response);
                 if (response.ok) {
                     return response.json();
                 }
-
                 // respose.status
                 throw new Error('Network response was error');
             })
-            .then(responseData => {
-                // console.log(responseData);
-                resolve(responseData);
-            })
             .catch(error => {
-                // console.log(error);
-                reject(error);
+                return error;
             });
     }
 
@@ -120,30 +106,54 @@ export default class Network {
      * @param {{}} params              // 业务参数
      * @param {boolean} needLogin      // 是否登录
      */
-    static my_request(httpMethod, path, apiMethod, apiVersion, params, needLogin = NO) {
+    static my_request(apiPath, apiMethod, apiVersion, httpMethod = HttpMethod.POST, params = {}, needLogin = false) {
         if (needLogin) {
             // 显示登录弹窗
             return null;
         }
 
-        let finalUrl = '';
-        let finalParams = {};
+        let finalUrl = `${my_baseUrl}${apiPath}`;
+        let finalParams = {
+            v: apiVersion,
+            method: apiMethod,
+            reqId: 'abcd',
+            timestamp: `${new Date().getTime()}`,
+            params,
+        };
+
+        AppDeviceModule.appVersion(data => {
+            console.log(data);
+            // finalParams.appVersionNum = data;
+        })
+         AppDeviceModule.systemVersion(data => {
+            console.log(data);
+            //  finalParams.sysVersionNum = data;
+        });
+
+        console.log(finalParams);
 
         let promise = httpMethod === HttpMethod.GET ?
             this.getRequest(finalUrl, finalParams) :
             this.postRequest(finalUrl, finalParams);
 
-        promise.then(response => {
-            if (response.code === 1011) response.code = CodeType.SUCCESS;
+        return promise
+            .then(response => {
+                response.code = parseInt(response.code);
+                if (code === 1011) response.code = 0;
 
-            if (response.code === CodeType.SUCCESS) {
-                resolve(response.data);
-            } else if (response.code === CodeType.OTHER_DEVICE || CodeType.SESSION_LOSE || CodeType.AUTH_FAILED) {
-
-            }
-
-            throw new Error(response.message);
-        })
-            .catch(error => reject(error));
+                switch (response.code) {
+                    case CodeType.SUCCESS:
+                        return response.data;
+                    case CodeType.OTHER_DEVICE:
+                    case CodeType.SESSION_LOSE:
+                    case CodeType.AUTH_FAILED:
+                        throw new Error('会话丢失请重新登录');
+                    default:
+                        throw new Error(response.message);
+                }
+            })
+            .catch(error => {
+                return error;
+            });
     }
 }

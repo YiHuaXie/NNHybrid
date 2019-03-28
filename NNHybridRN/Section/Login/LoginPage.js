@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, NativeModules } from 'react-native';
 import AppDefine from '../../Define/AppDefine';
 import NavigationBar from '../../Navigator/NavigationBar';
-// import Network, { handleUrl } from '../../Components/Network';
+import Network, { HttpMethod } from '../../Network';
 import TextField from '../../Components/Common/TextField';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { ApiPath } from '../../Network/ApiService';
 
 
 export default class LoginPage extends Component {
@@ -51,29 +52,9 @@ export default class LoginPage extends Component {
   }
 
   _addContentView() {
-
-    NativeModules.AppDeviceModule.appVersion(data => {
-      console.log(data);
-    });
-
-    NativeModules.AppDeviceModule.systemVersion(data => {
-      console.log(data);
-    });
-
-    // let params = {
-    //   v: '1.0',
-    //   method: 'initCityData',
-    //   reqId: 'abcd',
-    //   appVersionNum: '3.7.3',
-    //   equType: 'iPhone 7',
-    //   manufacturerBrand: 'Apple',
-    //   params: {}
-    // };
-
-    // let tmp1 = handleUrl('https://api.mdguanjia.com/myhome/api/estate', params);
-    // console.log(tmp1);
-
-    // Network.postRequest('https://api.mdguanjia.com/myhome/api/estate', params);
+    Network.my_request(ApiPath.ESTATE, 'initCityData', '1.0')
+    .then(response => console.log(response))
+    .catch(error => console.error(error));
 
     let phoneIcon = <FontAwesome5
       name={'mobile'}
@@ -98,7 +79,7 @@ export default class LoginPage extends Component {
           <Text style={styles.title}>欢迎来到麦邻租房</Text>
         </View>
 
-        <TextField
+        {/* <TextField
           textFieldStyle={{
             width: AppDefine.windowWidth - 60,
             height: 30,
@@ -139,7 +120,7 @@ export default class LoginPage extends Component {
           </View>
         </View>
 
-        {this._addConfirmButton()}
+        {this._addConfirmButton()} */}
       </View>
     );
   }
