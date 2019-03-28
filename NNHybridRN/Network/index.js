@@ -1,5 +1,6 @@
 import { NativeModules } from 'react-native';
 import { CodeType, EnvironmentType, baseUrl } from './ApiService';
+import DeviceInfo from 'react-native-device-info';
 
 const AppDeviceModule = NativeModules.AppDeviceModule;
 
@@ -118,19 +119,12 @@ export default class Network {
             method: apiMethod,
             reqId: 'abcd',
             timestamp: `${new Date().getTime()}`,
+            appVersionNum: DeviceInfo.getVersion(),
+            sysVersionNum: DeviceInfo.getSystemVersion(),
+            manufacturerBrand: DeviceInfo.getManufacturer(),
+            equType: DeviceInfo.getModel(),
             params,
         };
-
-        AppDeviceModule.appVersion(data => {
-            console.log(data);
-            // finalParams.appVersionNum = data;
-        })
-         AppDeviceModule.systemVersion(data => {
-            console.log(data);
-            //  finalParams.sysVersionNum = data;
-        });
-
-        console.log(finalParams);
 
         let promise = httpMethod === HttpMethod.GET ?
             this.getRequest(finalUrl, finalParams) :

@@ -53,8 +53,6 @@ export default class LoginPage extends Component {
   }
 
   _addContentView() {
-    console.log("Device Name", DeviceInfo.getSystemName());
-
     Network
       .my_request(ApiPath.ESTATE, 'initCityData', '1.0')
       .then(response => console.log(response))

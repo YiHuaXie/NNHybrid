@@ -86,7 +86,11 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNDeviceInfo (1.1.0):
+    - React
   - RNGestureHandler (1.1.0):
+    - React
+  - RNVectorIcons (6.4.2):
     - React
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
@@ -118,7 +122,9 @@ DEPENDENCIES:
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - SDWebImage
   - SDWebImage/GIF
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -149,8 +155,12 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -172,10 +182,12 @@ SPEC CHECKSUMS:
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   NNEasyKit: 978b86c069beca5750e57dbd525eb558ec24c48c
   React: 16c4fb7ce3fc30c041bce809ceae33bf57e7c142
+  RNDeviceInfo: 8a21b2687c7c829362ca0ccc3a8b5380a42dd59f
   RNGestureHandler: afde2addc517e85cc97a25bfe119acbee779a7ce
+  RNVectorIcons: 8c52e1e8da1153613fdef44748e865c25556cb9c
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: 1edefe018743a97395bd8adb38ca4b8547ab19f1
+PODFILE CHECKSUM: 201052b6b721df1528188e4f13854185779de38b
 
 COCOAPODS: 1.5.3
