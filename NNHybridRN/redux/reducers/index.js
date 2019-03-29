@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { rootCom, RootNavigator } from '../Navigator/AppNavigator';
+import { rootCom, RootNavigator } from '../../navigator/AppNavigator';
 // import home from '../Section/Home/HomeReducer';
 
 /**

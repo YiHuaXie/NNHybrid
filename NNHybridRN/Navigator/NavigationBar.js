@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { PropTypes } from 'prop-types';
-import AppDefine from '../Define/AppDefine';
+import AppUtil from '../utils/AppUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 /**
@@ -32,7 +32,7 @@ export default class NavigationBar extends Component {
 
         return (
             <TouchableOpacity onPress={() => this.props.backOrCloseHandler()}>
-                <Ionicons name={result} size={24} style={{ color: AppDefine.app_black }} />
+                <Ionicons name={result} size={24} style={{ color: AppUtil.app_black }} />
             </TouchableOpacity>
         );
     }
@@ -73,21 +73,21 @@ export default class NavigationBar extends Component {
 const styles = StyleSheet.create({
     navigationBar: {
         backgroundColor: '#FFFFFF',
-        height: AppDefine.fullNavigationBarHeight
+        height: AppUtil.fullNavigationBarHeight
     },
     navigationBarContent: {
-        backgroundColor: AppDefine.app_clear,
+        backgroundColor: AppUtil.app_clear,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',//两边元素顶边显示
-        height: AppDefine.navigationBarHeight,
-        marginTop: AppDefine.statusBarHeight,
+        height: AppUtil.navigationBarHeight,
+        marginTop: AppUtil.statusBarHeight,
     },
 
     navigationBarTitle: {
-        fontSize: AppDefine.navigationTitleFont,
+        fontSize: AppUtil.navigationTitleFont,
         textAlign: 'center',
-        color: AppDefine.app_black,
+        color: AppUtil.app_black,
     },
     navigationBarButton: {
         marginLeft: 15,

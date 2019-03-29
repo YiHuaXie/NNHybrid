@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import appReducers from './AppReducers';
-import { navMiddleware } from '../Navigator/AppNavigator';
+import reducers from '../reducers';
+import { navMiddleware } from '../../navigator/AppNavigator';
 
 
 /**
@@ -28,4 +28,5 @@ const middlewares = [
 /**
  * 创建store
  */
-export default createStore(appReducers, applyMiddleware(...middlewares));
+// export default createStore(appReducers, applyMiddleware(...middlewares));
+export default createStore(reducers, applyMiddleware(...middlewares));

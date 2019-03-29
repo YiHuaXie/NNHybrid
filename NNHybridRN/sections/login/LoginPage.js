@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, ScrollView, Image, TextInput, Animated, Easing } from 'react-native';
-import AppDefine from '../../Define/AppDefine';
-import NavigationBar from '../../Navigator/NavigationBar';
-import Network from '../../Network';
-import TextField from '../../Components/Common/TextField';
+import AppUtil from '../../utils/AppUtil';
+import NavigationBar from '../../navigator/NavigationBar';
+import TextField from '../../components/common/TextField';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import StringUtil from './StringUtil';
-import { ApiPath } from '../../Network/ApiService';
+import StringUtil from '../../utils/StringUtil';
+import Network, { ApiPath } from '../../network/ApiService';
 
 const LoginBy = {
   password: 'password',
@@ -17,6 +16,7 @@ export default class LoginPage extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       phone: '',
       password: '',
@@ -37,35 +37,22 @@ export default class LoginPage extends Component {
 
   }
 
-  _closeHandler() {
-    console.log('dsds');
-  }
-
   _jumpToRegister = () => {
 
-  }
-
-  _registerHandler() {
-    console.log('dsds');
   }
 
   _getVerifyCode = () => {
 
   }
-  _verifyCodeHandler() {
 
-  };
+  _loginBySwitch = () => {
+    this.state.animatedValue.setValue(0);
+    this.animated.start();
 
-  _loginBySwith = () => {
     this.setState({
       loginBy: this.state.loginBy === LoginBy.password ?
         LoginBy.verifyCode :
         LoginBy.password
-    });
-
-    this.state.animatedValue.setValue(0);
-    this.animated.start(() => {
-
     });
   }
 
@@ -100,8 +87,8 @@ export default class LoginPage extends Component {
     return (
       <View style={styles.registerButton}>
         <Text
-          style={{ fontSize: 16, color: AppDefine.app_black }}
-          onPress={() => this._registerHandler()}
+          style={{ fontSize: 16, color: AppUtil.app_black }}
+          onPress={this._jumpToRegister}
         >
           注册
         </Text>
@@ -141,18 +128,18 @@ export default class LoginPage extends Component {
       this.state.loginBy === LoginBy.password ?
         null :
         <Text
-          style={{ fontSize: 16, color: AppDefine.app_black }}
-          onPress={() => this._verifyCodeHandler()}
+          style={{ fontSize: 16, color: AppUtil.app_black }}
+          onPress={this._getVerifyCode}
         >
           获取验证码
         </Text>
 
     let textInputWidth = styles.textField.width - (rightView ? 110 : 50);
     let textInput = <TextInput
-      style={{ width: textInputWidth, fontSize: 16, color: AppDefine.app_black }}
+      style={{ width: textInputWidth, fontSize: 16, color: AppUtil.app_black }}
       placeholderTextColor='#DDDDDD'
       keyboardType='number-pad'
-      selectionColor={AppDefine.app_theme}
+      selectionColor={AppUtil.app_theme}
       onChangeText={text => this.setState({ phone: text })}
       placeholder='请输入手机号'
       clearButtonMode='while-editing'
@@ -176,7 +163,6 @@ export default class LoginPage extends Component {
     />
 
     let rightImage = <TouchableOpacity onPress={() => {
-      console.log('asdasdasdasd');
       this.setState({ securePassword: !this.state.securePassword });
     }}>
       <Image
@@ -190,10 +176,14 @@ export default class LoginPage extends Component {
     </TouchableOpacity>
 
     let textInput = <TextInput
-      style={{ width: styles.textField.width - 50, fontSize: 16, color: AppDefine.app_black }}
+      style={{
+        width: styles.textField.width - 50,
+        fontSize: 16,
+        color: AppUtil.app_black
+      }}
       placeholderTextColor='#DDDDDD'
       secureTextEntry={this.state.securePassword}
-      selectionColor={AppDefine.app_theme}
+      selectionColor={AppUtil.app_theme}
       onChangeText={text => this.setState({ password: text })}
       placeholder='请输入密码'
       clearButtonMode='while-editing'
@@ -215,9 +205,13 @@ export default class LoginPage extends Component {
       source={require('../../resource/images/verify_code.png')}
     />
     let textInput = <TextInput
-      style={{ width: styles.textField.width - 50, fontSize: 16, color: AppDefine.app_black }}
+      style={{
+        width: styles.textField.width - 50,
+        fontSize: 16,
+        color: AppUtil.app_black
+      }}
       placeholderTextColor='#DDDDDD'
-      selectionColor={AppDefine.app_theme}
+      selectionColor={AppUtil.app_theme}
       placeholder='请输入验证码'
       onChangeText={text => this.setState({ verifyCode: text })}
       value={this.state.verifyCode}
@@ -233,7 +227,7 @@ export default class LoginPage extends Component {
 
   _loginBySwitchButton() {
     return (
-      <TouchableWithoutFeedback onPress={this._loginBySwith}>
+      <TouchableWithoutFeedback onPress={this._loginBySwitch}>
         <View style={{
           justifyContent: 'center',
           flexDirection: 'row',
@@ -244,10 +238,13 @@ export default class LoginPage extends Component {
             style={{ width: 16, height: 16, resizeMode: 'contain' }}
             source={require('../../resource/images/sort.png')}
           />
-          <Text
-            style={{ fontSize: 12, color: AppDefine.app_black, textAlign: 'left' }}
+          <Text style={{
+            fontSize: 12,
+            color: AppUtil.app_black,
+            textAlign: 'left'
+          }}
           >
-            验证码登录
+            {this.state.loginBy === LoginBy.password ? '验证码登录' : '密码登录'}
           </Text>
         </View>
       </TouchableWithoutFeedback>
@@ -258,11 +255,11 @@ export default class LoginPage extends Component {
     if (this.state.loginBy !== LoginBy.password) return null;
 
     return (
-      <TouchableWithoutFeedback onPress={this._loginBySwith}>
+      <TouchableWithoutFeedback onPress={this._loginBySwitch}>
         <View style={{ height: 30, justifyContent: 'center' }}>
           <Text style={{
             fontSize: 12,
-            color: AppDefine.app_black,
+            color: AppUtil.app_black,
             textAlign: 'right'
           }}>
             忘记密码
@@ -282,7 +279,7 @@ export default class LoginPage extends Component {
 
     const marginTop = animatedValue.interpolate({
       inputRange: [0, 0.5, 1],
-      outputRange: [0, 40, 0]
+      outputRange: [0, 60, 0]
     });
 
     return (
@@ -293,7 +290,7 @@ export default class LoginPage extends Component {
           backOrCloseHandler={this._close}
         />
         <ScrollView
-          style={{ marginTop: - AppDefine.navigationBarHeight }}
+          style={{ marginTop: - AppUtil.navigationBarHeight }}
           keyboardDismissMode='on-drag'
         >
           {this._titleView()}
@@ -312,7 +309,7 @@ export default class LoginPage extends Component {
               alignItems: 'center',
               marginTop: 20,
               marginLeft: 30,
-              width: AppDefine.windowWidth - 60,
+              width: AppUtil.windowWidth - 60,
               height: 30
             }}>
               {this._loginBySwitchButton()}
@@ -330,23 +327,23 @@ export default class LoginPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: AppDefine.app_background,
+    backgroundColor: AppUtil.app_background,
   },
   closeButton: {
     backgroundColor: 'red',
     marginLeft: 30,
-    marginTop: AppDefine.statusBarHeight,
+    marginTop: AppUtil.statusBarHeight,
     height: 25,
     width: 60,
   },
   titleView: {
     marginLeft: 30,
-    marginTop: 30 + AppDefine.navigationBarHeight,
+    marginTop: 30 + AppUtil.navigationBarHeight,
   },
   title: {
     fontSize: 24,
     textAlign: 'left',
-    color: AppDefine.app_black
+    color: AppUtil.app_black
   },
   image: {
     width: 30,
@@ -354,12 +351,12 @@ const styles = StyleSheet.create({
     resizeMode: 'center'
   },
   textField: {
-    width: AppDefine.windowWidth - 60,
+    width: AppUtil.windowWidth - 60,
     height: 30,
     marginLeft: 30,
   },
   line: {
-    width: AppDefine.windowWidth - 60,
+    width: AppUtil.windowWidth - 60,
     marginLeft: 30,
     marginTop: 5,
     height: 1,
@@ -374,11 +371,11 @@ const btnStyles = StyleSheet.create({
     alignItems: 'center'
   },
   button: {
-    backgroundColor: AppDefine.app_theme,
+    backgroundColor: AppUtil.app_theme,
     borderRadius: 20,
     marginTop: 40,
     height: 44,
-    width: AppDefine.windowWidth - 60,
+    width: AppUtil.windowWidth - 60,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -389,127 +386,3 @@ const btnStyles = StyleSheet.create({
     color: '#FFFFFF',
   },
 });
-
-// export default class LoginPage extends Component {
-
-//   constructor(props) {
-//     super(props)
-
-//     this.state = {
-//       animatedValue: new Animated.Value(0),
-//     }
-
-//     this.rotateAnimated = Animated.timing(
-//       this.state.animatedValue,
-//       {
-//         toValue: 1,
-//         duration: 3000,
-//         easing: Easing.in,
-//       }
-//     );
-//   }
-
-//   _startAnimated() {
-//     this.state.animatedValue.setValue(0);
-//     this.rotateAnimated.start(() => this._startAnimated());
-//   }
-
-//   render() {
-
-//     // const rotateZ = this.state.animatedValue.interpolate({
-//     //   inputRange: [0, 1],
-//     //   outputRange: ['0deg', '360deg']
-//     // });
-
-//     // const opacity = this.state.animatedValue.interpolate({
-//     //   inputRange: [0, 0.5, 1],
-//     //   outputRange: [0, 1, 0]
-//     // });
-
-//     // const rotateX = this.state.animatedValue.interpolate({
-//     //   inputRange: [0, 0.5, 1],
-//     //   outputRange: ['0deg', '180deg', '0deg']
-//     // });
-
-//     // const textSize = this.state.animatedValue.interpolate({
-//     //   inputRange: [0, 0.5, 1],
-//     //   outputRange: [18, 32, 18]
-//     // });
-
-//     const marginLeft = this.state.animatedValue.interpolate({
-//       inputRange: [0, 0.5, 1],
-//       outputRange: [0, 200, 0]
-//     });
-
-//     return (
-//       <View style={{ flex: 1, flexDirection: 'column' }}>
-
-//         {/* <Animated.View
-//           style={{
-//             marginTop: 10,
-//             width: 100,
-//             height: 100,
-//             transform: [
-//               { rotateZ: rotateZ },
-//             ]
-//           }}
-//         >
-//           <Image style={{ width: 100, height: 100 }}
-//             source={{ uri: 'out_loading_image.png' }}>
-//           </Image>
-//         </Animated.View>
-
-//         <Animated.View
-//           style={{
-//             marginTop: 10,
-//             width: 100,
-//             height: 100,
-//             opacity: opacity,
-//             backgroundColor: 'red',
-//           }}
-//         />
-
-//         <Animated.Text
-//           style={{
-//             marginTop: 10,
-//             width: 100,
-//             fontSize: 18,
-//             color: 'white',
-//             backgroundColor: 'red',
-//             transform: [
-//               { rotateX: rotateX },
-//             ]
-//           }}
-//         >
-//           窗外风好大，我没有穿褂。
-//               </Animated.Text>
-
-//         <Animated.Text
-//           style={{
-//             marginTop: 10,
-//             height: 100,
-//             lineHeight: 100,
-//             fontSize: textSize,
-//             color: 'red'
-//           }}
-//         >
-//           IAMCJ嘿嘿嘿
-//               </Animated.Text> */}
-
-//         <Animated.View
-//           style={{
-//             marginTop: 10,
-//             width: 100,
-//             height: 100,
-//             marginLeft: marginLeft,
-//             backgroundColor: 'red',
-//           }}
-//         />
-
-//         <TouchableOpacity onPress={this._startAnimated.bind(this)}>
-//           <Text style={{ width: 200, height: 100, textAlign: 'center', lineHeight: 100 }}>点击开始动画</Text>
-//         </TouchableOpacity>
-//       </View>
-//     );
-//   }
-// }

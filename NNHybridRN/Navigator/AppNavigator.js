@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createReactNavigationReduxMiddleware, createReduxContainer } from 'react-navigation-redux-helpers';
 
 // import MomentsPage from '../Section/Moments/MomentsPage';
-import LoginPage from '../Section/Login/LoginPage';
+import LoginPage from '../sections/login/LoginPage';
 
 export const rootCom = 'Login';
 
