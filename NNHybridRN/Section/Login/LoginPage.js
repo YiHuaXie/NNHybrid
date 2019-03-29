@@ -1,40 +1,99 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView, Image, TextInput, Animated, Easing } from 'react-native';
 import AppDefine from '../../Define/AppDefine';
 import NavigationBar from '../../Navigator/NavigationBar';
-import Network, { HttpMethod } from '../../Network';
+import Network from '../../Network';
 import TextField from '../../Components/Common/TextField';
-// import Entypo from 'react-native-vector-icons/Entypo';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-// import { ApiPath } from '../../Network/ApiService';
-// import DeviceInfo from 'react-native-device-info';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import StringUtil from './StringUtil';
+import { ApiPath } from '../../Network/ApiService';
 
-
-let phoneIcon = <FontAwesome5
-  name={'mobile'}
-  size={30}
-  style={{ color: AppDefine.app_theme }}
-/>
-
-let lockIcon = <FontAwesome
-  name={'lock'}
-  size={30}
-  style={{ color: AppDefine.app_theme }}
-/>
+const LoginBy = {
+  password: 'password',
+  verifyCode: 'verifyCode',
+};
 
 export default class LoginPage extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      phone: '',
+      password: '',
+      verifyCode: '',
+      securePassword: true,
+      loginBy: LoginBy.password,
+      animatedValue: new Animated.Value(0),
+    };
+
+    this.animated = Animated.timing(this.state.animatedValue, {
+      toValue: 1,
+      duration: 500,
+      easing: Easing.in,
+    });
+  }
+
+  _close = () => {
+
+  }
+
   _closeHandler() {
     console.log('dsds');
+  }
+
+  _jumpToRegister = () => {
+
   }
 
   _registerHandler() {
     console.log('dsds');
   }
 
+  _getVerifyCode = () => {
+
+  }
+  _verifyCodeHandler() {
+
+  };
+
+  _loginBySwith = () => {
+    this.setState({
+      loginBy: this.state.loginBy === LoginBy.password ?
+        LoginBy.verifyCode :
+        LoginBy.password
+    });
+
+    this.state.animatedValue.setValue(0);
+    this.animated.start(() => {
+
+    });
+  }
+
   _loginHandler() {
-    console.log('dsds');
+    if (StringUtil.phoneValid(this.state.phone)) {
+      console.log('有效');
+    } else {
+      console.log('无效');
+    }
+
+    if (StringUtil.passwordValid(this.state.password)) {
+
+    }
+
+    // 这里到时候要写到action里面
+    let params = {
+      username: this.state.phone,
+      password: this.state.password,
+    };
+
+    Network
+      .my_request(ApiPath.CUSTOMER, 'loginByPassword', '1.0', params)
+      .then(response => {
+
+      })
+      .catch(error => {
+
+      });
   };
 
   _rightButton() {
@@ -50,7 +109,7 @@ export default class LoginPage extends Component {
     );
   }
 
-  _addConfirmButton() {
+  _confirmButton() {
     return (
       <View style={btnStyles.container}>
         <TouchableHighlight
@@ -64,7 +123,7 @@ export default class LoginPage extends Component {
     );
   }
 
-  _addTitleView() {
+  _titleView() {
     return (
       <View style={styles.titleView}>
         <Text style={styles.title}>欢迎来到麦邻租房</Text>
@@ -72,102 +131,199 @@ export default class LoginPage extends Component {
     );
   }
 
-  _addPhoneTextField() {
-    let image = <Image
+  _phoneTextField() {
+    let leftView = <Image
       style={styles.image}
       source={require('../../resource/images/mobile_phone.png')}
     />
+
+    let rightView =
+      this.state.loginBy === LoginBy.password ?
+        null :
+        <Text
+          style={{ fontSize: 16, color: AppDefine.app_black }}
+          onPress={() => this._verifyCodeHandler()}
+        >
+          获取验证码
+        </Text>
+
+    let textInputWidth = styles.textField.width - (rightView ? 110 : 50);
+    let textInput = <TextInput
+      style={{ width: textInputWidth, fontSize: 16, color: AppDefine.app_black }}
+      placeholderTextColor='#DDDDDD'
+      keyboardType='number-pad'
+      selectionColor={AppDefine.app_theme}
+      onChangeText={text => this.setState({ phone: text })}
+      placeholder='请输入手机号'
+      clearButtonMode='while-editing'
+      secureTextEntry={false}
+      value={this.state.phone}
+    />
     return (
       <TextField
-        textFieldStyle={[styles.textField, { marginTop: 65 }]}
-        leftView={image}
-        textInputStyle={{ width: styles.textField.width - 50 }}
+        textFieldStyle={{ ...styles.textField, marginTop: 65 }}
+        leftView={leftView}
+        textInput={textInput}
+        rightView={rightView}
       />
     );
   }
 
-  _addPassWordTextField() {
+  _passwordTextField() {
     let leftImage = <Image
       style={styles.image}
       source={require('../../resource/images/lock.png')}
     />
-    let rightImage = <Image
-      style={{ marginLeft: 2, width: 18, height: 30, resizeMode: 'contain' }}
-      source={require('../../resource/images/password_invisible.png')}
+
+    let rightImage = <TouchableOpacity onPress={() => {
+      console.log('asdasdasdasd');
+      this.setState({ securePassword: !this.state.securePassword });
+    }}>
+      <Image
+        style={{ marginLeft: 2, width: 18, height: 30, resizeMode: 'contain' }}
+        source={
+          this.state.securePassword ?
+            require('../../resource/images/password_invisible.png') :
+            require('../../resource/images/password_visible.png')
+        }
+      />
+    </TouchableOpacity>
+
+    let textInput = <TextInput
+      style={{ width: styles.textField.width - 50, fontSize: 16, color: AppDefine.app_black }}
+      placeholderTextColor='#DDDDDD'
+      secureTextEntry={this.state.securePassword}
+      selectionColor={AppDefine.app_theme}
+      onChangeText={text => this.setState({ password: text })}
+      placeholder='请输入密码'
+      clearButtonMode='while-editing'
+      value={this.state.password}
     />
     return (
       <TextField
-        textFieldStyle={[styles.textField, { marginTop: 30 }]}
+        textFieldStyle={{ ...styles.textField, marginTop: 30 }}
         leftView={leftImage}
         rightView={rightImage}
-        textInputStyle={{ width: styles.textField.width - 50 }}
+        textInput={textInput}
       />
     );
   }
 
-  _addContentView() {
-    // Network
-    //   .my_request(ApiPath.ESTATE, 'initCityData', '1.0')
-    //   .then(response => console.log(response))
-    //   .catch(error => console.error(error));
-
-    // let phoneIcon = <FontAwesome5
-    //   name={'mobile'}
-    //   size={30}
-    //   style={{ color: AppDefine.app_theme }}
-    // />
-
-    // let lockIcon = <FontAwesome
-    //   name={'lock'}
-    //   size={30}
-    //   style={{ color: AppDefine.app_theme }}
-    // />
+  _verifyCodeTextField() {
+    let leftImage = <Image
+      style={styles.image}
+      source={require('../../resource/images/verify_code.png')}
+    />
+    let textInput = <TextInput
+      style={{ width: styles.textField.width - 50, fontSize: 16, color: AppDefine.app_black }}
+      placeholderTextColor='#DDDDDD'
+      selectionColor={AppDefine.app_theme}
+      placeholder='请输入验证码'
+      onChangeText={text => this.setState({ verifyCode: text })}
+      value={this.state.verifyCode}
+    />
     return (
-      <View style={styles.container}>
-        <NavigationBar
-          navBarStyle={{ backgroundColor: AppDefine.app_clear }}
-          backOrClose='close'
-          rightButton={this._rightButton()}
-          backOrCloseHandler={() => this._closeHandler()}
-        />
-        <ScrollView style={{ marginTop: - AppDefine.navigationBarHeight }}>
-          {this._addTitleView()}
-          {this._addPhoneTextField()}
-          <View style={styles.line}/>
-          {this._addPassWordTextField()}
-          <View style={styles.line}/>
+      <TextField
+        textFieldStyle={{ ...styles.textField, marginTop: 30 }}
+        leftView={leftImage}
+        textInput={textInput}
+      />
+    );
+  }
 
-          <View style={{
-            backgroundColor: 'red',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 20,
-            marginLeft: 30,
-            width: AppDefine.windowWidth - 60,
-            height: 30
+  _loginBySwitchButton() {
+    return (
+      <TouchableWithoutFeedback onPress={this._loginBySwith}>
+        <View style={{
+          justifyContent: 'center',
+          flexDirection: 'row',
+          alignItems: 'center',
+          height: 30,
+        }}>
+          <Image
+            style={{ width: 16, height: 16, resizeMode: 'contain' }}
+            source={require('../../resource/images/sort.png')}
+          />
+          <Text
+            style={{ fontSize: 12, color: AppDefine.app_black, textAlign: 'left' }}
+          >
+            验证码登录
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+
+  _forgetPasswordButton() {
+    if (this.state.loginBy !== LoginBy.password) return null;
+
+    return (
+      <TouchableWithoutFeedback onPress={this._loginBySwith}>
+        <View style={{ height: 30, justifyContent: 'center' }}>
+          <Text style={{
+            fontSize: 12,
+            color: AppDefine.app_black,
+            textAlign: 'right'
           }}>
-            <View style={{ justifyContent: 'center' }}>
-              <Text style={{ fontSize: 12, color: AppDefine.app_black, textAlign: 'left' }}
-                onPress={() => {
-                  console.log('验证码登录');
-                }}>验证码登录</Text>
-            </View>
-            <View style={{ justifyContent: 'center' }}>
-              <Text style={{ fontSize: 12, color: AppDefine.app_black, textAlign: 'right' }}
-                onPress={() => {
-                  console.log('忘记密码');
-                }}>忘记密码</Text>
-            </View>
-          </View>
-
-          {this._addConfirmButton()}
-        </ScrollView>
-      </View>
+            忘记密码
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 
   render() {
-    return this._addContentView();
+    let { animatedValue } = this.state;
+
+    const opacity = animatedValue.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [1, 0, 1]
+    });
+
+    const marginTop = animatedValue.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [0, 40, 0]
+    });
+
+    return (
+      <View style={styles.container}>
+        <NavigationBar
+          backOrClose='close'
+          rightButton={this._rightButton()}
+          backOrCloseHandler={this._close}
+        />
+        <ScrollView
+          style={{ marginTop: - AppDefine.navigationBarHeight }}
+          keyboardDismissMode='on-drag'
+        >
+          {this._titleView()}
+          <Animated.View style={{ marginTop: marginTop, opacity: opacity }}>
+            {this._phoneTextField()}
+            <View style={styles.line} />
+            {this.state.loginBy === LoginBy.password ?
+              this._passwordTextField() :
+              this._verifyCodeTextField()
+            }
+            <View style={styles.line} />
+
+            <View style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginTop: 20,
+              marginLeft: 30,
+              width: AppDefine.windowWidth - 60,
+              height: 30
+            }}>
+              {this._loginBySwitchButton()}
+              {this._forgetPasswordButton()}
+            </View>
+
+            {this._confirmButton()}
+          </Animated.View>
+        </ScrollView>
+      </View >
+    );
   }
 }
 
@@ -209,17 +365,6 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#DDDDDD',
   }
-  // phoneTextField: {
-
-  //   marginTop: 65
-  // },
-  // passWordTextField: {
-  //   width: AppDefine.windowWidth - 60,
-  //   height: 30,
-  //   marginLeft: 30,
-  //   marginTop: 30
-  // }
-
 });
 
 const btnStyles = StyleSheet.create({
@@ -244,3 +389,127 @@ const btnStyles = StyleSheet.create({
     color: '#FFFFFF',
   },
 });
+
+// export default class LoginPage extends Component {
+
+//   constructor(props) {
+//     super(props)
+
+//     this.state = {
+//       animatedValue: new Animated.Value(0),
+//     }
+
+//     this.rotateAnimated = Animated.timing(
+//       this.state.animatedValue,
+//       {
+//         toValue: 1,
+//         duration: 3000,
+//         easing: Easing.in,
+//       }
+//     );
+//   }
+
+//   _startAnimated() {
+//     this.state.animatedValue.setValue(0);
+//     this.rotateAnimated.start(() => this._startAnimated());
+//   }
+
+//   render() {
+
+//     // const rotateZ = this.state.animatedValue.interpolate({
+//     //   inputRange: [0, 1],
+//     //   outputRange: ['0deg', '360deg']
+//     // });
+
+//     // const opacity = this.state.animatedValue.interpolate({
+//     //   inputRange: [0, 0.5, 1],
+//     //   outputRange: [0, 1, 0]
+//     // });
+
+//     // const rotateX = this.state.animatedValue.interpolate({
+//     //   inputRange: [0, 0.5, 1],
+//     //   outputRange: ['0deg', '180deg', '0deg']
+//     // });
+
+//     // const textSize = this.state.animatedValue.interpolate({
+//     //   inputRange: [0, 0.5, 1],
+//     //   outputRange: [18, 32, 18]
+//     // });
+
+//     const marginLeft = this.state.animatedValue.interpolate({
+//       inputRange: [0, 0.5, 1],
+//       outputRange: [0, 200, 0]
+//     });
+
+//     return (
+//       <View style={{ flex: 1, flexDirection: 'column' }}>
+
+//         {/* <Animated.View
+//           style={{
+//             marginTop: 10,
+//             width: 100,
+//             height: 100,
+//             transform: [
+//               { rotateZ: rotateZ },
+//             ]
+//           }}
+//         >
+//           <Image style={{ width: 100, height: 100 }}
+//             source={{ uri: 'out_loading_image.png' }}>
+//           </Image>
+//         </Animated.View>
+
+//         <Animated.View
+//           style={{
+//             marginTop: 10,
+//             width: 100,
+//             height: 100,
+//             opacity: opacity,
+//             backgroundColor: 'red',
+//           }}
+//         />
+
+//         <Animated.Text
+//           style={{
+//             marginTop: 10,
+//             width: 100,
+//             fontSize: 18,
+//             color: 'white',
+//             backgroundColor: 'red',
+//             transform: [
+//               { rotateX: rotateX },
+//             ]
+//           }}
+//         >
+//           窗外风好大，我没有穿褂。
+//               </Animated.Text>
+
+//         <Animated.Text
+//           style={{
+//             marginTop: 10,
+//             height: 100,
+//             lineHeight: 100,
+//             fontSize: textSize,
+//             color: 'red'
+//           }}
+//         >
+//           IAMCJ嘿嘿嘿
+//               </Animated.Text> */}
+
+//         <Animated.View
+//           style={{
+//             marginTop: 10,
+//             width: 100,
+//             height: 100,
+//             marginLeft: marginLeft,
+//             backgroundColor: 'red',
+//           }}
+//         />
+
+//         <TouchableOpacity onPress={this._startAnimated.bind(this)}>
+//           <Text style={{ width: 200, height: 100, textAlign: 'center', lineHeight: 100 }}>点击开始动画</Text>
+//         </TouchableOpacity>
+//       </View>
+//     );
+//   }
+// }

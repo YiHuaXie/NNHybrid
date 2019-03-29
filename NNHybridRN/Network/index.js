@@ -107,7 +107,7 @@ export default class Network {
      * @param {{}} params              // 业务参数
      * @param {boolean} needLogin      // 是否登录
      */
-    static my_request(apiPath, apiMethod, apiVersion, httpMethod = HttpMethod.POST, params = {}, needLogin = false) {
+    static my_request(apiPath, apiMethod, apiVersion, params = {}, needLogin = false, httpMethod = HttpMethod.POST) {
         if (needLogin) {
             // 显示登录弹窗
             return null;

@@ -5,11 +5,12 @@ import { PropTypes } from 'prop-types';
 export default class TextField extends Component {
 
     static propTypes = {
+        textFieldStyle: PropTypes.object,
         leftView: PropTypes.element,
         leftViewStyle: PropTypes.object,
         rightView: PropTypes.element,
         rightViewStyle: PropTypes.object,
-        textFieldStyle: PropTypes.object,
+        textInput: PropTypes.element,
         textInputStyle: PropTypes.object,
     };
 
@@ -24,12 +25,13 @@ export default class TextField extends Component {
                 <View style={[styles.defaultLeftView, this.props.leftViewStyle]}>
                     {this.props.leftView}
                 </View>
-                <TextInput style={this.props.textInputStyle}
-                    onChangeText={(text) => this.setState({ text })}
-                    clearButtonMode={'while-editing'}
-                    value={this.state.text}>
-
-                </TextInput>
+                {this.props.textInput ? this.props.textInput :
+                    <TextInput
+                        style={this.props.textInputStyle}
+                        onChangeText={(text) => this.setState({ text })}
+                        clearButtonMode={'while-editing'}
+                        value={this.state.text}
+                    />}
                 <View style={[styles.defaultRightView, this.props.rightViewStyle]}>
                     {this.props.rightView}
                 </View>
