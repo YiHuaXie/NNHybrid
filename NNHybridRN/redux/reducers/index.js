@@ -1,24 +1,18 @@
 import { combineReducers } from 'redux';
-import { rootCom, RootNavigator } from '../../navigator/AppNavigator';
-// import home from '../Section/Home/HomeReducer';
+import { navReducer} from '../../navigator/AppNavigator';
+// import { rootCom, RootNavigator } from '../../navigator/AppNavigator';
+// import { createNavigationReducer } from 'react-navigation-redux-helpers';
 
-/**
- * 1.create default navigation state
- */
-const defaultNavState = RootNavigator.router.getStateForAction(RootNavigator.router.getActionForPathAndParams(rootCom));
+// 以下就是createNavigationReducer的实现
+// const defaultNavState = RootNavigator.router.getStateForAction(RootNavigator.router.getActionForPathAndParams(rootCom));
 
-/**
- * 2.create navigation reducer，
- */
-const navReducer = (state = defaultNavState, action) => {
-    const nextState = RootNavigator.router.getStateForAction(action, state);
-    return nextState || state;
-};
+// const navReducer = (state = defaultNavState, action) => {
+//     const nextState = RootNavigator.router.getStateForAction(action, state);
+//     return nextState || state;
+// };
 
-/**
- * 3.combine all reducers in project
- * @type {Reducer<any> | Reducer<any, AnyAction>}
- */
+// const navReducer = createNavigationReducer(RootNavigator);
+
 export default combineReducers({
     nav: navReducer,
     // home: home,

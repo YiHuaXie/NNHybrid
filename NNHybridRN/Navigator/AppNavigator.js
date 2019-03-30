@@ -1,12 +1,18 @@
-import { createStackNavigator, createSwitchNavigator, createAppContainer } from 'react-navigation';
+import {
+    createStackNavigator,
+    createSwitchNavigator,
+    createAppContainer
+} from 'react-navigation';
 import { connect } from 'react-redux';
-import { createReactNavigationReduxMiddleware, createReduxContainer } from 'react-navigation-redux-helpers';
+import {
+    createReactNavigationReduxMiddleware,
+    createReduxContainer,
+    createNavigationReducer
+} from 'react-navigation-redux-helpers';
 
 import StartContainer from '../containers/StartContainer';
 import MainContainer from '../containers/MainContainer';
 import LoginContainer from '../containers/LoginContainer';
-
-export const rootCom = 'Main';
 
 const StartNavigator = createStackNavigator({
     StartContainer: {
@@ -29,7 +35,7 @@ const LoginNavigator = createStackNavigator({
     }
 });
 
-export const RootNavigator = createAppContainer(createSwitchNavigator(
+const RootNavigator = createAppContainer(createSwitchNavigator(
     {
         Start: StartNavigator,
         Main: MainNavigator,
@@ -41,12 +47,25 @@ export const RootNavigator = createAppContainer(createSwitchNavigator(
     }
 ));
 
+// system navigation reducer
+// export const navReducer = createNavigationReducer(RootNavigator);
+
+// custom navigation reducer
+const initialAction = RootNavigator.router.getActionForPathAndParams('Main');
+const initialState = RootNavigator.router.getStateForAction(initialAction);
+
+export const navReducer = (state = initialState, action) => {
+    const nextState = RootNavigator.router.getStateForAction(action, state);
+    return nextState || state;
+};
+
+// Note: createReactNavigationReduxMiddleware must be run before createReduxContainer
 export const navMiddleware = createReactNavigationReduxMiddleware(
     state => state.nav,
-    'root'
+    // 'root'//这个key作用未知
 );
 
-const AppWithNavigationState = createReduxContainer(RootNavigator, 'root');
+const AppWithNavigationState = createReduxContainer(RootNavigator);//'root'
 
 const mapStateToProps = state => ({
     state: state.nav
