@@ -2,9 +2,17 @@ import { createStackNavigator, createSwitchNavigator, createAppContainer } from 
 import { connect } from 'react-redux';
 import { createReactNavigationReduxMiddleware, createReduxContainer } from 'react-navigation-redux-helpers';
 
+import StartContainer from '../containers/StartContainer';
 import LoginContainer from '../containers/LoginContainer';
 
-export const rootCom = 'Login';
+export const rootCom = 'Start';
+
+const StartNavigator = createStackNavigator({
+    StartContainer: {
+        screen: StartContainer,
+        navigationOptions: { header: null }
+    }
+});
 
 const LoginNavigator = createStackNavigator({
     LoginContainer: {
@@ -15,6 +23,7 @@ const LoginNavigator = createStackNavigator({
 
 export const RootNavigator = createAppContainer(createSwitchNavigator(
     {
+        Start: StartNavigator,
         Login: LoginNavigator,
     }, {
         navigationOptions: {
