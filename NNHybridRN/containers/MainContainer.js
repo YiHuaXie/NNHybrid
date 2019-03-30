@@ -1,97 +1,64 @@
 import React, { Component } from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
-// import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
-// // import { BottomTabBar } from 'react-navigation-tabs';
+import { View } from 'react-native';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { BottomTabBar } from 'react-navigation-tabs';
 
-// import TabBarIcon from '../components/TabBarIcon';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-// import HomePage from '../sections/home/HomePage';
-// import MePage from '../sections/me/MePage';
-// import AppUtil from '../utils/AppUtil';
+import HomePage from '../sections/home/HomePage';
+import MePage from '../sections/me/MePage';
 
-// // 路由配置对象是从路由名称到路由配置的映射，告诉导航器该路由呈现什么。
-// const TabRouteConfigs = {
-//     HomePage: {
-//         screen: HomePage,
-//         navigationOptions: {
-//             tabBarLabel: "首页",
-//             tabBarIcon: ({ focused, tintColor }) => (
-//                 <TabBarIcon
-//                     focused={focused}
-//                     inactiveIcon={require('../resource/images/tabbar/tab_bar_home_normal.png')}
-//                     activeIcon={require('./resource/images/tabbar/tab_bar_home_selected.png')}
-//                 />
-//             )
-//         },
-//     },
-//     MePage: {
-//         screen: MePage,
-//         navigationOptions: {
-//             tabBarLabel: "我的",
-//             tabBarIcon: ({ focused, tintColor }) => (
-//                 <TabBarIcon
-//                     focused={focused}
-//                     inactiveIcon={require('../resource/images/tabbar/tab_bar_me_normal.png')}
-//                     activeIcon={require('./resource/images/tabbar/tab_bar_me_selected.png')}
-//                 />
-//             )
-//         }
-//     }
-// };
+const TabRouteConfigs = {
+    HomePage: {
+        screen: HomePage,
+        navigationOptions: {
+            tabBarLabel: "首页",
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Ionicons name={'md-trending-up'} size={26} style={{ color: tintColor }} />
+            )
+        },
+    },
+    MePage: {
+        screen: MePage,
+        navigationOptions: {
+            tabBarLabel: "我的",
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Ionicons name={'md-trending-up'} size={26} style={{ color: tintColor }} />
+            )
+        }
+    }
+};
 
-// const TabBarComponent = (props) => (<TabBarComponent {...props} />)
+export class AppTabNavigator extends Component {
 
-// export const AppTabNavigator = createAppContainer(createBottomTabNavigator(
-//     TabRouteConfigs,
-//     {
-//         tabBarComponent: TabBarComponent,
-//         tabBarOptions: {
-//             activeTintColor: AppUtil.app_theme,
-//             inactiveTintColor: 'black'
-//         }
-//     }
-// ));
+    _tabNavigator() {
+        if (!this.tabBar) {
+            this.tabBar = createAppContainer(createBottomTabNavigator(TabRouteConfigs, {
+                tabBarComponent: props => <BottomTabBar {...props} />
+            }));
+        }
+
+        return this.tabBar;
+    }
+
+    render() {
+        const TabBar = this._tabNavigator();
+        return <TabBar />
+    }
+}
 
 /**
  * 相当于TabBarController
  */
 export default class MainContainer extends Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
-    }
-
     render() {
         return (
-            // <View style={{ flex: 1 }}>
-            //     <AppTabNavigator />
-            // </View>
-            <View style={styles.container}>
-            <Text style={styles.welcome}>dasdasdPage</Text>
-        </View>
+            <View style={{ flex: 1 }}>
+                <AppTabNavigator />
+            </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    }
-});
+

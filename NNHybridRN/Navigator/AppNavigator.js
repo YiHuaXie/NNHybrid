@@ -32,7 +32,7 @@ const LoginNavigator = createStackNavigator({
 export const RootNavigator = createAppContainer(createSwitchNavigator(
     {
         Start: StartNavigator,
-        Main: MainContainer,
+        Main: MainNavigator,
         Login: LoginNavigator,
     }, {
         navigationOptions: {
