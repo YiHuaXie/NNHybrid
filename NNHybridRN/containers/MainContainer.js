@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { BottomTabBar } from 'react-navigation-tabs';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import AppUtil from '../utils/AppUtil';
 import HomePage from '../sections/home/HomePage';
 import MePage from '../sections/me/MePage';
 
@@ -13,8 +11,12 @@ const TabRouteConfigs = {
         screen: HomePage,
         navigationOptions: {
             tabBarLabel: "首页",
-            tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons name={'md-trending-up'} size={26} style={{ color: tintColor }} />
+            tabBarIcon: ({ focused }) => (
+                <TabBarIcon
+                    focused={focused}
+                    activeIcon={require('../resource/images/tabbar/tab_bar_home_selected.png')}
+                    inactiveIcon={require('../resource/images/tabbar/tab_bar_home_normal.png')}
+                />
             )
         },
     },
@@ -22,19 +24,40 @@ const TabRouteConfigs = {
         screen: MePage,
         navigationOptions: {
             tabBarLabel: "我的",
-            tabBarIcon: ({ tintColor, focused }) => (
-                <Ionicons name={'md-trending-up'} size={26} style={{ color: tintColor }} />
+            tabBarIcon: ({ focused }) => (
+                <TabBarIcon
+                    focused={focused}
+                    activeIcon={require('../resource/images/tabbar/tab_bar_me_selected.png')}
+                    inactiveIcon={require('../resource/images/tabbar/tab_bar_me_normal.png')}
+                />
             )
         }
     }
 };
+
+class TabBarIcon extends Component {
+
+    render() {
+        const { focused, activeIcon, inactiveIcon } = this.props;
+        return (
+            <Image
+                style={{ width: 30, height: 30, resizeMode: 'contain' }}
+                source={focused ? activeIcon : inactiveIcon}
+            />
+        )
+    }
+}
 
 export class AppTabNavigator extends Component {
 
     _tabNavigator() {
         if (!this.tabBar) {
             this.tabBar = createAppContainer(createBottomTabNavigator(TabRouteConfigs, {
-                tabBarComponent: props => <BottomTabBar {...props} />
+                tabBarComponent: props => <BottomTabBar {...props} />,
+                tabBarOptions: {
+                    activeTintColor: AppUtil.app_theme,
+                    inactiveTintColor: AppUtil.app_lightGray
+                }
             }));
         }
 

@@ -7,6 +7,7 @@ export default {
     app_background: '#FFFFFF',
     app_black: '#030303',
     app_clear: 'transparent',
+    app_lightGray: '#DDDDDD',
 
     navigationBarHeight: Platform.OS === 'ios' ? 44 : 50,
     fullNavigationBarHeight: Platform.OS === 'ios' ? (DeviceInfo.isIPhoneX_deprecated ? 88 : 64) : 50,
