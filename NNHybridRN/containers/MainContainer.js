@@ -5,6 +5,7 @@ import { BottomTabBar } from 'react-navigation-tabs';
 import AppUtil from '../utils/AppUtil';
 import HomePage from '../sections/home/HomePage';
 import MePage from '../sections/me/MePage';
+import NavigationUtil from '../utils/NavigationUtil';
 
 const TabRouteConfigs = {
     HomePage: {
@@ -50,6 +51,12 @@ class TabBarIcon extends Component {
 
 export class AppTabNavigator extends Component {
 
+    _onNavigationStateChange = (prevState, nextState) => {
+        if (nextState.index === 1) {
+            NavigationUtil.jumpToLogin();
+        }
+    }
+
     _tabNavigator() {
         if (!this.tabBar) {
             this.tabBar = createAppContainer(createBottomTabNavigator(TabRouteConfigs, {
@@ -66,7 +73,7 @@ export class AppTabNavigator extends Component {
 
     render() {
         const TabBar = this._tabNavigator();
-        return <TabBar />
+        return <TabBar onNavigationStateChange={this._onNavigationStateChange} />
     }
 }
 

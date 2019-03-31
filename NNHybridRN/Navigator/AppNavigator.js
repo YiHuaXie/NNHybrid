@@ -1,7 +1,8 @@
 import {
     createStackNavigator,
     createSwitchNavigator,
-    createAppContainer
+    createAppContainer,
+    StackViewTransitionConfigs
 } from 'react-navigation';
 import { connect } from 'react-redux';
 import {
@@ -13,6 +14,24 @@ import {
 import StartContainer from '../containers/StartContainer';
 import MainContainer from '../containers/MainContainer';
 import LoginContainer from '../containers/LoginContainer';
+import LoginPage from '../sections/login/LoginPage';
+
+// dynamic modal transition
+// const IOS_MODAL_ROUTES = ['LoginPage'];
+
+// const dynamicModalTransition = (transitionProps, prevTransitionProps) => {
+//     const isModal = IOS_MODAL_ROUTES.some(
+//         screenName =>
+//             screenName === transitionProps.scene.route.routeName ||
+//             (prevTransitionProps && screenName === prevTransitionProps.scene.route.routeName)
+//     )
+
+//     return StackViewTransitionConfigs.defaultTransitionConfig(
+//         transitionProps,
+//         prevTransitionProps,
+//         isModal
+//     );
+// };
 
 const StartNavigator = createStackNavigator({
     StartContainer: {
@@ -25,13 +44,17 @@ const MainNavigator = createStackNavigator({
     MainContainer: {
         screen: MainContainer,
         navigationOptions: { header: null }
+    },
+    LoginPage: {
+        screen: LoginPage,
+        navigationOptions: { header: null }
     }
 });
 
 const LoginNavigator = createStackNavigator({
     LoginContainer: {
         screen: LoginContainer,
-        navigationOptions: { header: null }
+        navigationOptions: { header: null },
     }
 });
 
@@ -41,23 +64,21 @@ const RootNavigator = createAppContainer(createSwitchNavigator(
         Main: MainNavigator,
         Login: LoginNavigator,
     }, {
-        navigationOptions: {
-            header: null,
-        }
+        navigationOptions: { header: null },
     }
 ));
 
 // system navigation reducer
-// export const navReducer = createNavigationReducer(RootNavigator);
+export const navReducer = createNavigationReducer(RootNavigator);
 
 // custom navigation reducer
-const initialAction = RootNavigator.router.getActionForPathAndParams('Main');
-const initialState = RootNavigator.router.getStateForAction(initialAction);
+// const initialAction = RootNavigator.router.getActionForPathAndParams('Main');
+// const initialState = RootNavigator.router.getStateForAction(initialAction);
 
-export const navReducer = (state = initialState, action) => {
-    const nextState = RootNavigator.router.getStateForAction(action, state);
-    return nextState || state;
-};
+// export const navReducer = (state = initialState, action) => {
+//     const nextState = RootNavigator.router.getStateForAction(action, state);
+//     return nextState || state;
+// };
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxContainer
 export const navMiddleware = createReactNavigationReduxMiddleware(

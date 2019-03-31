@@ -22,7 +22,7 @@ export default class NavigationBar extends Component {
         title: PropTypes.string,
         titleView: PropTypes.element,
         hidden: PropTypes.bool,
-        // navBarStyle: PropTypes.Object,
+        navBarStyle: PropTypes.object,
     };
 
     _backOrCloseButton(text) {
@@ -30,6 +30,7 @@ export default class NavigationBar extends Component {
 
         let result = text === 'back' ? 'ios-arrow-round-back' : 'md-close';
 
+        //this.props.backOrCloseHandler()
         return (
             <TouchableOpacity onPress={() => this.props.backOrCloseHandler()}>
                 <Ionicons name={result} size={24} style={{ color: AppUtil.app_black }} />
@@ -51,7 +52,7 @@ export default class NavigationBar extends Component {
     render() {
         if (this.props.hidden) return null;
         return (
-            <View style={styles.navigationBar}>
+            <View style={[styles.navigationBar, this.props.navBarStyle]}>
                 <View style={styles.navigationBarContent}>
                     <View style={styles.navigationBarButton}>
                         {this.props.leftButton ? this.props.leftButton : this._backOrCloseButton(this.props.backOrClose)}
@@ -73,7 +74,7 @@ export default class NavigationBar extends Component {
 const styles = StyleSheet.create({
     navigationBar: {
         backgroundColor: '#FFFFFF',
-        height: AppUtil.fullNavigationBarHeight
+        height: AppUtil.fullNavigationBarHeight,
     },
     navigationBarContent: {
         backgroundColor: AppUtil.app_clear,

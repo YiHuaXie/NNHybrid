@@ -6,6 +6,7 @@ import TextField from '../../components/common/TextField';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import StringUtil from '../../utils/StringUtil';
 import Network, { ApiPath } from '../../network/ApiService';
+import NavigationUtil from '../../utils/NavigationUtil';
 
 const LoginBy = {
   password: 'password',
@@ -34,7 +35,7 @@ export default class LoginPage extends Component {
   }
 
   _close = () => {
-
+    NavigationUtil.jumpToMain();
   }
 
   _jumpToRegister = () => {
@@ -290,7 +291,6 @@ export default class LoginPage extends Component {
           backOrCloseHandler={this._close}
         />
         <ScrollView
-          style={{ marginTop: - AppUtil.navigationBarHeight }}
           keyboardDismissMode='on-drag'
         >
           {this._titleView()}
