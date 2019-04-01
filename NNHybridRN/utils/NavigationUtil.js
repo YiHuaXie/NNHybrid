@@ -2,14 +2,14 @@ import { NavigationActions } from 'react-navigation';
 
 export default class NavigationUtil {
 
-    static goPage(parameters, page) {
+    static goPage(page) {
         const navigation = NavigationUtil.navigation;
         if (!navigation) {
             console.log('NavigationUtil.navigation can not be null');
             return;
         }
 
-        navigation.navigate(page, { ...parameters });
+        navigation.navigate(page);
     }
 
     static goBack() {

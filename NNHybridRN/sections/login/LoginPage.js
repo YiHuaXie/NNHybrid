@@ -7,6 +7,7 @@ import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture
 import StringUtil from '../../utils/StringUtil';
 import Network, { ApiPath } from '../../network/ApiService';
 import NavigationUtil from '../../utils/NavigationUtil';
+import { SafeAreaView } from 'react-navigation';
 
 const LoginBy = {
   password: 'password',
@@ -284,7 +285,7 @@ export default class LoginPage extends Component {
     });
 
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ScrollView
           style={{ backgroundColor: '#FFFFFF' }}
           keyboardDismissMode='on-drag'
@@ -325,7 +326,10 @@ export default class LoginPage extends Component {
             backgroundColor: AppUtil.app_clear
           }}
         />
-      </View >
+      </SafeAreaView>
+      // <View style={styles.container}>
+
+      // </View >
     );
   }
 }

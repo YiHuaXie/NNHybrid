@@ -14,7 +14,8 @@ import {
 import StartContainer from '../containers/StartContainer';
 import MainContainer from '../containers/MainContainer';
 import LoginContainer from '../containers/LoginContainer';
-import LoginPage from '../sections/login/LoginPage';
+import HouseDetailPage from '../sections/houseDetail/HouseDetailPage';
+import CityListPage from '../sections/city/CityListPage';
 
 // dynamic modal transition
 // const IOS_MODAL_ROUTES = ['LoginPage'];
@@ -45,9 +46,11 @@ const MainNavigator = createStackNavigator({
         screen: MainContainer,
         navigationOptions: { header: null }
     },
-    LoginPage: {
-        screen: LoginPage,
-        navigationOptions: { header: null }
+    HouseDetailPage: {
+        screen: HouseDetailPage,
+    },
+    CityListPage: {
+        screen: CityListPage,
     }
 });
 
@@ -83,10 +86,10 @@ export const navReducer = createNavigationReducer(RootNavigator);
 // Note: createReactNavigationReduxMiddleware must be run before createReduxContainer
 export const navMiddleware = createReactNavigationReduxMiddleware(
     state => state.nav,
-    // 'root'//这个key作用未知
+    'root'//这个key作用未知
 );
 
-const AppWithNavigationState = createReduxContainer(RootNavigator);//'root'
+const AppWithNavigationState = createReduxContainer(RootNavigator, 'root');
 
 const mapStateToProps = state => ({
     state: state.nav

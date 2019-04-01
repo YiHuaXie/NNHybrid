@@ -59,6 +59,8 @@ export class AppTabNavigator extends Component {
 
     _tabNavigator() {
         if (!this.tabBar) {
+            //Note: createTabNavigator is deprecated.
+            //Please use createBottomTabNavigator and/or createMaterialTopTabNavigator instead.
             this.tabBar = createAppContainer(createBottomTabNavigator(TabRouteConfigs, {
                 tabBarComponent: props => <BottomTabBar {...props} />,
                 tabBarOptions: {
