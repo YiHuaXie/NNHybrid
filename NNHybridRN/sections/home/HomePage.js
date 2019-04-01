@@ -1,30 +1,43 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
+import Network from '../../network';
+import { ApiPath } from '../../network/ApiService';
+
+import HomeBannerModuleCell from './HomeBannerModuleCell';
 
 export default class HomePage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            banner: []
+        }
+
+        this._loadData();
+    }
+
+    _loadData() {
+        Network
+            .my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: '330100' })
+            .then(response => {
+                console.log(response);
+                this.setState({ banner: response.focusPictureList })
+            })
+            .catch(error => console.error(error));
+    }
+
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-                <Text
-                    style={{ fontSize: 20, textAlign: 'center', margin: 10 }}
-                    onPress={() => {
-                        NavigationUtil.goPage("HouseDetailPage");
-                    }}
-                >
-                    jump to HouseDetailPage
-                </Text>
-                <Text
-                    style={{ fontSize: 20, textAlign: 'center', margin: 10 }}
-                    onPress={() => {
-                        NavigationUtil.goPage("CityListPage");
-                    }}
-                >
-                    jump to CityListPage
-                </Text>
-            </SafeAreaView>
+            <View style={styles.container}>
+                <ScrollView>
+                    <HomeBannerModuleCell
+                        banner={this.state.banner}
+                    />
+                </ScrollView>
+            </View>
         );
     }
 }

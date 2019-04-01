@@ -43,4 +43,6 @@ target 'NNHybridiOS' do
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
 end

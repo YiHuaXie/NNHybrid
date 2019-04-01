@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import NavigationUtil from '../utils/NavigationUtil';
 
 export default class StartContainer extends Component {
-
+    
     componentDidMount() {
         this.timer = setTimeout(() => {
             NavigationUtil.jumpToMain();

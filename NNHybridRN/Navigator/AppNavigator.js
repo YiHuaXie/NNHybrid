@@ -68,6 +68,7 @@ const RootNavigator = createAppContainer(createSwitchNavigator(
         Login: LoginNavigator,
     }, {
         navigationOptions: { header: null },
+        initialRouteName: 'Main'
     }
 ));
 

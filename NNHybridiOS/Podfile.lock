@@ -18,6 +18,8 @@ PODS:
   - AMapLocation (2.6.1):
     - AMapFoundation (~> 1.4)
   - boost-for-react-native (1.63.0)
+  - BVLinearGradient (2.5.4):
+    - React
   - DGActivityIndicatorView (2.1.1)
   - DoubleConversion (1.1.6)
   - FLAnimatedImage (1.0.12)
@@ -106,6 +108,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - AMapLocation
+  - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DGActivityIndicatorView
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
@@ -151,6 +154,8 @@ SPEC REPOS:
     - SDWebImage
 
 EXTERNAL SOURCES:
+  BVLinearGradient:
+    :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   Folly:
@@ -173,6 +178,7 @@ SPEC CHECKSUMS:
   AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
   AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  BVLinearGradient: b0b70acf63ee888829b7c2ebbf6b50e227396e55
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
@@ -192,6 +198,6 @@ SPEC CHECKSUMS:
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: bbca22e4577922c4017f78e9a1a7474fac0ab717
+PODFILE CHECKSUM: 791008fb5d9097ceec4f5c3aa9d62cdced1ff330
 
 COCOAPODS: 1.5.3
