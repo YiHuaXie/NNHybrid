@@ -29,8 +29,7 @@ export default class NavigationBar extends Component {
         if (!text) return null;
 
         let result = text === 'back' ? 'ios-arrow-round-back' : 'md-close';
-
-        //this.props.backOrCloseHandler()
+        
         return (
             <TouchableOpacity onPress={() => this.props.backOrCloseHandler()}>
                 <Ionicons name={result} size={24} style={{ color: AppUtil.app_black }} />

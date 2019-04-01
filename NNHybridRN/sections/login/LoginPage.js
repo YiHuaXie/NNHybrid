@@ -211,7 +211,7 @@ export default class LoginPage extends Component {
         fontSize: 16,
         color: AppUtil.app_black
       }}
-      placeholderTextColor='#DDDDDD'
+      placeholderTextColor={AppUtil.app_lightGray}
       selectionColor={AppUtil.app_theme}
       placeholder='请输入验证码'
       onChangeText={text => this.setState({ verifyCode: text })}
@@ -285,12 +285,8 @@ export default class LoginPage extends Component {
 
     return (
       <View style={styles.container}>
-        <NavigationBar
-          backOrClose='close'
-          rightButton={this._rightButton()}
-          backOrCloseHandler={this._close}
-        />
         <ScrollView
+          style={{ backgroundColor: '#FFFFFF' }}
           keyboardDismissMode='on-drag'
         >
           {this._titleView()}
@@ -319,6 +315,16 @@ export default class LoginPage extends Component {
             {this._confirmButton()}
           </Animated.View>
         </ScrollView>
+        <NavigationBar
+          backOrClose='close'
+          rightButton={this._rightButton()}
+          backOrCloseHandler={this._close}
+          navBarStyle={{
+            position: 'absolute',
+            width: AppUtil.windowWidth,
+            backgroundColor: AppUtil.app_clear
+          }}
+        />
       </View >
     );
   }
@@ -360,7 +366,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginTop: 5,
     height: 1,
-    backgroundColor: '#DDDDDD',
+    backgroundColor: AppUtil.app_lightGray,
   }
 });
 
