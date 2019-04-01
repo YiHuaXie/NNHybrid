@@ -7,8 +7,6 @@ import LinearGradient from 'react-native-linear-gradient';
 const viewHeight = AppUtil.windowWidth * 82.0 / 75.0;
 const viewWidth = AppUtil.windowWidth;
 
-// var vMargin = (viewWidth - cellW * cols) / (cols + 1);
-
 class ModuleItem extends Component {
 
     render() {
