@@ -13,7 +13,8 @@ export default class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            banner: []
+            banners: [],
+            modules: [],
         }
 
         this._loadData();
@@ -24,7 +25,10 @@ export default class HomePage extends Component {
             .my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: '330100' })
             .then(response => {
                 console.log(response);
-                this.setState({ banner: response.focusPictureList })
+                this.setState({
+                    banners: response.focusPictureList,
+                    modules: response.iconList,
+                })
             })
             .catch(error => console.error(error));
     }
@@ -34,7 +38,8 @@ export default class HomePage extends Component {
             <View style={styles.container}>
                 <ScrollView>
                     <HomeBannerModuleCell
-                        banner={this.state.banner}
+                        banners={this.state.banners}
+                        modules={this.state.modules}
                     />
                 </ScrollView>
             </View>
@@ -45,6 +50,6 @@ export default class HomePage extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppUtil.app_theme
+        backgroundColor: '#FFFFFF'
     }
 });

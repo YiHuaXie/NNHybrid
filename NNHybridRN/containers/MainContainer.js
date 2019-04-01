@@ -84,6 +84,12 @@ export class AppTabNavigator extends Component {
  */
 export default class MainContainer extends Component {
 
+    constructor(props) {
+        super(props);
+
+        NavigationUtil.navigation = props.navigation;
+    }
+    
     render() {
         return (
             <View style={{ flex: 1 }}>

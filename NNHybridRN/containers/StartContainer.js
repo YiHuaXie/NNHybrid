@@ -4,6 +4,12 @@ import NavigationUtil from '../utils/NavigationUtil';
 
 export default class StartContainer extends Component {
     
+    constructor(props) {
+        super(props);
+
+        NavigationUtil.navigation = props.navigation;
+    }
+
     componentDidMount() {
         this.timer = setTimeout(() => {
             NavigationUtil.jumpToMain();
@@ -15,7 +21,7 @@ export default class StartContainer extends Component {
     }
 
     render() {
-        NavigationUtil.navigation = this.props.navigation;
+        
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>WelcomePage</Text>
