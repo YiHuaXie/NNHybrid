@@ -7,13 +7,17 @@ import Network from '../../network';
 import { ApiPath } from '../../network/ApiService';
 
 import HomeBannerModuleCell from './HomeBannerModuleCell';
+import HomeMessageCell from './HomeMessageCell';
+import HomeVRCell from './HomeVRCell';
 
 export default class HomePage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            banner: []
+            banner: [],
+            messages: [],
+            vr: null,
         }
 
         this._loadData();
@@ -24,7 +28,11 @@ export default class HomePage extends Component {
             .my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: '330100' })
             .then(response => {
                 console.log(response);
-                this.setState({ banner: response.focusPictureList })
+                this.setState({
+                    banner: response.focusPictureList,
+                    messages: response.newsList,
+                    vr: response.marketVR
+                });
             })
             .catch(error => console.error(error));
     }
@@ -33,9 +41,9 @@ export default class HomePage extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView>
-                    <HomeBannerModuleCell
-                        banner={this.state.banner}
-                    />
+                    <HomeBannerModuleCell banner={this.state.banner} />
+                    <HomeMessageCell messages={this.state.messages} />
+                    <HomeVRCell vr={this.state.vr}/>
                 </ScrollView>
             </View>
         );
@@ -45,6 +53,6 @@ export default class HomePage extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: AppUtil.app_theme
+        backgroundColor: '#FFFFFF'
     }
 });

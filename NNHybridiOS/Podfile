@@ -35,7 +35,7 @@ target 'NNHybridiOS' do
   pod 'NNEasyKit'
   pod 'DGActivityIndicatorView'
   pod 'lottie-ios'
-#  pod 'Reveal-SDK', :configurations => ['Debug']
+  # pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'AMapLocation'
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
