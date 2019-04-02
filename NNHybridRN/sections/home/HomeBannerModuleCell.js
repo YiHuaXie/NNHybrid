@@ -67,6 +67,7 @@ export default class HomeBannerModuleCell extends Component {
                 <ListView
                     dataSource={this.state.dataSource.cloneWithRows(modules)}
                     contentContainerStyle={styles.moduleList}
+                    enableEmptySections={true}
                     renderRow={(rowData, rowID) => {
                         index++;
                         return <ModuleItem itemStyle={{ marginTop: index > 3 ? 10 : 0 }} item={rowData} />
