@@ -7,6 +7,8 @@ import Network from '../../network';
 import { ApiPath } from '../../network/ApiService';
 
 import HomeBannerModuleCell from './HomeBannerModuleCell';
+import HomeMessageCell from './HomeMessageCell';
+import HomeVRCell from './HomeVRCell';
 
 export default class HomePage extends Component {
 
@@ -15,6 +17,8 @@ export default class HomePage extends Component {
         this.state = {
             banners: [],
             modules: [],
+            messages: [],
+            vr: null,
         }
 
         this._loadData();
@@ -28,7 +32,9 @@ export default class HomePage extends Component {
                 this.setState({
                     banners: response.focusPictureList,
                     modules: response.iconList,
-                })
+                    messages: response.newsList,
+                    vr: response.marketVR
+                });
             })
             .catch(error => console.error(error));
     }
@@ -41,6 +47,8 @@ export default class HomePage extends Component {
                         banners={this.state.banners}
                         modules={this.state.modules}
                     />
+                    <HomeMessageCell messages={this.state.messages} />
+                    <HomeVRCell vr={this.state.vr} />
                 </ScrollView>
             </View>
         );

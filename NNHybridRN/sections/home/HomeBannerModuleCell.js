@@ -42,7 +42,7 @@ export default class HomeBannerModuleCell extends Component {
                     onPress={() => {
 
                     }}>
-                    <Image style={styles.image} source={{ url: banners[i].picUrl }} />
+                    <Image style={styles.image} source={{ uri: banners[i].picUrl }} />
                 </TouchableWithoutFeedback>;
             images.push(image);
         }
