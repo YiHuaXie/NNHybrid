@@ -20,6 +20,11 @@ export default {
     windowHeight: window.height,
 
     navigationTitleFont: 17,
+
+    isEmptyObject: obj => {
+        for (var n in obj) { return false }
+        return true;
+    }
 }
 
 

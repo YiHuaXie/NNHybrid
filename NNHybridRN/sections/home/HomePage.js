@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import {
+    StyleSheet,
+    View,
+    ScrollView,
+    TouchableWithoutFeedback
+} from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
 import Network from '../../network';
@@ -10,6 +14,8 @@ import HomeBannerModuleCell from './HomeBannerModuleCell';
 import HomeMessageCell from './HomeMessageCell';
 import HomeVRCell from './HomeVRCell';
 import HomeApartmentCell from './HomeApartmentCell';
+import HomeSectioHeader from './HomeSectionHeader';
+import EachHouseCell from '../../components/common/EachHouseCell';
 
 export default class HomePage extends Component {
 
@@ -21,22 +27,30 @@ export default class HomePage extends Component {
             messages: [],
             vr: null,
             apartments: [],
+            houses: [],
         }
 
         this._loadData();
     }
 
     _loadData() {
-        Network
-            .my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: '330100' })
-            .then(response => {
-                console.log(response);
+        const iconListReq =
+            Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: '330100' });
+        const houseListReq =
+            Network.my_request(ApiPath.SEARCH, 'recommendList', '1.0', { cityId: '330100', sourceType: 1 });
+
+        Promise
+            .all([iconListReq, houseListReq])
+            .then(([res1, res2]) => {
+                console.log(res1);
+                console.log(res2);
                 this.setState({
-                    banners: response.focusPictureList,
-                    modules: response.iconList,
-                    messages: response.newsList,
-                    vr: response.marketVR,
-                    apartments: response.estateList
+                    banners: res1.focusPictureList,
+                    modules: res1.iconList,
+                    messages: res1.newsList,
+                    vr: res1.marketVR,
+                    apartments: res1.estateList,
+                    houses: res2.resultList
                 });
             })
             .catch(error => console.error(error));
@@ -46,19 +60,38 @@ export default class HomePage extends Component {
         return add ? <View style={styles.dividingLine} /> : null;
     }
 
-    // 需要用SectionListshixian
+    _renderHouseitems() {
+        const { houses } = this.state;
+
+        tmpHouses = [];
+        for (var i = 0; i < houses.length; i++) {
+            const aCell = <TouchableWithoutFeedback key={i}>
+                <EachHouseCell house={houses[i]} />
+            </TouchableWithoutFeedback>;
+
+            tmpHouses.push(aCell);
+        }
+
+        return tmpHouses;
+    }
+
+    // 需要用SectionList实现
     render() {
+        const { banners, modules, messages, vr, apartments, houses } = this.state;
         return (
             <View style={styles.container}>
                 <ScrollView>
                     <HomeBannerModuleCell
-                        banners={this.state.banners}
-                        modules={this.state.modules}
+                        banners={banners}
+                        modules={modules}
                     />
-                    <HomeMessageCell messages={this.state.messages} />
-                    <HomeVRCell vr={this.state.vr} />
-                    {this._addDividingLine(this.state.messages.length || this.state.vr)}
-                    <HomeApartmentCell apartments={this.state.apartments}/>
+                    <HomeMessageCell messages={messages} />
+                    <HomeVRCell vr={vr} />
+                    {this._addDividingLine(messages.length || vr)}
+                    {apartments.length ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
+                    <HomeApartmentCell apartments={apartments} />
+                    {houses.length ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
+                    {this._renderHouseitems()}
                 </ScrollView>
             </View>
         );

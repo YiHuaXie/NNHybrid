@@ -3,30 +3,15 @@ import {
     StyleSheet,
     View,
     Image,
-    TouchableWithoutFeedback,
     FlatList,
     Text,
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 
-const cellHeight = 250;
-const headerViewHeight = 30;
+const cellHeight = 230;
 const itemSize = { width: 240, height: 190 };
 
 export default class HomeApartmentCell extends Component {
-
-    _headerView() {
-        return (
-            <View style={styles.headerContainer}>
-                <View style={styles.headerLine} />
-                <Text style={styles.headerTitle}>品牌公寓</Text>
-                <TouchableWithoutFeedback>
-                    <Text style={styles.headerMore}>查看更多</Text>
-                </TouchableWithoutFeedback>
-
-            </View>
-        );
-    }
 
     _renderApartmentItem(item, index) {
         const marginLeft = index === 0 ? 15 : 10;
@@ -69,7 +54,6 @@ export default class HomeApartmentCell extends Component {
 
         return apartments.length ?
             <View style={styles.container}>
-                {this._headerView()}
                 <FlatList
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
@@ -79,6 +63,7 @@ export default class HomeApartmentCell extends Component {
                     // contentInset只支持iOS
                     renderItem={({ item, index }) => this._renderApartmentItem(item, index)}
                 />
+                <View style={styles.dividingLine} />
             </View> : null;
     }
 }
@@ -86,30 +71,6 @@ export default class HomeApartmentCell extends Component {
 const styles = StyleSheet.create({
     container: {
         height: cellHeight,
-    },
-    headerContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        height: headerViewHeight,
-        alignItems: 'flex-end',
-    },
-    headerLine: {
-        backgroundColor: AppUtil.app_theme,
-        width: 3,
-        height: 17,
-        marginLeft: 15,
-    },
-    headerTitle: {
-        width: AppUtil.windowWidth - 95,
-        color: AppUtil.app_black,
-        fontSize: 16,
-        marginLeft: 10,
-        fontWeight: 'bold',
-    },
-    headerMore: {
-        color: AppUtil.app_gray,
-        fontSize: 12,
-        marginRight: 15
     },
     itemContainer: {
         width: itemSize.width,
@@ -150,5 +111,8 @@ const styles = StyleSheet.create({
         color: AppUtil.app_gray,
         fontSize: 10,
     },
-    
+    dividingLine: {
+        height: 10,
+        backgroundColor: AppUtil.app_dividing_line
+    }
 });
