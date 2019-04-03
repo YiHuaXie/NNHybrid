@@ -27,7 +27,7 @@ export default class EachHouseCell extends Component {
             title: '',
             subTitle: '',
             price: 0,
-            allTagList: [],
+            allTags: [],
             address: '',
             isOrgAuth: false,
             isVr: false
@@ -39,7 +39,8 @@ export default class EachHouseCell extends Component {
         if (prevState.house !== nextProps.house) {
             const { house } = nextProps;
             strings = [house.roomArea, house.houseType, house.roomDirection];
-
+            allTags = house.showIconList.concat(house.showTagList)
+            console.log(allTags);
             return {
                 house: house,
                 imageUrl: house.imageUrl,
@@ -48,28 +49,12 @@ export default class EachHouseCell extends Component {
                 price: parseInt(house.minRentPrice),
                 address: house.distanceInfo,
                 isOrgAuth: house.isOrgAuth,
+                allTags: allTags
             }
         }
 
         return null;
     }
-
-    authImage = () => <Image
-        style={styles.authIcon}
-        source={require('../../resource/images/house_auth_icon.png')}
-    />
-
-    titleText = () => (
-        <Text numberOfLines={1} style={styles.title}>
-            {this.state.title}
-        </Text>
-    )
-
-    subTitleText = () => (
-        <Text numberOfLines={1} style={styles.subTitle}>
-            {this.state.subTitle}
-        </Text>
-    )
 
     addressIcon = () => (
         <Image
@@ -78,12 +63,77 @@ export default class EachHouseCell extends Component {
         />
     )
 
-    priceText = () => (
-        <Text style={styles.price}>
-            {this.state.price}
-            <Text style={{ ...styles.price, fontSize: 10 }}>/月</Text>
-        </Text>
-    );
+    _renderAuthImageAndTitle() {
+        const { isOrgAuth, title } = this.state;
+        const imageSource = require('../../resource/images/house_auth_icon.png');
+
+        return (
+            <View style={{ flexDirection: 'row', height: 17 }}>
+                {isOrgAuth ? <Image style={styles.authIcon} source={imageSource} /> : null}
+                <Text numberOfLines={1} style={styles.title}>{title}</Text>
+            </View >
+        );
+    }
+
+    _renderSubTitleAndPrice() {
+        const { subTitle, price } = this.state;
+        return (
+            <View style={styles.subTitleAndPrice}>
+                <Text numberOfLines={1} style={styles.subTitle}>{subTitle}</Text>
+                <Text style={styles.price}>
+                    {price}
+                    <Text style={{ ...styles.price, fontSize: 10 }}>/月</Text>
+                </Text>
+            </View>
+        );
+    }
+
+    _renderAddress() {
+        return (
+            <View style={styles.addressContainer}>
+                <Image
+                    style={styles.addressIcon}
+                    source={require('../../resource/images/location.png')}
+                />
+                <Text style={styles.addressText}>{this.state.address}</Text>
+            </View>
+        );
+    }
+
+    _renderTags() {
+        tmpTags = [];
+        this.state.allTags.forEach(obj => {
+            if (obj.tagIcon) {
+                tmpTags.push(
+                    <Image
+                        style={{ width: obj.iconWidth, height: 16, marginRight: 5 }}
+                        source={{ url: obj.tagIcon }}
+                    />
+                );
+            } else {
+                tmpTags.push(
+                    <Text style={{
+                        ...styles.tagText,
+                        color: obj.tagColor,
+                        backgroundColor: obj.backgroundColor,
+                        borderColor: obj.borderColor
+                    }}
+                        onLayout={({ nativeEvent: e }) => {
+                            console.log(e);
+                        }}
+                    >
+                        {obj.tagName}
+                    </Text>
+                );
+            }
+        });
+
+        return (
+            <View style={styles.tagsContainer}>
+                {tmpTags}
+            </View>
+        );
+    }
 
     render() {
         const { imageUrl, title, isOrgAuth, address } = this.state;
@@ -91,21 +141,10 @@ export default class EachHouseCell extends Component {
             <View style={styles.container}>
                 <Image style={styles.leftImage} source={{ url: imageUrl }} />
                 <View style={styles.rightContent}>
-                    <View style={{ flexDirection: 'row', height: 17 }}>
-                        {isOrgAuth ? this.authImage() : null}
-                        {this.titleText()}
-                    </View >
-                    <View style={styles.subTitleAndPrice}>
-                        {this.subTitleText()}
-                        {this.priceText()}
-                    </View>
-                    <View style={styles.addressContainer}>
-                        <Image
-                            style={styles.addressIcon}
-                            source={require('../../resource/images/location.png')}
-                        />
-                        <Text style={styles.addressText}>{address}</Text>
-                    </View>
+                    {this._renderAuthImageAndTitle()}
+                    {this._renderSubTitleAndPrice()}
+                    {this._renderAddress()}
+                    {this._renderTags()}
                 </View>
                 <View style={styles.dividingLine} />
             </View>
@@ -163,7 +202,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        height: 12
+        height: 12,
+        marginTop: 5
     },
     addressIcon: {
         width: 12,
@@ -172,6 +212,18 @@ const styles = StyleSheet.create({
     addressText: {
         color: AppUtil.app_gray,
         fontSize: 11,
+    },
+    tagsContainer: {
+        height: 16,
+        marginTop: 10,
+    },
+    tagText: {
+        position: 'absolute',
+        fontSize: 10,
+        borderRadius: 3,
+        borderWidth: 0.5,
+        marginRight: 5,
+        height: 16,
     },
     dividingLine: {
         position: 'absolute',
