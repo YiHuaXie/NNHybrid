@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TouchableWithoutFeedback, FlatList, Text } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Image,
+    TouchableWithoutFeedback,
+    FlatList,
+    Text,
+} from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 
 const cellHeight = 250;
 const headerViewHeight = 30;
-const listViewHeight = cellHeight - headerViewHeight;
 const itemSize = { width: 240, height: 190 };
 
 export default class HomeApartmentCell extends Component {
@@ -31,10 +37,12 @@ export default class HomeApartmentCell extends Component {
                 marginLeft: marginLeft,
                 marginRight: marginRight
             }}>
-                <Image
-                    style={styles.itemImage}
-                    source={{ uri: item.imageUrl }}
-                />
+                <View style={styles.itemImageContainer}>
+                    <Image
+                        style={styles.itemImage}
+                        source={{ uri: item.imageUrl }}
+                    />
+                </View>
                 <Text style={styles.itemTitle}>{item.estateName}</Text>
                 <View style={{
                     flexDirection: 'row',
@@ -108,16 +116,24 @@ const styles = StyleSheet.create({
         height: itemSize.height,
         backgroundColor: '#FFFFFF',
         flexDirection: 'column',
-        borderRadius: 6,
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6,
         shadowColor: 'rgba(0, 0, 0, 0.15)',
         shadowOffset: { width: 0, height: 0 },
         shadowRadius: 5,
         shadowOpacity: 1.0,
         marginTop: 15,
     },
+    itemImageContainer: {
+        width: itemSize.width,
+        height: 120,
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6,
+        overflow: 'hidden',//like clipToBounds
+    },
     itemImage: {
         width: itemSize.width,
-        height: 120
+        height: 120,
     },
     itemTitle: {
         marginLeft: 15,
@@ -133,5 +149,6 @@ const styles = StyleSheet.create({
     itemCount: {
         color: AppUtil.app_gray,
         fontSize: 10,
-    }
+    },
+    
 });
