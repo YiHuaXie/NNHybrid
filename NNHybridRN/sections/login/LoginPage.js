@@ -318,7 +318,7 @@ export default class LoginPage extends Component {
         </ScrollView>
         <NavigationBar
           backOrClose='close'
-          rightButton={this._rightButton()}
+          rightItem={this._rightButton()}
           backOrCloseHandler={this._close}
           navBarStyle={{
             position: 'absolute',

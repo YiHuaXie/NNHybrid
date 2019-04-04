@@ -21,6 +21,9 @@ export default {
 
     navigationTitleFont: 17,
 
+    iOS: Platform.OS === 'ios',
+    android: Platform.OS === 'android',
+    
     isEmptyObject: obj => {
         for (var n in obj) { return false }
         return true;

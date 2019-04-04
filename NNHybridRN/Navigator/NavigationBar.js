@@ -15,21 +15,27 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class NavigationBar extends Component {
 
     static propTypes = {
-        leftButton: PropTypes.element,
-        rightButton: PropTypes.element,
+        backgroundView: PropTypes.element,
+        backgroundViewStyle: PropTypes.object,
+        leftItem: PropTypes.element,
+        leftItemStyle: PropTypes.object,
+        rightItem: PropTypes.element,
+        rightItemStyle: PropTypes.object,
         backOrClose: PropTypes.string,
         backOrCloseHandler: PropTypes.func,
         title: PropTypes.string,
         titleView: PropTypes.element,
+        titleHidden: PropTypes.bool,
         hidden: PropTypes.bool,
         navBarStyle: PropTypes.object,
+        contentStyle: PropTypes.object,
     };
 
     _backOrCloseButton(text) {
         if (!text) return null;
 
         let result = text === 'back' ? 'ios-arrow-round-back' : 'md-close';
-        
+
         return (
             <TouchableOpacity onPress={() => this.props.backOrCloseHandler()}>
                 <Ionicons name={result} size={24} style={{ color: AppUtil.app_black }} />
@@ -49,20 +55,39 @@ export default class NavigationBar extends Component {
     }
 
     render() {
+        const {
+            navBarStyle,
+            backgroundView,
+            contentStyle,
+            titleHidden,
+            leftItem,
+            leftItemStyle,
+            rightItem,
+            rightItemStyle } = this.props;
         if (this.props.hidden) return null;
         return (
-            <View style={[styles.navigationBar, this.props.navBarStyle]}>
-                <View style={styles.navigationBarContent}>
-                    <View style={styles.navigationBarButton}>
-                        {this.props.leftButton ? this.props.leftButton : this._backOrCloseButton(this.props.backOrClose)}
+            <View style={[styles.navigationBar, navBarStyle]}>
+                <View style={styles.navigationBackground}>
+                    {backgroundView}
+                </View>
+                <View style={[styles.navigationBarContent, contentStyle]}>
+                    <View style={{
+                        ...styles.navigationBarButton,
+                        marginLeft: 15,
+                        ...leftItemStyle
+                    }}>
+                        {leftItem ? leftItem : this._backOrCloseButton(this.props.backOrClose)}
                     </View>
-
-                    <View style={styles.navigationBarTitleView}>
-                        {this.props.titleView ? this.props.titleView : this._defaultTitleView()}
-                    </View>
-
-                    <View style={styles.navigationBarButton}>
-                        {this.props.rightButton}
+                    {titleHidden ?
+                        <View style={styles.navigationBarTitleView}>
+                            {this.props.titleView ? this.props.titleView : this._defaultTitleView()}
+                        </View> : null}
+                    <View style={{
+                        ...styles.navigationBarButton,
+                        marginRight: 15,
+                        ...rightItemStyle
+                    }}>
+                        {rightItem}
                     </View>
                 </View>
             </View>
@@ -75,6 +100,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         height: AppUtil.fullNavigationBarHeight,
     },
+    navigationBackground: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: AppUtil.windowWidth,
+        height: AppUtil.fullNavigationBarHeight
+    },
     navigationBarContent: {
         backgroundColor: AppUtil.app_clear,
         flexDirection: 'row',
@@ -83,15 +115,12 @@ const styles = StyleSheet.create({
         height: AppUtil.navigationBarHeight,
         marginTop: AppUtil.statusBarHeight,
     },
-
     navigationBarTitle: {
         fontSize: AppUtil.navigationTitleFont,
         textAlign: 'center',
         color: AppUtil.app_black,
     },
     navigationBarButton: {
-        marginLeft: 15,
-        marginRight: 15,
         alignItems: 'center',
     },
     navigationBarTitleView: {

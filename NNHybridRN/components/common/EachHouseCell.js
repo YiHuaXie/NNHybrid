@@ -100,37 +100,41 @@ export default class EachHouseCell extends Component {
         );
     }
 
-    _renderTags() {
-        tmpTags = [];
-        this.state.allTags.forEach(obj => {
-            if (obj.tagIcon) {
-                tmpTags.push(
-                    <Image
-                        style={{ width: obj.iconWidth, height: 16, marginRight: 5 }}
-                        source={{ url: obj.tagIcon }}
-                    />
-                );
-            } else {
-                tmpTags.push(
-                    <Text style={{
-                        ...styles.tagText,
-                        color: obj.tagColor,
-                        backgroundColor: obj.backgroundColor,
-                        borderColor: obj.borderColor
-                    }}
-                    >
-                        {obj.tagName}
-                    </Text>
-                );
-            }
-        });
+    // _renderTags() {
+    //     const {allTags} = this.state;
+    //     tmpTags = [];
 
-        return (
-            <View style={styles.tagsContainer}>
-                {tmpTags}
-            </View>
-        );
-    }
+    //     for (const i in allTags) {
+    //         const obj = allTags[i]
+    //         if (obj.tagIcon) {
+    //             tmpTags.push(
+    //                 <Image key={i}
+    //                     style={{ width: obj.iconWidth, height: 16, marginRight: 5 }}
+    //                     source={{ url: obj.tagIcon }}
+    //                 />
+    //             );
+    //         } else {
+    //             tmpTags.push(
+    //                 <Text style={{
+    //                     ...styles.tagText,
+    //                     color: obj.tagColor,
+    //                     backgroundColor: obj.backgroundColor,
+    //                     borderColor: obj.borderColor
+    //                 }}
+    //                 key={i}
+    //                 >
+    //                     {obj.tagName}
+    //                 </Text>
+    //             );
+    //         }
+    //     }
+
+    //     return (
+    //         <View style={styles.tagsContainer}>
+    //             {tmpTags}
+    //         </View>
+    //     );
+    // }
 
     render() {
         const { imageUrl } = this.state;
@@ -141,7 +145,7 @@ export default class EachHouseCell extends Component {
                     {this._renderAuthImageAndTitle()}
                     {this._renderSubTitleAndPrice()}
                     {this._renderAddress()}
-                    {this._renderTags()}
+                    {/* {this._renderTags()} */}
                 </View>
                 <View style={styles.dividingLine} />
             </View>

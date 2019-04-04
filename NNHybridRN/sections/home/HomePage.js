@@ -3,19 +3,22 @@ import {
     StyleSheet,
     View,
     ScrollView,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    StatusBar
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
 import Network from '../../network';
 import { ApiPath } from '../../network/ApiService';
 
+import HomeNavigationBar from './HomeNavigationBar';
 import HomeBannerModuleCell from './HomeBannerModuleCell';
 import HomeMessageCell from './HomeMessageCell';
 import HomeVRCell from './HomeVRCell';
 import HomeApartmentCell from './HomeApartmentCell';
 import HomeSectioHeader from './HomeSectionHeader';
 import EachHouseCell from '../../components/common/EachHouseCell';
+
 
 export default class HomePage extends Component {
 
@@ -28,6 +31,8 @@ export default class HomePage extends Component {
             vr: null,
             apartments: [],
             houses: [],
+            isTransparent: true,
+            cityName: '定位中...'
         }
 
         this._loadData();
@@ -75,12 +80,26 @@ export default class HomePage extends Component {
         return tmpHouses;
     }
 
+    _statusBar() {
+        const { isTransparent } = this.state;
+        if (AppUtil.iOS) {
+            return <StatusBar barStyle={isTransparent ? 'light-content' : 'default'} />
+        }
+    }
+
     // 需要用SectionList实现
     render() {
         const { banners, modules, messages, vr, apartments, houses } = this.state;
         return (
             <View style={styles.container}>
-                <ScrollView>
+                <ScrollView
+                    onScroll={(e) => {
+                        this.setState({
+                            isTransparent: e.nativeEvent.contentOffset.y > 100 ? false : true
+                        })
+                        console.log(e);
+                    }}
+                >
                     <HomeBannerModuleCell
                         banners={banners}
                         modules={modules}
@@ -93,6 +112,11 @@ export default class HomePage extends Component {
                     {!AppUtil.isEmptyArray(houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
                     {this._renderHouseitems()}
                 </ScrollView>
+                {this._statusBar()}
+                <HomeNavigationBar
+                    isTransparent={this.state.isTransparent}
+                    cityName={this.state.cityName}
+                />
             </View>
         );
     }
