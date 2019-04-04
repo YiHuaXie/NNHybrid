@@ -40,7 +40,7 @@ export default class EachHouseCell extends Component {
             const { house } = nextProps;
             strings = [house.roomArea, house.houseType, house.roomDirection];
             allTags = house.showIconList.concat(house.showTagList)
-            console.log(allTags);
+            
             return {
                 house: house,
                 imageUrl: house.imageUrl,
@@ -118,9 +118,6 @@ export default class EachHouseCell extends Component {
                         backgroundColor: obj.backgroundColor,
                         borderColor: obj.borderColor
                     }}
-                        onLayout={({ nativeEvent: e }) => {
-                            console.log(e);
-                        }}
                     >
                         {obj.tagName}
                     </Text>
@@ -136,7 +133,7 @@ export default class EachHouseCell extends Component {
     }
 
     render() {
-        const { imageUrl, title, isOrgAuth, address } = this.state;
+        const { imageUrl } = this.state;
         return (
             <View style={styles.container}>
                 <Image style={styles.leftImage} source={{ url: imageUrl }} />
@@ -216,14 +213,19 @@ const styles = StyleSheet.create({
     tagsContainer: {
         height: 16,
         marginTop: 10,
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     tagText: {
-        position: 'absolute',
         fontSize: 10,
         borderRadius: 3,
         borderWidth: 0.5,
         marginRight: 5,
+        paddingLeft: 6,
+        paddingRight: 6,
         height: 16,
+        textAlign: 'center'
     },
     dividingLine: {
         position: 'absolute',

@@ -35,27 +35,27 @@ export default class HomeBannerModuleCell extends Component {
         const { banners } = this.props;
 
         images = [];
-        for (var i = 0; i < banners.length; i++) {
-            let image =
+        for (const i in banners) {
+            images.push(
                 <TouchableWithoutFeedback
                     key={i}
                     onPress={() => {
 
                     }}>
                     <Image style={styles.image} source={{ uri: banners[i].picUrl }} />
-                </TouchableWithoutFeedback>;
-            images.push(image);
+                </TouchableWithoutFeedback>
+            );
         }
 
-        if (!images.length) {
-            let defaultBanner = <Image
-                key={0}
-                style={styles.image}
-                source={require('../../resource/images/banner_default.jpg')}
-            />;
-            images.push(defaultBanner);
+        if (images.length) {
+            images.push(
+                <Image
+                    key={0}
+                    style={styles.image}
+                    source={require('../../resource/images/banner_default.jpg')}
+                />
+            );
         }
-
         return images;
     }
 

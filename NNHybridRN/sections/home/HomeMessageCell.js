@@ -7,10 +7,10 @@ export default class HomeMessageCell extends Component {
 
     _renderMessageItem() {
         const { messages } = this.props;
-
         tmpMessages = [];
-        for (var i = 0; i < messages.length; i++) {
-            let aMessage =
+
+        for (const i in messages) {
+            tmpMessages.push(
                 <TouchableWithoutFeedback
                     key={i}
                     onPress={() => {
@@ -25,8 +25,8 @@ export default class HomeMessageCell extends Component {
                             source={require('../../resource/images/arrow/right_gray_arrow.png')}
                         />
                     </View>
-                </TouchableWithoutFeedback>;
-            tmpMessages.push(aMessage);
+                </TouchableWithoutFeedback>
+            );
         }
 
         return tmpMessages;
@@ -35,7 +35,7 @@ export default class HomeMessageCell extends Component {
     render() {
         const { messages } = this.props;
 
-        if (!messages.length) return null;
+        if (!messages || !messages.length) return null;
 
         return (
             <View style={styles.container}>
@@ -49,6 +49,7 @@ export default class HomeMessageCell extends Component {
                     autoplayDirection={true}
                     horizontal={false}
                     containerStyle={styles.swiper}
+                    showsPagination={false}
                 >
                     {this._renderMessageItem()}
                 </Swiper>

@@ -46,7 +46,7 @@ export default class HomePage extends Component {
                 console.log(res2);
                 this.setState({
                     banners: res1.focusPictureList,
-                    modules: res1.iconList,
+                    modules: res1.iconList ? res1.iconList : [],
                     messages: res1.newsList,
                     vr: res1.marketVR,
                     apartments: res1.estateList,
@@ -64,12 +64,12 @@ export default class HomePage extends Component {
         const { houses } = this.state;
 
         tmpHouses = [];
-        for (var i = 0; i < houses.length; i++) {
-            const aCell = <TouchableWithoutFeedback key={i}>
-                <EachHouseCell house={houses[i]} />
-            </TouchableWithoutFeedback>;
-
-            tmpHouses.push(aCell);
+        for (const i in houses) {
+            tmpHouses.push(
+                <TouchableWithoutFeedback key={i}>
+                    <EachHouseCell house={houses[i]} />
+                </TouchableWithoutFeedback>
+            );
         }
 
         return tmpHouses;
@@ -87,10 +87,10 @@ export default class HomePage extends Component {
                     />
                     <HomeMessageCell messages={messages} />
                     <HomeVRCell vr={vr} />
-                    {this._addDividingLine(messages.length || vr)}
-                    {apartments.length ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
+                    {this._addDividingLine(!AppUtil.isEmptyArray(messages) || vr)}
+                    {!AppUtil.isEmptyArray(apartments) ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
                     <HomeApartmentCell apartments={apartments} />
-                    {houses.length ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
+                    {!AppUtil.isEmptyArray(houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
                     {this._renderHouseitems()}
                 </ScrollView>
             </View>

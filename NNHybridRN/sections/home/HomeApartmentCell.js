@@ -52,7 +52,7 @@ export default class HomeApartmentCell extends Component {
     render() {
         const { apartments } = this.props;
 
-        return apartments.length ?
+        return !AppUtil.isEmptyArray(apartments) ?
             <View style={styles.container}>
                 <FlatList
                     showsHorizontalScrollIndicator={false}

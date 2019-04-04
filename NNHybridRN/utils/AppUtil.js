@@ -24,6 +24,19 @@ export default {
     isEmptyObject: obj => {
         for (var n in obj) { return false }
         return true;
+    },
+
+    makeSureObject: obj => {
+        for (var n in obj) { return obj }
+        return {};
+    },
+
+    isEmptyArray: array => {
+        return !array || !array.length;
+    },
+
+    makeSureArray: array => {
+        return array ? array : [];
     }
 }
 
