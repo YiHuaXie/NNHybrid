@@ -47,7 +47,7 @@ export default class HomeBannerModuleCell extends Component {
             );
         }
 
-        if (images.length) {
+        if (!images.length) {
             images.push(
                 <Image
                     key={0}
@@ -62,7 +62,7 @@ export default class HomeBannerModuleCell extends Component {
     _moduleView() {
         const { modules } = this.props;
         
-        if (!AppUtil.isEmptyArray(modules)) return null;
+        if (AppUtil.isEmptyArray(modules)) return null;
 
         let index = -1;
         return (
@@ -80,6 +80,7 @@ export default class HomeBannerModuleCell extends Component {
 
         );
     }
+
 
     render() {
         return (
