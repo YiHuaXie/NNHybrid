@@ -46,7 +46,7 @@ export default class HomePage extends Component {
                 console.log(res2);
                 this.setState({
                     banners: res1.focusPictureList,
-                    modules: res1.iconList ? res1.iconList : [],
+                    modules: res1.iconList,
                     messages: res1.newsList,
                     vr: res1.marketVR,
                     apartments: res1.estateList,

@@ -39,8 +39,8 @@ export default class EachHouseCell extends Component {
         if (prevState.house !== nextProps.house) {
             const { house } = nextProps;
             strings = [house.roomArea, house.houseType, house.roomDirection];
-            allTags = house.showIconList.concat(house.showTagList)
-            
+            allTags = house.showIconList.concat(house.showTagList);
+
             return {
                 house: house,
                 imageUrl: house.imageUrl,

@@ -61,6 +61,9 @@ export default class HomeBannerModuleCell extends Component {
 
     _moduleView() {
         const { modules } = this.props;
+        
+        if (!AppUtil.isEmptyArray(modules)) return null;
+
         let index = -1;
         return (
             <View style={styles.moduleContainer}>
