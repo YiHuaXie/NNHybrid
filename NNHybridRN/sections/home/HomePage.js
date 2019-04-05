@@ -18,6 +18,7 @@ import HomeVRCell from './HomeVRCell';
 import HomeApartmentCell from './HomeApartmentCell';
 import HomeSectioHeader from './HomeSectionHeader';
 import EachHouseCell from '../../components/common/EachHouseCell';
+import HomeButtonCell from './HomeButtonCell';
 
 
 export default class HomePage extends Component {
@@ -111,6 +112,7 @@ export default class HomePage extends Component {
                     <HomeApartmentCell apartments={apartments} />
                     {!AppUtil.isEmptyArray(houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
                     {this._renderHouseitems()}
+                    {!AppUtil.isEmptyArray(houses) ? <HomeButtonCell /> : null}
                 </ScrollView>
                 {this._statusBar()}
                 <HomeNavigationBar
