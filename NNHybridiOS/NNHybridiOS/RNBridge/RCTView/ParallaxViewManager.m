@@ -10,7 +10,6 @@
 @interface ParallaxViewManager()
 
 @property (nonatomic, strong) ParallaxView *parallaxView;
-//@property (nonatomic, copy) NSString *
 
 @end
 

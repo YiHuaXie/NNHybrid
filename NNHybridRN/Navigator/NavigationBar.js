@@ -15,8 +15,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class NavigationBar extends Component {
 
     static propTypes = {
+        navHidden: PropTypes.bool,
+        navBarStyle: PropTypes.object,
+        navContentStyle: PropTypes.object,
         backgroundView: PropTypes.element,
-        backgroundViewStyle: PropTypes.object,
         leftItem: PropTypes.element,
         leftItemStyle: PropTypes.object,
         rightItem: PropTypes.element,
@@ -24,11 +26,8 @@ export default class NavigationBar extends Component {
         backOrClose: PropTypes.string,
         backOrCloseHandler: PropTypes.func,
         title: PropTypes.string,
-        titleView: PropTypes.element,
-        titleHidden: PropTypes.bool,
-        hidden: PropTypes.bool,
-        navBarStyle: PropTypes.object,
-        contentStyle: PropTypes.object,
+        customTitleView: PropTypes.element,
+        titleViewHidden: PropTypes.bool,
     };
 
     _backOrCloseButton(text) {
@@ -43,52 +42,66 @@ export default class NavigationBar extends Component {
         );
     }
 
-    _defaultTitleView() {
+    _renderBackgroundView() {
+        return this.props.backgroundView ? this.props.backgroundView : null;
+    }
+
+    _renderLeftItem() {
+        const { leftItem, leftItemStyle, backOrClose } = this.props;
+
         return (
-            <Text
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={styles.navigationBarTitle}>
-                {this.props.title}
+            <View style={{
+                ...styles.navigationBarButton,
+                marginLeft: 15,
+                ...leftItemStyle
+            }}>
+                {leftItem ? leftItem : this._backOrCloseButton(backOrClose)}
+            </View>
+        );
+    }
+
+    _renderTitleView() {
+        const { titleHidden, customTitleView, title } = this.props;
+
+        if (titleHidden) return null;
+
+        const defaultTitleView = (
+            <Text ellipsizeMode="tail" numberOfLines={1} style={styles.navigationBarTitle}>
+                {title}
             </Text>
+        );
+
+        return (
+            <View style={styles.navigationBarTitleView}>
+                {customTitleView ? customTitleView : defaultTitleView}
+            </View>
+        );
+    }
+
+    _renderRightItem() {
+        const { rightItem, rightItemStyle } = this.props;
+
+        return (
+            <View style={{
+                ...styles.navigationBarButton,
+                marginRight: 15,
+                ...rightItemStyle
+            }}>
+                {rightItem}
+            </View>
         );
     }
 
     render() {
-        const {
-            navBarStyle,
-            backgroundView,
-            contentStyle,
-            titleHidden,
-            leftItem,
-            leftItemStyle,
-            rightItem,
-            rightItemStyle } = this.props;
-        if (this.props.hidden) return null;
+        if (this.props.navHidden) return null;
+
         return (
-            <View style={[styles.navigationBar, navBarStyle]}>
-                <View style={styles.navigationBackground}>
-                    {backgroundView}
-                </View>
-                <View style={[styles.navigationBarContent, contentStyle]}>
-                    <View style={{
-                        ...styles.navigationBarButton,
-                        marginLeft: 15,
-                        ...leftItemStyle
-                    }}>
-                        {leftItem ? leftItem : this._backOrCloseButton(this.props.backOrClose)}
-                    </View>
-                    {titleHidden ?
-                        <View style={styles.navigationBarTitleView}>
-                            {this.props.titleView ? this.props.titleView : this._defaultTitleView()}
-                        </View> : null}
-                    <View style={{
-                        ...styles.navigationBarButton,
-                        marginRight: 15,
-                        ...rightItemStyle
-                    }}>
-                        {rightItem}
-                    </View>
+            <View style={[styles.navigationBar, this.props.navBarStyle]}>
+                {this._renderBackgroundView()}
+                <View style={[styles.navigationBarContent, this.props.navContentStyle]}>
+                    {this._renderLeftItem()}
+                    {this._renderTitleView()}
+                    {this._renderRightItem()}
                 </View>
             </View>
         );
@@ -99,13 +112,7 @@ const styles = StyleSheet.create({
     navigationBar: {
         backgroundColor: '#FFFFFF',
         height: AppUtil.fullNavigationBarHeight,
-    },
-    navigationBackground: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
         width: AppUtil.windowWidth,
-        height: AppUtil.fullNavigationBarHeight
     },
     navigationBarContent: {
         backgroundColor: AppUtil.app_clear,
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
         color: AppUtil.app_black,
     },
     navigationBarButton: {
-        alignItems: 'center',
+
     },
     navigationBarTitleView: {
         alignItems: 'center',

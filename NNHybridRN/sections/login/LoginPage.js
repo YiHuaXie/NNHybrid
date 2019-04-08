@@ -322,7 +322,6 @@ export default class LoginPage extends Component {
           backOrCloseHandler={this._close}
           navBarStyle={{
             position: 'absolute',
-            width: AppUtil.windowWidth,
             backgroundColor: AppUtil.app_clear
           }}
         />
