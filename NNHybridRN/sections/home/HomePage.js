@@ -20,7 +20,6 @@ import HomeSectioHeader from './HomeSectionHeader';
 import EachHouseCell from '../../components/common/EachHouseCell';
 import HomeButtonCell from './HomeButtonCell';
 
-
 export default class HomePage extends Component {
 
     constructor(props) {
@@ -98,7 +97,6 @@ export default class HomePage extends Component {
                         this.setState({
                             isTransparent: e.nativeEvent.contentOffset.y > 100 ? false : true
                         })
-                        console.log(e);
                     }}
                 >
                     <HomeBannerModuleCell
