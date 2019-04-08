@@ -23,7 +23,11 @@ target 'NNHybridiOS' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+  
   pod 'IQKeyboardManager'
   pod 'Masonry'
   pod 'MBProgressHUD'
@@ -32,17 +36,9 @@ target 'NNHybridiOS' do
   pod 'JSONModel'
   pod 'SDWebImage'
   pod 'SDWebImage/GIF'
-  pod 'NNEasyKit'
+#  pod 'NNEasyKit'
   pod 'DGActivityIndicatorView'
   pod 'lottie-ios'
   # pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'AMapLocation'
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
-
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-
-  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-
-  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
-
 end

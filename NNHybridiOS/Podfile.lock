@@ -34,22 +34,6 @@ PODS:
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.1.15.7)
-  - NNEasyKit (0.0.1.6):
-    - NNEasyKit/NNComponent (= 0.0.1.6)
-    - NNEasyKit/NNExtension (= 0.0.1.6)
-  - NNEasyKit/NNComponent (0.0.1.6):
-    - NNEasyKit/NNComponent/NNAlertView (= 0.0.1.6)
-    - NNEasyKit/NNComponent/NNCarousel (= 0.0.1.6)
-    - NNEasyKit/NNComponent/NNGCDTimer (= 0.0.1.6)
-    - NNEasyKit/NNComponent/NNPFSLabel (= 0.0.1.6)
-    - NNEasyKit/NNComponent/NNPinYin (= 0.0.1.6)
-  - NNEasyKit/NNComponent/NNAlertView (0.0.1.6)
-  - NNEasyKit/NNComponent/NNCarousel (0.0.1.6)
-  - NNEasyKit/NNComponent/NNGCDTimer (0.0.1.6)
-  - NNEasyKit/NNComponent/NNPFSLabel (0.0.1.6)
-  - NNEasyKit/NNComponent/NNPinYin (0.0.1.6):
-    - NNEasyKit/NNExtension
-  - NNEasyKit/NNExtension (0.0.1.6)
   - React (0.58.6):
     - React/Core (= 0.58.6)
   - React/Core (0.58.6):
@@ -119,7 +103,6 @@ DEPENDENCIES:
   - Masonry
   - MBProgressHUD
   - MJRefresh
-  - NNEasyKit
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -150,7 +133,6 @@ SPEC REPOS:
     - Masonry
     - MBProgressHUD
     - MJRefresh
-    - NNEasyKit
     - SDWebImage
 
 EXTERNAL SOURCES:
@@ -190,7 +172,6 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
-  NNEasyKit: 978b86c069beca5750e57dbd525eb558ec24c48c
   React: 16c4fb7ce3fc30c041bce809ceae33bf57e7c142
   RNDeviceInfo: 8a21b2687c7c829362ca0ccc3a8b5380a42dd59f
   RNGestureHandler: afde2addc517e85cc97a25bfe119acbee779a7ce
@@ -198,6 +179,6 @@ SPEC CHECKSUMS:
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: e05168ee52c7b5eda27c587a5aa7ea4c64ff0240
+PODFILE CHECKSUM: ad4dcbc0c8c030af7606aec73c3da1f898537893
 
 COCOAPODS: 1.5.3

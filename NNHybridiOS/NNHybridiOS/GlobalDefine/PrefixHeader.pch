@@ -1,0 +1,39 @@
+//
+//  PrefixHeader.pch
+//  NNProject
+//
+//  Created by 谢翼华 on 2018/7/24.
+//  Copyright © 2018年 谢翼华. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+
+//#import "NNEasyKit.h"
+//#import "UIImage+NNExtension.h"
+//
+//#import "ToolMacro.h"
+//#import "APIMacro.h"
+//#import "AppDesignMacro.h"
+//#import "NotificationMacro.h"
+//#import "UserDefaultKey.h"
+//
+//#import "Masonry.h"
+//#import "IQKeyboardManager.h"
+//
+//#import "NNBaseTableView.h"
+//#import "NNProgressHUD.h"
+//
+//#import "UIImageView+AnimationSDWebImage.h"
+//#import "UIScrollView+NNExtension.h"
+//#import "UIView+Frame.h"
+//#import "UIView+BOLoading.h"
+//#import "UIBarButtonItem+NNExtension.h"
+//
+//#import "ApiBaseRequest.h"
+//#import "ApiBaseResponse.h"
+
+
+#endif /* PrefixHeader_pch */
