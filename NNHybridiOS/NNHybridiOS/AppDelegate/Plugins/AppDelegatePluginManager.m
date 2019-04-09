@@ -8,6 +8,7 @@
 
 #import "AppDelegatePluginManager.h"
 #import "SystemConfigPlugin.h"
+#import <React/RCTAsyncLocalStorage.h>
 
 static AppDelegatePluginManager *_manager = nil;
 

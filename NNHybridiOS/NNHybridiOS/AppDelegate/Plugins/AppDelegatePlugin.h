@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-//#define UIApplicationDidReceiveLocalNotification        @"UIApplicationDidReceiveLocalNotification"
-//#define UIApplicationDidRegisterForRemoteNotification   @"UIApplicationDidRegisterForRemoteNotification"
-//#define UIApplicationDidReceiveRemoteNotification       @"UIApplicationDidReceiveRemoteNotification"
-
 static ConstString UIApplicationDidReceiveLocalNotification = @"UIApplicationDidReceiveLocalNotification";
 static ConstString UIApplicationDidRegisterForRemoteNotification = @"UIApplicationDidRegisterForRemoteNotification";
 static ConstString UIApplicationDidReceiveRemoteNotification =     @"UIApplicationDidReceiveRemoteNotification";

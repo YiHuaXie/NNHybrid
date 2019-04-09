@@ -36,9 +36,7 @@ target 'NNHybridiOS' do
   pod 'JSONModel'
   pod 'SDWebImage'
   pod 'SDWebImage/GIF'
-#  pod 'NNEasyKit'
   pod 'DGActivityIndicatorView'
   pod 'lottie-ios'
-  # pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'AMapLocation'
 end

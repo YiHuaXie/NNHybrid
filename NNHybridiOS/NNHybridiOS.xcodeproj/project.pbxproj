@@ -73,6 +73,8 @@
 		AEED90FE225BAC44001B1985 /* NNCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90E2225BAC44001B1985 /* NNCarousel.m */; };
 		AEED90FF225BAC44001B1985 /* NNNormalAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90E6225BAC44001B1985 /* NNNormalAlertView.m */; };
 		AEED9100225BAC44001B1985 /* NNAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90E9225BAC44001B1985 /* NNAlertView.m */; };
+		AEED920A225CBBEE001B1985 /* UserDefaultModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED9209225CBBEE001B1985 /* UserDefaultModule.m */; };
+		AEED920D225CBFC3001B1985 /* AMapLocationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED920C225CBFC3001B1985 /* AMapLocationModule.m */; };
 		CD5F09D2BBC5465493BADE02 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8956F42A4C346D0B5A78DCC /* AntDesign.ttf */; };
 		D21C812D5E67487BAE838A15 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F01703D0434DD8B94B0B4D /* Feather.ttf */; };
 		D922119D26914BEEB7EC770D /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFF6AE2C8FE948FF91EB6596 /* FontAwesome5_Solid.ttf */; };
@@ -232,6 +234,10 @@
 		AEED90E8225BAC44001B1985 /* NNNormalAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNormalAlertView.h; sourceTree = "<group>"; };
 		AEED90E9225BAC44001B1985 /* NNAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNAlertView.m; sourceTree = "<group>"; };
 		AEED90EB225BAC44001B1985 /* NNEasyKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNEasyKit.h; sourceTree = "<group>"; };
+		AEED9208225CBBEE001B1985 /* UserDefaultModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultModule.h; sourceTree = "<group>"; };
+		AEED9209225CBBEE001B1985 /* UserDefaultModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDefaultModule.m; sourceTree = "<group>"; };
+		AEED920B225CBFC3001B1985 /* AMapLocationModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMapLocationModule.h; sourceTree = "<group>"; };
+		AEED920C225CBFC3001B1985 /* AMapLocationModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMapLocationModule.m; sourceTree = "<group>"; };
 		AFF6AE2C8FE948FF91EB6596 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		D8DD20FA117D4BDB93D1617F /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		D9139C07AF0B060C16694F05 /* libPods-NNHybridiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NNHybridiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -552,6 +558,10 @@
 			children = (
 				AEC86C47225353B400C76C09 /* RNBaseModule.h */,
 				AEC86C44225353B400C76C09 /* RNBaseModule.m */,
+				AEED9208225CBBEE001B1985 /* UserDefaultModule.h */,
+				AEED9209225CBBEE001B1985 /* UserDefaultModule.m */,
+				AEED920B225CBFC3001B1985 /* AMapLocationModule.h */,
+				AEED920C225CBFC3001B1985 /* AMapLocationModule.m */,
 			);
 			path = RCTBridge;
 			sourceTree = "<group>";
@@ -960,6 +970,7 @@
 			files = (
 				AE687BD2225C69180054FDA6 /* NNRefreshHeader.m in Sources */,
 				AE687B54225C68360054FDA6 /* NNBaseTableView.m in Sources */,
+				AEED920A225CBBEE001B1985 /* UserDefaultModule.m in Sources */,
 				AEED90F6225BAC44001B1985 /* UITableView+NNExtension.m in Sources */,
 				AE687BBD225C68B50054FDA6 /* NNNetworkResponse.m in Sources */,
 				AEED9100225BAC44001B1985 /* NNAlertView.m in Sources */,
@@ -1009,6 +1020,7 @@
 				AE687AF5225C65090054FDA6 /* AppDelegatePluginManager.m in Sources */,
 				AEED90FE225BAC44001B1985 /* NNCarousel.m in Sources */,
 				AE687BE0225C69AF0054FDA6 /* ApiBaseRequest.m in Sources */,
+				AEED920D225CBFC3001B1985 /* AMapLocationModule.m in Sources */,
 				AEED90EF225BAC44001B1985 /* UIView+NNExtension.m in Sources */,
 				AEC86C48225353B400C76C09 /* ParallaxViewManager.m in Sources */,
 			);

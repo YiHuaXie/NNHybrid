@@ -10,4 +10,6 @@
 
 @implementation AMapLocationModule
 
+RCT_EXPORT_MODULE();
+
 @end

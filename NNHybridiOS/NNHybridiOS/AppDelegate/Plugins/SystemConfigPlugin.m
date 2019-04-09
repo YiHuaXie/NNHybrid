@@ -7,9 +7,7 @@
 //
 
 #import "SystemConfigPlugin.h"
-#import <AMapFoundationKit/AMapFoundationKit.h>
-
-static ConstString kAMapKey = @"6c5d062e9e30a68cafe2669f4f19459a";
+#import "CityManager.h"
 
 @implementation SystemConfigPlugin
 
@@ -17,8 +15,6 @@ static ConstString kAMapKey = @"6c5d062e9e30a68cafe2669f4f19459a";
 
 - (void)launch {
     
-    [AMapServices sharedServices].apiKey = kAMapKey;
-    [AMapServices sharedServices].enableHTTPS = YES;
 }
 
 @end

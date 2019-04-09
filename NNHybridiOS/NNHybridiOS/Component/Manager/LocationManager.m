@@ -29,7 +29,6 @@
 }
 
 - (void)locationWithCompletion:(void (^)(CLLocation *, AMapLocationReGeocode *, NSError *))completion {
-#warning 解决不连接wifi也可以定位的问题
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:completion];
 }
 

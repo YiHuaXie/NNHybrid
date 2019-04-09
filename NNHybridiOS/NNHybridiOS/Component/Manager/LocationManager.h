@@ -18,5 +18,7 @@
 /** 获取定位 */
 - (void)locationWithCompletion:(void (^)(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error))completion;
 
+- (BOOL)locationAuthorizedDenied;
+
 @end
 
