@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 typedef NSString *const ConstString;
-FOUNDATION_EXPORT
 
 #pragma mark - Typedef Block
 

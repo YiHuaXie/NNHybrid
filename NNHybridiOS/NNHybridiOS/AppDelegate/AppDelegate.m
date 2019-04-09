@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "AppDelegatePluginManager.h"
+#import "RNPageViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,12 +16,17 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    [[AppDelegatePluginManager sharedManager] launch];
+    
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    self.window.rootViewController = [ViewController new];
+    self.window.rootViewController = [RNPageViewController new];
     
     return YES;
 }
@@ -52,5 +58,17 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    nn_notificationPost(UIApplicationDidRegisterForRemoteNotification,
+                        deviceToken,
+                        nil);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSDictionary *dict = @{@"application": application,
+                           @"userInfo": userInfo,
+                           @"completionHandler": [completionHandler copy]};
+    nn_notificationPost(UIApplicationDidReceiveRemoteNotification, nil, dict);
+}
 
 @end
