@@ -17,13 +17,13 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [[AppDelegatePluginManager sharedManager] launch];
+   [[AppDelegatePluginManager sharedManager] launch];
     
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSURL *jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.102:8081/index.bundle?platform=ios"];
+    NSURL *jsCodeLocation = [NSURL URLWithString:@"http://192.168.2.13:8081/index.bundle?platform=ios"];
     RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                         moduleName:@"App"
                                                  initialProperties:nil

@@ -52,6 +52,7 @@
 		AE687C00225C6BD30054FDA6 /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BF2225C6BD30054FDA6 /* CityModel.m */; };
 		AEC86C48225353B400C76C09 /* ParallaxViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C41225353B400C76C09 /* ParallaxViewManager.m */; };
 		AEC86C49225353B400C76C09 /* RNBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C44225353B400C76C09 /* RNBaseModule.m */; };
+		AECEADFC225D8CEB000AD526 /* CityManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AECEADFB225D8CEB000AD526 /* CityManagerModule.m */; };
 		AEED90EC225BAC44001B1985 /* NNGlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90B9225BAC44001B1985 /* NNGlobalHelper.m */; };
 		AEED90ED225BAC44001B1985 /* NSObject+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90BB225BAC44001B1985 /* NSObject+NNExtension.m */; };
 		AEED90EE225BAC44001B1985 /* UIFont+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90BC225BAC44001B1985 /* UIFont+NNExtension.m */; };
@@ -189,6 +190,8 @@
 		AEC86C42225353B400C76C09 /* ParallaxViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxViewManager.h; sourceTree = "<group>"; };
 		AEC86C44225353B400C76C09 /* RNBaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBaseModule.m; sourceTree = "<group>"; };
 		AEC86C47225353B400C76C09 /* RNBaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBaseModule.h; sourceTree = "<group>"; };
+		AECEADFA225D8CEB000AD526 /* CityManagerModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityManagerModule.h; sourceTree = "<group>"; };
+		AECEADFB225D8CEB000AD526 /* CityManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CityManagerModule.m; sourceTree = "<group>"; };
 		AEED90B0225BA675001B1985 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AEED90B9225BAC44001B1985 /* NNGlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNGlobalHelper.m; sourceTree = "<group>"; };
 		AEED90BA225BAC44001B1985 /* UIGestureRecognizer+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+NNExtension.h"; sourceTree = "<group>"; };
@@ -562,6 +565,8 @@
 				AEED9209225CBBEE001B1985 /* UserDefaultModule.m */,
 				AEED920B225CBFC3001B1985 /* AMapLocationModule.h */,
 				AEED920C225CBFC3001B1985 /* AMapLocationModule.m */,
+				AECEADFA225D8CEB000AD526 /* CityManagerModule.h */,
+				AECEADFB225D8CEB000AD526 /* CityManagerModule.m */,
 			);
 			path = RCTBridge;
 			sourceTree = "<group>";
@@ -992,6 +997,7 @@
 				AE687BA5225C68B50054FDA6 /* UIScrollView+NNExtension.m in Sources */,
 				AEED90F4225BAC44001B1985 /* NSTimer+NNExtension.m in Sources */,
 				AE687BD0225C69180054FDA6 /* NNProgressHUD.m in Sources */,
+				AECEADFC225D8CEB000AD526 /* CityManagerModule.m in Sources */,
 				AE687BBE225C68B50054FDA6 /* NNNetworkService.m in Sources */,
 				AE687BDF225C69AF0054FDA6 /* ApiBaseResponse.m in Sources */,
 				AE09FE4E2231FFAD003C2F97 /* main.m in Sources */,
@@ -1186,7 +1192,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xyh30902-163.NNHybridiOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.memorhome.MYRoom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1209,7 +1215,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.xyh30902-163.NNHybridiOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.memorhome.MYRoom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

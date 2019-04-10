@@ -4,10 +4,12 @@ import {
     View,
     ScrollView,
     TouchableWithoutFeedback,
-    StatusBar
+    StatusBar,
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
+import { CityManager } from '../../utils/NativeUtil';
+
 import Network from '../../network';
 import { ApiPath } from '../../network/ApiService';
 
@@ -32,23 +34,29 @@ export default class HomePage extends Component {
             apartments: [],
             houses: [],
             isTransparent: true,
-            cityName: '定位中...'
+            cityName: '定位中...',
+            cityId: null
         }
 
         this._loadData();
+
+        CityManager.cityLocation((cityName, cityId) => {
+            this.setState({cityName: cityName, cityId: cityId});
+            this._loadData();
+        });
     }
 
     _loadData() {
         const iconListReq =
-            Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: '330100' });
+            Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: this.state.cityId });
         const houseListReq =
-            Network.my_request(ApiPath.SEARCH, 'recommendList', '1.0', { cityId: '330100', sourceType: 1 });
+            Network.my_request(ApiPath.SEARCH, 'recommendList', '1.0', { cityId: this.state.cityId, sourceType: 1 });
 
         Promise
             .all([iconListReq, houseListReq])
             .then(([res1, res2]) => {
-                console.log(res1);
-                console.log(res2);
+                // console.log(res1);
+                // console.log(res2);
                 this.setState({
                     banners: res1.focusPictureList,
                     modules: res1.iconList,

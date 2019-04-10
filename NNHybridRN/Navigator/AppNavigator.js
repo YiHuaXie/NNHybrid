@@ -46,9 +46,9 @@ const MainNavigator = createStackNavigator({
         screen: MainContainer,
         navigationOptions: { header: null }
     },
-    HouseDetailPage: {
-        screen: HouseDetailPage,
-    },
+    // HouseDetailPage: {
+    //     screen: HouseDetailPage,
+    // },
     CityListPage: {
         screen: CityListPage,
     }

@@ -14,9 +14,9 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)callback) {
     id obj = [StandardUserDefaults objectForKey:key];
-    
     NSArray *result = obj ? @[obj] : @[];
-    callback(@[result]);
+    
+    BLOCK_EXEC(callback, result);
 }
 
 @end
