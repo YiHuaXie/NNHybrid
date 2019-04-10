@@ -19,6 +19,7 @@ import HomeApartmentCell from './HomeApartmentCell';
 import HomeSectioHeader from './HomeSectionHeader';
 import EachHouseCell from '../../components/common/EachHouseCell';
 import HomeButtonCell from './HomeButtonCell';
+import ProgressHUD from '../../components/progressHUD/ProgressHUD';
 
 export default class HomePage extends Component {
 
@@ -117,6 +118,7 @@ export default class HomePage extends Component {
                     isTransparent={this.state.isTransparent}
                     cityName={this.state.cityName}
                 />
+                <ProgressHUD/>
             </View>
         );
     }
