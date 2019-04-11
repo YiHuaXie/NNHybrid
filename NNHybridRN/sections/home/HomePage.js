@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
-// import { CityManager } from '../../utils/NativeUtil';
 
 import Network from '../../network';
 import { ApiPath } from '../../network/ApiService';
@@ -21,8 +20,7 @@ import HomeApartmentCell from './HomeApartmentCell';
 import HomeSectioHeader from './HomeSectionHeader';
 import EachHouseCell from '../../components/common/EachHouseCell';
 import HomeButtonCell from './HomeButtonCell';
-// import ProgressHUD from '../../components/progressHUD/ProgressHUD';
-import MJRefreshControl from '../../components/MJRefreshControl';
+import Refresher from '../../components/common/Refresher';
 
 export default class HomePage extends Component {
 
@@ -37,7 +35,8 @@ export default class HomePage extends Component {
             houses: [],
             isTransparent: true,
             cityName: '定位中...',
-            cityId: '330100'
+            cityId: '330100',
+            isLoading: true
         }
 
         this._loadData();
@@ -49,6 +48,7 @@ export default class HomePage extends Component {
     }
 
     _loadData() {
+        this.setState({ isLoading: true });
         const iconListReq =
             Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: this.state.cityId });
         const houseListReq =
@@ -65,7 +65,8 @@ export default class HomePage extends Component {
                     messages: res1.newsList,
                     vr: res1.marketVR,
                     apartments: res1.estateList,
-                    houses: res2.resultList
+                    houses: res2.resultList,
+                    isLoading: false
                 });
             })
             .catch(error => console.error(error));
@@ -99,13 +100,11 @@ export default class HomePage extends Component {
 
     // 需要用SectionList实现
     render() {
-        const { banners, modules, messages, vr, apartments, houses } = this.state;
+        const {isLoading, banners, modules, messages, vr, apartments, houses } = this.state;
         return (
             <View style={styles.container}>
                 <ScrollView
-                    refreshControl={()=> {
-                        return  <MJRefreshControl style={{height: 60, width: 100}}/>
-                    }}
+                    refreshControl={Refresher.header(isLoading, ()=> this._loadData())}
                     onScroll={(e) => {
                         this.setState({
                             isTransparent: e.nativeEvent.contentOffset.y > 100 ? false : true
