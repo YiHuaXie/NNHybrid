@@ -12,7 +12,7 @@
 
 @interface NNRefreshHeader()
 
-@property (nonatomic, strong) LOTAnimationView *beforeLoadingView;
+//@property (nonatomic, strong) LOTAnimationView *beforeLoadingView;
 //@property (nonatomic, strong) DGActivityIndicatorView *loadingView;
 @property (nonatomic, strong) NNRefreshLoadingView *loadingView;
 
@@ -26,14 +26,14 @@
     [super prepare];
     self.automaticallyChangeAlpha = YES;
     
-    self.beforeLoadingView = [LOTAnimationView animationNamed:@"data"];
-    self.beforeLoadingView.contentMode = UIViewContentModeScaleAspectFill;
-    self.beforeLoadingView.animationSpeed = 1.0;
-    [self addSubview:self.beforeLoadingView];
-    [self.beforeLoadingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(200, 40));
-        make.center.equalTo(self);
-    }];
+//    self.beforeLoadingView = [LOTAnimationView animationNamed:@"data"];
+//    self.beforeLoadingView.contentMode = UIViewContentModeScaleAspectFill;
+//    self.beforeLoadingView.animationSpeed = 1.0;
+//    [self addSubview:self.beforeLoadingView];
+//    [self.beforeLoadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(200, 40));
+//        make.center.equalTo(self);
+//    }];
     
     self.loadingView = [NNRefreshLoadingView new];
     [self addSubview:self.loadingView];
@@ -46,7 +46,7 @@
 - (void)beginRefreshing {
     [super beginRefreshing];
 
-    [self.beforeLoadingView pause];
+//    [self.beforeLoadingView pause];
 }
 
 - (void)setState:(MJRefreshState)state {
@@ -54,20 +54,20 @@
     
     if (state == MJRefreshStateIdle) {
         [self.loadingView endLoading];
-        self.beforeLoadingView.hidden = NO;
+//        self.beforeLoadingView.hidden = NO;
     } else if (state == MJRefreshStateRefreshing) {
-        self.beforeLoadingView.hidden = YES;
+//        self.beforeLoadingView.hidden = YES;
         [self.loadingView startLoading];
     }
 }
 
-- (void)setPullingPercent:(CGFloat)pullingPercent {
-    [super setPullingPercent:pullingPercent];
-    
-    CGFloat progress = pullingPercent - 1 > 0 ? 1.0 : pullingPercent;
-    progress = progress - 0.3 < 0 ? 0.0 : progress - 0.3;
-    
-    self.beforeLoadingView.animationProgress = progress / 0.7 * 0.45 ;
-}
+//- (void)setPullingPercent:(CGFloat)pullingPercent {
+//    [super setPullingPercent:pullingPercent];
+//    
+//    CGFloat progress = pullingPercent - 1 > 0 ? 1.0 : pullingPercent;
+//    progress = progress - 0.3 < 0 ? 0.0 : progress - 0.3;
+//    
+//    self.beforeLoadingView.animationProgress = progress / 0.7 * 0.45 ;
+//}
 
 @end

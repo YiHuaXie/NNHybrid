@@ -160,7 +160,7 @@ SPEC CHECKSUMS:
   AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
   AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  BVLinearGradient: b0b70acf63ee888829b7c2ebbf6b50e227396e55
+  BVLinearGradient: 8cbc5155c978f2e43098818c91d206d07aae6d30
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
   DoubleConversion: bb338842f62ab1d708ceb63ec3d999f0f3d98ecd
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
@@ -172,13 +172,13 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
-  React: 16c4fb7ce3fc30c041bce809ceae33bf57e7c142
-  RNDeviceInfo: 8a21b2687c7c829362ca0ccc3a8b5380a42dd59f
-  RNGestureHandler: afde2addc517e85cc97a25bfe119acbee779a7ce
-  RNVectorIcons: 8c52e1e8da1153613fdef44748e865c25556cb9c
+  React: 130b87b2d5e2baac646954282cab87be986d98fc
+  RNDeviceInfo: bcb9494e3c9efd7536c3b25d4c16cf879c84042d
+  RNGestureHandler: b65d391f4f570178d657b99a16ec99d09b8656b0
+  RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  yoga: 0885622311729a02c2bc02dca97167787a51488b
+  yoga: 32d7ef1081951e9a35a4c72a7be797598b138a48
 
 PODFILE CHECKSUM: c6b0cc528073e559e142db684baa5081d50be612
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

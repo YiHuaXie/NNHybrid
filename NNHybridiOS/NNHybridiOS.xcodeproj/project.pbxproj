@@ -76,6 +76,7 @@
 		AEED9100225BAC44001B1985 /* NNAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90E9225BAC44001B1985 /* NNAlertView.m */; };
 		AEED920A225CBBEE001B1985 /* UserDefaultModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED9209225CBBEE001B1985 /* UserDefaultModule.m */; };
 		AEED920D225CBFC3001B1985 /* AMapLocationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED920C225CBFC3001B1985 /* AMapLocationModule.m */; };
+		AEED9213225E1914001B1985 /* MJRefreshControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED9212225E1914001B1985 /* MJRefreshControlManager.m */; };
 		CD5F09D2BBC5465493BADE02 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8956F42A4C346D0B5A78DCC /* AntDesign.ttf */; };
 		D21C812D5E67487BAE838A15 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F01703D0434DD8B94B0B4D /* Feather.ttf */; };
 		D922119D26914BEEB7EC770D /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFF6AE2C8FE948FF91EB6596 /* FontAwesome5_Solid.ttf */; };
@@ -241,6 +242,8 @@
 		AEED9209225CBBEE001B1985 /* UserDefaultModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDefaultModule.m; sourceTree = "<group>"; };
 		AEED920B225CBFC3001B1985 /* AMapLocationModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMapLocationModule.h; sourceTree = "<group>"; };
 		AEED920C225CBFC3001B1985 /* AMapLocationModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMapLocationModule.m; sourceTree = "<group>"; };
+		AEED9211225E1914001B1985 /* MJRefreshControlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshControlManager.h; sourceTree = "<group>"; };
+		AEED9212225E1914001B1985 /* MJRefreshControlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshControlManager.m; sourceTree = "<group>"; };
 		AFF6AE2C8FE948FF91EB6596 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		D8DD20FA117D4BDB93D1617F /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		D9139C07AF0B060C16694F05 /* libPods-NNHybridiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NNHybridiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -550,6 +553,8 @@
 		AEC86C40225353B400C76C09 /* RCTView */ = {
 			isa = PBXGroup;
 			children = (
+				AEED9211225E1914001B1985 /* MJRefreshControlManager.h */,
+				AEED9212225E1914001B1985 /* MJRefreshControlManager.m */,
 				AEC86C42225353B400C76C09 /* ParallaxViewManager.h */,
 				AEC86C41225353B400C76C09 /* ParallaxViewManager.m */,
 			);
@@ -898,7 +903,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
@@ -941,7 +946,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		988220E16DAE168954D8222E /* [CP] Check Pods Manifest.lock */ = {
@@ -1016,6 +1021,7 @@
 				AEED90ED225BAC44001B1985 /* NSObject+NNExtension.m in Sources */,
 				AEED90FB225BAC44001B1985 /* NNGCDTimer.m in Sources */,
 				AE687BEB225C6B330054FDA6 /* UserDefaultKey.m in Sources */,
+				AEED9213225E1914001B1985 /* MJRefreshControlManager.m in Sources */,
 				AEED90F8225BAC44001B1985 /* UIControl+NNExtension.m in Sources */,
 				AEED90F9225BAC44001B1985 /* NNPFSLabel.m in Sources */,
 				AE687BA3225C68B50054FDA6 /* UIBarButtonItem+NNExtension.m in Sources */,

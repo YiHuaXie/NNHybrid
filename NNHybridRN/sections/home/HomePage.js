@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
-import { CityManager } from '../../utils/NativeUtil';
+// import { CityManager } from '../../utils/NativeUtil';
 
 import Network from '../../network';
 import { ApiPath } from '../../network/ApiService';
@@ -21,7 +21,8 @@ import HomeApartmentCell from './HomeApartmentCell';
 import HomeSectioHeader from './HomeSectionHeader';
 import EachHouseCell from '../../components/common/EachHouseCell';
 import HomeButtonCell from './HomeButtonCell';
-import ProgressHUD from '../../components/progressHUD/ProgressHUD';
+// import ProgressHUD from '../../components/progressHUD/ProgressHUD';
+import MJRefreshControl from '../../components/MJRefreshControl';
 
 export default class HomePage extends Component {
 
@@ -36,15 +37,15 @@ export default class HomePage extends Component {
             houses: [],
             isTransparent: true,
             cityName: '定位中...',
-            cityId: null
+            cityId: '330100'
         }
 
         this._loadData();
 
-        CityManager.cityLocation((cityName, cityId) => {
-            this.setState({cityName: cityName, cityId: cityId});
-            this._loadData();
-        });
+        // CityManager.cityLocation((cityName, cityId) => {
+        //     this.setState({cityName: cityName, cityId: cityId});
+        //     this._loadData();
+        // });
     }
 
     _loadData() {
@@ -102,6 +103,9 @@ export default class HomePage extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView
+                    refreshControl={()=> {
+                        return  <MJRefreshControl style={{height: 60, width: 100}}/>
+                    }}
                     onScroll={(e) => {
                         this.setState({
                             isTransparent: e.nativeEvent.contentOffset.y > 100 ? false : true
@@ -126,7 +130,7 @@ export default class HomePage extends Component {
                     isTransparent={this.state.isTransparent}
                     cityName={this.state.cityName}
                 />
-                <ProgressHUD/>
+                {/* <ProgressHUD/> */}
             </View>
         );
     }

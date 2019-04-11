@@ -8,7 +8,7 @@
 
 #import <React/RCTViewManager.h>
 
-@interface RefreshControlManager : RCTViewManager <RCTBridgeModule>
+@interface MJRefreshControlManager : RCTViewManager <RCTBridgeModule>
 
 @end
 

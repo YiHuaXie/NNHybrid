@@ -6,15 +6,19 @@
 //  Copyright © 2019 NeroXie. All rights reserved.
 //
 
-#import "RefreshControlManager.h"
+#import "MJRefreshControlManager.h"
 #import "NNRefreshHeader.h"
 
-@implementation RefreshControlManager
+@implementation MJRefreshControlManager
 
 RCT_EXPORT_MODULE();
 
 - (UIView *)view {
-    return [NNRefreshHeader new];
+    UIView *view = [UIView new];
+    view.backgroundColor = UIColor.redColor;
+    
+    return view;
+//    return [NNRefreshHeader new];
 }
 
 //RCT_EXPORT_VIEW_PROPERTY(onRefresh, RCTDirectEventBlock)
