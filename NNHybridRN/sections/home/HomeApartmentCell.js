@@ -5,6 +5,7 @@ import {
     Image,
     FlatList,
     Text,
+    TouchableWithoutFeedback
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 
@@ -17,6 +18,8 @@ export default class HomeApartmentCell extends Component {
         const marginLeft = index === 0 ? 15 : 10;
         const marginRight = index < this.props.apartments.length - 1 ? 0 : 15;
         return (
+            <TouchableWithoutFeedback
+            onPress={() => this.props.itemClick()}>
             <View style={{
                 ...styles.itemContainer,
                 marginLeft: marginLeft,
@@ -46,6 +49,7 @@ export default class HomeApartmentCell extends Component {
                     </Text>
                 </View>
             </View>
+            </TouchableWithoutFeedback>
         );
     }
 

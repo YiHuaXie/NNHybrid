@@ -35,17 +35,12 @@ export default class HomePage extends Component {
             apartments: [],
             houses: [],
             isTransparent: true,
-            cityName: '定位中...',
+            cityName: '杭州市',
             cityId: '330100',
             isLoading: true
         }
 
         this._loadData();
-
-        // CityManager.cityLocation((cityName, cityId) => {
-        //     this.setState({cityName: cityName, cityId: cityId});
-        //     this._loadData();
-        // });
     }
 
     _loadData() {
@@ -122,7 +117,10 @@ export default class HomePage extends Component {
                     <HomeVRCell vr={vr} />
                     {this._addDividingLine(!AppUtil.isEmptyArray(messages) || vr)}
                     {!AppUtil.isEmptyArray(apartments) ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
-                    <HomeApartmentCell apartments={apartments} />
+                    <HomeApartmentCell
+                        apartments={apartments}
+                        itemClick={() => NavigationUtil.goPage('ApartmentPage')}
+                    />
                     {!AppUtil.isEmptyArray(houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
                     {this._renderHouseitems()}
                     {!AppUtil.isEmptyArray(houses) ? <HomeButtonCell /> : null}

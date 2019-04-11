@@ -26,6 +26,7 @@ export default class NavigationBar extends Component {
         backOrClose: PropTypes.string,
         backOrCloseHandler: PropTypes.func,
         title: PropTypes.string,
+        titleColor: PropTypes.string,
         customTitleView: PropTypes.element,
         titleViewHidden: PropTypes.bool,
     };
@@ -61,12 +62,16 @@ export default class NavigationBar extends Component {
     }
 
     _renderTitleView() {
-        const { titleHidden, customTitleView, title } = this.props;
+        const { titleHidden, customTitleView, title, titleColor } = this.props;
 
         if (titleHidden) return null;
 
         const defaultTitleView = (
-            <Text ellipsizeMode="tail" numberOfLines={1} style={styles.navigationBarTitle}>
+            <Text
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={[styles.navigationBarTitle, titleColor]}
+            >
                 {title}
             </Text>
         );
