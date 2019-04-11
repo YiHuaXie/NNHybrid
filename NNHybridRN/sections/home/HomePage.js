@@ -5,6 +5,7 @@ import {
     ScrollView,
     TouchableWithoutFeedback,
     StatusBar,
+    NativeModules
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
@@ -23,6 +24,8 @@ import HomeButtonCell from './HomeButtonCell';
 import Refresher from '../../components/common/Refresher';
 import Toaster from '../../components/common/Toaster';
 
+const CityManager = NativeModules.CityManagerModule;
+
 export default class HomePage extends Component {
 
     constructor(props) {
@@ -35,12 +38,17 @@ export default class HomePage extends Component {
             apartments: [],
             houses: [],
             isTransparent: true,
-            cityName: '杭州市',
+            cityName: '定位中...',
             cityId: '330100',
             isLoading: true
         }
 
         this._loadData();
+
+        CityManager.cityLocation((cityName, cityId) => {
+            this.setState({ cityName, cityId, isLoading: true });
+            this._loadData();
+        });
     }
 
     _loadData() {
@@ -103,6 +111,7 @@ export default class HomePage extends Component {
             <View style={styles.container}>
                 <ScrollView
                     refreshControl={Refresher.header(isLoading, () => this._loadData())}
+                    scrollEventThrottle={60}
                     onScroll={(e) => {
                         this.setState({
                             isTransparent: e.nativeEvent.contentOffset.y > 100 ? false : true

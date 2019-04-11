@@ -10,7 +10,7 @@
 #import "CityManager.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
-static ConstString kAMapKey = @"6c5d062e9e30a68cafe2669f4f19459a";
+static ConstString kAMapKey = @"4f351241f70702b74f1aba52e4e878c7";
 
 @implementation SystemConfigPlugin
 
