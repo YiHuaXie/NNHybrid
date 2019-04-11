@@ -893,7 +893,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
@@ -936,7 +936,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		988220E16DAE168954D8222E /* [CP] Check Pods Manifest.lock */ = {
@@ -1177,7 +1177,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 97ZDU8T5WN;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/NNHybridiOS/GlobalDefine/PrefixHeader.pch";
 				INFOPLIST_FILE = NNHybridiOS/Info.plist;
@@ -1188,7 +1188,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.memorhome.MYRoom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = MYRoom_dev;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1199,8 +1199,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 97ZDU8T5WN;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/NNHybridiOS/GlobalDefine/PrefixHeader.pch";
 				INFOPLIST_FILE = NNHybridiOS/Info.plist;
@@ -1211,7 +1211,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.memorhome.MYRoom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = MYRoom_Dis;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -146,8 +146,6 @@ export default class Network {
                         throw new Error(response.message);
                 }
             })
-            .catch(error => {
-                return error;
-            });
+            .catch(error => { throw error; });
     }
 }

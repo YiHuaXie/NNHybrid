@@ -21,6 +21,7 @@ import HomeSectioHeader from './HomeSectionHeader';
 import EachHouseCell from '../../components/common/EachHouseCell';
 import HomeButtonCell from './HomeButtonCell';
 import Refresher from '../../components/common/Refresher';
+import Toaster from '../../components/common/Toaster';
 
 export default class HomePage extends Component {
 
@@ -48,7 +49,6 @@ export default class HomePage extends Component {
     }
 
     _loadData() {
-        this.setState({ isLoading: true });
         const iconListReq =
             Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: this.state.cityId });
         const houseListReq =
@@ -69,7 +69,10 @@ export default class HomePage extends Component {
                     isLoading: false
                 });
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                this.setState({ isLoading: false });
+                Toaster.autoDisapperShow(error.message);
+            });
     }
 
     _addDividingLine(add) {
@@ -100,11 +103,11 @@ export default class HomePage extends Component {
 
     // 需要用SectionList实现
     render() {
-        const {isLoading, banners, modules, messages, vr, apartments, houses } = this.state;
+        const { isLoading, banners, modules, messages, vr, apartments, houses } = this.state;
         return (
             <View style={styles.container}>
                 <ScrollView
-                    refreshControl={Refresher.header(isLoading, ()=> this._loadData())}
+                    refreshControl={Refresher.header(isLoading, () => this._loadData())}
                     onScroll={(e) => {
                         this.setState({
                             isTransparent: e.nativeEvent.contentOffset.y > 100 ? false : true
@@ -129,7 +132,6 @@ export default class HomePage extends Component {
                     isTransparent={this.state.isTransparent}
                     cityName={this.state.cityName}
                 />
-                {/* <ProgressHUD/> */}
             </View>
         );
     }
