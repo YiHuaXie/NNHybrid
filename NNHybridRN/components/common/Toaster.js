@@ -12,6 +12,6 @@ export default class Toaster {
             delay: 0,
         });
 
-        setTimeout(() => this.hide(toast), delay);
+        setTimeout(() => Toast.hide(toast), delay);
     }
 }

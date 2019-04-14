@@ -34,7 +34,7 @@ export default class HomeBannerModuleCell extends Component {
     _renderBannerItems() {
         const { banners } = this.props;
 
-        images = [];
+        const images = [];
         for (const i in banners) {
             images.push(
                 <TouchableWithoutFeedback
@@ -56,6 +56,7 @@ export default class HomeBannerModuleCell extends Component {
                 />
             );
         }
+        
         return images;
     }
 
@@ -90,7 +91,7 @@ export default class HomeBannerModuleCell extends Component {
                     autoplayTimeout={3.0}
                     autoplayDirection={true}
                 // showsPagination={true}
-                // paginationStyle={{ top: (AppUtil.windowWidth - 30) * 0.55 + 10, height: 30 }}
+                // paginationStyle={{ top: 30, height: 30 }}
                 // loop={banner.length > 1}
                 // onMomentumScrollEnd={(e, state, context) => console.log('index:', state.index)}
                 // dot={<View style={styles.dotStyle} />}

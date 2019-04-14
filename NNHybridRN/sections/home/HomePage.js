@@ -85,11 +85,11 @@ export default class HomePage extends Component {
     _renderHouseitems() {
         const { houses } = this.state;
 
-        tmpHouses = [];
+        const tmpHouses = [];
         for (const i in houses) {
             tmpHouses.push(
                 <TouchableWithoutFeedback key={i}>
-                    <EachHouseCell house={houses[i]} />
+                    <EachHouseCell house={houses[i]}/>
                 </TouchableWithoutFeedback>
             );
         }
@@ -128,7 +128,7 @@ export default class HomePage extends Component {
                     {!AppUtil.isEmptyArray(apartments) ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
                     <HomeApartmentCell
                         apartments={apartments}
-                        itemClick={() => NavigationUtil.goPage('ApartmentPage')}
+                        itemClick={(apartmentId, isTalent) => NavigationUtil.goPage('ApartmentPage', {apartmentId, isTalent})}
                     />
                     {!AppUtil.isEmptyArray(houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
                     {this._renderHouseitems()}

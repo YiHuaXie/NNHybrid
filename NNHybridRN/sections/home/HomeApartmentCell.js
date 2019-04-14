@@ -19,7 +19,7 @@ export default class HomeApartmentCell extends Component {
         const marginRight = index < this.props.apartments.length - 1 ? 0 : 15;
         return (
             <TouchableWithoutFeedback
-            onPress={() => this.props.itemClick()}>
+            onPress={() => this.props.itemClick(item.estateId, item.isTalent)}>
             <View style={{
                 ...styles.itemContainer,
                 marginLeft: marginLeft,

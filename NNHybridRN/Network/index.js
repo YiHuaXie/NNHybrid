@@ -37,7 +37,7 @@ const timeoutFetch = (originalFetch, timeout = 10000) => {
  */
 export const handleUrl = (url, params) => {
     if (params && typeof (params) === 'object') {
-        let paramsArray = []
+        const paramsArray = []
         Object.keys(params).forEach(key => {
             paramsArray.push(`${key}=${encodeURIComponent(params[key])}`);
         });

@@ -7,7 +7,7 @@ export default class HomeMessageCell extends Component {
 
     _renderMessageItem() {
         const { messages } = this.props;
-        tmpMessages = [];
+        const tmpMessages = [];
 
         for (const i in messages) {
             tmpMessages.push(

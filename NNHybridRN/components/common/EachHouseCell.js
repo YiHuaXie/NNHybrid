@@ -36,10 +36,11 @@ export default class EachHouseCell extends Component {
 
     // https://github.com/reactjs/rfcs/blob/master/text/0006-static-lifecycle-methods.md
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (prevState.house !== nextProps.house) {
+        if (!AppUtil.isEmptyObject(nextProps.house) &&
+            prevState.house !== nextProps.house) {
             const { house } = nextProps;
-            strings = [house.roomArea, house.houseType, house.roomDirection];
-            allTags = house.showIconList.concat(house.showTagList);
+            const strings = [house.roomArea, house.houseType, house.roomDirection];
+            const allTags = house.showIconList.concat(house.showTagList);
 
             return {
                 house: house,
@@ -50,6 +51,22 @@ export default class EachHouseCell extends Component {
                 address: house.distanceInfo,
                 isOrgAuth: house.isOrgAuth,
                 allTags: allTags
+            }
+        } else if (!AppUtil.isEmptyObject(nextProps.apartment)
+            && prevState.apartment !== nextProps.apartment) {
+            const { apartment } = nextProps;
+            const strings = [apartment.roomArea, apartment.houseType];
+            const allTags = apartment.showIconList.concat(apartment.showTagList);
+
+            return {
+                apartment,
+                allTags,
+                imageUrl: apartment.imageUrl,
+                title: apartment.typeName,
+                subTitle: strings.join(' | '),
+                price: parseInt(apartment.price),
+                address: apartment.distanceInfo,
+                isOrgAuth: apartment.isOrgAuth,
             }
         }
 
