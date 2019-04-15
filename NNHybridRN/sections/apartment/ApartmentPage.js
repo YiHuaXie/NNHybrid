@@ -57,7 +57,7 @@ export default class ApartmentPage extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView
-                    scrollEventThrottle={60}
+                    // scrollEventThrottle={60}
                     onScroll={(e) => {
                         const offsetY = e.nativeEvent.contentOffset.y;
                         const isTransparent = offsetY <= AppUtil.fullNavigationBarHeight;

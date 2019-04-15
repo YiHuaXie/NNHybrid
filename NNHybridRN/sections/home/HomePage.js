@@ -111,7 +111,7 @@ export default class HomePage extends Component {
             <View style={styles.container}>
                 <ScrollView
                     refreshControl={Refresher.header(isLoading, () => this._loadData())}
-                    scrollEventThrottle={60}
+                    // scrollEventThrottle={60}
                     onScroll={(e) => {
                         this.setState({
                             isTransparent: e.nativeEvent.contentOffset.y > 100 ? false : true
