@@ -61,11 +61,12 @@ export default class HomeMessageCell extends Component {
 const styles = StyleSheet.create({
     container: {
         height: 40,
+        marginBottom: 10,
         flexDirection: 'row',
     },
     image: {
         marginLeft: 10,
-        marginTop: 6,
+        marginTop: 8,
         width: 85,
         height: 28,
         resizeMode: 'contain'

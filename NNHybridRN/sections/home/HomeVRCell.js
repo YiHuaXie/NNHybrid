@@ -23,7 +23,7 @@ export default class HomeVRCell extends Component {
             <View style={styles.container}>
                 <TouchableWithoutFeedback
                     onPress={() => {
-
+                        
                     }}>
                     <View style={styles.content}>
                         <ParallaxView style={styles.parallax}/>

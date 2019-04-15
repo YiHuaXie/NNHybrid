@@ -3,7 +3,7 @@ import {
     StyleSheet,
     View,
     TouchableWithoutFeedback,
-    ListView,
+    FlatList,
     Text
 } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -28,16 +28,7 @@ class ModuleItem extends Component {
 }
 
 export default class HomeBannerModuleCell extends Component {
-
-    constructor(props) {
-        super(props);
-
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-        this.state = {
-            dataSource: ds,
-        };
-    }
-
+    
     _renderBannerItems() {
         const { banners } = this.props;
 
@@ -71,17 +62,18 @@ export default class HomeBannerModuleCell extends Component {
         const { modules } = this.props;
 
         if (AppUtil.isEmptyArray(modules)) return null;
-
-        let index = -1;
         return (
             <View style={styles.moduleContainer}>
-                <ListView
-                    dataSource={this.state.dataSource.cloneWithRows(modules)}
+                <FlatList
                     contentContainerStyle={styles.moduleList}
-                    enableEmptySections={true}
-                    renderRow={(rowData, rowID) => {
-                        index++;
-                        return <ModuleItem itemStyle={{ marginTop: index > 3 ? 10 : 0 }} item={rowData} />
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                    numColumns={4}
+                    data={modules}
+                    keyExtractor={item => `${item.code}`}
+                    // contentInset只支持iOS
+                    renderItem={({ item, index }) => {
+                        return <ModuleItem itemStyle={{ marginTop: index > 3 ? 10 : 0 }} item={item}/>
                     }}
                 />
             </View>
@@ -164,9 +156,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1.0,
     },
     moduleList: {
-        justifyContent: 'space-around',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
+        flexDirection: 'column',
         marginTop: 23
     },
     moduleItem: {
