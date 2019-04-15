@@ -3,9 +3,7 @@ import {
     StyleSheet,
     View,
     ScrollView,
-    TouchableWithoutFeedback,
-    StatusBar,
-    NativeModules
+    TouchableWithoutFeedback
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
@@ -23,8 +21,7 @@ import EachHouseCell from '../../components/common/EachHouseCell';
 import HomeButtonCell from './HomeButtonCell';
 import Refresher from '../../components/common/Refresher';
 import Toaster from '../../components/common/Toaster';
-
-const CityManager = NativeModules.CityManagerModule;
+import CityManager from '../city/CityManager';
 
 export default class HomePage extends Component {
 

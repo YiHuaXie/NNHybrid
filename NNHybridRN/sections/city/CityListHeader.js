@@ -5,6 +5,10 @@ import AppUtil from '../../utils/AppUtil';
 class CityLocationCell extends Component {
     render() {
         <View style={locationCellStyles.container}>
+        <Text style={locationCellStyles.city}></Text>
+        <View>
+
+        </View>
         </View>
     }
 }
@@ -56,7 +60,9 @@ const locationCellStyles = StyleSheet.create({
     container: {
         height: 80,
         flexDirection: 'row',
-        just
+    },
+    city: {
+
     }
 });
 
