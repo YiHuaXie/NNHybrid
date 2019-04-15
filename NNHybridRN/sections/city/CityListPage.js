@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import NavigationBar from '../../navigator/NavigationBar';
 
 export default class CityListPage extends Component {
     render() {
@@ -12,6 +13,13 @@ export default class CityListPage extends Component {
                 >
                     CityListPage
                 </Text>
+                <NavigationBar
+                    backOrClose='close'
+                    title='选择城市'
+                    navBarStyle={{
+                        position: 'absolute',
+                    }}
+                />
             </View>
         );
     }

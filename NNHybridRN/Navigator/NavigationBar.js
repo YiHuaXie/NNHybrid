@@ -4,10 +4,17 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
+    StatusBar
 } from 'react-native';
 import { PropTypes } from 'prop-types';
 import AppUtil from '../utils/AppUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+const StatusBarWithShape = {//设置状态栏所接受的属性
+    barStyle: PropTypes.oneOf(['light-content', 'default',]),
+    hidden: PropTypes.bool,
+    backgroundColor: PropTypes.string,
+};
 
 /**
  * 自定义NavigationBar
@@ -15,6 +22,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default class NavigationBar extends Component {
 
     static propTypes = {
+        statusBar: PropTypes.shape(StatusBarWithShape),
         navHidden: PropTypes.bool,
         navBarStyle: PropTypes.object,
         navContentStyle: PropTypes.object,
@@ -29,6 +37,13 @@ export default class NavigationBar extends Component {
         titleColor: PropTypes.string,
         customTitleView: PropTypes.element,
         titleViewHidden: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        statusBar: {
+            barStyle: 'default',
+            hidden: false
+        },
     };
 
     _backOrCloseButton(text) {
@@ -100,8 +115,13 @@ export default class NavigationBar extends Component {
     render() {
         if (this.props.navHidden) return null;
 
+        let statusBar = !this.props.statusBar.hidden ?
+            <StatusBar {...this.props.statusBar} />
+            : null;
+
         return (
             <View style={[styles.navigationBar, this.props.navBarStyle]}>
+                {statusBar}
                 {this._renderBackgroundView()}
                 <View style={[styles.navigationBarContent, this.props.navContentStyle]}>
                     {this._renderLeftItem()}

@@ -52,6 +52,7 @@ const MainNavigator = createStackNavigator({
     // },
     CityListPage: {
         screen: CityListPage,
+        navigationOptions: { header: null }
     },
     ApartmentPage: {
         screen: ApartmentPage,

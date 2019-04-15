@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import LinearGradient from 'react-native-linear-gradient';
 import NavigationBar from '../../navigator/NavigationBar';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default class HomeNavigationBar extends Component {
 
@@ -26,18 +27,21 @@ export default class HomeNavigationBar extends Component {
             require('../../resource/images/arrow/down_solid_black_small_arrow.png');
 
         return (
-            <View style={styles.cityView}>
-                <Text style={{
-                    fontSize: 14,
-                    color: isTransparent ? '#FFFFFF' : AppUtil.app_black
-                }}>
-                    {cityName}
-                </Text>
-                <Image
-                    style={{ width: 16, height: 16, resizeMode: 'contain' }}
-                    source={arrowSource}
-                />
-            </View>
+            <TouchableWithoutFeedback
+                onPress={() => this.props.cityViewTouched()}>
+                <View style={styles.cityView}>
+                    <Text style={{
+                        fontSize: 14,
+                        color: isTransparent ? '#FFFFFF' : AppUtil.app_black
+                    }}>
+                        {cityName}
+                    </Text>
+                    <Image
+                        style={{ width: 16, height: 16, resizeMode: 'contain' }}
+                        source={arrowSource}
+                    />
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 
@@ -72,6 +76,7 @@ export default class HomeNavigationBar extends Component {
         const { isTransparent } = this.props;
         return (
             <NavigationBar
+                statusBar={{ barStyle: AppUtil.iOS && isTransparent ? 'light-content' : 'default' }}
                 backgroundView={this._renderGradientView()}
                 titleHidden={true}
                 leftItem={this._renderCityView()}

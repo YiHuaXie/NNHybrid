@@ -89,19 +89,12 @@ export default class HomePage extends Component {
         for (const i in houses) {
             tmpHouses.push(
                 <TouchableWithoutFeedback key={i}>
-                    <EachHouseCell house={houses[i]}/>
+                    <EachHouseCell house={houses[i]} />
                 </TouchableWithoutFeedback>
             );
         }
 
         return tmpHouses;
-    }
-
-    _statusBar() {
-        const { isTransparent } = this.state;
-        if (AppUtil.iOS) {
-            return <StatusBar barStyle={isTransparent ? 'light-content' : 'default'} />
-        }
     }
 
     // 需要用SectionList实现
@@ -128,16 +121,16 @@ export default class HomePage extends Component {
                     {!AppUtil.isEmptyArray(apartments) ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
                     <HomeApartmentCell
                         apartments={apartments}
-                        itemClick={(apartmentId, isTalent) => NavigationUtil.goPage('ApartmentPage', {apartmentId, isTalent})}
+                        itemClick={(apartmentId, isTalent) => NavigationUtil.goPage('ApartmentPage', { apartmentId, isTalent })}
                     />
                     {!AppUtil.isEmptyArray(houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
                     {this._renderHouseitems()}
                     {!AppUtil.isEmptyArray(houses) ? <HomeButtonCell /> : null}
                 </ScrollView>
-                {this._statusBar()}
                 <HomeNavigationBar
                     isTransparent={this.state.isTransparent}
                     cityName={this.state.cityName}
+                    cityViewTouched={() => NavigationUtil.goPage('CityListPage')}
                 />
             </View>
         );
