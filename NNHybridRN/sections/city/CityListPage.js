@@ -16,6 +16,7 @@ export default class CityListPage extends Component {
                 <NavigationBar
                     backOrClose='close'
                     title='选择城市'
+                    showDividingLine={true}
                     navBarStyle={{
                         position: 'absolute',
                     }}

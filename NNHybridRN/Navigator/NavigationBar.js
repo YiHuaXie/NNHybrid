@@ -10,7 +10,8 @@ import { PropTypes } from 'prop-types';
 import AppUtil from '../utils/AppUtil';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const StatusBarWithShape = {//设置状态栏所接受的属性
+//设置状态栏所接受的属性
+const StatusBarWithShape = {
     barStyle: PropTypes.oneOf(['light-content', 'default',]),
     hidden: PropTypes.bool,
     backgroundColor: PropTypes.string,
@@ -37,6 +38,7 @@ export default class NavigationBar extends Component {
         titleColor: PropTypes.string,
         customTitleView: PropTypes.element,
         titleViewHidden: PropTypes.bool,
+        showDividingLine: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -115,8 +117,12 @@ export default class NavigationBar extends Component {
     render() {
         if (this.props.navHidden) return null;
 
-        let statusBar = !this.props.statusBar.hidden ?
+        const statusBar = !this.props.statusBar.hidden ?
             <StatusBar {...this.props.statusBar} />
+            : null;
+
+        const dividingLine = this.props.showDividingLine ?
+            <View style={styles.dividingLine}/>
             : null;
 
         return (
@@ -127,6 +133,7 @@ export default class NavigationBar extends Component {
                     {this._renderLeftItem()}
                     {this._renderTitleView()}
                     {this._renderRightItem()}
+                    {dividingLine}
                 </View>
             </View>
         );
@@ -163,5 +170,12 @@ const styles = StyleSheet.create({
         right: 40,
         top: 0,
         bottom: 0,
+    },
+    dividingLine: {
+        position: 'absolute',
+        width: AppUtil.windowWidth,
+        bottom: 0,
+        height: 0.5,
+        backgroundColor: AppUtil.app_gray
     }
 });
