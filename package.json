@@ -12,6 +12,7 @@
     "react-native": "0.58.6",
     "react-native-device-info": "^1.1.0",
     "react-native-gesture-handler": "^1.1.0",
+    "react-native-img-cache": "^1.6.0",
     "react-native-linear-gradient": "^2.5.4",
     "react-native-parallax-scroll-view": "^0.21.3",
     "react-native-root-toast": "^3.0.2",
@@ -22,7 +23,8 @@
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "redux-devtools": "^3.5.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "rn-fetch-blob": "^0.10.15"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",

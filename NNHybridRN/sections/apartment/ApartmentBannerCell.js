@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Swiper from 'react-native-swiper';
 import AppUtil from '../../utils/AppUtil';
+import NNImage from '../../components/common/NNImage';
 
 const cellHeight = 280;
 
@@ -12,10 +13,10 @@ export default class ApartmentBannerCell extends Component {
         const images = [];
         for (const i in data) {
             images.push(
-                <Image
+                <NNImage
                     key={i}
                     style={{ ...styles.image }}
-                    source={{ url: data[i] }}
+                    source={{ uri: data[i] }}
                 />
             );
         }

@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    Image,
     FlatList,
     Text,
     TouchableWithoutFeedback
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
+import NNImage from '../../components/common/NNImage';
 
 const cellHeight = 230;
 const itemSize = { width: 240, height: 190 };
@@ -26,7 +26,7 @@ export default class HomeApartmentCell extends Component {
                 marginRight: marginRight
             }}>
                 <View style={styles.itemImageContainer}>
-                    <Image
+                    <NNImage
                         style={styles.itemImage}
                         source={{ uri: item.imageUrl }}
                     />

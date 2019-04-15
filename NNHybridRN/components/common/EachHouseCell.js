@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { PropTypes } from 'prop-types';
 import AppUtil from '../../utils/AppUtil';
+import NNImage from './NNImage';
 
 const cellHeight = 120;
 
@@ -157,7 +158,7 @@ export default class EachHouseCell extends Component {
         const { imageUrl } = this.state;
         return (
             <View style={styles.container}>
-                <Image style={styles.leftImage} source={{ url: imageUrl }} />
+                <NNImage style={styles.leftImage} source={{ uri: imageUrl }} />
                 <View style={styles.rightContent}>
                     {this._renderAuthImageAndTitle()}
                     {this._renderSubTitleAndPrice()}

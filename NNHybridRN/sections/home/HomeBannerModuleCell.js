@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, TouchableWithoutFeedback, ListView, Text } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    TouchableWithoutFeedback,
+    ListView,
+    Text
+} from 'react-native';
 import Swiper from 'react-native-swiper';
 import AppUtil from '../../utils/AppUtil';
 import LinearGradient from 'react-native-linear-gradient';
+import NNImage from '../../components/common/NNImage';
 
 const viewHeight = AppUtil.windowWidth * 82.0 / 75.0;
 const viewWidth = AppUtil.windowWidth;
@@ -13,7 +20,7 @@ class ModuleItem extends Component {
         const { item } = this.props;
         return (
             <View style={[styles.moduleItem, this.props.itemStyle]}>
-                <Image style={styles.moduleItemImage} source={{ url: item.picUrl }} />
+                <NNImage style={styles.moduleItemImage} source={{ uri: item.picUrl }} />
                 <Text style={styles.moduleItemTitle}>{item.title}</Text>
             </View>
         );
@@ -42,27 +49,27 @@ export default class HomeBannerModuleCell extends Component {
                     onPress={() => {
 
                     }}>
-                    <Image style={styles.image} source={{ uri: banners[i].picUrl }} />
+                    <NNImage style={styles.image} source={{ uri: banners[i].picUrl }} />
                 </TouchableWithoutFeedback>
             );
         }
 
         if (!images.length) {
             images.push(
-                <Image
+                <NNImage
                     key={0}
                     style={styles.image}
                     source={require('../../resource/images/banner_default.jpg')}
                 />
             );
         }
-        
+
         return images;
     }
 
     _moduleView() {
         const { modules } = this.props;
-        
+
         if (AppUtil.isEmptyArray(modules)) return null;
 
         let index = -1;
