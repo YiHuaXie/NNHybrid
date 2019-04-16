@@ -20,12 +20,16 @@ export default class CityManager {
         return this.instance || (this.instance = new CityManager());
     }
 
-    static async getVisitedCities() {
-        try {
-            return await StorageUtil.objectForKey(VISITED_CITIES);
-        } catch (e) {
-            return null;
-        }
+    static getVisitedCities() {
+        return StorageUtil.objectForKey(VISITED_CITIES);
+    }
+
+    static getHaveHouseCities() {
+        return this.shareInstance.haveHouseCities;
+    }
+
+    static getHotCities() {
+        return this.shareInstance().hotCities;
     }
 
     static async syncVisitedCities(haveHouseCities) {

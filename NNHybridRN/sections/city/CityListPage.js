@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import NavigationBar from '../../navigator/NavigationBar';
+import CityManager from './CityManager';
 
 export default class CityListPage extends Component {
+
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: '#FFF' }}>
