@@ -21,7 +21,8 @@ import EachHouseCell from '../../components/common/EachHouseCell';
 import HomeButtonCell from './HomeButtonCell';
 import Refresher from '../../components/common/Refresher';
 import Toaster from '../../components/common/Toaster';
-import CityManager from '../city/CityManager';
+import CityManager, { VISITED_CITIES } from '../city/CityManager';
+import StorageUtil from '../../storage';
 
 export default class HomePage extends Component {
 
@@ -46,33 +47,78 @@ export default class HomePage extends Component {
             this.setState({ cityName, cityId, isLoading: true });
             this._loadData();
         });
+
+        CityManager.addVisitedCity({ cityName: '杭州', cityId: '0000' });
+        StorageUtil.getAllDataForKey(VISITED_CITIES, data => {
+            console.log(data);
+        });
+        // StorageUtil.load(VISITED_CITIES, data => {
+        //     console.log(data);
+        // });
+        // StorageUtil.save('测试数据', '测试数据');
+        // StorageUtil.load('测试数据', data => {
+        //     console.log(data);
+        // });
     }
 
     _loadData() {
-        const iconListReq =
-            Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: this.state.cityId });
-        const houseListReq =
-            Network.my_request(ApiPath.SEARCH, 'recommendList', '1.0', { cityId: this.state.cityId, sourceType: 1 });
-
-        Promise
-            .all([iconListReq, houseListReq])
-            .then(([res1, res2]) => {
-                // console.log(res1);
-                // console.log(res2);
-                this.setState({
-                    banners: res1.focusPictureList,
-                    modules: res1.iconList,
-                    messages: res1.newsList,
-                    vr: res1.marketVR,
-                    apartments: res1.estateList,
-                    houses: res2.resultList,
-                    isLoading: false
-                });
-            })
-            .catch(error => {
+        CityManager.loadHaveHouseCityList((error, haveHouseCities, hotCities) => {
+            if (error) {
                 this.setState({ isLoading: false });
                 Toaster.autoDisapperShow(error.message);
-            });
+
+                return;
+            }
+
+            const iconListReq =
+                Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: this.state.cityId });
+            const houseListReq =
+                Network.my_request(ApiPath.SEARCH, 'recommendList', '1.0', { cityId: this.state.cityId, sourceType: 1 });
+
+            Promise
+                .all([iconListReq, houseListReq])
+                .then(([res1, res2]) => {
+                    // console.log(res1);
+                    // console.log(res2);
+                    this.setState({
+                        banners: res1.focusPictureList,
+                        modules: res1.iconList,
+                        messages: res1.newsList,
+                        vr: res1.marketVR,
+                        apartments: res1.estateList,
+                        houses: res2.resultList,
+                        isLoading: false
+                    });
+                })
+                .catch(error => {
+                    this.setState({ isLoading: false });
+                    Toaster.autoDisapperShow(error.message);
+                });
+        });
+        // const iconListReq =
+        //     Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: this.state.cityId });
+        // const houseListReq =
+        //     Network.my_request(ApiPath.SEARCH, 'recommendList', '1.0', { cityId: this.state.cityId, sourceType: 1 });
+
+        // Promise
+        //     .all([iconListReq, houseListReq])
+        //     .then(([res1, res2]) => {
+        //         // console.log(res1);
+        //         // console.log(res2);
+        //         this.setState({
+        //             banners: res1.focusPictureList,
+        //             modules: res1.iconList,
+        //             messages: res1.newsList,
+        //             vr: res1.marketVR,
+        //             apartments: res1.estateList,
+        //             houses: res2.resultList,
+        //             isLoading: false
+        //         });
+        //     })
+        //     .catch(error => {
+        //         this.setState({ isLoading: false });
+        //         Toaster.autoDisapperShow(error.message);
+        //     });
     }
 
     _addDividingLine(add) {
