@@ -32,6 +32,18 @@ export default class StorageUtil {
         });
     }
 
+    static objectForKey(key) {
+        initStorage();
+        return storage
+            .load({
+                key: key,
+                autoSync: false,
+                syncInBackground: true,
+            })
+            .then(ret => { return ret })
+            .catch(error => { return undefined });
+    }
+
     static load(key, callBack) {
         initStorage();
         storage
@@ -45,8 +57,11 @@ export default class StorageUtil {
                 return ret;
             })
             .catch(error => {
-                console.error(error);
-                throw error;
+                if (error.name === 'NotFoundError') {
+                    callBack && callBack();
+                } else {
+                    throw error;
+                }
             });
     }
 
