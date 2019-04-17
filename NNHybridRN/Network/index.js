@@ -100,14 +100,19 @@ export default class Network {
 
     /**
      * 麦邻租房请求
-     * @param {HttpMethod} httpMethod  // 请求类型
-     * @param {string} path            // 接口路径
-     * @param {string} apiMethod       // 接口方法名
-     * @param {string} apiVersion      // 接口版本号
-     * @param {{}} params              // 业务参数
-     * @param {boolean} needLogin      // 是否登录
+     * 
+     * @param {{apiPath:string, apiMethod: string, apiVersion: string, httpMethod: HttpMethod, params:{}, needLogin:boolean }} parameters  
      */
-    static my_request(apiPath, apiMethod, apiVersion, params = {}, needLogin = false, httpMethod = HttpMethod.POST) {
+    static my_request(parameters) {
+        const {
+            apiPath,
+            apiMethod,
+            apiVersion,
+            params = {},
+            needLogin = false,
+            httpMethod = HttpMethod.POST
+        } = parameters;
+
         if (needLogin) {
             // 显示登录弹窗
             return null;

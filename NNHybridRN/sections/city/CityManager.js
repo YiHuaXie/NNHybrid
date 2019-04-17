@@ -25,7 +25,7 @@ export default class CityManager {
     }
 
     static getHaveHouseCities() {
-        return this.shareInstance.haveHouseCities;
+        return this.shareInstance().haveHouseCities;
     }
 
     static getHotCities() {

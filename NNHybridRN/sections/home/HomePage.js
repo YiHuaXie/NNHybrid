@@ -69,11 +69,19 @@ export default class HomePage extends Component {
 
                 return;
             }
-            
-            const iconListReq =
-                Network.my_request(ApiPath.MARKET, 'iconList', '3.6.4', { cityId: this.state.cityId });
-            const houseListReq =
-                Network.my_request(ApiPath.SEARCH, 'recommendList', '1.0', { cityId: this.state.cityId, sourceType: 1 });
+
+            const iconListReq = Network.my_request({
+                apiPath: ApiPath.MARKET,
+                apiMethod: 'iconList',
+                apiVersion: '3.6.4',
+                params: { cityId: this.state.cityId }
+            });
+            const houseListReq = Network.my_request({
+                apiPath: ApiPath.SEARCH,
+                apiMethod: 'recommendList',
+                apiVersion: '1.0',
+                params: { cityId: this.state.cityId, sourceType: 1 }
+            });
 
             Promise
                 .all([iconListReq, houseListReq])
