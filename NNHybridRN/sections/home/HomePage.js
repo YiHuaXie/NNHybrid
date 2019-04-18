@@ -46,19 +46,6 @@ export default class HomePage extends Component {
             this.setState({ cityName, cityId, isLoading: true });
             this._loadData();
         });
-
-        // CityManager.addVisitedCity({ cityName: '杭州市', cityId: '0000' });
-        // CityManager.addVisitedCity({ cityName: '上海市', cityId: '0001' });
-        // CityManager.addVisitedCity({ cityName: '广州市', cityId: '0002' });
-
-        // StorageUtil.load(VISITED_CITIES, data => {
-        //     console.log(data);
-        //     StorageUtil.remove(VISITED_CITIES);
-        // });
-        // StorageUtil.save('测试数据', '测试数据');
-        // StorageUtil.load('测试数据', data => {
-        //     console.log(data);
-        // });
     }
 
     _loadData() {

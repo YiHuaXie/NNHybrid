@@ -45,7 +45,7 @@ export default class CityManager {
                 }
             }
 
-            StorageUtil.save(VISITED_CITIES, tmp);
+            await StorageUtil.save(VISITED_CITIES, tmp);
         } catch (e) {
             console.log(e);
         }
@@ -79,7 +79,8 @@ export default class CityManager {
                 }
             }
 
-            StorageUtil.save(VISITED_CITIES, tmp);
+            console.log(tmp);
+            await StorageUtil.save(VISITED_CITIES, tmp);
         } catch (e) {
             console.log(e);
         }
@@ -87,7 +88,12 @@ export default class CityManager {
 
     static loadHaveHouseCityList(callBack) {
         return Network
-            .my_request(ApiPath.HOME, 'homeCityList', '1.0', { appType: '1' })
+            .my_request({
+                apiPath: ApiPath.HOME,
+                apiMethod: 'homeCityList',
+                apiVersion: '1.0',
+                params: { appType: '1' }
+            })
             .then(response => {
                 this.shareInstance().haveHouseCities = response.normalCityList;
                 this.shareInstance().hotCities = response.hotCityList;
