@@ -11,6 +11,18 @@ const getENFunc = () => {
     return tmp;
 };
 
+const pinyinCompare = (string1, string2) => {
+    const tmp1 = PinYinUtil.allFirstLetter(string1);
+    const tmp2 = PinYinUtil.allFirstLetter(string2);
+    if (tmp1 > tmp2) {
+        return 1;
+    } else if (tmp1 < tmp2) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
 const getEN = getENFunc();
 
 export default class PinYinUtil {
@@ -53,18 +65,23 @@ export default class PinYinUtil {
         }
 
         for (const i in array) {
-            const firstLetter = this.firstLetter(stringInElement(array[i]));
-            const tmpArray = dict[firstLetter];
+            const element = stringInElement ? stringInElement(array[i]) : array[i];
+            const firstLetter = this.firstLetter(element);
+            const tmpArray = AppUtil.makeSureArray(dict[firstLetter]);
             tmpArray.push(array[i]);
         }
-
         const resultArray = [];
         for (const i in getEN) {
             const firstLetter = getEN[i];
             const array = dict[firstLetter];
             if (array.length) {
+                const content = array.sort((element1, element2) => {
+                    const string1 = stringInElement ? stringInElement(element1) : element1;
+                    const string2 = stringInElement ? stringInElement(element2) : element2;
 
-                const resultDict = { firstLetter, content: array };
+                    return pinyinCompare(string1, string2);
+                });
+                const resultDict = { firstLetter, content };
                 resultArray.push(resultDict);
             }
         }

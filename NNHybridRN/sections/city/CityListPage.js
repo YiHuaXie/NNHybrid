@@ -14,27 +14,50 @@ const adjustCityNames = {
 
 export default class CityListPage extends Component {
 
+    constructor(props) {
+        super(props);
 
-    _arrayWithFirstLetter(cities) {
+        this.state = {
+            locationCity: {},
+            visitedCities: [],
+            hotCities: [],
+            sectionCityData: [],
+            sectionTitles: []
+        };
+    }
 
+    componentWillMount() {
+        this._loadData();
+    }
+
+    _loadData() {
+        const locationCity = CityManager.getLocationCity();
+        const visitedCities = CityManager.getVisitedCities();
+        const hotCities = CityManager.getHotCities();
+        const sectionCityData = PinYinUtil.arrayWithFirstLetterFormat(CityManager.getHaveHouseCities(), element => {
+            const adjustString = adjustCityNames[element.cityName];
+            return adjustString ? adjustString : element.cityName;
+        });
+
+        this.setState({
+            locationCity,
+            visitedCities,
+            hotCities,
+            sectionCityData,
+            sectionTitles: this._getSectionTitles(sectionCityData),
+        });
+    }
+
+    _getSectionTitles = (data) => {
+        const result = [];
+        for (const i in data) {
+            result.push((data[i]).firstLetter);
+        }
+
+        return result;
     }
 
     render() {
-        // console.log(PinYinUtil.quanPin('你好'));
-        // console.log(PinYinUtil.quanPin('string'));
-        // console.log(PinYinUtil.quanPin('@你好'));
-
-        console.log(PinYinUtil.firstLetter(null));
-        console.log(PinYinUtil.firstLetter(''));
-        console.log(PinYinUtil.firstLetter('你好'));
-        console.log(PinYinUtil.firstLetter('M你好'));
-        console.log(PinYinUtil.firstLetter('string'));
-        console.log(PinYinUtil.firstLetter('@你好'));
-        console.log(PinYinUtil.firstLetter('      @你好'));
-        console.log(PinYinUtil.firstLetter('      n你好'));
-        console.log(PinYinUtil.firstLetter('sssn你好ssss'));
-
-
 
         return (
             <View style={{ flex: 1, backgroundColor: '#FFF' }}>
