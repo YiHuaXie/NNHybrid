@@ -19,7 +19,7 @@ RCT_EXPORT_METHOD(locationWithCompletion:(RCTResponseSenderBlock)callback) {
             BLOCK_EXEC(callback, @[@{@"error": error.localizedDescription}]);
         } else {
             BLOCK_EXEC(callback, @[@{@"latitude": @(location.coordinate.latitude),
-                                     @"longitude":@(location.coordinate.longitude),
+                                     @"longitude": @(location.coordinate.longitude),
                                      @"formattedAddress":nn_makeSureString(regeocode.formattedAddress),
                                      @"country": nn_makeSureString(regeocode.country),
                                      @"province": nn_makeSureString(regeocode.province),

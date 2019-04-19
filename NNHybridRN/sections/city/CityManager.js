@@ -33,7 +33,7 @@ export default class CityManager {
     }
 
     static getLocationCity() {
-        return StorageUtil.objectForKey(SELECTED_CITY);
+        return StorageUtil.objectForKey(LOCATION_CITY);
     }
 
     static getVisitedCities() {
@@ -94,8 +94,6 @@ export default class CityManager {
                     tmp.splice(0, 0, city);
                 }
             }
-
-            console.log(tmp);
             await StorageUtil.save(VISITED_CITIES, tmp);
         } catch (e) {
             console.log(e);
@@ -139,6 +137,7 @@ export default class CityManager {
     }
 
     static saveSelectedCity(cityName, cityId) {
+        console.log({ cityName, cityId });
         StorageUtil.save(SELECTED_CITY, { cityName, cityId });
     }
 
@@ -146,13 +145,17 @@ export default class CityManager {
         StorageUtil.save(LOCATION_CITY, { cityName, cityId });
     }
 
-    static cityLocation(callBack) {
-        const selectedCity = this.getSelectedCity();
-        if (selectedCity) {
-            callBack(selectedCity.cityName, selectedCity.cityId);
-            return;
+    static async cityLocation(callBack) {
+        try {
+            const selectedCity = await this.getSelectedCity();
+            if (selectedCity) {
+                callBack(selectedCity.cityName, selectedCity.cityId);
+                return;
+            }
+        } catch (e) {
+            console.log(e);
         }
-
+    
         AMapLocation.locationWithCompletion(params => {
             const { error, province, city } = params;
             let cityName = city.length ? city : province;
