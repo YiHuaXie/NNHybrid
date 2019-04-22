@@ -137,7 +137,6 @@ export default class CityManager {
     }
 
     static saveSelectedCity(cityName, cityId) {
-        console.log({ cityName, cityId });
         StorageUtil.save(SELECTED_CITY, { cityName, cityId });
     }
 
@@ -167,9 +166,7 @@ export default class CityManager {
             } else {
                 this.saveLocationCity(cityName, cityId);
             }
-
-            this.saveSelectedCity(defaultCityName, defaultCityId);
-            this.addVisitedCity({ cityName: defaultCityName, cityId: defaultCityId });
+            
             callBack(defaultCityName, defaultCityId);
         });
     }

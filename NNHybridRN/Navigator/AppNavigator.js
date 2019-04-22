@@ -19,21 +19,21 @@ import CityListPage from '../sections/city/CityListPage';
 import ApartmentPage from '../sections/apartment/ApartmentPage';
 
 // dynamic modal transition
-// const IOS_MODAL_ROUTES = ['LoginPage'];
+const IOS_MODAL_ROUTES = ['CityListPage'];
 
-// const dynamicModalTransition = (transitionProps, prevTransitionProps) => {
-//     const isModal = IOS_MODAL_ROUTES.some(
-//         screenName =>
-//             screenName === transitionProps.scene.route.routeName ||
-//             (prevTransitionProps && screenName === prevTransitionProps.scene.route.routeName)
-//     )
+const dynamicModalTransition = (transitionProps, prevTransitionProps) => {
+    const isModal = IOS_MODAL_ROUTES.some(
+        screenName =>
+            screenName === transitionProps.scene.route.routeName ||
+            (prevTransitionProps && screenName === prevTransitionProps.scene.route.routeName)
+    )
 
-//     return StackViewTransitionConfigs.defaultTransitionConfig(
-//         transitionProps,
-//         prevTransitionProps,
-//         isModal
-//     );
-// };
+    return StackViewTransitionConfigs.defaultTransitionConfig(
+        transitionProps,
+        prevTransitionProps,
+        isModal
+    );
+};
 
 const StartNavigator = createStackNavigator({
     StartContainer: {
@@ -58,6 +58,8 @@ const MainNavigator = createStackNavigator({
         screen: ApartmentPage,
         navigationOptions: { header: null }
     }
+},{ 
+    transitionConfig: dynamicModalTransition 
 });
 
 const LoginNavigator = createStackNavigator({

@@ -5,13 +5,15 @@ import {
     Text,
     View,
     NativeModules,
-    TouchableWithoutFeedback
+    TouchableOpacity,
+    DeviceEventEmitter
 } from 'react-native';
 import NavigationBar from '../../navigator/NavigationBar';
 import AppUtil from '../../utils/AppUtil';
 import PinYinUtil from '../../utils/PinYinUtil';
 import CityManager from './CityManager';
 import CityListHeader from './CityListHeader';
+import NavigationUtil from '../../utils/NavigationUtil';
 
 const AMapLocation = NativeModules.AMapLocationModule;
 
@@ -55,6 +57,33 @@ export default class CityListPage extends Component {
 
             this.setState({ locationCityName });
         });
+    }
+
+    _selectCity(cityName, cityId) {
+        DeviceEventEmitter.emit('selectedCityChaged', { cityName, cityId });
+        NavigationUtil.goBack();
+    }
+
+    _locationCityClick(cityName) {
+        if (cityName === '定位中...' || cityName === '无法获取') return;
+
+        let finalCityName = null;
+        let finalCityId = null;
+        const data = CityManager.getHaveHouseCities();
+        for (const i in data) {
+            const city = data[i];
+            if (cityName === city.cityName) {
+                finalCityName = city.cityName;
+                finalCityId = city.cityId;
+                break;
+            }
+        }
+
+        if (!finalCityName || !finalCityId) {
+            Toaster.autoDisapperShow('所选城市暂未开通服务');
+        } else {
+            this._selectCity(finalCityName, finalCityId);
+        }
     }
 
     async _loadData() {
@@ -130,13 +159,8 @@ export default class CityListPage extends Component {
                 visitedCities={visitedCities}
                 hotCities={hotCities}
                 resetCityClick={() => this._startLocation()}
-                cityItemClick={(item) => {
-                    console.log(item);
-                }}
-                locationCityClick={(cityName) => {
-                    console.log(cityName);
-                }}
-
+                cityItemClick={item => this._selectCity(item.cityName, `${item.cityId}`)}
+                locationCityClick={cityName => this._locationCityClick(cityName)}
             />
         );
     }
@@ -151,23 +175,21 @@ export default class CityListPage extends Component {
     }
 
     render() {
-        const { sectionCityData } = this.state;
-
         return (
             <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
                 <SectionList
                     ref="sectionList"
                     style={{ marginTop: AppUtil.fullNavigationBarHeight }}
                     renderItem={({ item, index, section }) => (
-                        <TouchableWithoutFeedback onPress={() => {
-
-                        }}>
+                        <TouchableOpacity
+                            key={index}
+                            onPress={() => this._selectCity(item.cityName, `${item.cityId}`)}
+                        >
                             <CityListCell
-                                key={index}
                                 title={item.cityName}
                                 lineHidden={index >= section.data.length - 1}
                             />
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                     )}
                     renderSectionHeader={({ section: { firstLetter } }) => (
                         <CityListSectionHeader title={firstLetter} />
@@ -179,6 +201,7 @@ export default class CityListPage extends Component {
                 />
                 <NavigationBar
                     backOrClose='close'
+                    backOrCloseHandler={() => NavigationUtil.goBack()}
                     title='选择城市'
                     showDividingLine={true}
                     navBarStyle={{ position: 'absolute' }}

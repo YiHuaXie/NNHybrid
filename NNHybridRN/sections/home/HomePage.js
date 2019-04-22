@@ -3,7 +3,8 @@ import {
     StyleSheet,
     View,
     ScrollView,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    DeviceEventEmitter
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
@@ -40,12 +41,26 @@ export default class HomePage extends Component {
             isLoading: true
         }
 
+        DeviceEventEmitter.addListener('selectedCityChaged', ({ cityName, cityId }) =>
+            this._selectedCityHandler(cityName, cityId)
+        );
+
         this._loadData();
 
-        CityManager.cityLocation((cityName, cityId) => {
-            this.setState({ cityName, cityId, isLoading: true });
-            this._loadData();
-        });
+        CityManager.cityLocation((cityName, cityId) =>
+            this._selectedCityHandler(cityName, cityId)
+        );
+    }
+
+    componentWillUnmount() {
+        DeviceEventEmitter.removeAllListeners();
+    }
+
+    _selectedCityHandler(cityName, cityId) {
+        CityManager.saveSelectedCity(cityName, cityId);
+        CityManager.addVisitedCity({ cityName, cityId });
+        this.setState({ cityName, cityId, isLoading: true });
+        this._loadData();
     }
 
     _loadData() {
