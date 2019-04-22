@@ -32,7 +32,12 @@ export default class ApartmentPage extends Component {
         const { apartmentId, isTalent } = this.params;
         const parameters = { estateId: apartmentId, isTalent };
         Network
-            .my_request(ApiPath.ESTATE, 'estateIntroduction', '3.6', parameters)
+            .my_request({
+                apiPath: ApiPath.ESTATE,
+                apiMethod: 'estateIntroduction',
+                apiVersion: '3.6',
+                params: parameters
+            })
             .then(response => {
                 console.log(response);
                 this.setState({ apartment: response });

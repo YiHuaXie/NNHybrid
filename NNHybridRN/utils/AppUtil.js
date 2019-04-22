@@ -40,6 +40,13 @@ export default {
 
     makeSureArray: array => {
         return array ? array : [];
+    },
+
+    makeSureString: string => {
+        if (!string) return '';
+        if (!isNaN(string)) return String(string);
+        if (typeof string == "string") return string;
+        return '';
     }
 }
 

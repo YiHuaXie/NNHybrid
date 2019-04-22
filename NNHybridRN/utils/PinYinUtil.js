@@ -75,13 +75,13 @@ export default class PinYinUtil {
             const firstLetter = getEN[i];
             const array = dict[firstLetter];
             if (array.length) {
-                const content = array.sort((element1, element2) => {
+                const data = array.sort((element1, element2) => {
                     const string1 = stringInElement ? stringInElement(element1) : element1;
                     const string2 = stringInElement ? stringInElement(element2) : element2;
 
                     return pinyinCompare(string1, string2);
                 });
-                const resultDict = { firstLetter, content };
+                const resultDict = { firstLetter, data };
                 resultArray.push(resultDict);
             }
         }
