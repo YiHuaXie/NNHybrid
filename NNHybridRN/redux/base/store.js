@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { navMiddleware } from '../../navigator/AppNavigator';
-import reducers from '../reducers';
+import reducers from './reducers';
 
 const loggerMiddleware = store => next => action => {
     if (typeof action === 'function') {

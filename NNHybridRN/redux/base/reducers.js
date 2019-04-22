@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { navReducer} from '../../navigator/AppNavigator';
+import { navReducer } from '../../navigator/AppNavigator';
+import { cityListReducer } from '../cityList';
 // import { rootCom, RootNavigator } from '../../navigator/AppNavigator';
 // import { createNavigationReducer } from 'react-navigation-redux-helpers';
 
@@ -15,5 +16,5 @@ import { navReducer} from '../../navigator/AppNavigator';
 
 export default combineReducers({
     nav: navReducer,
-    // home: home,
+    cityList: cityListReducer,
 });

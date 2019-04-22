@@ -4,59 +4,24 @@ import {
     StyleSheet,
     Text,
     View,
-    NativeModules,
     TouchableOpacity,
     DeviceEventEmitter
 } from 'react-native';
 import NavigationBar from '../../navigator/NavigationBar';
 import AppUtil from '../../utils/AppUtil';
-import PinYinUtil from '../../utils/PinYinUtil';
 import CityManager from './CityManager';
 import CityListHeader from './CityListHeader';
 import NavigationUtil from '../../utils/NavigationUtil';
+import { connect } from 'react-redux';
+import { loadData, startLocation } from '../../redux/cityList';
 
-const AMapLocation = NativeModules.AMapLocationModule;
-
-const adjustCityNames = {
-    '长沙市': '厂沙市',
-    '长春市': '厂春市',
-    '长治市': '厂治市',
-    '厦门市': '下门市',
-    '重庆市': '虫庆市',
-};
-
-export default class CityListPage extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            locationCity: {},
-            locationCityName: '定位中...',
-            visitedCities: [],
-            hotCities: [],
-            sectionCityData: [],
-            sectionTitles: []
-        };
-    }
+class CityListPage extends Component {
 
     componentWillMount() {
-        this._startLocation();
-        this._loadData();
-    }
+        const { startLocation, loadData } = this.props;
 
-    _startLocation() {
-        this.setState({ locationCityName: '定位中...' });
-
-        AMapLocation.locationWithCompletion(({ error, city, provice }) => {
-            let locationCityName = '无法获取';
-            if (!error) {
-                locationCityName = city;
-                if (!locationCityName.length) locationCityName = provice;
-            }
-
-            this.setState({ locationCityName });
-        });
+        startLocation();
+        loadData();
     }
 
     _selectCity(cityName, cityId) {
@@ -86,79 +51,14 @@ export default class CityListPage extends Component {
         }
     }
 
-    async _loadData() {
-        let visitedCities = null;
-
-        try {
-            visitedCities = await CityManager.getVisitedCities();
-        } catch (e) { }
-
-        const hotCities = CityManager.getHotCities();
-        const sectionCityData = PinYinUtil.arrayWithFirstLetterFormat(CityManager.getHaveHouseCities(), element => {
-            const adjustString = adjustCityNames[element.cityName];
-            return adjustString ? adjustString : element.cityName;
-        });
-        const sectionTitles = this._getSectionTitles(sectionCityData);
-        this.setState({
-            visitedCities,
-            hotCities,
-            sectionCityData,
-            sectionTitles,
-        });
-    }
-
-    _getSectionTitles = (data) => {
-        const result = [];
-        for (const i in data) {
-            const { firstLetter } = data[i];
-            result.push(firstLetter);
-        }
-
-        return result;
-    }
-
-    // // 点击右侧字母滑动到相应位置
-    // _scrollToList(item, index) {
-    //     let position = 0;
-    //     for (let i = 0; i < index; i++) {
-    //         position += totalHeight[i]
-    //     }
-    //     this.refs.ScrollView.scrollTo({ y: position })
-    // }
-
-    // _renderSideSectionView() {
-    //     const sectionItem = cityDatas.map((item, index) => {
-    //         return (
-    //             <Text onPress={() => this.scrollToList(item, index)}
-    //                 key={index} style={{ textAlign: 'center', alignItems: 'center', height: sectionItemHeight, lineHeight: sectionItemHeight, color: '#C49225' }}>
-    //                 {item.title}
-    //             </Text>)
-    //     });
-
-    //     return (
-    //         <View style={{
-    //             position: 'absolute',
-    //             width: 20,
-    //             height: height - sectionTopBottomHeight * 2,
-    //             right: 5,
-    //             marginTop: sectionTopBottomHeight,
-    //             marginBottom: sectionTopBottomHeight,
-    //         }}
-    //             ref="sectionItemView"
-    //         >
-    //             {sectionItem}
-    //         </View>
-    //     );
-    // }
-
     _renderListHeader() {
-        const { locationCityName, visitedCities, hotCities } = this.state;
+        const { locationCityName, visitedCities, hotCities } = this.props.cityList;
         return (
             <CityListHeader
                 locationCityName={locationCityName}
                 visitedCities={visitedCities}
                 hotCities={hotCities}
-                resetCityClick={() => this._startLocation()}
+                resetCityClick={() => this.props.startLocation()}
                 cityItemClick={item => this._selectCity(item.cityName, `${item.cityId}`)}
                 locationCityClick={cityName => this._locationCityClick(cityName)}
             />
@@ -175,6 +75,7 @@ export default class CityListPage extends Component {
     }
 
     render() {
+        const { cityList } = this.props;
         return (
             <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
                 <SectionList
@@ -194,7 +95,7 @@ export default class CityListPage extends Component {
                     renderSectionHeader={({ section: { firstLetter } }) => (
                         <CityListSectionHeader title={firstLetter} />
                     )}
-                    sections={this.state.sectionCityData}
+                    sections={cityList.sectionCityData}
                     keyExtractor={(item, index) => item + index}
                     ListHeaderComponent={this._renderListHeader()}
                     ListFooterComponent={this._renderListFooter()}
@@ -210,6 +111,15 @@ export default class CityListPage extends Component {
         );
     }
 }
+
+const mapStateToProps = state => ({ cityList: state.cityList });
+
+const mapDispatchToProps = dispatch => ({
+    loadData: () => dispatch(loadData()),
+    startLocation: () => dispatch(startLocation()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CityListPage);
 
 class CityListCell extends Component {
     render() {
@@ -273,14 +183,5 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: AppUtil.app_black,
         marginLeft: 15,
-    },
-    // indexList: {
-    //     position: 'absolute',
-    //     width: 20,
-    //     height: AppUtil.windowHeight - sectionTopBottomHeight * 2,
-    //     right: 5,
-    //     top: 0,
-    //     marginTop: sectionTopBottomHeight,
-    //     marginBottom: sectionTopBottomHeight,
-    // }
+    }
 });
