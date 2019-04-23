@@ -42,7 +42,6 @@ class HomePage extends Component {
             selectedCityFinisedOrChanged(cityName, cityId);
             loadData(cityId);
         });
-
     }
 
     componentWillUnmount() {

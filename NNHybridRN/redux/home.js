@@ -14,24 +14,6 @@ export function navBarIsTransparent(contentOffsetY) {
     }
 }
 
-// export function cityLocation(callBack) {
-//     return dispatch => {
-//         CityManager.cityLocation((cityName, cityId) => {
-//             selectedCityFinisedOrChanged(cityName, cityId, () => {
-//                 callBack(cityName, cityId);
-//             })
-//             CityManager.saveSelectedCity(cityName, cityId);
-//             CityManager.addVisitedCity({ cityName, cityId });
-//             dispatch({
-//                 type: Types.HOME_CITY_LOCATION,
-//                 cityName,
-//                 cityId,
-//             });
-//             callBack(cityName, cityId);
-//         });
-//     }
-// }
-
 export function selectedCityFinisedOrChanged(cityName, cityId) {
     return dispatch => {
         CityManager.saveSelectedCity(cityName, cityId);
