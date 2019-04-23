@@ -9,9 +9,6 @@ import {
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
 
-import Network from '../../network';
-import { ApiPath } from '../../network/ApiService';
-
 import HomeNavigationBar from './HomeNavigationBar';
 import HomeBannerModuleCell from './HomeBannerModuleCell';
 import HomeMessageCell from './HomeMessageCell';
@@ -24,96 +21,39 @@ import Refresher from '../../components/common/Refresher';
 import Toaster from '../../components/common/Toaster';
 import CityManager from '../city/CityManager';
 
-export default class HomePage extends Component {
+import { connect } from 'react-redux';
+import {
+    loadData,
+    selectedCityFinisedOrChanged,
+    navBarIsTransparent
+} from '../../redux/home';
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            banners: [],
-            modules: [],
-            messages: [],
-            vr: null,
-            apartments: [],
-            houses: [],
-            isTransparent: true,
-            cityName: '定位中...',
-            cityId: '330100',
-            isLoading: true
-        }
+class HomePage extends Component {
 
-        DeviceEventEmitter.addListener('selectedCityChaged', ({ cityName, cityId }) =>
-            this._selectedCityHandler(cityName, cityId)
-        );
+    componentWillMount() {
+        const { loadData, selectedCityFinisedOrChanged } = this.props;
 
-        this._loadData();
+        CityManager.cityLocation((cityName, cityId) => {
+            selectedCityFinisedOrChanged(cityName, cityId);
+            loadData(cityId);
+        });
 
-        CityManager.cityLocation((cityName, cityId) =>
-            this._selectedCityHandler(cityName, cityId)
-        );
+        DeviceEventEmitter.addListener('selectedCityChaged', ({ cityName, cityId }) => {
+            selectedCityFinisedOrChanged(cityName, cityId);
+            loadData(cityId);
+        });
+
     }
 
     componentWillUnmount() {
         DeviceEventEmitter.removeAllListeners();
     }
 
-    _selectedCityHandler(cityName, cityId) {
-        CityManager.saveSelectedCity(cityName, cityId);
-        CityManager.addVisitedCity({ cityName, cityId });
-        this.setState({ cityName, cityId, isLoading: true });
-        this._loadData();
-    }
-
-    _loadData() {
-        CityManager.loadHaveHouseCityList(error => {
-            if (error) {
-                this.setState({ isLoading: false });
-                Toaster.autoDisapperShow(error.message);
-
-                return;
-            }
-
-            const iconListReq = Network.my_request({
-                apiPath: ApiPath.MARKET,
-                apiMethod: 'iconList',
-                apiVersion: '3.6.4',
-                params: { cityId: this.state.cityId }
-            });
-            const houseListReq = Network.my_request({
-                apiPath: ApiPath.SEARCH,
-                apiMethod: 'recommendList',
-                apiVersion: '1.0',
-                params: { cityId: this.state.cityId, sourceType: 1 }
-            });
-
-            Promise
-                .all([iconListReq, houseListReq])
-                .then(([res1, res2]) => {
-                    // console.log(res1);
-                    // console.log(res2);
-                    this.setState({
-                        banners: res1.focusPictureList,
-                        modules: res1.iconList,
-                        messages: res1.newsList,
-                        vr: res1.marketVR,
-                        apartments: res1.estateList,
-                        houses: res2.resultList,
-                        isLoading: false
-                    });
-                })
-                .catch(error => {
-                    this.setState({ isLoading: false });
-                    Toaster.autoDisapperShow(error.message);
-                });
-        });
-    }
-
     _addDividingLine(add) {
         return add ? <View style={styles.dividingLine} /> : null;
     }
 
-    _renderHouseitems() {
-        const { houses } = this.state;
-
+    _renderHouseitems(houses) {
         const tmpHouses = [];
         for (const i in houses) {
             tmpHouses.push(
@@ -128,43 +68,54 @@ export default class HomePage extends Component {
 
     // 需要用SectionList实现
     render() {
-        const { isLoading, banners, modules, messages, vr, apartments, houses } = this.state;
+        const { home, navBarIsTransparent } = this.props;
+        const refreshHeader = Refresher.header(home.isLoading, () => this.props.loadData(home.cityId));
+
+        if (home.error) { Toaster.autoDisapperShow(home.error); }
         return (
             <View style={styles.container}>
                 <ScrollView
-                    refreshControl={Refresher.header(isLoading, () => this._loadData())}
-                    // scrollEventThrottle={60}
-                    onScroll={(e) => {
-                        this.setState({
-                            isTransparent: e.nativeEvent.contentOffset.y > 100 ? false : true
-                        })
-                    }}
+                    refreshControl={refreshHeader}
+                    onScroll={e => navBarIsTransparent(e.nativeEvent.contentOffset.y)}
                 >
                     <HomeBannerModuleCell
-                        banners={banners}
-                        modules={modules}
+                        banners={home.banners}
+                        modules={home.modules}
                     />
-                    <HomeMessageCell messages={messages} />
-                    <HomeVRCell vr={vr} />
-                    {this._addDividingLine(!AppUtil.isEmptyArray(messages) || vr)}
-                    {!AppUtil.isEmptyArray(apartments) ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
+                    <HomeMessageCell messages={home.messages} />
+                    <HomeVRCell vr={home.vr} />
+                    {this._addDividingLine(!AppUtil.isEmptyArray(home.messages) || home.vr)}
+                    {!AppUtil.isEmptyArray(home.apartments) ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
                     <HomeApartmentCell
-                        apartments={apartments}
+                        apartments={home.apartments}
                         itemClick={(apartmentId, isTalent) => NavigationUtil.goPage('ApartmentPage', { apartmentId, isTalent })}
                     />
-                    {!AppUtil.isEmptyArray(houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
-                    {this._renderHouseitems()}
-                    {!AppUtil.isEmptyArray(houses) ? <HomeButtonCell /> : null}
+                    {!AppUtil.isEmptyArray(home.houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
+                    {this._renderHouseitems(home.houses)}
+                    {!AppUtil.isEmptyArray(home.houses) ? <HomeButtonCell /> : null}
                 </ScrollView>
                 <HomeNavigationBar
-                    isTransparent={this.state.isTransparent}
-                    cityName={this.state.cityName}
+                    isTransparent={home.isTransparent}
+                    cityName={home.cityName}
                     cityViewTouched={() => NavigationUtil.goPage('CityListPage')}
                 />
             </View>
         );
     }
 }
+
+const mapStateToProps = state => ({ home: state.home });
+
+const mapDispatchToProps = dispatch => ({
+    loadData: cityId =>
+        dispatch(loadData(cityId)),
+    selectedCityFinisedOrChanged: (cityName, cityId) =>
+        dispatch(selectedCityFinisedOrChanged(cityName, cityId)),
+    navBarIsTransparent: contentOffsetY =>
+        dispatch(navBarIsTransparent(contentOffsetY))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
 const styles = StyleSheet.create({
     container: {
