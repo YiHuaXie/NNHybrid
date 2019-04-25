@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { navReducer } from '../../navigator/AppNavigator';
 import { cityListReducer } from '../cityList';
 import { homeReducer } from '../home';
+import { houseDetailReducer } from '../houseDetail';
 // import { rootCom, RootNavigator } from '../../navigator/AppNavigator';
 // import { createNavigationReducer } from 'react-navigation-redux-helpers';
 
@@ -19,4 +20,6 @@ export default combineReducers({
     nav: navReducer,
     home: homeReducer,
     cityList: cityListReducer,
+    centraliedDetail: houseDetailReducer,
+    decentraliedDetailPage: houseDetailReducer,
 });

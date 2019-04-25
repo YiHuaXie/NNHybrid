@@ -130,5 +130,4 @@ export function homeReducer(state = defaultState, action) {
         default:
             return state;
     }
-
 }

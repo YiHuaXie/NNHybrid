@@ -9,15 +9,23 @@ const cellSize = {
     height: AppUtil.windowWidth * 0.6
 };
 
+const ParallaxView = requireNativeComponent('ParallaxView', HomeVRCell);
+const ParallaxViewManager = NativeModules.ParallaxViewManager;
+
 export default class ApartmentBannerCell extends Component {
 
     _renderVRItem(uri) {
+        ParallaxViewManager.loadImageWithUrl(uri);
+
         return (
-            <NNImage key={0} style={styles.image} source={{ uri }}>
-                <View>
-                    <Image />
+            <ParallaxView style={styles.image}>
+                <View style={styles.mask}>
+                    <Image
+                        style={styles.vrIcon}
+                        source={require('../../resource/images/house_detail_720.png')}
+                    />
                 </View>
-            </NNImage>
+            </ParallaxView>
         );
     }
 
@@ -62,4 +70,12 @@ const styles = StyleSheet.create({
         height: cellHeight,
         resizeMode: 'cover'
     },
+    mask: {
+        backgroundColor: 'rgba(0,0,0,0.3)'
+    },
+    vrIcon: {
+        width: 55,
+        height: 55,
+        resizeMode: 'cover'
+    }
 })
