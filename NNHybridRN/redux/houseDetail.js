@@ -31,8 +31,29 @@ export function loadCentraliedDetail(params, callBack) {
  * 分散式房源详情
  * @param {function} callBack 
  */
-function loadDecentraliedDetail(callBack) {
+export function loadDecentraliedDetail(houseId, callBack) {
+    return async dispath => {
+        try {
+            let response = await Network.my_request({
+                apiPath: ApiPath.HOUSE,
+                apiMethod: 'queryHouseRoomDetail',
+                apiVersion: '3.6',
+                params: { roomId: houseId }
+            });
 
+            let response2 = await loadRecommendHouseList({
+
+            });
+            
+            dispath({
+                type: Types.HOUSE_DETAIL_LOAD_DECENTRALIZED_SUCCESS,
+                decentraliedHouse: response
+            });
+        } catch (e) {
+            callBack(e.message);
+            dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA_FAIL });
+        }
+    };
 }
 
 function loadRecommendHouseList(params) {
@@ -45,20 +66,21 @@ function loadRecommendHouseList(params) {
         });
 }
 
-function loadActivityGIF() {
-
-}
-
 const defaultState = {
     centraliedHouse: {}
 };
 
 export function houseDetailReducer(state = defaultState, action) {
     switch (action.type) {
-        case Types.HOUSE_DETAIL_LOAD_CENTRALIZED:
+        case Types.HOUSE_DETAIL_LOAD_CENTRALIZED_SUCCESS:
             return {
                 ...state,
                 centraliedHouse: action.centraliedHouse
+            };
+        case Types.HOUSE_DETAIL_LOAD_DECENTRALIZED_SUCCESS:
+            return {
+                ...state,
+                decentraliedHouse: action.decentraliedHouse
             };
         default:
             return state;

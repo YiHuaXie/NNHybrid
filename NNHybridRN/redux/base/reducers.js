@@ -20,6 +20,6 @@ export default combineReducers({
     nav: navReducer,
     home: homeReducer,
     cityList: cityListReducer,
-    centraliedDetail: houseDetailReducer,
-    decentraliedDetailPage: houseDetailReducer,
+    // centraliedDetail: houseDetailReducer,
+    decentraliedDetail: houseDetailReducer,
 });

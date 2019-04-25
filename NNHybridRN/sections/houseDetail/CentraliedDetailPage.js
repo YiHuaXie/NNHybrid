@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet,View, Text, SectionList } from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
-import HouseDetailBannerCell from './HouseDetailBannerCell';
 
 import { connect } from 'react-redux';
 import {
@@ -9,7 +8,7 @@ import {
 } from '../../redux/houseDetail';
 
 
-export default class CentraliedDetailPage extends Component {
+class CentraliedDetailPage extends Component {
     render() {
         return (
             <View style={styles.container}>
@@ -24,13 +23,9 @@ const mapStateToProps = state => ({ centraliedDetail: state.centraliedDetail });
 const mapDispatchToProps = dispatch => ({
     loadCentraliedDetail: cityId =>
         dispatch(loadData(cityId)),
-    selectedCityFinisedOrChanged: (cityName, cityId) =>
-        dispatch(selectedCityFinisedOrChanged(cityName, cityId)),
-    navBarIsTransparent: contentOffsetY =>
-        dispatch(navBarIsTransparent(contentOffsetY))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(CentraliedDetailPage);
 
 const styles = StyleSheet.create({
     container: {

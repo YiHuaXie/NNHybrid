@@ -17,6 +17,7 @@ import LoginContainer from '../containers/LoginContainer';
 import HouseDetailPage from '../sections/houseDetail/HouseDetailPage';
 import CityListPage from '../sections/city/CityListPage';
 import ApartmentPage from '../sections/apartment/ApartmentPage';
+import DecentraliedDetailPage from '../sections/houseDetail/DecentraliedDetailPage';
 
 // dynamic modal transition
 const IOS_MODAL_ROUTES = ['CityListPage'];
@@ -57,10 +58,14 @@ const MainNavigator = createStackNavigator({
     ApartmentPage: {
         screen: ApartmentPage,
         navigationOptions: { header: null }
+    },
+    DecentraliedDetailPage: {
+        screen: DecentraliedDetailPage,
+        navigationOptions: { header: null }
     }
-},{ 
-    transitionConfig: dynamicModalTransition 
-});
+}, {
+        transitionConfig: dynamicModalTransition
+    });
 
 const LoginNavigator = createStackNavigator({
     LoginContainer: {

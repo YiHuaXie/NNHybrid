@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet,View, Text, SectionList } from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
-import HouseDetailBannerCell from './HouseDetailBannerCell';
 
 export default class HouseDetailPage extends Component {
     render() {

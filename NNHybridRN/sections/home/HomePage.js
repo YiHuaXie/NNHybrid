@@ -3,7 +3,6 @@ import {
     StyleSheet,
     View,
     ScrollView,
-    TouchableWithoutFeedback,
     DeviceEventEmitter
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
@@ -27,6 +26,7 @@ import {
     selectedCityFinisedOrChanged,
     navBarIsTransparent
 } from '../../redux/home';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class HomePage extends Component {
 
@@ -56,7 +56,14 @@ class HomePage extends Component {
         const tmpHouses = [];
         for (const i in houses) {
             tmpHouses.push(
-                <TouchableWithoutFeedback key={i}>
+                <TouchableWithoutFeedback
+                    key={i}
+                    onPress={() => {
+                        const { type, minRentPrice, id, isFullRent } = houses[i];
+                        const pageName = type === 1 ? 'HouseDetailPage' : 'DecentraliedDetailPage';
+                        const params = type === 1 ? {} : { houseId: id, isFullRent };
+                        NavigationUtil.goPage(pageName, params);
+                    }}>
                     <EachHouseCell house={houses[i]} />
                 </TouchableWithoutFeedback>
             );
