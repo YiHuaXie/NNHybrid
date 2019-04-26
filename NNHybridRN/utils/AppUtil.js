@@ -28,20 +28,19 @@ export default {
         for (var n in obj) { return false }
         return true;
     },
-
+    isEmptyArray: array => {
+        return !array || !array.length;
+    },
+    isEmptyString: string => {
+        return !string || string.length < 1;
+    },
     makeSureObject: obj => {
         for (var n in obj) { return obj }
         return {};
     },
-
-    isEmptyArray: array => {
-        return !array || !array.length;
-    },
-
     makeSureArray: array => {
         return array ? array : [];
     },
-
     makeSureString: string => {
         if (!string) return '';
         return `${string}`;

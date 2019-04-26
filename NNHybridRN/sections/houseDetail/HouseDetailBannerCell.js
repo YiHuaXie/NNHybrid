@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, NativeModules } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Image,
+    NativeModules,
+    requireNativeComponent,
+} from 'react-native';
 import Swiper from 'react-native-swiper';
 import AppUtil from '../../utils/AppUtil';
 import NNImage from '../../components/common/NNImage';
@@ -9,32 +15,32 @@ const cellSize = {
     height: AppUtil.windowWidth * 0.6
 };
 
-const ParallaxView = requireNativeComponent('ParallaxView', HomeVRCell);
-const ParallaxViewManager = NativeModules.ParallaxViewManager;
+// const ParallaxView = requireNativeComponent('ParallaxView', HouseDetailBannerCell);
+// const ParallaxViewManager = NativeModules.ParallaxViewManager;
 
-export default class ApartmentBannerCell extends Component {
+export default class HouseDetailBannerCell extends Component {
 
-    _renderVRItem(uri) {
-        ParallaxViewManager.loadImageWithUrl(uri);
+    // _renderVRItem(uri) {
+    //     ParallaxViewManager.loadImageWithUrl(uri);
 
-        return (
-            <ParallaxView style={styles.image}>
-                <View style={styles.mask}>
-                    <Image
-                        style={styles.vrIcon}
-                        source={require('../../resource/images/house_detail_720.png')}
-                    />
-                </View>
-            </ParallaxView>
-        );
-    }
+    //     return (
+    //         <ParallaxView style={styles.image}>
+    //             <View style={styles.mask}>
+    //                 <Image
+    //                     style={styles.vrIcon}
+    //                     source={require('../../resource/images/house_detail_720.png')}
+    //                 />
+    //             </View>
+    //         </ParallaxView>
+    //     );
+    // }
 
-    _renderBannerItems(data, isVR) {
+    _renderBannerItems(data, hasVR) {
         const images = [];
 
-        if (isVR) {
-            images.push(this._renderBannerItems());
-        }
+        // if (hasVR) {
+        //     images.push(this._renderBannerItems());
+        // }
 
         for (const i in data) {
             images.push(<NNImage key={i} style={styles.image} source={{ uri: data[i] }} />);
@@ -44,17 +50,17 @@ export default class ApartmentBannerCell extends Component {
     }
 
     render() {
-        const { data, isVR } = this.props;
+        const { data, hasVR } = this.props;
         if (AppUtil.isEmptyArray(data)) return null;
 
         return (
             <Swiper
-                autoplay={isVR ? false : true}
+                autoplay={hasVR ? false : true}
                 autoplayTimeout={3.0}
                 showsPagination={false}
                 containerStyle={styles.swiper}
             >
-                {this._renderBannerItems(data, isVR)}
+                {this._renderBannerItems(data, hasVR)}
             </Swiper>
         );
     }
@@ -66,8 +72,8 @@ const styles = StyleSheet.create({
         width: cellSize.width
     },
     image: {
-        width: AppUtil.windowWidth,
-        height: cellHeight,
+        width: cellSize.width,
+        height: cellSize.height,
         resizeMode: 'cover'
     },
     mask: {

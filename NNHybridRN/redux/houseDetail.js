@@ -2,6 +2,19 @@ import { ApiPath } from '../network/ApiService';
 import Network from '../network';
 import { Types } from './base/actions';
 
+export function pageWillUnmount() {
+    return dispatch => {
+        dispatch({ type: Types.HOUSE_DETAIL_WILL_UNMOUNT });
+    }
+}
+
+export function navBarIsTransparent(contentOffsetY) {
+    return dispatch => {
+        const isTransparent = contentOffsetY > 100 ? false : true;
+        dispatch({ type: Types.HOUSE_DETAIL_NAV_BAR_TRANSPARENT, isTransparent });
+    }
+}
+
 /**
  * 集中式房源详情
  * @param {*} callBack 
@@ -17,12 +30,13 @@ export function loadCentraliedDetail(params, callBack) {
             });
 
             dispath({
-                type: Types.HOUSE_DETAIL_LOAD_CENTRALIZED,
+                type: Types.HOUSE_DETAIL_LOAD_CENTRALIZED_SUCCESS,
                 centraliedHouse: response
             });
 
         } catch (e) {
             callBack(e.message);
+            dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA_FAIL });
         }
     };
 }
@@ -44,10 +58,11 @@ export function loadDecentraliedDetail(houseId, callBack) {
             let response2 = await loadRecommendHouseList({
 
             });
-            
+
             dispath({
                 type: Types.HOUSE_DETAIL_LOAD_DECENTRALIZED_SUCCESS,
                 decentraliedHouse: response
+
             });
         } catch (e) {
             callBack(e.message);
@@ -67,7 +82,10 @@ function loadRecommendHouseList(params) {
 }
 
 const defaultState = {
-    centraliedHouse: {}
+    centraliedHouse: {},
+    decentraliedHouse: {},
+    isTransparent: true,
+    recommendHouseList: [],
 };
 
 export function houseDetailReducer(state = defaultState, action) {
@@ -75,13 +93,22 @@ export function houseDetailReducer(state = defaultState, action) {
         case Types.HOUSE_DETAIL_LOAD_CENTRALIZED_SUCCESS:
             return {
                 ...state,
-                centraliedHouse: action.centraliedHouse
+                centraliedHouse: action.centraliedHouse,
+                recommendHouseList: action.recommendHouseList
             };
         case Types.HOUSE_DETAIL_LOAD_DECENTRALIZED_SUCCESS:
             return {
                 ...state,
-                decentraliedHouse: action.decentraliedHouse
+                decentraliedHouse: action.decentraliedHouse,
+                recommendHouseList: action.recommendHouseList
             };
+        case Types.HOUSE_DETAIL_NAV_BAR_TRANSPARENT:
+            return {
+                ...state,
+                isTransparent: action.isTransparent
+            }
+        case Types.HOUSE_DETAIL_WILL_UNMOUNT:
+            return defaultState
         default:
             return state;
     }

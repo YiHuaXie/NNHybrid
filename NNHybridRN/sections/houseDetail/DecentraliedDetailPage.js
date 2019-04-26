@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, SectionList } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
-import NavigationBar from '../../navigator/NavigationBar';
+import HouseDetailNavigationBar from './HouseDetailNavigationBar';
+import HouseDetailBannerCell from './HouseDetailBannerCell';
 
 import { connect } from 'react-redux';
 import {
-    loadDecentraliedDetail
+    loadDecentraliedDetail,
+    navBarIsTransparent,
+    pageWillUnmount
 } from '../../redux/houseDetail';
 import Toaster from '../../components/common/Toaster';
-
+import AppUtil from '../../utils/AppUtil';
+import { Types } from '../../redux/base/actions';
 
 class DecentraliedDetailPage extends Component {
 
@@ -19,17 +23,27 @@ class DecentraliedDetailPage extends Component {
         loadDecentraliedDetail(houseId, error => Toaster.autoDisapperShow(error));
     }
 
+    componentWillUnmount() {
+        const { pageWillUnmount } = this.props;
+        pageWillUnmount();
+    }
+
     render() {
-        const { decentraliedDetail } = this.props;
-        console.log(decentraliedDetail);
+        const { houseDetail, navBarIsTransparent } = this.props;
+        const { decentraliedHouse, isTransparent, recommendHouseList } = houseDetail;
+        const hasVR = !AppUtil.isEmptyString(decentraliedHouse.vrUrl);
+
         return (
             <View style={styles.container}>
-                <NavigationBar
-                    backOrClose='back'
-                    backOrCloseHandler={() => NavigationUtil.goBack()}
+                <ScrollView
+                    onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}
+                >
+                    <HouseDetailBannerCell data={decentraliedHouse.images} hasVR={hasVR} />
+                </ScrollView>
+                <HouseDetailNavigationBar
+                    isTransparent={isTransparent}
                     title='房间详情'
-                    showDividingLine={true}
-                    navBarStyle={{ position: 'absolute' }}
+                    backHandler={() => NavigationUtil.goBack()}
                 />
             </View>
         );
@@ -37,10 +51,13 @@ class DecentraliedDetailPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    decentraliedDetail: state.decentraliedDetail
+    houseDetail: state.houseDetail
 });
 
 const mapDispatchToProps = dispatch => ({
+    pageWillUnmount: () => dispatch(pageWillUnmount()),
+    navBarIsTransparent: contentOffsetY =>
+        dispatch(navBarIsTransparent(contentOffsetY)),
     loadDecentraliedDetail: (houseId, callBack) =>
         dispatch(loadDecentraliedDetail(houseId, callBack)),
 });
@@ -50,13 +67,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(DecentraliedDetailPa
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
     }
 });

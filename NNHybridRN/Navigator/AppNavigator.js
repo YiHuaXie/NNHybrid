@@ -14,10 +14,10 @@ import {
 import StartContainer from '../containers/StartContainer';
 import MainContainer from '../containers/MainContainer';
 import LoginContainer from '../containers/LoginContainer';
-import HouseDetailPage from '../sections/houseDetail/HouseDetailPage';
 import CityListPage from '../sections/city/CityListPage';
 import ApartmentPage from '../sections/apartment/ApartmentPage';
 import DecentraliedDetailPage from '../sections/houseDetail/DecentraliedDetailPage';
+import CentraliedDetailPage from '../sections/houseDetail/CentraliedDetailPage';
 
 // dynamic modal transition
 const IOS_MODAL_ROUTES = ['CityListPage'];
@@ -36,32 +36,36 @@ const dynamicModalTransition = (transitionProps, prevTransitionProps) => {
     );
 };
 
+const sharedParams = { navigationOptions: { header: null } };
+
 const StartNavigator = createStackNavigator({
     StartContainer: {
+        ...sharedParams,
         screen: StartContainer,
-        navigationOptions: { header: null }
     }
 });
 
 const MainNavigator = createStackNavigator({
     MainContainer: {
+        ...sharedParams,
         screen: MainContainer,
-        navigationOptions: { header: null }
     },
-    // HouseDetailPage: {
-    //     screen: HouseDetailPage,
-    // },
     CityListPage: {
         screen: CityListPage,
+        ...sharedParams,
         navigationOptions: { header: null }
     },
     ApartmentPage: {
+        ...sharedParams,
         screen: ApartmentPage,
-        navigationOptions: { header: null }
     },
     DecentraliedDetailPage: {
+        ...sharedParams,
         screen: DecentraliedDetailPage,
-        navigationOptions: { header: null }
+    },
+    CentraliedDetailPage: {
+        ...sharedParams,
+        screen: CentraliedDetailPage,
     }
 }, {
         transitionConfig: dynamicModalTransition

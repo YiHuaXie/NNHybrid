@@ -21,5 +21,5 @@ export default combineReducers({
     home: homeReducer,
     cityList: cityListReducer,
     // centraliedDetail: houseDetailReducer,
-    decentraliedDetail: houseDetailReducer,
+    houseDetail: houseDetailReducer,
 });
