@@ -9,6 +9,7 @@ export default class NavigationUtil {
             return;
         }
 
+        console.log(NavigationUtil.navigation);
         navigation.navigate(page, { ...parameters });
     }
 
@@ -25,5 +26,10 @@ export default class NavigationUtil {
     static jumpToLogin() {
         const { dispatch } = NavigationUtil.navigation;
         dispatch(NavigationActions.navigate({ routeName: 'Login' }));
+    }
+
+    static dispatch(actionType) {
+        const navigation = NavigationUtil.navigation;
+        navigation.dispatch({ type: actionType });
     }
 }

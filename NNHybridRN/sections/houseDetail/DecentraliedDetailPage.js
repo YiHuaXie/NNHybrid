@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import {
     loadDecentraliedDetail,
     navBarIsTransparent,
-    pageWillUnmount
 } from '../../redux/houseDetail';
 import Toaster from '../../components/common/Toaster';
 import AppUtil from '../../utils/AppUtil';
@@ -24,8 +23,7 @@ class DecentraliedDetailPage extends Component {
     }
 
     componentWillUnmount() {
-        const { pageWillUnmount } = this.props;
-        pageWillUnmount();
+        NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT);
     }
 
     render() {
@@ -55,7 +53,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    pageWillUnmount: () => dispatch(pageWillUnmount()),
     navBarIsTransparent: contentOffsetY =>
         dispatch(navBarIsTransparent(contentOffsetY)),
     loadDecentraliedDetail: (houseId, callBack) =>

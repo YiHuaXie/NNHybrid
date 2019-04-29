@@ -2,12 +2,6 @@ import { ApiPath } from '../network/ApiService';
 import Network from '../network';
 import { Types } from './base/actions';
 
-export function pageWillUnmount() {
-    return dispatch => {
-        dispatch({ type: Types.HOUSE_DETAIL_WILL_UNMOUNT });
-    }
-}
-
 export function navBarIsTransparent(contentOffsetY) {
     return dispatch => {
         const isTransparent = contentOffsetY > 100 ? false : true;
@@ -107,8 +101,6 @@ export function houseDetailReducer(state = defaultState, action) {
                 ...state,
                 isTransparent: action.isTransparent
             }
-        case Types.HOUSE_DETAIL_WILL_UNMOUNT:
-            return defaultState
         default:
             return state;
     }
