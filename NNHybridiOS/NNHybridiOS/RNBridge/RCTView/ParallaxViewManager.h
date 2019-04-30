@@ -4,7 +4,6 @@
 //
 
 #import <React/RCTViewManager.h>
-#import <React/RCTBridge.h>
 
 // RCTViewManager本质是一个单例
 @interface ParallaxViewManager : RCTViewManager <RCTBridgeModule>

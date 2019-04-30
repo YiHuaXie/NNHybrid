@@ -42,6 +42,7 @@ export function loadData(params, errorCallBack) {
 const defaultState = {
     isTransparent: true,
     apartment: {},
+    isLoading: false
 };
 
 export function apartmentReducer(state = defaultState, action) {
@@ -49,11 +50,13 @@ export function apartmentReducer(state = defaultState, action) {
         case Types.APARTMENT_LOAD_DATA:
             return {
                 ...state,
-            }            
+                isLoading: true,
+            }
         case Types.APARTMENT_LOAD_DATA_FINISHED:
             return {
                 ...state,
                 apartment: action.apartment,
+                isLoading: false,
             }
         case Types.APARTMENT_NAV_BAR_TRANSPARENT:
             return {

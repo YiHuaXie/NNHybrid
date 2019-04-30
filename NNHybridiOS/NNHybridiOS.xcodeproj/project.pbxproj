@@ -53,6 +53,7 @@
 		AE6DD1512268D059006E1022 /* AMapLocationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD1502268D059006E1022 /* AMapLocationModule.m */; };
 		AEC86C48225353B400C76C09 /* ParallaxViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C41225353B400C76C09 /* ParallaxViewManager.m */; };
 		AEC86C49225353B400C76C09 /* RNBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C44225353B400C76C09 /* RNBaseModule.m */; };
+		AEE4607E22789725003F5D4B /* PlaneLoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */; };
 		AEED90EC225BAC44001B1985 /* NNGlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90B9225BAC44001B1985 /* NNGlobalHelper.m */; };
 		AEED90ED225BAC44001B1985 /* NSObject+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90BB225BAC44001B1985 /* NSObject+NNExtension.m */; };
 		AEED90EE225BAC44001B1985 /* UIFont+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90BC225BAC44001B1985 /* UIFont+NNExtension.m */; };
@@ -191,6 +192,8 @@
 		AEC86C42225353B400C76C09 /* ParallaxViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxViewManager.h; sourceTree = "<group>"; };
 		AEC86C44225353B400C76C09 /* RNBaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBaseModule.m; sourceTree = "<group>"; };
 		AEC86C47225353B400C76C09 /* RNBaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBaseModule.h; sourceTree = "<group>"; };
+		AEE4607C22789725003F5D4B /* PlaneLoadingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneLoadingManager.h; sourceTree = "<group>"; };
+		AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaneLoadingManager.m; sourceTree = "<group>"; };
 		AEED90B0225BA675001B1985 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AEED90B9225BAC44001B1985 /* NNGlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNGlobalHelper.m; sourceTree = "<group>"; };
 		AEED90BA225BAC44001B1985 /* UIGestureRecognizer+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+NNExtension.h"; sourceTree = "<group>"; };
@@ -549,6 +552,8 @@
 			children = (
 				AEC86C42225353B400C76C09 /* ParallaxViewManager.h */,
 				AEC86C41225353B400C76C09 /* ParallaxViewManager.m */,
+				AEE4607C22789725003F5D4B /* PlaneLoadingManager.h */,
+				AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */,
 			);
 			path = RCTView;
 			sourceTree = "<group>";
@@ -969,6 +974,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE687BD2225C69180054FDA6 /* NNRefreshHeader.m in Sources */,
+				AEE4607E22789725003F5D4B /* PlaneLoadingManager.m in Sources */,
 				AE687B54225C68360054FDA6 /* NNBaseTableView.m in Sources */,
 				AEED920A225CBBEE001B1985 /* UserDefaultModule.m in Sources */,
 				AEED90F6225BAC44001B1985 /* UITableView+NNExtension.m in Sources */,

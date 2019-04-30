@@ -9,7 +9,7 @@ import {
     Modal,
 } from 'react-native';
 
-export default class NNLoading extends Component {
+export default class NNLoadingView extends Component {
     static EasingType = Easing;
 
     static propTypes = {
@@ -158,4 +158,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export const EasingType = Loading.EasingType;
+export const EasingType = NNLoadingView.EasingType;

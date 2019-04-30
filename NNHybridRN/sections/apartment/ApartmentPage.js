@@ -17,6 +17,7 @@ import { Types } from '../../redux/base/actions';
 import { connect } from 'react-redux';
 import { loadData, navBarIsTransparent } from '../../redux/apartment';
 import Toaster from '../../components/common/Toaster';
+import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 
 class ApartmentPage extends Component {
 
@@ -46,7 +47,7 @@ class ApartmentPage extends Component {
     }
 
     render() {
-        const { apartment, isTransparent } = this.props.apartment;
+        const { apartment, isTransparent, isLoading } = this.props.apartment;
         return (
             <View style={styles.container}>
                 <ScrollView
@@ -76,6 +77,7 @@ class ApartmentPage extends Component {
                     isTransparent={isTransparent}
                     backHandler={() => NavigationUtil.goBack()}
                 />
+                <NNPlaneLoading show={isLoading} />
             </View>
         );
     }
