@@ -3,44 +3,36 @@ import {
     StyleSheet,
     View,
     Image,
-    NativeModules,
-    requireNativeComponent,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import AppUtil from '../../utils/AppUtil';
 import NNImage from '../../components/common/NNImage';
+import NNParallaxView from '../../components/common/NNParallaxView';
 
 const cellSize = {
     width: AppUtil.windowWidth,
     height: AppUtil.windowWidth * 0.6
 };
 
-// const ParallaxView = requireNativeComponent('ParallaxView', HouseDetailBannerCell);
-// const ParallaxViewManager = NativeModules.ParallaxViewManager;
-
 export default class HouseDetailBannerCell extends Component {
 
-    // _renderVRItem(uri) {
-    //     ParallaxViewManager.loadImageWithUrl(uri);
-
-    //     return (
-    //         <ParallaxView style={styles.image}>
-    //             <View style={styles.mask}>
-    //                 <Image
-    //                     style={styles.vrIcon}
-    //                     source={require('../../resource/images/house_detail_720.png')}
-    //                 />
-    //             </View>
-    //         </ParallaxView>
-    //     );
-    // }
+    _renderVRItem(url) {
+        const vrIconSource = require('../../resource/images/house_detail_720.png');
+        return (
+            <NNParallaxView cornerRadius={0} style={styles.image} imageUrl={url}>
+                <View style={styles.mask}>
+                    <Image style={styles.vrIcon} source={vrIconSource}/>
+                </View>
+            </NNParallaxView>
+        );
+    }
 
     _renderBannerItems(data, hasVR) {
         const images = [];
 
-        // if (hasVR) {
-        //     images.push(this._renderBannerItems());
-        // }
+        if (hasVR) {
+            images.push(this._renderVRItem(data[0]));
+        }
 
         for (const i in data) {
             images.push(<NNImage key={i} style={styles.image} source={{ uri: data[i] }} />);
@@ -50,7 +42,8 @@ export default class HouseDetailBannerCell extends Component {
     }
 
     render() {
-        const { data, hasVR } = this.props;
+        const { data } = this.props;
+        const hasVR = true;
         if (AppUtil.isEmptyArray(data)) return null;
 
         return (
@@ -77,7 +70,10 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     mask: {
-        backgroundColor: 'rgba(0,0,0,0.3)'
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     vrIcon: {
         width: 55,

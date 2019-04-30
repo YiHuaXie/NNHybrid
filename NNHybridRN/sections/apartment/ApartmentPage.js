@@ -9,40 +9,28 @@ import {
 } from 'react-native';
 import ApartmentNavigationBar from './ApartmentNavigationBar';
 import NavigationUtil from '../../utils/NavigationUtil';
-import Network from '../../network';
-import { ApiPath } from '../../network/ApiService';
 import ApartmentBannerCell from './ApartmentBannerCell';
 import EachHouseCell from '../../components/common/EachHouseCell';
 import AppUtil from '../../utils/AppUtil';
+import { Types } from '../../redux/base/actions';
 
-export default class ApartmentPage extends Component {
+import { connect } from 'react-redux';
+import { loadData, navBarIsTransparent } from '../../redux/apartment';
+import Toaster from '../../components/common/Toaster';
 
-    constructor(props) {
-        super(props);
-        this.params = this.props.navigation.state.params;
-        this.state = {
-            isTransparent: true,
-            apartment: {},
-        };
+class ApartmentPage extends Component {
 
-        this._loadData();
+    componentWillMount() {
+        const { loadData, navigation } = this.props;
+        const { apartmentId, isTalent } = navigation.state.params;
+        loadData({
+            estateId: apartmentId,
+            isTalent
+        }, error => Toaster.autoDisapperShow(error));
     }
 
-    _loadData() {
-        const { apartmentId, isTalent } = this.params;
-        const parameters = { estateId: apartmentId, isTalent };
-        Network
-            .my_request({
-                apiPath: ApiPath.ESTATE,
-                apiMethod: 'estateIntroduction',
-                apiVersion: '3.6',
-                params: parameters
-            })
-            .then(response => {
-                console.log(response);
-                this.setState({ apartment: response });
-            })
-            .catch(error => console.error(error));
+    componentWillUnmount() {
+        NavigationUtil.dispatch(Types.APARTMENT_WILL_UNMOUNT);
     }
 
     _renderApartmentitems(data) {
@@ -58,15 +46,12 @@ export default class ApartmentPage extends Component {
     }
 
     render() {
-        const { apartment } = this.state;
+        const { apartment, isTransparent } = this.props.apartment;
         return (
             <View style={styles.container}>
                 <ScrollView
-                    // scrollEventThrottle={60}
                     onScroll={(e) => {
-                        const offsetY = e.nativeEvent.contentOffset.y;
-                        const isTransparent = offsetY <= AppUtil.fullNavigationBarHeight;
-                        this.setState({ isTransparent });
+                        this.props.navBarIsTransparent(e.nativeEvent.contentOffset.y);
                     }}
                 >
                     <ApartmentBannerCell data={apartment.imageUrls} />
@@ -88,13 +73,24 @@ export default class ApartmentPage extends Component {
                     {this._renderApartmentitems(apartment.estateRoomTypes)}
                 </ScrollView>
                 <ApartmentNavigationBar
-                    isTransparent={this.state.isTransparent}
+                    isTransparent={isTransparent}
                     backHandler={() => NavigationUtil.goBack()}
                 />
             </View>
         );
     }
 }
+
+const mapStateToProps = state => ({ apartment: state.apartment });
+
+const mapDispatchToProps = dispatch => ({
+    loadData: params =>
+        dispatch(loadData(params)),
+    navBarIsTransparent: contentOffsetY =>
+        dispatch(navBarIsTransparent(contentOffsetY))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApartmentPage);
 
 const styles = StyleSheet.create({
     container: {

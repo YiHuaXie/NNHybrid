@@ -7,6 +7,8 @@ export default class HouseDetailInfoCell extends Component {
         return (
             <View style={styles.container}>
             <Text style={styles.title}></Text>
+            {/* 标签排布试图 */}
+            
             </View>
         );
     }

@@ -21,6 +21,7 @@ export default class ApartmentNavigationBar extends Component {
 
         return (
             <NavigationBar
+                statusBar={{ barStyle: AppUtil.iOS && isTransparent ? 'light-content' : 'default' }}
                 title={isTransparent ? '' : '公寓简介'}
                 titleColor='#FFFFFF'
                 leftItem={leftItem}

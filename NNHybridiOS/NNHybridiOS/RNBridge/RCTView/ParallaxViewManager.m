@@ -7,9 +7,27 @@
 #import "ParallaxView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface ParallaxViewManager()
+#pragma mark - ParallaxView+NNExtension
 
-@property (nonatomic, strong) ParallaxView *parallaxView;
+@interface ParallaxView (NNExtension)
+
+@end
+
+@implementation ParallaxView(NNExtension)
+
+- (void)setImageUrl:(NSString *)imageUrl {
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+    self.imageView.layer.cornerRadius = cornerRadius;
+}
+
+@end
+
+#pragma mark - ParallaxViewManager
+
+@interface ParallaxViewManager()
 
 @end
 
@@ -17,30 +35,19 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(loadImageWithUrl:(NSString *)url) {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.parallaxView.imageView sd_setImageWithURL:[NSURL URLWithString:url]];
-    });
-}
+// 属性的映射和导出
+RCT_EXPORT_VIEW_PROPERTY(smoothFactor, CGFloat);
+RCT_EXPORT_VIEW_PROPERTY(imageUrl, NSString);
+RCT_EXPORT_VIEW_PROPERTY(cornerRadius, CGFloat);
 
 - (UIView *)view {
-    [self.parallaxView startUpdates];
+    ParallaxView *parallaxView = [[ParallaxView alloc] initWithFrame:CGRectZero];
+    parallaxView.smoothFactor = 0.03;
+    parallaxView.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    parallaxView.clipsToBounds = YES;
+    [parallaxView startUpdates];
     
-    return self.parallaxView;
-}
-
-#pragma mark - Getter
-
-- (ParallaxView *)parallaxView {
-    if (!_parallaxView) {
-        _parallaxView = [[ParallaxView alloc] initWithFrame:CGRectZero];
-        _parallaxView.smoothFactor = 0.03;
-        _parallaxView.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        _parallaxView.layer.cornerRadius = 8;
-        _parallaxView.clipsToBounds = YES;
-    }
-
-    return _parallaxView;
+    return parallaxView;
 }
 
 @end
