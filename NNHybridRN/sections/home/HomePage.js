@@ -60,8 +60,8 @@ class HomePage extends Component {
                     key={i}
                     onPress={() => {
                         const { type, minRentPrice, id, isFullRent } = houses[i];
-                        const pageName = type === 1 ? 'HouseDetailPage' : 'DecentraliedDetailPage';
-                        const params = type === 1 ? {} : { houseId: id, isFullRent };
+                        const pageName = type === 1 ? 'CentraliedDetailPage' : 'DecentraliedDetailPage';
+                        const params = type === 1 ? { houseId: id, rentPrice: minRentPrice } : { houseId: id, isFullRent };
                         NavigationUtil.goPage(pageName, params);
                     }}>
                     <EachHouseCell house={houses[i]} />

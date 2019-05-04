@@ -2,6 +2,11 @@ import { ApiPath } from '../network/ApiService';
 import Network from '../network';
 import { Types } from './base/actions';
 
+export const DetailTypes = {
+    Centralied: 'Centralied',
+    Decentralied: 'Decentralied'
+};
+
 export function navBarIsTransparent(contentOffsetY) {
     return dispatch => {
         const isTransparent = contentOffsetY > 100 ? false : true;
@@ -9,93 +14,94 @@ export function navBarIsTransparent(contentOffsetY) {
     }
 }
 
-/**
- * 集中式房源详情
- * @param {*} callBack 
- */
-export function loadCentraliedDetail(params, callBack) {
+export function loadData(detailType, params, callBack) {
     return async dispath => {
+        dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA });
         try {
-            let response = await Network.my_request({
-                apiPath: ApiPath.ESTATE,
-                apiMethod: 'eRoomTypeDetail',
-                apiVersion: '3.9.0',
-                params
-            });
-
-            dispath({
-                type: Types.HOUSE_DETAIL_LOAD_CENTRALIZED_SUCCESS,
-                centraliedHouse: response
-            });
-
-        } catch (e) {
-            callBack(e.message);
-            dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA_FAIL });
-        }
-    };
-}
-
-/**
- * 分散式房源详情
- * @param {function} callBack 
- */
-export function loadDecentraliedDetail(houseId, callBack) {
-    return async dispath => {
-        try {
-            let response = await Network.my_request({
-                apiPath: ApiPath.HOUSE,
-                apiMethod: 'queryHouseRoomDetail',
-                apiVersion: '3.6',
-                params: { roomId: houseId }
-            });
+            let response =
+                detailType === DetailTypes.Centralied ?
+                    await loadCentraliedDetail(params) :
+                    await loadDecentraliedDetail(params);
 
             let response2 = await loadRecommendHouseList({
 
             });
 
             dispath({
-                type: Types.HOUSE_DETAIL_LOAD_DECENTRALIZED_SUCCESS,
-                decentraliedHouse: response
-
+                type: Types.HOUSE_DETAIL_LOAD_DATA_FINISHED,
+                centraliedHouse: detailType === DetailTypes.Centralied ? response : {},
+                decentraliedHouse: detailType === DetailTypes.Centralied ? {} : response,
+                recommendHouseList: response2
             });
         } catch (e) {
             callBack(e.message);
-            dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA_FAIL });
+            dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA_FINISHED });
         }
     };
 }
 
+/**
+ * 分散式房源详情
+ * @param {{}}} params 
+ */
+function loadDecentraliedDetail(params) {
+    return Network.my_request({
+        apiPath: ApiPath.HOUSE,
+        apiMethod: 'queryHouseRoomDetail',
+        apiVersion: '3.6',
+        params
+    });
+}
+
+/**
+ * 集中式房源详情
+ * @param {{}}} params 
+ */
+function loadCentraliedDetail(params) {
+    return Network.my_request({
+        apiPath: ApiPath.ESTATE,
+        apiMethod: 'eRoomTypeDetail',
+        apiVersion: '3.9.0',
+        params
+    });
+}
+
+/**
+ * 房源推荐列表
+ * @param {{}} params 
+ */
 function loadRecommendHouseList(params) {
-    return Network
-        .request({
-            apiPath: ApiPath.SEARCH,
-            apiMethod: 'recommendList',
-            apiVersion: '1.0',
-            params
-        });
+    return Network.request({
+        apiPath: ApiPath.SEARCH,
+        apiMethod: 'recommendList',
+        apiVersion: '1.0',
+        params
+    });
 }
 
 const defaultState = {
     centraliedHouse: {},
     decentraliedHouse: {},
-    isTransparent: true,
+    isTransparent: false,
     recommendHouseList: [],
+    isLoading: false
 };
 
 export function houseDetailReducer(state = defaultState, action) {
     switch (action.type) {
-        case Types.HOUSE_DETAIL_LOAD_CENTRALIZED_SUCCESS:
+        case Types.HOUSE_DETAIL_LOAD_DATA:
+            return {
+                ...state,
+                isLoading: true,
+            }
+        case Types.HOUSE_DETAIL_LOAD_DATA_FINISHED:
             return {
                 ...state,
                 centraliedHouse: action.centraliedHouse,
-                recommendHouseList: action.recommendHouseList
-            };
-        case Types.HOUSE_DETAIL_LOAD_DECENTRALIZED_SUCCESS:
-            return {
-                ...state,
                 decentraliedHouse: action.decentraliedHouse,
-                recommendHouseList: action.recommendHouseList
-            };
+                recommendHouseList: action.recommendHouseList,
+                isLoading: false,
+            }
         case Types.HOUSE_DETAIL_NAV_BAR_TRANSPARENT:
             return {
                 ...state,

@@ -3,11 +3,12 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
 import HouseDetailNavigationBar from './HouseDetailNavigationBar';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
-
+import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { connect } from 'react-redux';
 import {
-    loadDecentraliedDetail,
     navBarIsTransparent,
+    loadData,
+    DetailTypes
 } from '../../redux/houseDetail';
 import Toaster from '../../components/common/Toaster';
 import AppUtil from '../../utils/AppUtil';
@@ -16,10 +17,13 @@ import { Types } from '../../redux/base/actions';
 class DecentraliedDetailPage extends Component {
 
     componentWillMount() {
-        const { loadDecentraliedDetail } = this.props;
         const { houseId, isFullRent } = this.props.navigation.state.params;
 
-        loadDecentraliedDetail(houseId, error => Toaster.autoDisapperShow(error));
+        this.props.loadData(
+            DetailTypes.Decentralied,
+            { roomId: houseId },
+            error => Toaster.autoDisapperShow(error)
+        );
     }
 
     componentWillUnmount() {
@@ -28,7 +32,7 @@ class DecentraliedDetailPage extends Component {
 
     render() {
         const { houseDetail, navBarIsTransparent } = this.props;
-        const { decentraliedHouse, isTransparent, recommendHouseList } = houseDetail;
+        const { decentraliedHouse, isTransparent, recommendHouseList, isLoading } = houseDetail;
         const hasVR = !AppUtil.isEmptyString(decentraliedHouse.vrUrl);
 
         return (
@@ -36,13 +40,20 @@ class DecentraliedDetailPage extends Component {
                 <ScrollView
                     onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}
                 >
-                    <HouseDetailBannerCell data={decentraliedHouse.images} hasVR={hasVR} />
+                    <HouseDetailBannerCell
+                        data={decentraliedHouse.images}
+                        hasVR={hasVR}
+                        bannerItemClicked={(isVr) => {
+
+                        }}
+                    />
                 </ScrollView>
                 <HouseDetailNavigationBar
                     isTransparent={isTransparent}
                     title='房间详情'
                     backHandler={() => NavigationUtil.goBack()}
                 />
+                <NNPlaneLoading show={isLoading} />
             </View>
         );
     }
@@ -55,8 +66,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     navBarIsTransparent: contentOffsetY =>
         dispatch(navBarIsTransparent(contentOffsetY)),
-    loadDecentraliedDetail: (houseId, callBack) =>
-        dispatch(loadDecentraliedDetail(houseId, callBack)),
+    loadData: (detailType, params, callBack) =>
+        dispatch(loadData(detailType, params, callBack))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DecentraliedDetailPage);

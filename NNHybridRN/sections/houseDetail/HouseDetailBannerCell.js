@@ -8,6 +8,7 @@ import Swiper from 'react-native-swiper';
 import AppUtil from '../../utils/AppUtil';
 import NNImage from '../../components/common/NNImage';
 import NNParallaxView from '../../components/common/NNParallaxView';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const cellSize = {
     width: AppUtil.windowWidth,
@@ -19,11 +20,15 @@ export default class HouseDetailBannerCell extends Component {
     _renderVRItem(url) {
         const vrIconSource = require('../../resource/images/house_detail_720.png');
         return (
-            <NNParallaxView cornerRadius={0} style={styles.image} imageUrl={url}>
-                <View style={styles.mask}>
-                    <Image style={styles.vrIcon} source={vrIconSource}/>
-                </View>
-            </NNParallaxView>
+            <TouchableWithoutFeedback
+                onPress={() => this.props.bannerItemClicked()}
+            >
+                <NNParallaxView cornerRadius={0} style={styles.image} imageUrl={url}>
+                    <View style={styles.mask}>
+                        <Image style={styles.vrIcon} source={vrIconSource} />
+                    </View>
+                </NNParallaxView>
+            </TouchableWithoutFeedback>
         );
     }
 
@@ -35,7 +40,13 @@ export default class HouseDetailBannerCell extends Component {
         }
 
         for (const i in data) {
-            images.push(<NNImage key={i} style={styles.image} source={{ uri: data[i] }} />);
+            images.push(
+                <TouchableWithoutFeedback
+                    onPress={() => this.props.bannerItemClicked()}
+                >
+                    <NNImage key={i} style={styles.image} source={{ uri: data[i] }} />
+                </TouchableWithoutFeedback>
+            );
         }
 
         return images;
