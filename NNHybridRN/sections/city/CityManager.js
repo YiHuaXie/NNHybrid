@@ -112,12 +112,14 @@ export default class CityManager {
                 this.shareInstance().haveHouseCities = response.normalCityList;
                 this.shareInstance().hotCities = response.hotCityList;
                 this.syncVisitedCities(response.normalCityList);
-                callBack(null, response.normalCityList, response.hotCityList);
-
+                if (callBack) callBack(null, response.normalCityList, response.hotCityList);
+                
                 return response;
             })
             .catch(error => {
-                callBack(error);
+                if (callBack) callBack(error);
+
+                throw error;
             });
     }
 
@@ -164,6 +166,7 @@ export default class CityManager {
                 cityName = defaultCityName;
                 cityId = defaultCityId;
             } else {
+                console.log('定位成功');
                 this.saveLocationCity(cityName, cityId);
             }
             

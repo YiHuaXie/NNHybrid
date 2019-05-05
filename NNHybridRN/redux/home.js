@@ -53,7 +53,8 @@ export function selectedCityFinisedOrChanged(cityName, cityId) {
 export function loadData(cityId) {
     return dispatch => {
         dispatch({ type: Types.HOME_LOAD_DATA });
-        CityManager.loadHaveHouseCityList(error => {
+
+        CityManager.loadHaveHouseCityList(async error => {
             if (error) {
                 dispatch({
                     type: Types.HOME_LOAD_DATA_FAIL,
@@ -62,7 +63,7 @@ export function loadData(cityId) {
 
                 return;
             }
-            
+
             const iconListReq = Network.my_request({
                 apiPath: ApiPath.MARKET,
                 apiMethod: 'iconList',
@@ -70,30 +71,12 @@ export function loadData(cityId) {
                 params: { cityId }
             });
 
-            let houseListReq = null;
-            const selectedCity = CityManager.getSelectedCity();
-            const locationCity = CityManager.getLocationCity();
-            const isSame = selectedCity.cityName === locationCity.cityName;
-            const tmpCityId = isSame ? null : selectedCity.cityId;
-
-            AMapLocation.locationWithCompletion(({ error, longitude, latitude }) => {
-                if (!error) {
-                    const params = {
-                        cityId: tmpCityId,
-                        sourceType: 1,
-                        gaodeLongitude: longitude,
-                        gaodeLatitude: latitude
-                    };
-
-                    houseListReq = Network.my_request({
-                        apiPath: ApiPath.SEARCH,
-                        apiMethod: 'recommendList',
-                        apiVersion: '1.0',
-                        params,
-                    });
-                }
+            const houseListReq = Network.my_request({
+                apiPath: ApiPath.SEARCH,
+                apiMethod: 'recommendList',
+                apiVersion: '1.0',
+                params: { ...await getRecommendParams(), sourceType: 1 }
             });
-
 
             Promise
                 .all([iconListReq, houseListReq])
@@ -118,6 +101,29 @@ export function loadData(cityId) {
                 });
         });
     }
+}
+
+function getRecommendParams() {
+    return new Promise((resolve, reject) => {
+        CityManager
+            .getSelectedCity()
+            .then(selectedCity => {
+                AMapLocation.locationWithCompletion(result => {
+                    const { province, city, longitude, latitude } = result;
+                    const cityName = city.length ? city : province;
+
+                    const recommendParams = {};
+                    if (cityName === selectedCity.cityName) {
+                        recommendParams.gaodeLongitude = longitude;
+                        recommendParams.gaodeLatitude = latitude;
+                    } else {
+                        recommendParams.cityId = selectedCity.cityId;
+                    }
+                    resolve(recommendParams);
+                });
+            })
+            .catch(error => reject(error));
+    });
 }
 
 const defaultState = {
