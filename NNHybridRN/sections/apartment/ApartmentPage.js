@@ -4,8 +4,7 @@ import {
     View,
     ScrollView,
     Text,
-    Image,
-    TouchableWithoutFeedback
+    Image
 } from 'react-native';
 import ApartmentNavigationBar from './ApartmentNavigationBar';
 import NavigationUtil from '../../utils/NavigationUtil';
@@ -18,6 +17,7 @@ import { connect } from 'react-redux';
 import { loadData, navBarIsTransparent } from '../../redux/apartment';
 import Toaster from '../../components/common/Toaster';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class ApartmentPage extends Component {
 
@@ -38,7 +38,13 @@ class ApartmentPage extends Component {
         const tmp = [];
         for (const i in data) {
             tmp.push(
-                <TouchableWithoutFeedback key={i}>
+                <TouchableWithoutFeedback
+                    key={i}
+                    onPress={() => {
+                        const { estateRoomTypeId, price } = data[i];
+                        const params = { estateRoomTypeId, rentPrice: price };
+                        NavigationUtil.goPage('CentraliedDetailPage', params);
+                    }}>
                     <EachHouseCell apartment={data[i]} />
                 </TouchableWithoutFeedback>
             );

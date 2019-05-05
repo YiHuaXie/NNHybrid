@@ -4,6 +4,9 @@ import NavigationUtil from '../../utils/NavigationUtil';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
 import HouseDetailNavigationBar from './HouseDetailNavigationBar';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
+import AppUtil from '../../utils/AppUtil';
+import Toaster from '../../components/common/Toaster';
+import { Types } from '../../redux/base/actions';
 import { connect } from 'react-redux';
 import {
     loadData,
@@ -11,15 +14,13 @@ import {
     DetailTypes
 } from '../../redux/houseDetail';
 
-
 class CentraliedDetailPage extends Component {
 
     componentWillMount() {
-        const { houseId, rentPrice } = this.props.navigation.state.params;
-
+        const { estateRoomTypeId, rentPrice } = this.props.navigation.state.params;
         this.props.loadData(
             DetailTypes.Centralied,
-            { roomId: houseId, rentPrice},
+            { estateRoomTypeId, rentPrice },
             error => Toaster.autoDisapperShow(error)
         );
     }
@@ -28,24 +29,34 @@ class CentraliedDetailPage extends Component {
         NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT);
     }
 
-    render() {
+    _renderContentView() {
         const { houseDetail, navBarIsTransparent } = this.props;
-        const { centraliedHouse, isTransparent, recommendHouseList, isLoading } = houseDetail;
-        const hasVR = !AppUtil.isEmptyString(decentraliedHouse.vrUrl);
+        const { centraliedHouse, recommendHouseList } = houseDetail;
+
+        if (AppUtil.isEmptyObject(centraliedHouse)) return null;
+
+        const hasVR = !AppUtil.isEmptyString(centraliedHouse.vrUrl);
 
         return (
-            <View style={styles.container}>
-                <ScrollView
-                    onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}
-                >
-                    <HouseDetailBannerCell
-                        data={centraliedHouse.images}
-                        hasVR={hasVR}
-                        bannerItemClicked={(isVr) => {
+            <ScrollView
+                onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}
+            >
+                <HouseDetailBannerCell
+                    data={centraliedHouse.imageUrls}
+                    hasVR={hasVR}
+                    bannerItemClicked={(isVr) => {
 
-                        }}
-                    />
-                </ScrollView>
+                    }}
+                />
+            </ScrollView>
+        );
+    }
+
+    render() {
+        const { isTransparent, isLoading } = this.props.houseDetail;
+        return (
+            <View style={styles.container}>
+                {this._renderContentView()}
                 <HouseDetailNavigationBar
                     isTransparent={isTransparent}
                     title='房型详情'
@@ -73,13 +84,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(CentraliedDetailPage
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+        backgroundColor: '#FFFFFF',
     }
 });

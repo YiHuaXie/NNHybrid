@@ -17,11 +17,11 @@ import { Types } from '../../redux/base/actions';
 class DecentraliedDetailPage extends Component {
 
     componentWillMount() {
-        const { houseId, isFullRent } = this.props.navigation.state.params;
+        const { roomId, isFullRent } = this.props.navigation.state.params;
 
         this.props.loadData(
             DetailTypes.Decentralied,
-            { roomId: houseId },
+            { roomId },
             error => Toaster.autoDisapperShow(error)
         );
     }
@@ -30,24 +30,33 @@ class DecentraliedDetailPage extends Component {
         NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT);
     }
 
-    render() {
+    _renderContentView() {
         const { houseDetail, navBarIsTransparent } = this.props;
-        const { decentraliedHouse, isTransparent, recommendHouseList, isLoading } = houseDetail;
+        const { decentraliedHouse, recommendHouseList } = houseDetail;
+
+        if (AppUtil.isEmptyObject(decentraliedHouse)) return null;
+
         const hasVR = !AppUtil.isEmptyString(decentraliedHouse.vrUrl);
 
         return (
-            <View style={styles.container}>
-                <ScrollView
-                    onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}
-                >
-                    <HouseDetailBannerCell
-                        data={decentraliedHouse.images}
-                        hasVR={hasVR}
-                        bannerItemClicked={(isVr) => {
+            <ScrollView onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}>
+                <HouseDetailBannerCell
+                    data={decentraliedHouse.images}
+                    hasVR={hasVR}
+                    bannerItemClicked={(isVr) => {
 
-                        }}
-                    />
-                </ScrollView>
+                    }}
+                />
+            </ScrollView>
+        );
+    }
+
+    render() {
+        const { isTransparent, isLoading } = this.props.houseDetail;
+
+        return (
+            <View style={styles.container}>
+                {this._renderContentView()}
                 <HouseDetailNavigationBar
                     isTransparent={isTransparent}
                     title='房间详情'

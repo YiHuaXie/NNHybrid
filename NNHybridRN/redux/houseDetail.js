@@ -23,15 +23,11 @@ export function loadData(detailType, params, callBack) {
                     await loadCentraliedDetail(params) :
                     await loadDecentraliedDetail(params);
 
-            let response2 = await loadRecommendHouseList({
-
-            });
-
             dispath({
                 type: Types.HOUSE_DETAIL_LOAD_DATA_FINISHED,
                 centraliedHouse: detailType === DetailTypes.Centralied ? response : {},
                 decentraliedHouse: detailType === DetailTypes.Centralied ? {} : response,
-                recommendHouseList: response2
+                recommendHouseList: []
             });
         } catch (e) {
             callBack(e.message);
@@ -82,7 +78,7 @@ function loadRecommendHouseList(params) {
 const defaultState = {
     centraliedHouse: {},
     decentraliedHouse: {},
-    isTransparent: false,
+    isTransparent: true,
     recommendHouseList: [],
     isLoading: false
 };
