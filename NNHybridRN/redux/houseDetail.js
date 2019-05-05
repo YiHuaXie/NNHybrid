@@ -23,6 +23,19 @@ export function loadData(detailType, params, callBack) {
                     await loadCentraliedDetail(params) :
                     await loadDecentraliedDetail(params);
 
+            let recommendParams = {
+                gaodeLongitude: response.longitude,
+                gaodeLatitude: response.latitude,
+                sourceType: 2,
+                rentPrice: DetailTypes.Centralied ? response.rentPrice : response.price,
+                currentHousingType: DetailTypes.Centralied ? 1 : 2,
+                roomId: DetailTypes.Centralied ? null : response.id,
+                estateRoomTypeId: DetailTypes.Centralied ? response.estateRoomTypeId : null
+            };
+
+            console.log(recommendParams);
+            // let response2 = await loadRecommendHouseList(recommendParams);
+
             dispath({
                 type: Types.HOUSE_DETAIL_LOAD_DATA_FINISHED,
                 centraliedHouse: detailType === DetailTypes.Centralied ? response : {},

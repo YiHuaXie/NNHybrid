@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
 import HouseDetailNavigationBar from './HouseDetailNavigationBar';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
+import HouseDetailRecommendCell from './HouseDetailRecommendCell';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { connect } from 'react-redux';
 import {
@@ -44,6 +45,12 @@ class DecentraliedDetailPage extends Component {
                     data={decentraliedHouse.images}
                     hasVR={hasVR}
                     bannerItemClicked={(isVr) => {
+
+                    }}
+                />
+                <HouseDetailRecommendCell
+                    data={recommendHouseList}
+                    recommendItemClicked={index => {
 
                     }}
                 />

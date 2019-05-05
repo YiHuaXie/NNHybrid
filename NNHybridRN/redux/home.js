@@ -1,8 +1,32 @@
-import React from 'react';
+import { NativeModules } from 'react-native';
 import { Types } from './base/actions';
 import CityManager from '../sections/city/CityManager';
 import Network from '../network';
 import { ApiPath } from '../network/ApiService';
+import AppUtil from '../utils/AppUtil';
+
+const AMapLocation = NativeModules.AMapLocationModule;
+
+// export function showCityLocationTip(callBack) {
+//     return async dispatch => {
+
+//         AMapLocation.locationWithCompletion(({ error, city, provice }) => {
+//             if (!error) {
+
+//                 const selectedCity = await CityManager.getSelectedCity();
+//                 const locationCity = await CityManager.getLocationCity();
+
+//                 if (!AppUtil.isEmptyString(locationCity.cityName) &&
+//                     !AppUtil.isEmptyString(selectedCity.cityName) &&
+//                     callBack) {
+//                     callBack(locationCity.cityName);
+//                 }
+//             }
+
+//             dispatch({ type: Types.HOME_LOCATION });
+//         });
+//     }
+// }
 
 export function navBarIsTransparent(contentOffsetY) {
     return dispatch => {
@@ -38,19 +62,38 @@ export function loadData(cityId) {
 
                 return;
             }
-
+            
             const iconListReq = Network.my_request({
                 apiPath: ApiPath.MARKET,
                 apiMethod: 'iconList',
                 apiVersion: '3.6.4',
                 params: { cityId }
             });
-            const houseListReq = Network.my_request({
-                apiPath: ApiPath.SEARCH,
-                apiMethod: 'recommendList',
-                apiVersion: '1.0',
-                params: { cityId, sourceType: 1 }
+
+            let houseListReq = null;
+            const selectedCity = CityManager.getSelectedCity();
+            const locationCity = CityManager.getLocationCity();
+            const isSame = selectedCity.cityName === locationCity.cityName;
+            const tmpCityId = isSame ? null : selectedCity.cityId;
+
+            AMapLocation.locationWithCompletion(({ error, longitude, latitude }) => {
+                if (!error) {
+                    const params = {
+                        cityId: tmpCityId,
+                        sourceType: 1,
+                        gaodeLongitude: longitude,
+                        gaodeLatitude: latitude
+                    };
+
+                    houseListReq = Network.my_request({
+                        apiPath: ApiPath.SEARCH,
+                        apiMethod: 'recommendList',
+                        apiVersion: '1.0',
+                        params,
+                    });
+                }
             });
+
 
             Promise
                 .all([iconListReq, houseListReq])

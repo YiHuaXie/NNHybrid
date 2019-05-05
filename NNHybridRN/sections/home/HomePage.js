@@ -3,7 +3,8 @@ import {
     StyleSheet,
     View,
     ScrollView,
-    DeviceEventEmitter
+    DeviceEventEmitter,
+    Alert
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 import NavigationUtil from '../../utils/NavigationUtil';
