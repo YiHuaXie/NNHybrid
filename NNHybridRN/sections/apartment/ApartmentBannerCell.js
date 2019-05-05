@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import Swiper from 'react-native-swiper';
 import AppUtil from '../../utils/AppUtil';
 import NNImage from '../../components/common/NNImage';
@@ -32,8 +32,13 @@ export default class ApartmentBannerCell extends Component {
             <Swiper
                 autoplay={true}
                 autoplayTimeout={3.0}
-                showsPagination={false}
+                showsPagination={true}
                 containerStyle={styles.swiper}
+                renderPagination={(index, total) => (
+                    <Text style={styles.indexLabel}>
+                        {`${index + 1}/${total}`}
+                    </Text>
+                )}
             >
                 {this._renderBannerItems()}
             </Swiper>
@@ -45,6 +50,15 @@ const styles = StyleSheet.create({
     swiper: {
         height: cellHeight,
         width: AppUtil.windowWidth
+    },
+    indexLabel: {
+        right: 15,
+        bottom: 15,
+        height: 15,
+        position: 'absolute',
+        fontSize: 15,
+        color: '#FFFFFF',
+        textAlign: 'right',
     },
     image: {
         width: AppUtil.windowWidth,

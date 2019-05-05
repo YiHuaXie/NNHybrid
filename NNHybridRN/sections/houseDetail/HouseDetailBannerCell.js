@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
+    Text,
     Image,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -21,6 +22,7 @@ export default class HouseDetailBannerCell extends Component {
         const vrIconSource = require('../../resource/images/house_detail_720.png');
         return (
             <TouchableWithoutFeedback
+                key={0}
                 onPress={() => this.props.bannerItemClicked()}
             >
                 <NNParallaxView cornerRadius={0} style={styles.image} imageUrl={url}>
@@ -42,9 +44,10 @@ export default class HouseDetailBannerCell extends Component {
         for (const i in data) {
             images.push(
                 <TouchableWithoutFeedback
+                    key={hasVR ? i : i + 1}
                     onPress={() => this.props.bannerItemClicked()}
                 >
-                    <NNImage key={i} style={styles.image} source={{ uri: data[i] }} />
+                    <NNImage style={styles.image} source={{ uri: data[i] }} />
                 </TouchableWithoutFeedback>
             );
         }
@@ -61,8 +64,13 @@ export default class HouseDetailBannerCell extends Component {
             <Swiper
                 autoplay={hasVR ? false : true}
                 autoplayTimeout={3.0}
-                showsPagination={false}
+                showsPagination={true}
                 containerStyle={styles.swiper}
+                renderPagination={(index, total) => (
+                    <Text style={styles.indexLabel}>
+                        {`${index + 1}/${total}`}
+                    </Text>
+                )}
             >
                 {this._renderBannerItems(data, hasVR)}
             </Swiper>
@@ -74,6 +82,15 @@ const styles = StyleSheet.create({
     swiper: {
         height: cellSize.height,
         width: cellSize.width
+    },
+    indexLabel: {
+        right: 10,
+        bottom: 10,
+        height: 15,
+        position: 'absolute',
+        fontSize: 15,
+        color: '#FFFFFF',
+        textAlign: 'right',
     },
     image: {
         width: cellSize.width,
