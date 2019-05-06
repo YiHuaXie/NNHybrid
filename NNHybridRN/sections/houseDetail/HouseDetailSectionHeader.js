@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 
-export default class HouseDetailRecommendCell extends Component {
+export default class HouseDetailSectionHeader extends Component {
     render() {
-        <View style={styles.container}>
-            <Text style={styles.title}>{this.props.title}</Text>
-        </View>
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>{this.props.title}</Text>
+            </View>
+        );
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         height: 60,
-        alignItems: 'center',
+        backgroundColor: 'yellow',
+        // alignItems: 'center',
     },
     title: {
         fontSize: 15,

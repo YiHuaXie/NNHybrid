@@ -18,7 +18,7 @@ export default class HouseDetailRecommendCell extends Component {
                     marginRight: index < this.props.data.length - 1 ? 0 : 15
                 }}>
                     <NNImage style={styles.itemImage} source={{ uri: item.imageUrl }} />
-                    <Text style={styles.itemPrice}>{parseInt(item.minRentPrice)}</Text>
+                    <Text style={styles.itemPrice}>{`¥${parseInt(item.minRentPrice)}/月`}</Text>
                     <Text style={styles.itemAddress}>{item.address}</Text>
                 </View>
             </TouchableWithoutFeedback>
@@ -27,14 +27,14 @@ export default class HouseDetailRecommendCell extends Component {
 
     render() {
         const { data } = this.props;
-
+        console.log(data);
+        
         if (AppUtil.isEmptyArray(data)) return null;
 
         return (
             <View style={styles.container}>
                 <HouseDetailSectionHeader title='为你推荐' />
                 <FlatList
-                    style={{ backgroundColor: 'yellow' }}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                     data={data}
@@ -49,7 +49,7 @@ export default class HouseDetailRecommendCell extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 345
+        height: 345,
     },
     item: {
         width: 280,

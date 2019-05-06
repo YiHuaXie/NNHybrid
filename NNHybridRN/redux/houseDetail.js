@@ -29,18 +29,16 @@ export function loadData(detailType, params, callBack) {
                 sourceType: 2,
                 rentPrice: DetailTypes.Centralied ? response.rentPrice : response.price,
                 currentHousingType: DetailTypes.Centralied ? 1 : 2,
-                roomId: DetailTypes.Centralied ? null : response.id,
+                roomId: DetailTypes.Centralied ? null : response.roomId,
                 estateRoomTypeId: DetailTypes.Centralied ? response.estateRoomTypeId : null
             };
-
-            console.log(recommendParams);
-            // let response2 = await loadRecommendHouseList(recommendParams);
+            let response2 = await loadRecommendHouseList(recommendParams);
 
             dispath({
                 type: Types.HOUSE_DETAIL_LOAD_DATA_FINISHED,
                 centraliedHouse: detailType === DetailTypes.Centralied ? response : {},
                 decentraliedHouse: detailType === DetailTypes.Centralied ? {} : response,
-                recommendHouseList: []
+                recommendHouseList: response2.resultList
             });
         } catch (e) {
             callBack(e.message);
@@ -80,7 +78,7 @@ function loadCentraliedDetail(params) {
  * @param {{}} params 
  */
 function loadRecommendHouseList(params) {
-    return Network.request({
+    return Network.my_request({
         apiPath: ApiPath.SEARCH,
         apiMethod: 'recommendList',
         apiVersion: '1.0',
