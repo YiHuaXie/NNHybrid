@@ -94,7 +94,9 @@ class HomePage extends Component {
     // 需要用SectionList实现
     render() {
         const { home, navBarIsTransparent } = this.props;
-        const refreshHeader = Refresher.header(home.isLoading, () => this.props.loadData(home.cityId));
+        const refreshHeader = Refresher.header(home.isLoading, () => {
+            this.props.loadData({ cityName: home.cityName, cityId: home.cityId });
+        });
 
         if (home.error) { Toaster.autoDisapperShow(home.error); }
         return (
