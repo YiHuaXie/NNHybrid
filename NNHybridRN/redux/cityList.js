@@ -1,9 +1,7 @@
-import { NativeModules } from 'react-native';
 import { Types } from './base/actions';
 import PinYinUtil from '../utils/PinYinUtil';
+import LocationUtil from '../utils/LocationUtil';
 import CityManager from '../sections/city/CityManager';
-
-const AMapLocation = NativeModules.AMapLocationModule;
 
 const adjustCityNames = {
     '长沙市': '厂沙市',
@@ -56,7 +54,7 @@ export function startLocation() {
             locationCityName: '定位中...'
         });
 
-        AMapLocation.locationWithCompletion(({ error, city, provice }) => {
+        LocationUtil.locationWithCompletion(({ error, city, provice }) => {
             let locationCityName = '无法获取';
             if (!error) {
                 locationCityName = city;

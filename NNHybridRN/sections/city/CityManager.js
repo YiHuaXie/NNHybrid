@@ -1,11 +1,10 @@
-import React from 'react';
 import { NativeModules } from 'react-native';
 import Network from '../../network';
 import { ApiPath } from '../../network/ApiService';
 import StorageUtil from '../../storage';
 import AppUtil from '../../utils/AppUtil';
+import LocationUtil from '../../utils/LocationUtil';
 
-const AMapLocation = NativeModules.AMapLocationModule;
 const UserDefault = NativeModules.UserDefaultModule;
 
 const defaultCityName = '杭州市';
@@ -113,7 +112,7 @@ export default class CityManager {
                 this.shareInstance().hotCities = response.hotCityList;
                 this.syncVisitedCities(response.normalCityList);
                 if (callBack) callBack(null, response.normalCityList, response.hotCityList);
-                
+
                 return response;
             })
             .catch(error => {
@@ -123,19 +122,18 @@ export default class CityManager {
             });
     }
 
-    static async _getCityIdWithCityName(cityName) {
-        try {
-            await UserDefault.objectForKey('kInitCityList', data => {
+    static _getCityIdWithCityName(cityName) {
+        return new Promise((resolve, reject) => {
+            UserDefault.objectForKey('kInitCityList', data => {
                 for (const i in data) {
                     const { name, id } = data[i];
                     if (name === cityName) {
-                        return `${id}`;
+                        resolve(`${id}`);
                     }
                 }
+                resolve('');
             });
-        } catch (e) {
-            return '';
-        }
+        });
     }
 
     static saveSelectedCity(cityName, cityId) {
@@ -153,24 +151,33 @@ export default class CityManager {
                 callBack(selectedCity.cityName, selectedCity.cityId);
                 return;
             }
+
+            const result = await LocationUtil.startLocation();
+            console.log('定位结束。。。');
+            const { error, province, city } = result;
+            if (error) {
+                console.log('定位失败使用默认。。。');
+                cityName = defaultCityName;
+                cityId = defaultCityId;
+                callBack(defaultCityName, defaultCityId);
+
+                return;
+            }
+            let cityName = city.length ? city : province;
+            let cityId = await this._getCityIdWithCityName(cityName);
+
+            if (!cityName.length || !cityId || !cityId.length || cityId === '000000') {
+                cityName = defaultCityName;
+                cityId = defaultCityId;
+                console.log('定位成功但是没有获取到对应城市，使用默认。。。');
+            } else {
+                console.log('定位成功并保存');
+                this.saveLocationCity(cityName, cityId);
+            }
+
+            callBack(defaultCityName, defaultCityId);
         } catch (e) {
             console.log(e);
         }
-    
-        AMapLocation.locationWithCompletion(params => {
-            const { error, province, city } = params;
-            let cityName = city.length ? city : province;
-            let cityId = this._getCityIdWithCityName(cityName);
-
-            if (!cityName.length || !cityId || !cityId.length || cityId === '000000' || error) {
-                cityName = defaultCityName;
-                cityId = defaultCityId;
-            } else {
-                console.log('定位成功');
-                this.saveLocationCity(cityName, cityId);
-            }
-            
-            callBack(defaultCityName, defaultCityId);
-        });
     }
 }

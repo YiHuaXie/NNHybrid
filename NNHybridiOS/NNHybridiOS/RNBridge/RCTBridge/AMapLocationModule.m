@@ -29,5 +29,8 @@ RCT_EXPORT_METHOD(locationWithCompletion:(RCTResponseSenderBlock)callback) {
     }];
 }
 
+RCT_EXPORT_METHOD(locationAuthorizedDenied:(RCTResponseSenderBlock)callback) {
+    BLOCK_EXEC(callback, @[@(SharedLocationManager.locationAuthorizedDenied)]);
+}
 
 @end

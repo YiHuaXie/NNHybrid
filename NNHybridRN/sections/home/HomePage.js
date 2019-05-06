@@ -25,23 +25,41 @@ import { connect } from 'react-redux';
 import {
     loadData,
     selectedCityFinisedOrChanged,
-    navBarIsTransparent
+    navBarIsTransparent,
+    showCityLocationTip
 } from '../../redux/home';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class HomePage extends Component {
 
     componentWillMount() {
-        const { loadData, selectedCityFinisedOrChanged } = this.props;
+        const { loadData, selectedCityFinisedOrChanged, showCityLocationTip } = this.props;
 
         CityManager.cityLocation((cityName, cityId) => {
             selectedCityFinisedOrChanged(cityName, cityId);
-            loadData(cityId);
+            loadData({ cityName, cityId });
         });
 
         DeviceEventEmitter.addListener('selectedCityChaged', ({ cityName, cityId }) => {
             selectedCityFinisedOrChanged(cityName, cityId);
-            loadData(cityId);
+            loadData({ cityName, cityId });
+        });
+
+        showCityLocationTip(locationCity => {
+            Alert.alert(
+                '',
+                `定位到您在${locationCity.cityName}\n是否切换至该城市进行探索`,
+                [
+                    { text: '取消', style: 'cancel' },
+                    {
+                        text: '切换', onPress: () => {
+                            selectedCityFinisedOrChanged(locationCity.cityName, locationCity.cityId);
+                            loadData(locationCity);
+                        }
+                    }
+                ],
+                { cancelable: false }
+            );
         });
     }
 
@@ -114,12 +132,14 @@ class HomePage extends Component {
 const mapStateToProps = state => ({ home: state.home });
 
 const mapDispatchToProps = dispatch => ({
-    loadData: cityId =>
-        dispatch(loadData(cityId)),
+    loadData: selectedCity =>
+        dispatch(loadData(selectedCity)),
     selectedCityFinisedOrChanged: (cityName, cityId) =>
         dispatch(selectedCityFinisedOrChanged(cityName, cityId)),
     navBarIsTransparent: contentOffsetY =>
-        dispatch(navBarIsTransparent(contentOffsetY))
+        dispatch(navBarIsTransparent(contentOffsetY)),
+    showCityLocationTip: callBack =>
+        dispatch(showCityLocationTip(callBack))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

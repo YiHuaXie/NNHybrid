@@ -1,32 +1,24 @@
-import { NativeModules } from 'react-native';
 import { Types } from './base/actions';
 import CityManager from '../sections/city/CityManager';
 import Network from '../network';
 import { ApiPath } from '../network/ApiService';
 import AppUtil from '../utils/AppUtil';
+import LocationUtil from '../utils/LocationUtil';
 
-const AMapLocation = NativeModules.AMapLocationModule;
+export function showCityLocationTip(callBack) {
+    return async dispatch => {
+        const selectedCity = await CityManager.getSelectedCity();
+        const locationCity = await CityManager.getLocationCity();
 
-// export function showCityLocationTip(callBack) {
-//     return async dispatch => {
-
-//         AMapLocation.locationWithCompletion(({ error, city, provice }) => {
-//             if (!error) {
-
-//                 const selectedCity = await CityManager.getSelectedCity();
-//                 const locationCity = await CityManager.getLocationCity();
-
-//                 if (!AppUtil.isEmptyString(locationCity.cityName) &&
-//                     !AppUtil.isEmptyString(selectedCity.cityName) &&
-//                     callBack) {
-//                     callBack(locationCity.cityName);
-//                 }
-//             }
-
-//             dispatch({ type: Types.HOME_LOCATION });
-//         });
-//     }
-// }
+        if (!AppUtil.isEmptyString(locationCity.cityName) &&
+            !AppUtil.isEmptyString(selectedCity.cityName) &&
+            locationCity.cityName !== selectedCity.cityName &&
+            callBack) {
+            callBack(locationCity);
+            dispatch({ type: Types.HOME_SHOW_LOCATION_TIP });
+        }
+    }
+}
 
 export function navBarIsTransparent(contentOffsetY) {
     return dispatch => {
@@ -50,7 +42,7 @@ export function selectedCityFinisedOrChanged(cityName, cityId) {
     }
 }
 
-export function loadData(cityId) {
+export function loadData(selectedCity) {
     return dispatch => {
         dispatch({ type: Types.HOME_LOAD_DATA });
 
@@ -68,14 +60,14 @@ export function loadData(cityId) {
                 apiPath: ApiPath.MARKET,
                 apiMethod: 'iconList',
                 apiVersion: '3.6.4',
-                params: { cityId }
+                params: { cityId: selectedCity.cityId }
             });
 
             const houseListReq = Network.my_request({
                 apiPath: ApiPath.SEARCH,
                 apiMethod: 'recommendList',
                 apiVersion: '1.0',
-                params: { ...await getRecommendParams(), sourceType: 1 }
+                params: { ...await getRecommendParams(selectedCity), sourceType: 1 }
             });
 
             Promise
@@ -103,27 +95,22 @@ export function loadData(cityId) {
     }
 }
 
-function getRecommendParams() {
-    return new Promise((resolve, reject) => {
-        CityManager
-            .getSelectedCity()
-            .then(selectedCity => {
-                AMapLocation.locationWithCompletion(result => {
-                    const { province, city, longitude, latitude } = result;
-                    const cityName = city.length ? city : province;
+async function getRecommendParams(selectedCity) {
+    try {
+        const result = await LocationUtil.startLocation();
+        const { province, city, longitude, latitude } = result;
+        const recommendParams = {};
+        const cityName = AppUtil.isEmptyString(city) ? city : province;
 
-                    const recommendParams = {};
-                    if (cityName === selectedCity.cityName) {
-                        recommendParams.gaodeLongitude = longitude;
-                        recommendParams.gaodeLatitude = latitude;
-                    } else {
-                        recommendParams.cityId = selectedCity.cityId;
-                    }
-                    resolve(recommendParams);
-                });
-            })
-            .catch(error => reject(error));
-    });
+        if (cityName === selectedCity.cityName) {
+            recommendParams.gaodeLongitude = longitude;
+            recommendParams.gaodeLatitude = latitude;
+        } else {
+            recommendParams.cityId = selectedCity.cityId;
+        }
+
+        return recommendParams;
+    } catch (e) { return {}; }
 }
 
 const defaultState = {

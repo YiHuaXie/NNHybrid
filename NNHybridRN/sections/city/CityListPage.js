@@ -47,6 +47,7 @@ class CityListPage extends Component {
         if (!finalCityName || !finalCityId) {
             Toaster.autoDisapperShow('所选城市暂未开通服务');
         } else {
+            CityManager.saveLocationCity(finalCityName, finalCityId);
             this._selectCity(finalCityName, finalCityId);
         }
     }
