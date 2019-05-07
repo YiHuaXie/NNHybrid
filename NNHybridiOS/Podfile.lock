@@ -14,10 +14,10 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - AMap3DMap (6.8.0):
+  - AMap3DMap (6.8.1):
     - AMapFoundation (~> 1.5)
   - AMapFoundation (1.5.6)
-  - AMapLocation (2.6.1):
+  - AMapLocation (2.6.2):
     - AMapFoundation (~> 1.4)
   - AMapNavi (6.7.0):
     - AMap3DMap (~> 6.7)
@@ -179,9 +179,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AMap3DMap: a18ab563e968c8adafd9cc395f1f5e5d147d2607
+  AMap3DMap: 9fa4ec6ab230bfbd3f0c0834f757fbd7038efe53
   AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
-  AMapLocation: cf024b53dc03663efb4ea4bcce27d4cce58bb97a
+  AMapLocation: 89a7e4eb6040d32ba73c77a4966ecc66e46aa7c3
   AMapNavi: 89e30fee35c01a00e45e846fa272f60724d06d0c
   AMapSearch: def5983c8ca1a6d7430970046dc814f6e337621d
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c

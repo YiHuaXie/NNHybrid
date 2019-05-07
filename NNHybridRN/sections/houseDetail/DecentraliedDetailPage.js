@@ -5,7 +5,7 @@ import HouseDetailNavigationBar from './HouseDetailNavigationBar';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
 import HouseDetailRecommendCell from './HouseDetailRecommendCell';
 import HouseDetailLocationCell from './HouseDetailLocationCell';
-import HouseDetailServiceFacilitiesCell, { ItemsType } from './HouseDetailServiceFacilitiesCell';
+import HouseDetailServiceFacilityCell, { ItemsType } from './HouseDetailServiceFacilityCell';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { connect } from 'react-redux';
 import {
@@ -50,9 +50,14 @@ class DecentraliedDetailPage extends Component {
 
                     }}
                 />
-                <HouseDetailServiceFacilitiesCell
-                    title='房间设置'
+                <HouseDetailServiceFacilityCell
+                    title='房间设施'
                     data={decentraliedHouse.privateFacilityItems}
+                    itemType={ItemsType.Facility}
+                />
+                <HouseDetailServiceFacilityCell
+                    title='公共设施'
+                    data={decentraliedHouse.facilityItems}
                     itemType={ItemsType.Facility}
                 />
                 <HouseDetailLocationCell

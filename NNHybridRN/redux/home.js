@@ -100,8 +100,7 @@ async function getRecommendParams(selectedCity) {
         const result = await LocationUtil.startLocation();
         const { province, city, longitude, latitude } = result;
         const recommendParams = {};
-        const cityName = AppUtil.isEmptyString(city) ? city : province;
-
+        const cityName = !AppUtil.isEmptyString(city) ? city : province;
         if (cityName === selectedCity.cityName) {
             recommendParams.gaodeLongitude = longitude;
             recommendParams.gaodeLatitude = latitude;

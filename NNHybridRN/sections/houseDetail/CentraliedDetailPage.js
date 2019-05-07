@@ -3,6 +3,9 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
 import HouseDetailNavigationBar from './HouseDetailNavigationBar';
+import HouseDetailRecommendCell from './HouseDetailRecommendCell';
+import HouseDetailLocationCell from './HouseDetailLocationCell';
+import HouseDetailServiceFacilityCell, { ItemsType } from './HouseDetailServiceFacilityCell';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import AppUtil from '../../utils/AppUtil';
 import Toaster from '../../components/common/Toaster';
@@ -45,6 +48,28 @@ class CentraliedDetailPage extends Component {
                     data={centraliedHouse.imageUrls}
                     hasVR={hasVR}
                     bannerItemClicked={(isVr) => {
+
+                    }}
+                />
+
+                <HouseDetailServiceFacilityCell
+                    title='房间设施'
+                    data={centraliedHouse.services}
+                    itemType={ItemsType.Service}
+                />
+                <HouseDetailServiceFacilityCell
+                    title='生活服务'
+                    data={centraliedHouse.storeServices}
+                    itemType={ItemsType.Service}
+                />
+                <HouseDetailLocationCell
+                    suffixAddress={centraliedHouse.address}
+                    longitude={centraliedHouse.longitude}
+                    latitude={centraliedHouse.latitude}
+                />
+                <HouseDetailRecommendCell
+                    data={recommendHouseList}
+                    recommendItemClicked={index => {
 
                     }}
                 />
