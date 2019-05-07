@@ -6,12 +6,9 @@
 //  Copyright © 2019 NeroXie. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <React/RCTViewManager.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface MapLocationViewManager : NSObject
+@interface MapLocationViewManager : RCTViewManager <RCTBridgeModule>
 
 @end
 
-NS_ASSUME_NONNULL_END

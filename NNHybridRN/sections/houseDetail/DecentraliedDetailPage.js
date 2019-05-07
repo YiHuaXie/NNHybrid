@@ -4,6 +4,8 @@ import NavigationUtil from '../../utils/NavigationUtil';
 import HouseDetailNavigationBar from './HouseDetailNavigationBar';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
 import HouseDetailRecommendCell from './HouseDetailRecommendCell';
+import HouseDetailLocationCell from './HouseDetailLocationCell';
+import HouseDetailServiceFacilitiesCell, { ItemsType } from './HouseDetailServiceFacilitiesCell';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { connect } from 'react-redux';
 import {
@@ -48,13 +50,24 @@ class DecentraliedDetailPage extends Component {
 
                     }}
                 />
+                <HouseDetailServiceFacilitiesCell
+                    title='房间设置'
+                    data={decentraliedHouse.privateFacilityItems}
+                    itemType={ItemsType.Facility}
+                />
+                <HouseDetailLocationCell
+                    prefixAddress={decentraliedHouse.city + decentraliedHouse.region}
+                    suffixAddress={decentraliedHouse.address}
+                    longitude={decentraliedHouse.longitude}
+                    latitude={decentraliedHouse.latitude}
+                />
                 <HouseDetailRecommendCell
                     data={recommendHouseList}
                     recommendItemClicked={index => {
 
                     }}
                 />
-            </ScrollView>
+            </ScrollView >
         );
     }
 
@@ -91,6 +104,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(DecentraliedDetailPa
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FFFFFF',
     }
 });

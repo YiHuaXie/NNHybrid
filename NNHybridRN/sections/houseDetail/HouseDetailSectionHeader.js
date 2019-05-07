@@ -15,12 +15,12 @@ export default class HouseDetailSectionHeader extends Component {
 const styles = StyleSheet.create({
     container: {
         height: 60,
-        backgroundColor: 'yellow',
-        // alignItems: 'center',
+        justifyContent: 'center',
     },
     title: {
         fontSize: 15,
         color: AppUtil.app_black,
         fontWeight: '500',
+        marginLeft: 15
     }
 });

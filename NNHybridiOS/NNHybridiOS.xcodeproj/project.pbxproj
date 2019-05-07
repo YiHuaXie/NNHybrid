@@ -51,6 +51,7 @@
 		AE687BEB225C6B330054FDA6 /* UserDefaultKey.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BE7225C6B330054FDA6 /* UserDefaultKey.m */; };
 		AE687C00225C6BD30054FDA6 /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BF2225C6BD30054FDA6 /* CityModel.m */; };
 		AE6DD1512268D059006E1022 /* AMapLocationModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE6DD1502268D059006E1022 /* AMapLocationModule.m */; };
+		AEAA8EB02281311800FA1EE6 /* MapLocationViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEAA8EAF2281311800FA1EE6 /* MapLocationViewManager.m */; };
 		AEC86C48225353B400C76C09 /* ParallaxViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C41225353B400C76C09 /* ParallaxViewManager.m */; };
 		AEC86C49225353B400C76C09 /* RNBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C44225353B400C76C09 /* RNBaseModule.m */; };
 		AEE4607E22789725003F5D4B /* PlaneLoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */; };
@@ -188,6 +189,8 @@
 		AE687BF3225C6BD30054FDA6 /* CityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityModel.h; sourceTree = "<group>"; };
 		AE6DD14F2268D059006E1022 /* AMapLocationModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMapLocationModule.h; sourceTree = "<group>"; };
 		AE6DD1502268D059006E1022 /* AMapLocationModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMapLocationModule.m; sourceTree = "<group>"; };
+		AEAA8EAE2281311800FA1EE6 /* MapLocationViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapLocationViewManager.h; sourceTree = "<group>"; };
+		AEAA8EAF2281311800FA1EE6 /* MapLocationViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapLocationViewManager.m; sourceTree = "<group>"; };
 		AEC86C41225353B400C76C09 /* ParallaxViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxViewManager.m; sourceTree = "<group>"; };
 		AEC86C42225353B400C76C09 /* ParallaxViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxViewManager.h; sourceTree = "<group>"; };
 		AEC86C44225353B400C76C09 /* RNBaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBaseModule.m; sourceTree = "<group>"; };
@@ -554,6 +557,8 @@
 				AEC86C41225353B400C76C09 /* ParallaxViewManager.m */,
 				AEE4607C22789725003F5D4B /* PlaneLoadingManager.h */,
 				AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */,
+				AEAA8EAE2281311800FA1EE6 /* MapLocationViewManager.h */,
+				AEAA8EAF2281311800FA1EE6 /* MapLocationViewManager.m */,
 			);
 			path = RCTView;
 			sourceTree = "<group>";
@@ -899,6 +904,8 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NNHybridiOS/Pods-NNHybridiOS-resources.sh",
+				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
+				"${PODS_ROOT}/AMapNavi/AMapNaviKit.framework/AMapNavi.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
@@ -921,6 +928,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMapNavi.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
@@ -1004,6 +1013,7 @@
 				AE687BD1225C69180054FDA6 /* NNRefreshLoadingView.m in Sources */,
 				AEED90EC225BAC44001B1985 /* NNGlobalHelper.m in Sources */,
 				AEED90FA225BAC44001B1985 /* CADisplayLink+NNExtension.m in Sources */,
+				AEAA8EB02281311800FA1EE6 /* MapLocationViewManager.m in Sources */,
 				AEED90FC225BAC44001B1985 /* NNPinYin.m in Sources */,
 				AE687BD4225C69180054FDA6 /* ParallaxView.m in Sources */,
 				AE687BA6225C68B50054FDA6 /* UIView+BOLoading.m in Sources */,
