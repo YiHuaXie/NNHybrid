@@ -6,6 +6,7 @@ import HouseDetailBannerCell from './HouseDetailBannerCell';
 import HouseDetailRecommendCell from './HouseDetailRecommendCell';
 import HouseDetailLocationCell from './HouseDetailLocationCell';
 import HouseDetailServiceFacilityCell, { ItemsType } from './HouseDetailServiceFacilityCell';
+import HouseDetailDescriptionCell from './HouseDetailDescriptionCell';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { connect } from 'react-redux';
 import {
@@ -18,6 +19,8 @@ import AppUtil from '../../utils/AppUtil';
 import { Types } from '../../redux/base/actions';
 
 class DecentraliedDetailPage extends Component {
+
+    state = { itemsType: ItemsType.FACILITY_PRIVATE };
 
     componentWillMount() {
         const { roomId, isFullRent } = this.props.navigation.state.params;
@@ -41,6 +44,11 @@ class DecentraliedDetailPage extends Component {
 
         const hasVR = !AppUtil.isEmptyString(decentraliedHouse.vrUrl);
 
+        const facilityData =
+            this.state.itemsType === ItemsType.FACILITY_PRIVATE ?
+                decentraliedHouse.privateFacilityItems :
+                decentraliedHouse.facilityItems;
+
         return (
             <ScrollView onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}>
                 <HouseDetailBannerCell
@@ -51,15 +59,18 @@ class DecentraliedDetailPage extends Component {
                     }}
                 />
                 <HouseDetailServiceFacilityCell
-                    title='房间设施'
-                    data={decentraliedHouse.privateFacilityItems}
-                    itemType={ItemsType.Facility}
+                    data={facilityData}
+                    itemsType={this.state.itemsType}
+                    facilityChanged={itemsType => {
+                        const newItemsType =
+                            itemsType === ItemsType.FACILITY_PRIVATE ?
+                                ItemsType.FACILITY_PUBLIC :
+                                ItemsType.FACILITY_PRIVATE;
+
+                        this.setState({ itemsType: newItemsType });
+                    }}
                 />
-                <HouseDetailServiceFacilityCell
-                    title='公共设施'
-                    data={decentraliedHouse.facilityItems}
-                    itemType={ItemsType.Facility}
-                />
+                <HouseDetailDescriptionCell description={decentraliedHouse.houseDesc} />
                 <HouseDetailLocationCell
                     prefixAddress={decentraliedHouse.city + decentraliedHouse.region}
                     suffixAddress={decentraliedHouse.address}

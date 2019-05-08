@@ -53,14 +53,12 @@ class CentraliedDetailPage extends Component {
                 />
 
                 <HouseDetailServiceFacilityCell
-                    title='房间设施'
                     data={centraliedHouse.services}
-                    itemType={ItemsType.Service}
+                    itemsType={ItemsType.SERVICE_PRIVATE}
                 />
                 <HouseDetailServiceFacilityCell
-                    title='生活服务'
                     data={centraliedHouse.storeServices}
-                    itemType={ItemsType.Service}
+                    itemsType={ItemsType.SERVICE_PUBLIC}
                 />
                 <HouseDetailLocationCell
                     suffixAddress={centraliedHouse.address}

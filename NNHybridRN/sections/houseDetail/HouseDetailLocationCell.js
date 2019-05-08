@@ -15,7 +15,7 @@ export default class HouseDetailLocationCell extends Component {
     render() {
         const { prefixAddress, suffixAddress, longitude, latitude } = this.props;
         return (
-            <View style={{ height: 210 + this.state.addressHeight }}>
+            <View style={{ height: 225 + this.state.addressHeight }}>
                 <HouseDetailSectionHeader title='地理位置' />
                 <Text
                     style={styles.title}
