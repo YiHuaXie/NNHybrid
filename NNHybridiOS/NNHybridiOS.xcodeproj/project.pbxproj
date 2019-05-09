@@ -29,6 +29,8 @@
 		AE1762292284025100D01C61 /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1762282284025100D01C61 /* TagModel.m */; };
 		AE17622D228404FD00D01C61 /* NNLabelStyleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17622B228404FD00D01C61 /* NNLabelStyleLayout.m */; };
 		AE176230228409DC00D01C61 /* HouseDetailTitleCellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17622F228409DC00D01C61 /* HouseDetailTitleCellManager.m */; };
+		AE17623322841FFC00D01C61 /* ShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17623222841FFC00D01C61 /* ShareManager.m */; };
+		AE1762362284299900D01C61 /* ShareModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1762352284299900D01C61 /* ShareModule.m */; };
 		AE687AF5225C65090054FDA6 /* AppDelegatePluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687AEF225C65090054FDA6 /* AppDelegatePluginManager.m */; };
 		AE687AF6225C65090054FDA6 /* SystemConfigPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687AF0225C65090054FDA6 /* SystemConfigPlugin.m */; };
 		AE687B52225C68360054FDA6 /* NNBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B40225C68360054FDA6 /* NNBaseViewModel.m */; };
@@ -146,6 +148,10 @@
 		AE17622C228404FD00D01C61 /* NNLabelStyleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNLabelStyleLayout.h; sourceTree = "<group>"; };
 		AE17622E228409DC00D01C61 /* HouseDetailTitleCellManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseDetailTitleCellManager.h; sourceTree = "<group>"; };
 		AE17622F228409DC00D01C61 /* HouseDetailTitleCellManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDetailTitleCellManager.m; sourceTree = "<group>"; };
+		AE17623122841FFC00D01C61 /* ShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareManager.h; sourceTree = "<group>"; };
+		AE17623222841FFC00D01C61 /* ShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareManager.m; sourceTree = "<group>"; };
+		AE1762342284299900D01C61 /* ShareModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareModule.h; sourceTree = "<group>"; };
+		AE1762352284299900D01C61 /* ShareModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareModule.m; sourceTree = "<group>"; };
 		AE687AE9225C65090054FDA6 /* SystemConfigPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemConfigPlugin.h; sourceTree = "<group>"; };
 		AE687AEA225C65090054FDA6 /* AppDelegatePluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegatePluginManager.h; sourceTree = "<group>"; };
 		AE687AED225C65090054FDA6 /* AppDelegatePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegatePlugin.h; sourceTree = "<group>"; };
@@ -508,6 +514,8 @@
 				AE687BA0225C68B40054FDA6 /* CityManager.m */,
 				AE687BA1225C68B40054FDA6 /* LocationManager.h */,
 				AE687B9F225C68B40054FDA6 /* LocationManager.m */,
+				AE17623122841FFC00D01C61 /* ShareManager.h */,
+				AE17623222841FFC00D01C61 /* ShareManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -636,6 +644,8 @@
 				AEED9209225CBBEE001B1985 /* UserDefaultModule.m */,
 				AE6DD14F2268D059006E1022 /* AMapLocationModule.h */,
 				AE6DD1502268D059006E1022 /* AMapLocationModule.m */,
+				AE1762342284299900D01C61 /* ShareModule.h */,
+				AE1762352284299900D01C61 /* ShareModule.m */,
 			);
 			path = RCTBridge;
 			sourceTree = "<group>";
@@ -1061,8 +1071,10 @@
 				AEED90FF225BAC44001B1985 /* NNNormalAlertView.m in Sources */,
 				AE687B55225C68360054FDA6 /* NNImageCollectionViewCell.m in Sources */,
 				AEED90F3225BAC44001B1985 /* UIImage+NNExtension.m in Sources */,
+				AE1762362284299900D01C61 /* ShareModule.m in Sources */,
 				AEED90F0225BAC44001B1985 /* NSString+NNExtension.m in Sources */,
 				AEED90FD225BAC44001B1985 /* NNCarouselLayout.m in Sources */,
+				AE17623322841FFC00D01C61 /* ShareManager.m in Sources */,
 				AE687B53225C68360054FDA6 /* NNBaseModel.m in Sources */,
 				AE687BA5225C68B50054FDA6 /* UIScrollView+NNExtension.m in Sources */,
 				AEED90F4225BAC44001B1985 /* NSTimer+NNExtension.m in Sources */,

@@ -87,6 +87,9 @@ class CentraliedDetailPage extends Component {
                     isTransparent={isTransparent}
                     title='房型详情'
                     backHandler={() => NavigationUtil.goBack()}
+                    shareHandler={() => {
+
+                    }}
                 />
                 <NNPlaneLoading show={isLoading} />
             </View>

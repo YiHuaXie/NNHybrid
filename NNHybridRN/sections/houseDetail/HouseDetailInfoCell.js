@@ -55,7 +55,6 @@ export default class HouseDetailInfoCell extends Component {
 
 const styles = StyleSheet.create({
     houseTitle: {
-        // backgroundColor: 'red',
         marginLeft: 15,
         marginRight: 15,
         marginTop: 20,

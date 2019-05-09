@@ -101,6 +101,9 @@ class DecentraliedDetailPage extends Component {
                     isTransparent={isTransparent}
                     title='房间详情'
                     backHandler={() => NavigationUtil.goBack()}
+                    shareHandler={() => {
+
+                    }}
                 />
                 <NNPlaneLoading show={isLoading} />
             </View>

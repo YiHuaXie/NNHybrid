@@ -19,12 +19,23 @@ export default class ApartmentNavigationBar extends Component {
             </TouchableWithoutFeedback>
         );
 
+        const rightItem = (
+            <TouchableWithoutFeedback onPress={() => this.props.shareHandler()}>
+                <Ionicons
+                    name='md-share'
+                    size={25}
+                    style={{ color: isTransparent ? '#FFFFFF' : AppUtil.app_black }}
+                />
+            </TouchableWithoutFeedback>
+        );
+
         return (
             <NavigationBar
                 statusBar={{ barStyle: AppUtil.iOS && isTransparent ? 'light-content' : 'default' }}
                 title={isTransparent ? '' : title}
                 titleColor='#FFFFFF'
                 leftItem={leftItem}
+                rightItem={rightItem}
                 showDividingLine={isTransparent ? false : true}
                 navBarStyle={{
                     position: 'absolute',
