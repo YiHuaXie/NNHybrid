@@ -22,6 +22,13 @@
 		AE09FE4E2231FFAD003C2F97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE4D2231FFAD003C2F97 /* main.m */; };
 		AE09FE582231FFAE003C2F97 /* NNHybridiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE572231FFAE003C2F97 /* NNHybridiOSTests.m */; };
 		AE09FE632231FFAE003C2F97 /* NNHybridiOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE622231FFAE003C2F97 /* NNHybridiOSUITests.m */; };
+		AE17621E2284007500D01C61 /* HouseDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17621B2284007500D01C61 /* HouseDetailTitleCell.m */; };
+		AE17621F2284007500D01C61 /* HouseDetailTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE17621C2284007500D01C61 /* HouseDetailTitleCell.xib */; };
+		AE176223228400F100D01C61 /* DecentraliedHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE176222228400F100D01C61 /* DecentraliedHouse.m */; };
+		AE176226228400FF00D01C61 /* CentraliedHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE176225228400FF00D01C61 /* CentraliedHouse.m */; };
+		AE1762292284025100D01C61 /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1762282284025100D01C61 /* TagModel.m */; };
+		AE17622D228404FD00D01C61 /* NNLabelStyleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17622B228404FD00D01C61 /* NNLabelStyleLayout.m */; };
+		AE176230228409DC00D01C61 /* HouseDetailTitleCellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17622F228409DC00D01C61 /* HouseDetailTitleCellManager.m */; };
 		AE687AF5225C65090054FDA6 /* AppDelegatePluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687AEF225C65090054FDA6 /* AppDelegatePluginManager.m */; };
 		AE687AF6225C65090054FDA6 /* SystemConfigPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687AF0225C65090054FDA6 /* SystemConfigPlugin.m */; };
 		AE687B52225C68360054FDA6 /* NNBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B40225C68360054FDA6 /* NNBaseViewModel.m */; };
@@ -126,6 +133,19 @@
 		AE09FE5E2231FFAE003C2F97 /* NNHybridiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NNHybridiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE09FE622231FFAE003C2F97 /* NNHybridiOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNHybridiOSUITests.m; sourceTree = "<group>"; };
 		AE09FE642231FFAE003C2F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE17621B2284007500D01C61 /* HouseDetailTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseDetailTitleCell.m; sourceTree = "<group>"; };
+		AE17621C2284007500D01C61 /* HouseDetailTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseDetailTitleCell.xib; sourceTree = "<group>"; };
+		AE17621D2284007500D01C61 /* HouseDetailTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseDetailTitleCell.h; sourceTree = "<group>"; };
+		AE176221228400F100D01C61 /* DecentraliedHouse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecentraliedHouse.h; sourceTree = "<group>"; };
+		AE176222228400F100D01C61 /* DecentraliedHouse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecentraliedHouse.m; sourceTree = "<group>"; };
+		AE176224228400FF00D01C61 /* CentraliedHouse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CentraliedHouse.h; sourceTree = "<group>"; };
+		AE176225228400FF00D01C61 /* CentraliedHouse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CentraliedHouse.m; sourceTree = "<group>"; };
+		AE1762272284025100D01C61 /* TagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
+		AE1762282284025100D01C61 /* TagModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
+		AE17622B228404FD00D01C61 /* NNLabelStyleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNLabelStyleLayout.m; sourceTree = "<group>"; };
+		AE17622C228404FD00D01C61 /* NNLabelStyleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNLabelStyleLayout.h; sourceTree = "<group>"; };
+		AE17622E228409DC00D01C61 /* HouseDetailTitleCellManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseDetailTitleCellManager.h; sourceTree = "<group>"; };
+		AE17622F228409DC00D01C61 /* HouseDetailTitleCellManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDetailTitleCellManager.m; sourceTree = "<group>"; };
 		AE687AE9225C65090054FDA6 /* SystemConfigPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemConfigPlugin.h; sourceTree = "<group>"; };
 		AE687AEA225C65090054FDA6 /* AppDelegatePluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegatePluginManager.h; sourceTree = "<group>"; };
 		AE687AED225C65090054FDA6 /* AppDelegatePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegatePlugin.h; sourceTree = "<group>"; };
@@ -336,6 +356,47 @@
 			path = NNHybridiOSUITests;
 			sourceTree = "<group>";
 		};
+		AE1762192284007500D01C61 /* HouseDetail */ = {
+			isa = PBXGroup;
+			children = (
+				AE1762202284009F00D01C61 /* Model */,
+				AE17621A2284007500D01C61 /* View */,
+			);
+			path = HouseDetail;
+			sourceTree = "<group>";
+		};
+		AE17621A2284007500D01C61 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AE17621D2284007500D01C61 /* HouseDetailTitleCell.h */,
+				AE17621B2284007500D01C61 /* HouseDetailTitleCell.m */,
+				AE17621C2284007500D01C61 /* HouseDetailTitleCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AE1762202284009F00D01C61 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE176221228400F100D01C61 /* DecentraliedHouse.h */,
+				AE176222228400F100D01C61 /* DecentraliedHouse.m */,
+				AE176224228400FF00D01C61 /* CentraliedHouse.h */,
+				AE176225228400FF00D01C61 /* CentraliedHouse.m */,
+				AE1762272284025100D01C61 /* TagModel.h */,
+				AE1762282284025100D01C61 /* TagModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AE17622A228404FD00D01C61 /* NNLabelStyleLayout */ = {
+			isa = PBXGroup;
+			children = (
+				AE17622C228404FD00D01C61 /* NNLabelStyleLayout.h */,
+				AE17622B228404FD00D01C61 /* NNLabelStyleLayout.m */,
+			);
+			path = NNLabelStyleLayout;
+			sourceTree = "<group>";
+		};
 		AE687AE6225C65090054FDA6 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +567,7 @@
 		AE687BDA225C69AF0054FDA6 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				AE1762192284007500D01C61 /* HouseDetail */,
 				AE687BEC225C6BD30054FDA6 /* City */,
 				AE687BDD225C69AF0054FDA6 /* RNPageViewController.h */,
 				AE687BDB225C69AF0054FDA6 /* RNPageViewController.m */,
@@ -559,6 +621,8 @@
 				AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */,
 				AEAA8EAE2281311800FA1EE6 /* MapLocationViewManager.h */,
 				AEAA8EAF2281311800FA1EE6 /* MapLocationViewManager.m */,
+				AE17622E228409DC00D01C61 /* HouseDetailTitleCellManager.h */,
+				AE17622F228409DC00D01C61 /* HouseDetailTitleCellManager.m */,
 			);
 			path = RCTView;
 			sourceTree = "<group>";
@@ -647,12 +711,12 @@
 		AEED90D4225BAC44001B1985 /* NNComponent */ = {
 			isa = PBXGroup;
 			children = (
+				AE17622A228404FD00D01C61 /* NNLabelStyleLayout */,
 				AEED90D5225BAC44001B1985 /* NNPFSLabel */,
 				AEED90DA225BAC44001B1985 /* NNGCDTimer */,
 				AEED90DD225BAC44001B1985 /* NNPinYin */,
 				AEED90E0225BAC44001B1985 /* NNCarousel */,
 				AEED90E5225BAC44001B1985 /* NNAlertView */,
-				AEED90EA225BAC44001B1985 /* NNLabelStyleLayout */,
 			);
 			path = NNComponent;
 			sourceTree = "<group>";
@@ -706,13 +770,6 @@
 				AEED90E9225BAC44001B1985 /* NNAlertView.m */,
 			);
 			path = NNAlertView;
-			sourceTree = "<group>";
-		};
-		AEED90EA225BAC44001B1985 /* NNLabelStyleLayout */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NNLabelStyleLayout;
 			sourceTree = "<group>";
 		};
 		C9B93B81963A58D79A88DA39 /* Pods */ = {
@@ -864,6 +921,7 @@
 				487863555F6542709ED4981C /* Entypo.ttf in Resources */,
 				04CF61648C0144CDB5A112C5 /* EvilIcons.ttf in Resources */,
 				D21C812D5E67487BAE838A15 /* Feather.ttf in Resources */,
+				AE17621F2284007500D01C61 /* HouseDetailTitleCell.xib in Resources */,
 				4D2DAAA9C9E14FA2952B2A88 /* FontAwesome.ttf in Resources */,
 				23A5C779349E457EA730C764 /* FontAwesome5_Brands.ttf in Resources */,
 				20771D9342F34366B7D2FA37 /* FontAwesome5_Regular.ttf in Resources */,
@@ -989,6 +1047,8 @@
 				AEED90F6225BAC44001B1985 /* UITableView+NNExtension.m in Sources */,
 				AE687BBD225C68B50054FDA6 /* NNNetworkResponse.m in Sources */,
 				AEED9100225BAC44001B1985 /* NNAlertView.m in Sources */,
+				AE176226228400FF00D01C61 /* CentraliedHouse.m in Sources */,
+				AE176223228400F100D01C61 /* DecentraliedHouse.m in Sources */,
 				AEC86C49225353B400C76C09 /* RNBaseModule.m in Sources */,
 				AE687BBF225C68B50054FDA6 /* NNNetworkRequest.m in Sources */,
 				AEED90F5225BAC44001B1985 /* UIColor+NNExtension.m in Sources */,
@@ -1016,17 +1076,21 @@
 				AEAA8EB02281311800FA1EE6 /* MapLocationViewManager.m in Sources */,
 				AEED90FC225BAC44001B1985 /* NNPinYin.m in Sources */,
 				AE687BD4225C69180054FDA6 /* ParallaxView.m in Sources */,
+				AE1762292284025100D01C61 /* TagModel.m in Sources */,
 				AE687BA6225C68B50054FDA6 /* UIView+BOLoading.m in Sources */,
 				AE687BC1225C68B50054FDA6 /* CityManager.m in Sources */,
 				AEED90EE225BAC44001B1985 /* UIFont+NNExtension.m in Sources */,
 				AE687AF6225C65090054FDA6 /* SystemConfigPlugin.m in Sources */,
 				AE09FE402231FFAD003C2F97 /* AppDelegate.m in Sources */,
+				AE17622D228404FD00D01C61 /* NNLabelStyleLayout.m in Sources */,
 				AE687BE1225C69AF0054FDA6 /* RNPageViewController.m in Sources */,
 				AE687B58225C68370054FDA6 /* NNBaseViewController.m in Sources */,
 				AEED90ED225BAC44001B1985 /* NSObject+NNExtension.m in Sources */,
+				AE17621E2284007500D01C61 /* HouseDetailTitleCell.m in Sources */,
 				AEED90FB225BAC44001B1985 /* NNGCDTimer.m in Sources */,
 				AE687BEB225C6B330054FDA6 /* UserDefaultKey.m in Sources */,
 				AEED90F8225BAC44001B1985 /* UIControl+NNExtension.m in Sources */,
+				AE176230228409DC00D01C61 /* HouseDetailTitleCellManager.m in Sources */,
 				AEED90F9225BAC44001B1985 /* NNPFSLabel.m in Sources */,
 				AE687BA3225C68B50054FDA6 /* UIBarButtonItem+NNExtension.m in Sources */,
 				AE687BA4225C68B50054FDA6 /* UIView+Frame.m in Sources */,

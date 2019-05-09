@@ -7,6 +7,8 @@ import HouseDetailRecommendCell from './HouseDetailRecommendCell';
 import HouseDetailLocationCell from './HouseDetailLocationCell';
 import HouseDetailServiceFacilityCell, { ItemsType } from './HouseDetailServiceFacilityCell';
 import HouseDetailDescriptionCell from './HouseDetailDescriptionCell';
+import HouseDetailMessageCell from './HouseDetailMessageCell';
+import HouseDetailInfoCell from './HouseDetailInfoCell';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { connect } from 'react-redux';
 import {
@@ -58,6 +60,8 @@ class DecentraliedDetailPage extends Component {
 
                     }}
                 />
+                <HouseDetailInfoCell decentraliedHouse={decentraliedHouse} />
+                <HouseDetailMessageCell decentraliedHouse={decentraliedHouse} />
                 <HouseDetailServiceFacilityCell
                     data={facilityData}
                     itemsType={this.state.itemsType}

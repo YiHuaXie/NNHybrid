@@ -6,6 +6,7 @@ import HouseDetailNavigationBar from './HouseDetailNavigationBar';
 import HouseDetailRecommendCell from './HouseDetailRecommendCell';
 import HouseDetailLocationCell from './HouseDetailLocationCell';
 import HouseDetailServiceFacilityCell, { ItemsType } from './HouseDetailServiceFacilityCell';
+import HouseDetailMessageCell from './HouseDetailMessageCell';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import AppUtil from '../../utils/AppUtil';
 import Toaster from '../../components/common/Toaster';
@@ -16,6 +17,7 @@ import {
     navBarIsTransparent,
     DetailTypes
 } from '../../redux/houseDetail';
+import HouseDetailInfoCell from './HouseDetailInfoCell';
 
 class CentraliedDetailPage extends Component {
 
@@ -51,7 +53,8 @@ class CentraliedDetailPage extends Component {
 
                     }}
                 />
-
+                <HouseDetailInfoCell centraliedHouse={centraliedHouse}/>
+                <HouseDetailMessageCell centraliedHouse={centraliedHouse} />
                 <HouseDetailServiceFacilityCell
                     data={centraliedHouse.services}
                     itemsType={ItemsType.SERVICE_PRIVATE}

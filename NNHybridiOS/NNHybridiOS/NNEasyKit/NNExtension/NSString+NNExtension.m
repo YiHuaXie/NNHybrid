@@ -84,6 +84,23 @@
     return [tmp componentsJoinedByString:joinedByString];
 }
 
+#pragma mark - Width
+
++ (CGFloat)nn_widthWithString:(NSString *)string
+                    maxHeight:(CGFloat)maxHeight
+                   attributes:(NSDictionary *)attributes {
+    if (!string.length) return 0.0;
+    
+    CGFloat labelWidth = [string boundingRectWithSize:CGSizeMake(MAXFLOAT, maxHeight)
+                                              options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:attributes
+                                              context:nil].size.width;
+    
+    return labelWidth;
+}
+
+#pragma mark - Height
+
 + (CGFloat)nn_heightWithAttributedString:(NSAttributedString *)attributedString
                                 maxWidth:(CGFloat)maxWidth {
     if (!attributedString) return 0.0;
