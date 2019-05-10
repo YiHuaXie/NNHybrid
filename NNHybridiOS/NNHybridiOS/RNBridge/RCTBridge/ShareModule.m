@@ -15,13 +15,13 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(shareWithParameters:(NSDictionary *)paramters) {
     dispatch_async(dispatch_get_main_queue(), ^{
-       ShareManager *manager = [[ShareManager alloc] initWithTitle:paramters[@"title"]
-                                description:paramters[@"description"]
-                              thumbImageUrl:paramters[@"thumbImageUrl"]
-                                 webpageUrl:paramters[@"webpageUrl"]
-                                sendMessage:paramters[@"messages"]];
-        [manager shareOnView:SharedApplication.keyWindow
-       currentViewController:nil];
+        ShareManager *manager = [[ShareManager alloc] initWithTitle:paramters[@"title"]
+                                                        description:paramters[@"description"]
+                                                              image:paramters[@"image"]
+                                                             webUrl:paramters[@"webUrl"]
+                                                            message:paramters[@"message"]];
+        
+        [manager shareOnView:SharedApplication.keyWindow currentViewController:nil];
     });
 }
 

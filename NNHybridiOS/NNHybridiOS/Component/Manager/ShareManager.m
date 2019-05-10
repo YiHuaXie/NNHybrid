@@ -28,7 +28,7 @@ static NSDictionary *_shareTypeMap = nil;
 @property(nonatomic, copy) NSString *shareTitle;
 @property(nonatomic, copy) NSString *shareDescription;
 @property(nonatomic, copy) NSString *shareLink;
-@property(nonatomic, strong) id thumbImageUrl;
+@property(nonatomic, strong) id shareImage;
 @property(nonatomic, copy) NSString *shareMessage;
 
 @property(nonatomic, copy) NSArray<BHBItem *> *shareItems;
@@ -43,16 +43,16 @@ static NSDictionary *_shareTypeMap = nil;
 
 - (instancetype)initWithTitle:(NSString *)title
                   description:(NSString *)description
-                thumbImageUrl:(id)thumbImageUrl
-                   webpageUrl:(NSString *)webpageUrl
-                  sendMessage:(NSString *)message {
+                     image:(id)image
+                       webUrl:(NSString *)webeUrl
+                      message:(NSString *)message {
     if (self = [super init]) {
         
 //        self.messageObject = [UMSocialMessageObject messageObject];
         self.shareTitle = title;
         self.shareDescription = description;
-        self.shareLink = webpageUrl;
-        self.thumbImageUrl = thumbImageUrl;
+        self.shareLink = webeUrl;
+        self.shareImage = image;
         self.shareMessage = message;
     }
 
@@ -62,7 +62,7 @@ static NSDictionary *_shareTypeMap = nil;
 - (void)shareOnView:(UIView *)view currentViewController:(UIViewController *)vc {
     WEAK_SELF;
     
-    [BHBPopView showToView:view withItems:self.shareItems andSelectBlock:^(BHBItem *item) {
+   [BHBPopView showToView:view withItems:self.shareItems andSelectBlock:^(BHBItem *item) {
         switch ([weakSelf.shareTypeMap[item.title] integerValue]) {
             case ShareTypeMessage:
                 return ;
@@ -74,7 +74,7 @@ static NSDictionary *_shareTypeMap = nil;
                 break;
         }
 //        if (item.shareType == FHTShareTypeMessage) {
-//           
+//
 //        }
 //        if (item.shareType == FHTShareTypeCopyLink) {
 //            [self copyLink];
@@ -105,7 +105,7 @@ static NSDictionary *_shareTypeMap = nil;
 #pragma mark - Getter
 
 - (NSArray<BHBItem *> *)shareItems {
-    if (_shareItems == nil) {
+    if (!_shareItems) {
         BHBItem *item0 = [[BHBItem alloc] initWithTitle:@"朋友圈" Icon:@"icon_share_wechat_moments"];
         BHBItem *item1 = [[BHBItem alloc] initWithTitle:@"微信好友" Icon:@"icon_share_wechat"];
         BHBItem *item2 = [[BHBItem alloc] initWithTitle:@"新浪微博" Icon:@"icon_share_weibo"];

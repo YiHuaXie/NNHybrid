@@ -14,9 +14,9 @@
 
 - (instancetype)initWithTitle:(NSString *)title
                   description:(NSString *)description
-                thumbImageUrl:(id)thumbImageUrl
-                   webpageUrl:(NSString *)webpageUrl
-                  sendMessage:(NSString *)message;
+                        image:(id)image
+                       webUrl:(NSString *)webUrl
+                      message:(NSString *)message;
 
 - (void)shareOnView:(UIView *)view currentViewController:(UIViewController *)vc;
 

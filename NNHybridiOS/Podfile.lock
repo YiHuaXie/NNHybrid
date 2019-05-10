@@ -24,7 +24,6 @@ PODS:
     - AMapFoundation (~> 1.5)
   - AMapSearch (6.6.0):
     - AMapFoundation (~> 1.4)
-  - BHBPopView (1.2.0)
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.4):
     - React
@@ -99,6 +98,16 @@ PODS:
   - SDWebImage/GIF (4.4.6):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
+  - UMengAnalytics (4.2.4)
+  - UMengUShare/Core (6.4.8.2):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.4.8.2)
+  - UMengUShare/Social/ReducedQQ (6.4.8.2):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedSina (6.4.8.2):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedWeChat (6.4.8.2):
+    - UMengUShare/Core
   - yoga (0.58.6.React)
 
 DEPENDENCIES:
@@ -106,7 +115,6 @@ DEPENDENCIES:
   - AMapLocation
   - AMapNavi
   - AMapSearch
-  - BHBPopView
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DGActivityIndicatorView
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -134,6 +142,10 @@ DEPENDENCIES:
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - SDWebImage
   - SDWebImage/GIF
+  - UMengAnalytics
+  - UMengUShare/Social/ReducedQQ
+  - UMengUShare/Social/ReducedSina
+  - UMengUShare/Social/ReducedWeChat
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -144,7 +156,6 @@ SPEC REPOS:
     - AMapLocation
     - AMapNavi
     - AMapSearch
-    - BHBPopView
     - boost-for-react-native
     - DGActivityIndicatorView
     - FLAnimatedImage
@@ -155,6 +166,8 @@ SPEC REPOS:
     - MBProgressHUD
     - MJRefresh
     - SDWebImage
+    - UMengAnalytics
+    - UMengUShare
 
 EXTERNAL SOURCES:
   BVLinearGradient:
@@ -187,7 +200,6 @@ SPEC CHECKSUMS:
   AMapLocation: 89a7e4eb6040d32ba73c77a4966ecc66e46aa7c3
   AMapNavi: 89e30fee35c01a00e45e846fa272f60724d06d0c
   AMapSearch: def5983c8ca1a6d7430970046dc814f6e337621d
-  BHBPopView: ea1c5a614e6bbbbc64c873d52fb1b5b60378cef0
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: 8cbc5155c978f2e43098818c91d206d07aae6d30
   DGActivityIndicatorView: ff2c76073d79692f724863c8dd38685866a03cb6
@@ -208,8 +220,10 @@ SPEC CHECKSUMS:
   RNGestureHandler: b65d391f4f570178d657b99a16ec99d09b8656b0
   RNVectorIcons: 6607bd3a30291d0edb56f9bbe7ae411ee2b928b0
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
+  UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   yoga: 32d7ef1081951e9a35a4c72a7be797598b138a48
 
-PODFILE CHECKSUM: 2920aecbf7dd3bbedef5c053dc8f77813e43a371
+PODFILE CHECKSUM: 6bf73ee5d3dd3d61db645c864b860905a8390c20
 
 COCOAPODS: 1.6.1

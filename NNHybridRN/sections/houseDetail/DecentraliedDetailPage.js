@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    NativeModules,
+    ScrollView
+} from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
 import HouseDetailNavigationBar from './HouseDetailNavigationBar';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
@@ -19,6 +24,19 @@ import {
 import Toaster from '../../components/common/Toaster';
 import AppUtil from '../../utils/AppUtil';
 import { Types } from '../../redux/base/actions';
+
+const ShareModule = NativeModules.ShareModule;
+
+const shareHandler = (decentraliedHouse) => {
+    const { houseName, images } = decentraliedHouse;
+    const title = houseName;
+    const description = 'NNHybrid Share Descrption';
+    const image = AppUtil.isEmptyArray(images) ? images[0] : null;
+    const webUrl = 'http://www.baidu.com';
+    const message = 'NNHybrid Share Meaasge';
+
+    ShareModule.shareWithParameters({ title, description, image, webUrl, message });
+}
 
 class DecentraliedDetailPage extends Component {
 
@@ -101,9 +119,7 @@ class DecentraliedDetailPage extends Component {
                     isTransparent={isTransparent}
                     title='房间详情'
                     backHandler={() => NavigationUtil.goBack()}
-                    shareHandler={() => {
-
-                    }}
+                    shareHandler={() => shareHandler(decentraliedHouse)}
                 />
                 <NNPlaneLoading show={isLoading} />
             </View>
