@@ -184,17 +184,9 @@ static NSArray *_mapSchemes = nil;
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation {
     if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
-        static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
-        MAPinAnnotationView *annotationView =
-        (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
-        if (annotationView == nil) {
-            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation
-                                                             reuseIdentifier:pointReuseIndentifier];
-        }
-        annotationView.animatesDrop = YES;
-        annotationView.pinColor = MAPinAnnotationColorPurple;
-        
-        return annotationView;
+        MAPinAnnotationView *newAnnotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+        newAnnotationView.pinColor = MAPinAnnotationColorPurple;
+        newAnnotationView.animatesDrop = YES;
     }
     
     return nil;
