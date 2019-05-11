@@ -1,4 +1,12 @@
 import { NavigationActions } from 'react-navigation';
+import NativeUtil from './NativeUtil';
+import AppUtil from './AppUtil';
+
+const NativePageNames = ['AddressOnMapPage'];
+const NativePageIsModal = [];
+const NativePageMap = {
+    AddressOnMapPage: AppUtil.iOS ? 'AddressOnMapViewController' : '',
+}
 
 export default class NavigationUtil {
 
@@ -9,8 +17,12 @@ export default class NavigationUtil {
             return;
         }
 
-        console.log(NavigationUtil.navigation);
-        navigation.navigate(page, { ...parameters });
+        if (NativePageNames.some(name => name === page)) {
+            const isModal = NativePageIsModal.some(name => name === page);
+            NativeUtil.jumpTo(NativePageMap[page], parameters, isModal);
+        } else {
+            navigation.navigate(page, { ...parameters });
+        }
     }
 
     static goBack() {

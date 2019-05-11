@@ -8,10 +8,11 @@
 
 #import "MapLocationViewManager.h"
 #import <MAMapKit/MAMapKit.h>
+#import <React/RCTComponent.h>
 
 @interface MapLocationView: UIView <MAMapViewDelegate>
 
-@property (strong, nonatomic) MAMapView *mapView;
+@property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, copy) NSDictionary *coordinate;
 
 @end
@@ -63,10 +64,6 @@
     }
 
     return nil;
-}
-
-- (void)mapView:(MAMapView *)mapView didSingleTappedAtCoordinate:(CLLocationCoordinate2D)coordinate {
-
 }
 
 #pragma mark - Setter

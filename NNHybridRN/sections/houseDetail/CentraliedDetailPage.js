@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
 import HouseDetailNavigationBar from './HouseDetailNavigationBar';
@@ -18,6 +18,30 @@ import {
     DetailTypes
 } from '../../redux/houseDetail';
 import HouseDetailInfoCell from './HouseDetailInfoCell';
+import NativeUtil from '../../utils/NativeUtil';
+
+const shareHandler = (centraliedHouse) => {
+    const { estateName, styleName, imageUrls } = centraliedHouse;
+
+    const title = `${estateName}.${styleName}`;
+    const description = 'NNHybrid Share Descrption';
+    const image = AppUtil.isEmptyArray(imageUrls) ? imageUrls[0] : null;
+    const webUrl = 'http://www.baidu.com';
+    const message = 'NNHybrid Share Meaasge';
+
+    NativeUtil.share({ title, description, image, webUrl, message });
+}
+
+const mapViewDidTouched = (centraliedHouse) => {
+    const { estateName, address, latitude, longitude } = centraliedHouse;
+
+    NavigationUtil.goPage('AddressOnMapPage', {
+        name: estateName,
+        address,
+        longitude,
+        latitude
+    });
+}
 
 class CentraliedDetailPage extends Component {
 
@@ -65,8 +89,12 @@ class CentraliedDetailPage extends Component {
                 />
                 <HouseDetailLocationCell
                     suffixAddress={centraliedHouse.address}
-                    longitude={centraliedHouse.longitude}
-                    latitude={centraliedHouse.latitude}
+                    mapViewDidTouched={() => mapViewDidTouched(centraliedHouse)}
+                    coordinate={{
+                        address: centraliedHouse.address,
+                        longitude: centraliedHouse.longitude,
+                        latitude: centraliedHouse.latitude
+                    }}
                 />
                 <HouseDetailRecommendCell
                     data={recommendHouseList}
@@ -79,7 +107,7 @@ class CentraliedDetailPage extends Component {
     }
 
     render() {
-        const { isTransparent, isLoading } = this.props.houseDetail;
+        const { isTransparent, isLoading, centraliedHouse } = this.props.houseDetail;
         return (
             <View style={styles.container}>
                 {this._renderContentView()}
@@ -87,9 +115,7 @@ class CentraliedDetailPage extends Component {
                     isTransparent={isTransparent}
                     title='房型详情'
                     backHandler={() => NavigationUtil.goBack()}
-                    shareHandler={() => {
-
-                    }}
+                    shareHandler={() => shareHandler(centraliedHouse)}
                 />
                 <NNPlaneLoading show={isLoading} />
             </View>

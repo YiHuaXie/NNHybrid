@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-    StyleSheet,
-    View,
-    NativeModules,
-    ScrollView
-} from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import NavigationUtil from '../../utils/NavigationUtil';
 import HouseDetailNavigationBar from './HouseDetailNavigationBar';
 import HouseDetailBannerCell from './HouseDetailBannerCell';
@@ -24,8 +19,7 @@ import {
 import Toaster from '../../components/common/Toaster';
 import AppUtil from '../../utils/AppUtil';
 import { Types } from '../../redux/base/actions';
-
-const ShareModule = NativeModules.ShareModule;
+import NativeUtil from '../../utils/NativeUtil';
 
 const shareHandler = (decentraliedHouse) => {
     const { houseName, images } = decentraliedHouse;
@@ -35,7 +29,18 @@ const shareHandler = (decentraliedHouse) => {
     const webUrl = 'http://www.baidu.com';
     const message = 'NNHybrid Share Meaasge';
 
-    ShareModule.shareWithParameters({ title, description, image, webUrl, message });
+    NativeUtil.share({ title, description, image, webUrl, message });
+}
+
+const mapViewDidTouched = (decentraliedHouse) => {
+    const { houseName, address, latitude, longitude } = decentraliedHouse;
+
+    NavigationUtil.goPage('AddressOnMapPage', {
+        name: houseName,
+        address,
+        longitude,
+        latitude
+    });
 }
 
 class DecentraliedDetailPage extends Component {
@@ -96,8 +101,12 @@ class DecentraliedDetailPage extends Component {
                 <HouseDetailLocationCell
                     prefixAddress={decentraliedHouse.city + decentraliedHouse.region}
                     suffixAddress={decentraliedHouse.address}
-                    longitude={decentraliedHouse.longitude}
-                    latitude={decentraliedHouse.latitude}
+                    mapViewDidTouched={() => mapViewDidTouched(decentraliedHouse)}
+                    coordinate={{
+                        address: decentraliedHouse.address,
+                        longitude: decentraliedHouse.longitude,
+                        latitude: decentraliedHouse.latitude
+                    }}
                 />
                 <HouseDetailRecommendCell
                     data={recommendHouseList}
@@ -110,7 +119,7 @@ class DecentraliedDetailPage extends Component {
     }
 
     render() {
-        const { isTransparent, isLoading } = this.props.houseDetail;
+        const { isTransparent, isLoading, decentraliedHouse } = this.props.houseDetail;
 
         return (
             <View style={styles.container}>
