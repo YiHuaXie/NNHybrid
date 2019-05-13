@@ -70,7 +70,7 @@
 		AE9B72CF2285946A00F9D954 /* BHBCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72C12285946A00F9D954 /* BHBCenterView.m */; };
 		AE9B72D02285946A00F9D954 /* UIView+BHBAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72C32285946A00F9D954 /* UIView+BHBAnimation.m */; };
 		AE9B72D12285946A00F9D954 /* BHBCustomBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72C62285946A00F9D954 /* BHBCustomBtn.m */; };
-		AE9B72D622859EBC00F9D954 /* AddressOnMapViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72D522859EBC00F9D954 /* AddressOnMapViewController.mm */; };
+		AE9B72D622859EBC00F9D954 /* AddressOnMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72D522859EBC00F9D954 /* AddressOnMapViewController.m */; };
 		AE9B72D92286785000F9D954 /* RNContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72D82286785000F9D954 /* RNContainerViewController.m */; };
 		AE9B72DC228679AC00F9D954 /* NNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72DB228679AC00F9D954 /* NNNavigationController.m */; };
 		AE9B72DF22867A8F00F9D954 /* NativeJumpModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72DE22867A8F00F9D954 /* NativeJumpModule.m */; };
@@ -251,7 +251,7 @@
 		AE9B72C52285946A00F9D954 /* BHBSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHBSingleton.h; sourceTree = "<group>"; };
 		AE9B72C62285946A00F9D954 /* BHBCustomBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHBCustomBtn.m; sourceTree = "<group>"; };
 		AE9B72D422859EBC00F9D954 /* AddressOnMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressOnMapViewController.h; sourceTree = "<group>"; };
-		AE9B72D522859EBC00F9D954 /* AddressOnMapViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AddressOnMapViewController.mm; sourceTree = "<group>"; };
+		AE9B72D522859EBC00F9D954 /* AddressOnMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressOnMapViewController.m; sourceTree = "<group>"; };
 		AE9B72D72286785000F9D954 /* RNContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNContainerViewController.h; sourceTree = "<group>"; };
 		AE9B72D82286785000F9D954 /* RNContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNContainerViewController.m; sourceTree = "<group>"; };
 		AE9B72DA228679AC00F9D954 /* NNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNavigationController.h; sourceTree = "<group>"; };
@@ -707,7 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				AE9B72D422859EBC00F9D954 /* AddressOnMapViewController.h */,
-				AE9B72D522859EBC00F9D954 /* AddressOnMapViewController.mm */,
+				AE9B72D522859EBC00F9D954 /* AddressOnMapViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1230,7 +1230,7 @@
 				AE9B72CB2285946A00F9D954 /* UIButton+BHBSetImage.m in Sources */,
 				AE687AF5225C65090054FDA6 /* AppDelegatePluginManager.m in Sources */,
 				AEED90FE225BAC44001B1985 /* NNCarousel.m in Sources */,
-				AE9B72D622859EBC00F9D954 /* AddressOnMapViewController.mm in Sources */,
+				AE9B72D622859EBC00F9D954 /* AddressOnMapViewController.m in Sources */,
 				AE687BE0225C69AF0054FDA6 /* ApiBaseRequest.m in Sources */,
 				AE6DD1512268D059006E1022 /* AMapLocationModule.m in Sources */,
 				AEED90EF225BAC44001B1985 /* UIView+NNExtension.m in Sources */,

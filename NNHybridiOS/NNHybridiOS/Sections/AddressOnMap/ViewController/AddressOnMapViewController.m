@@ -9,11 +9,10 @@
 #import "AddressOnMapViewController.h"
 #import "LocationManager.h"
 
+#import <MapKit/MapKit.h>
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
-
-static NSArray *_mapSchemes = nil;
 
 @interface AddressOnMapViewController () <MAMapViewDelegate>
 
@@ -29,10 +28,6 @@ static NSArray *_mapSchemes = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    _mapSchemes = @[@{@"title": @"谷歌地图", @"scheme": @"comgooglemaps://"},
-                    @{@"title": @"高德地图", @"scheme": @"iosamap://navi"},
-                    @{@"title": @"百度地图", @"scheme": @"baidumap://map/"}];
     
     self.title = @"地理位置";
     
@@ -75,17 +70,17 @@ static NSArray *_mapSchemes = nil;
         make.height.mas_equalTo(140);
         make.bottom.equalTo(self.view).offset(-30 - SAFE_AREA_HEIGHT);
     }];
-
+    
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, self.view.nn_width - 40, 20)];
     [self.bottomContainerView addSubview:nameLabel];
     nameLabel.font = nn_mediumFontSize(15);
     nameLabel.textColor = nn_rgb(51, 51, 51);
     nameLabel.text = self.name;
-
+    
     UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"location_icon"]];
     icon.frame = CGRectMake(20, CGRectGetMaxY(nameLabel.frame) + 12, 15, 15);
     [self.bottomContainerView addSubview:icon];
-
+    
     UILabel *addressLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [self.bottomContainerView addSubview:addressLabel];
     addressLabel.font = nn_regularFontSize(12);
@@ -97,8 +92,8 @@ static NSArray *_mapSchemes = nil;
         make.left.equalTo(icon.mas_right);
         make.right.mas_equalTo(self.bottomContainerView).offset(-20);
     }];
-
-    UIButton *naviButton = [[UIButton alloc] init];
+    
+    UIButton *naviButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.bottomContainerView addSubview:naviButton];
     [naviButton addTarget:self action:@selector(_didNaviButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [naviButton setTitleColor:nn_rgb(51, 51, 51) forState:UIControlStateNormal];
@@ -117,19 +112,18 @@ static NSArray *_mapSchemes = nil;
 }
 
 - (void)_addResetLocationButton {
-    UIButton *reLocateButton = [[UIButton alloc] init];
-    [reLocateButton setImage:[UIImage imageNamed:@"reLocation_icon"] forState:UIControlStateNormal];
-    [reLocateButton setImage:[UIImage imageNamed:@"reLocation_icon"] forState:UIControlStateHighlighted];
-    [self.view addSubview:reLocateButton];
-    [reLocateButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIButton *resetLocationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [resetLocationButton setImage:[UIImage imageNamed:@"reset_location_icon"] forState:UIControlStateNormal];
+    [self.view addSubview:resetLocationButton];
+    [resetLocationButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(15);
         make.bottom.equalTo(self.bottomContainerView.mas_top).offset(-15);
-        make.height.width.equalTo(@50);
+        make.height.width.mas_equalTo(50);
     }];
     
     WEAK_SELF;
     
-    [reLocateButton nn_addEventHandler:^(id sender) {
+    [resetLocationButton nn_addEventHandler:^(id sender) {
         [SharedLocationManager locationWithCompletion:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
             if (!error) {
                 [weakSelf.mapView setCenterCoordinate:location.coordinate animated:YES];
@@ -143,41 +137,42 @@ static NSArray *_mapSchemes = nil;
     
     UIAlertController *alertVC =
     [UIAlertController nn_alertControllerWithTitle:nil
-                                            message:nil
-                                     preferredStyle:UIAlertControllerStyleActionSheet
-                                  cancelButtonTitle:@"取消"
-                             destructiveButtonTitle:nil
-                                  otherButtonTitles:self.installedMapApp
-                                  completionHandler:^(UIAlertController *controller, UIAlertAction *action, NSInteger buttonIndex) {
-                                      [weakSelf _jumpToMapAppWithTitle:action.title];
-                                  }];
-     
-     [self presentViewController:alertVC animated:YES completion:nil] ;
+                                           message:nil
+                                    preferredStyle:UIAlertControllerStyleActionSheet
+                                 cancelButtonTitle:@"取消"
+                            destructiveButtonTitle:nil
+                                 otherButtonTitles:self.installedMapApp
+                                 completionHandler:^(UIAlertController *controller, UIAlertAction *action, NSInteger buttonIndex) {
+                                     [weakSelf _jumpToMapAppWithTitle:action.title];
+                                 }];
+    
+    [self presentViewController:alertVC animated:YES completion:nil] ;
 }
 
 - (void)_jumpToMapAppWithTitle:(NSString *)title {
-//    NSString *modeBaidu = @"transit";
-//    NSString *modeGaode = @"1";
-//    NSString *modeApple = MKLaunchOptionsDirectionsModeTransit;
-//    
-//    if ([title isEqualToString:@"苹果地图"]) {
-//        MKPlacemark *toPlacemark = [[MKPlacemark alloc] initWithCoordinate:self.coordinate addressDictionary:nil];
-//        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:toPlacemark];
-//        toLocation.name = self.address;
-//        
-//        [MKMapItem openMapsWithItems:@[toLocation]
-//                       launchOptions:@{MKLaunchOptionsDirectionsModeKey: modeApple,MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
-//    }else if ([title isEqualToString:@"谷歌地图"]) {
-//        NSString *urlStr = [NSString stringWithFormat:@"comgooglemaps://?daddr=%.8f,%.8f&directionsmode=transit",self.coordinate.latitude,self.coordinate.longitude];
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
-//    }else if ([title isEqualToString:@"高德地图"]){
-//        NSString *urlStr = [[NSString stringWithFormat:@"iosamap://path?sourceApplication=麦邻租房&sid=BGVIS1&&did=BGVIS2&dlat=%lf&dlon=%lf&dname=%@&dev=0&t=%@",self.coordinate.latitude,self.coordinate.longitude,self.address,modeGaode]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
-//    }else if ([title isEqualToString:@"百度地图"]){
-//        NSString *stringURL = [[NSString stringWithFormat:@"baidumap://map/direction?region=0&destination=name:%@|latlng:%lf,%lf&mode=%@&coord_type=gcj02", self.address,self.coordinate.latitude,self.coordinate.longitude,modeBaidu]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        NSURL *url = [NSURL URLWithString:stringURL];
-//        [[UIApplication sharedApplication] openURL:url];
-//    }
+    NSCharacterSet *characterSet = [NSCharacterSet URLQueryAllowedCharacterSet];
+    
+    if ([title isEqualToString:@"苹果地图"]) {
+        MKPlacemark *toPlacemark =
+        [[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake(self.latitude, self.longitude)
+                              addressDictionary:nil];
+        MKMapItem *toLocation = [[MKMapItem alloc] initWithPlacemark:toPlacemark];
+        toLocation.name = self.address;
+        
+        [MKMapItem openMapsWithItems:@[toLocation]
+                       launchOptions:@{MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeTransit,
+                                       MKLaunchOptionsShowsTrafficKey: [NSNumber numberWithBool:YES]}];
+    } else if ([title isEqualToString:@"高德地图"]) {
+        NSString *urlString =
+        FormatString(@"iosamap://path?sourceApplication=NNHybridiOS&sid=BGVIS1&&did=BGVIS2&dlat=%lf&dlon=%lf&dname=%@&dev=0&t=%@", self.latitude, self.longitude, self.address, @"1");
+        urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:characterSet];
+        [SharedApplication openURL:[NSURL URLWithString:urlString]];
+    } else if ([title isEqualToString:@"百度地图"]) {
+        NSString *urlString =
+        FormatString(@"baidumap://map/direction?region=0&destination=name:%@|latlng:%lf,%lf&mode=%@&coord_type=gcj02", self.address, self.latitude, self.longitude, @"transit");
+        urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:characterSet];
+        [SharedApplication openURL:[NSURL URLWithString:urlString]];
+    }
 }
 
 #pragma mark - MAMapViewDelegate
@@ -196,11 +191,13 @@ static NSArray *_mapSchemes = nil;
 
 - (NSArray *)installedMapApp {
     if (!_installedMapApp) {
+        NSArray *mapSchemes = @[@{@"title": @"高德地图", @"scheme": @"iosamap://navi"},
+                                @{@"title": @"百度地图", @"scheme": @"baidumap://map/"}];
         NSMutableArray *tmp = [NSMutableArray arrayWithObject:@"苹果地图"];
-        for (int i = 0; i < _mapSchemes.count; i++) {
-            NSURL *url = [NSURL URLWithString:_mapSchemes[i][@"scheme"]];
+        for (int i = 0; i < mapSchemes.count; i++) {
+            NSURL *url = [NSURL URLWithString:mapSchemes[i][@"scheme"]];
             if ([SharedApplication canOpenURL:url]) {
-                [tmp addObject:_mapSchemes[i][@"title"]];
+                [tmp addObject:mapSchemes[i][@"title"]];
             }
         }
         
