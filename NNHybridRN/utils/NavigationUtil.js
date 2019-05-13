@@ -21,7 +21,7 @@ export default class NavigationUtil {
             const isModal = NativePageIsModal.some(name => name === page);
             NativeUtil.jumpTo(NativePageMap[page], parameters, isModal);
         } else {
-            navigation.navigate(page, { ...parameters });
+            navigation.push(page, { ...parameters });
         }
     }
 
@@ -40,8 +40,8 @@ export default class NavigationUtil {
         dispatch(NavigationActions.navigate({ routeName: 'Login' }));
     }
 
-    static dispatch(actionType) {
+    static dispatch(actionType, storeName) {
         const navigation = NavigationUtil.navigation;
-        navigation.dispatch({ type: actionType });
+        navigation.dispatch({ type: actionType, storeName });
     }
 }

@@ -35,7 +35,7 @@ export default (state, action) => {
             state.apartment = undefined;
             break;
         case Types.HOUSE_DETAIL_WILL_UNMOUNT:
-            state.houseDetail = undefined;
+            state.houseDetail[action.storeName] = undefined;
             break;
     }
 

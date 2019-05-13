@@ -66,7 +66,7 @@ const MainNavigator = createStackNavigator({
     CentraliedDetailPage: {
         ...sharedParams,
         screen: CentraliedDetailPage,
-    }
+    },
 }, {
         transitionConfig: dynamicModalTransition
     });

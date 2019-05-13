@@ -13,9 +13,11 @@ import Toaster from '../../components/common/Toaster';
 import { Types } from '../../redux/base/actions';
 import { connect } from 'react-redux';
 import {
+    init,
     loadData,
     navBarIsTransparent,
-    DetailTypes
+    DetailTypes,
+    getStoreName
 } from '../../redux/houseDetail';
 import HouseDetailInfoCell from './HouseDetailInfoCell';
 import NativeUtil from '../../utils/NativeUtil';
@@ -45,22 +47,37 @@ const mapViewDidTouched = (centraliedHouse) => {
 
 class CentraliedDetailPage extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.params = this.props.navigation.state.params;
+        const { estateRoomTypeId, rentPrice } = this.params;
+
+        this.storeName = getStoreName(DetailTypes.Centralied, estateRoomTypeId);
+
+        this.props.init(this.storeName);
+    }
+
     componentWillMount() {
-        const { estateRoomTypeId, rentPrice } = this.props.navigation.state.params;
+        const { estateRoomTypeId, rentPrice } = this.params;
+
+        this.storeName = getStoreName(DetailTypes.Centralied, estateRoomTypeId);
+
         this.props.loadData(
             DetailTypes.Centralied,
             { estateRoomTypeId, rentPrice },
+            this.storeName,
             error => Toaster.autoDisapperShow(error)
         );
     }
 
     componentWillUnmount() {
-        NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT);
+        NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT, this.storeName);
     }
 
     _renderContentView() {
         const { houseDetail, navBarIsTransparent } = this.props;
-        const { centraliedHouse, recommendHouseList } = houseDetail;
+        const { centraliedHouse, recommendHouseList } = houseDetail[this.storeName];
 
         if (AppUtil.isEmptyObject(centraliedHouse)) return null;
 
@@ -68,7 +85,7 @@ class CentraliedDetailPage extends Component {
 
         return (
             <ScrollView
-                onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}
+                onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y, this.storeName)}
             >
                 <HouseDetailBannerCell
                     data={centraliedHouse.imageUrls}
@@ -77,7 +94,7 @@ class CentraliedDetailPage extends Component {
 
                     }}
                 />
-                <HouseDetailInfoCell centraliedHouse={centraliedHouse}/>
+                <HouseDetailInfoCell centraliedHouse={centraliedHouse} />
                 <HouseDetailMessageCell centraliedHouse={centraliedHouse} />
                 <HouseDetailServiceFacilityCell
                     data={centraliedHouse.services}
@@ -98,8 +115,11 @@ class CentraliedDetailPage extends Component {
                 />
                 <HouseDetailRecommendCell
                     data={recommendHouseList}
-                    recommendItemClicked={index => {
-
+                    recommendItemClick={index => {
+                        const { type, minRentPrice, id, isFullRent } = recommendHouseList[index];
+                        const pageName = type === 1 ? 'CentraliedDetailPage' : 'DecentraliedDetailPage';
+                        const params = type === 1 ? { estateRoomTypeId: id, rentPrice: minRentPrice } : { roomId: id, isFullRent };
+                        NavigationUtil.goPage(pageName, params);
                     }}
                 />
             </ScrollView>
@@ -107,7 +127,10 @@ class CentraliedDetailPage extends Component {
     }
 
     render() {
-        const { isTransparent, isLoading, centraliedHouse } = this.props.houseDetail;
+        const houseDetail = this.props.houseDetail[this.storeName];
+        if (AppUtil.isEmptyObject(houseDetail)) return null;
+
+        const { isTransparent, isLoading, centraliedHouse } = houseDetail;
         return (
             <View style={styles.container}>
                 {this._renderContentView()}
@@ -128,10 +151,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    navBarIsTransparent: contentOffsetY =>
-        dispatch(navBarIsTransparent(contentOffsetY)),
-    loadData: (detailType, params, callBack) =>
-        dispatch(loadData(detailType, params, callBack))
+    init: storeName => dispatch(init(storeName)),
+    navBarIsTransparent: (contentOffsetY, storeName) =>
+        dispatch(navBarIsTransparent(contentOffsetY, storeName)),
+    loadData: (detailType, params, storeName, callBack) =>
+        dispatch(loadData(detailType, params, storeName, callBack))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CentraliedDetailPage);

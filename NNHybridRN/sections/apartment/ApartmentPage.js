@@ -53,6 +53,8 @@ class ApartmentPage extends Component {
     }
 
     render() {
+        console.log(this.props.apartment);
+        
         const { apartment, isTransparent, isLoading } = this.props.apartment;
         return (
             <View style={styles.container}>

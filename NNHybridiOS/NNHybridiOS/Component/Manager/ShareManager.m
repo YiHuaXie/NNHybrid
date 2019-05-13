@@ -7,6 +7,9 @@
 //
 
 #import "ShareManager.h"
+#import "NNProgressHUD.h"
+#import <MessageUI/MessageUI.h>
+#import <objc/runtime.h>
 
 #import "BHBPopView.h"
 #import "BHBItem.h"
@@ -20,26 +23,28 @@ typedef NS_ENUM(NSInteger, ShareType) {
     ShareTypeMessage
 };
 
-static NSDictionary *_shareTypeMap = nil;
+const ConstString kShareManager = @"kShareManager";
 
-@interface ShareManager ()
+@interface ShareManager () <MFMessageComposeViewControllerDelegate>
 
-//@property (nonatomic, strong) UMSocialMessageObject *messageObject;
-@property(nonatomic, copy) NSString *shareTitle;
-@property(nonatomic, copy) NSString *shareDescription;
-@property(nonatomic, copy) NSString *shareLink;
-@property(nonatomic, strong) id shareImage;
-@property(nonatomic, copy) NSString *shareMessage;
+@property (nonatomic, copy) NSString *shareTitle;
+@property (nonatomic, copy) NSString *shareDescription;
+@property (nonatomic, copy) NSString *shareLink;
+@property (nonatomic, strong) id shareImage;
+@property (nonatomic, copy) NSString *shareMessage;
 
-@property(nonatomic, copy) NSArray<BHBItem *> *shareItems;
+@property (nonatomic, copy) NSArray<BHBItem *> *shareItems;
 @property (nonatomic, copy) NSDictionary *shareTypeMap;
 
-//@property (nonatomic, strong) UIViewController *currentVc;
-//@property (nonatomic, strong) MFMessageComposeViewController *message;
+@property (nonatomic, weak) UIViewController *associatedViewController;
 
 @end
 
 @implementation ShareManager
+
+- (void)dealloc {
+    NNLog(@"%@ dealloc", self.class);
+}
 
 - (instancetype)initWithTitle:(NSString *)title
                   description:(NSString *)description
@@ -47,8 +52,6 @@ static NSDictionary *_shareTypeMap = nil;
                        webUrl:(NSString *)webeUrl
                       message:(NSString *)message {
     if (self = [super init]) {
-        
-//        self.messageObject = [UMSocialMessageObject messageObject];
         self.shareTitle = title;
         self.shareDescription = description;
         self.shareLink = webeUrl;
@@ -59,46 +62,50 @@ static NSDictionary *_shareTypeMap = nil;
     return self;
 }
 
-- (void)shareOnView:(UIView *)view currentViewController:(UIViewController *)vc {
-    WEAK_SELF;
-    
-   [BHBPopView showToView:view withItems:self.shareItems andSelectBlock:^(BHBItem *item) {
-        switch ([weakSelf.shareTypeMap[item.title] integerValue]) {
-            case ShareTypeMessage:
+- (void)showInView:(UIView *)view currentViewController:(UIViewController *)vc {
+    [BHBPopView showToView:view withItems:self.shareItems andSelectBlock:^(BHBItem *item) {
+        switch ([self.shareTypeMap[item.title] integerValue]) {
+            case ShareTypeMessage: {
+                if ([MFMessageComposeViewController canSendText]) {
+                    self.associatedViewController = vc;
+                    objc_setAssociatedObject(vc, &kShareManager, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                    
+                    MFMessageComposeViewController *message = [[MFMessageComposeViewController alloc] init];
+                    message.messageComposeDelegate = self;
+                    message.body = self.shareMessage;
+                    message.recipients = nil;
+                    
+                    [vc presentViewController:message animated:YES completion:nil];
+                } else {
+                    [NNProgressHUD nn_showInfoWindowWithText:@"该设备没有短信功能"];
+                }
+            }
                 return ;
-            case ShareTypeCopyLink:
+            case ShareTypeCopyLink: {
+                UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                pasteboard.string = self.shareLink;
+                [NNProgressHUD nn_showDoneWindowWithText:@"复制成功"];
+            }
                 return;
             case ShareTypeWeibo:
                 return;
             default:
                 break;
         }
-//        if (item.shareType == FHTShareTypeMessage) {
-//
-//        }
-//        if (item.shareType == FHTShareTypeCopyLink) {
-//            [self copyLink];
-//            return ;
-//        }
-//        if (item.shareType == FHTShareTypeWeibo) {
-//            [self shareToSina];
-//            return ;
-//        }
-//        UMSocialPlatformType type = UMSocialPlatformType_UnKnown;
-//        if (item.shareType == FHTShareTypeWeChatFriends) {
-//            type = UMSocialPlatformType_WechatTimeLine;
-//        }else if (item.shareType == FHTShareTypeWechat) {
-//            type = UMSocialPlatformType_WechatSession;
-//        }else if (item.shareType == FHTShareTypeQQ) {
-//            type = UMSocialPlatformType_QQ;
-//        }
-//        if (type == UMSocialPlatformType_UnKnown) {
-//            return ;
-//        }
-//        UMShareWebpageObject *object = [UMShareWebpageObject shareObjectWithTitle:self.shareTitle descr:self.ShareDes thumImage:self.thumbImageUrl];
-//        object.webpageUrl =self.shareLink;
-//        self.messageObject.shareObject = object;
-//        [self shareToPlatform:type];
+    }];
+}
+
+#pragma mark - MFMessageComposeViewControllerDelegate
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result {
+    NN_WEAK_SELF;
+    
+    [controller dismissViewControllerAnimated:YES completion:^{
+        objc_setAssociatedObject(weakSelf.associatedViewController,
+                                 &kShareManager,
+                                 nil,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }];
 }
 
@@ -122,14 +129,12 @@ static NSDictionary *_shareTypeMap = nil;
 
 - (NSDictionary *)shareTypeMap {
     if (!_shareTypeMap) {
-        _shareTypeMap = @{
-                          @"朋友圈": @(ShareTypeMoments),
+        _shareTypeMap = @{@"朋友圈": @(ShareTypeMoments),
                           @"微信好友": @(ShareTypeWechat),
                           @"新浪微博": @(ShareTypeWeibo),
                           @"QQ好友": @(ShareTypeQQ),
                           @"复制链接": @(ShareTypeCopyLink),
-                          @"短信": @(ShareTypeMessage)
-                          };
+                          @"短信": @(ShareTypeMessage)};
     }
     
     return _shareTypeMap;

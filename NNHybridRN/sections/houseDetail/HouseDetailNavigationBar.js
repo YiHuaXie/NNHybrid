@@ -4,7 +4,7 @@ import AppUtil from '../../utils/AppUtil';
 import NavigationBar from '../../navigator/NavigationBar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-export default class ApartmentNavigationBar extends Component {
+export default class HouseDetailNavigationBar extends Component {
 
     render() {
         const { isTransparent, title } = this.props;

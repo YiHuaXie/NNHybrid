@@ -9,6 +9,12 @@
 #import "ShareModule.h"
 #import "ShareManager.h"
 
+@interface ShareModule()
+
+@property (nonatomic, strong) ShareManager *shareManager;
+
+@end
+
 @implementation ShareModule
 
 RCT_EXPORT_MODULE();
@@ -20,8 +26,10 @@ RCT_EXPORT_METHOD(shareWithParameters:(NSDictionary *)paramters) {
                                                               image:paramters[@"image"]
                                                              webUrl:paramters[@"webUrl"]
                                                             message:paramters[@"message"]];
+        UINavigationController *nav =
+        (UINavigationController *)SharedApplication.keyWindow.rootViewController;
         
-        [manager shareOnView:SharedApplication.keyWindow currentViewController:nil];
+        [manager showInView:SharedApplication.keyWindow currentViewController:nav.visibleViewController];
     });
 }
 

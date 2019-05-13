@@ -18,7 +18,8 @@
                        webUrl:(NSString *)webUrl
                       message:(NSString *)message;
 
-- (void)shareOnView:(UIView *)view currentViewController:(UIViewController *)vc;
+- (void)showInView:(UIView *)view currentViewController:(UIViewController *)vc;
 
 @end
+
 

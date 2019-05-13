@@ -1,22 +1,33 @@
 import { ApiPath } from '../network/ApiService';
 import Network from '../network';
 import { Types } from './base/actions';
+import AppUtil from '../utils/AppUtil';
 
 export const DetailTypes = {
     Centralied: 'Centralied',
     Decentralied: 'Decentralied'
 };
 
-export function navBarIsTransparent(contentOffsetY) {
+export const getStoreName = (detailType, id) => {
+    return detailType + id;
+}
+
+export function init(storeName) {
     return dispatch => {
-        const isTransparent = contentOffsetY > 100 ? false : true;
-        dispatch({ type: Types.HOUSE_DETAIL_NAV_BAR_TRANSPARENT, isTransparent });
+        dispatch({ type: Types.HOUSE_DETAIL_INIT, storeName });
     }
 }
 
-export function loadData(detailType, params, callBack) {
+export function navBarIsTransparent(contentOffsetY, storeName) {
+    return dispatch => {
+        const isTransparent = contentOffsetY > 100 ? false : true;
+        dispatch({ type: Types.HOUSE_DETAIL_NAV_BAR_TRANSPARENT, isTransparent, storeName });
+    }
+}
+
+export function loadData(detailType, params, storeName, callBack) {
     return async dispath => {
-        dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA });
+        dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA, storeName });
         try {
             let response =
                 detailType === DetailTypes.Centralied ?
@@ -36,13 +47,14 @@ export function loadData(detailType, params, callBack) {
 
             dispath({
                 type: Types.HOUSE_DETAIL_LOAD_DATA_FINISHED,
+                storeName,
                 centraliedHouse: detailType === DetailTypes.Centralied ? response : {},
                 decentraliedHouse: detailType === DetailTypes.Centralied ? {} : response,
                 recommendHouseList: response2.resultList
             });
         } catch (e) {
             callBack(e.message);
-            dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA_FINISHED });
+            dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA_FINISHED, storeName });
         }
     };
 }
@@ -86,33 +98,51 @@ function loadRecommendHouseList(params) {
     });
 }
 
-const defaultState = {
+const defaultHouseDetail = {
     centraliedHouse: {},
     decentraliedHouse: {},
     isTransparent: true,
     recommendHouseList: [],
     isLoading: false
-};
+}
+
+const defaultState = {};
 
 export function houseDetailReducer(state = defaultState, action) {
     switch (action.type) {
+        case Types.HOUSE_DETAIL_INIT:
+        return {
+            ... state,
+            [action.storeName]: {
+                ...defaultHouseDetail,
+            }
+        }
         case Types.HOUSE_DETAIL_LOAD_DATA:
             return {
                 ...state,
-                isLoading: true,
+                [action.storeName]: {
+                    ...state[action.storeName],
+                    isLoading: true,
+                }
             }
         case Types.HOUSE_DETAIL_LOAD_DATA_FINISHED:
             return {
                 ...state,
-                centraliedHouse: action.centraliedHouse,
-                decentraliedHouse: action.decentraliedHouse,
-                recommendHouseList: action.recommendHouseList,
-                isLoading: false,
+                [action.storeName]: {
+                    ...state[action.storeName],
+                    centraliedHouse: action.centraliedHouse,
+                    decentraliedHouse: action.decentraliedHouse,
+                    recommendHouseList: action.recommendHouseList,
+                    isLoading: false,
+                }
             }
         case Types.HOUSE_DETAIL_NAV_BAR_TRANSPARENT:
             return {
                 ...state,
-                isTransparent: action.isTransparent
+                [action.storeName]: {
+                    ...state[action.storeName],
+                    isTransparent: action.isTransparent
+                }
             }
         default:
             return state;

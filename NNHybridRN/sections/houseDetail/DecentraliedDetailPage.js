@@ -12,9 +12,11 @@ import HouseDetailInfoCell from './HouseDetailInfoCell';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { connect } from 'react-redux';
 import {
+    init,
     navBarIsTransparent,
     loadData,
-    DetailTypes
+    DetailTypes,
+    getStoreName,
 } from '../../redux/houseDetail';
 import Toaster from '../../components/common/Toaster';
 import AppUtil from '../../utils/AppUtil';
@@ -45,25 +47,35 @@ const mapViewDidTouched = (decentraliedHouse) => {
 
 class DecentraliedDetailPage extends Component {
 
-    state = { itemsType: ItemsType.FACILITY_PRIVATE };
+    constructor(props) {
+        super(props);
+
+        this.state = { itemsType: ItemsType.FACILITY_PRIVATE };
+
+        this.params = this.props.navigation.state.params;
+        this.storeName = getStoreName(DetailTypes.Decentralied, this.params.roomId);
+
+        this.props.init(this.storeName);
+    }
 
     componentWillMount() {
-        const { roomId, isFullRent } = this.props.navigation.state.params;
+        const { roomId, isFullRent } = this.params;
 
         this.props.loadData(
             DetailTypes.Decentralied,
             { roomId },
+            this.storeName,
             error => Toaster.autoDisapperShow(error)
         );
     }
 
     componentWillUnmount() {
-        NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT);
+        NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT, this.storeName);
     }
 
     _renderContentView() {
         const { houseDetail, navBarIsTransparent } = this.props;
-        const { decentraliedHouse, recommendHouseList } = houseDetail;
+        const { decentraliedHouse, recommendHouseList } = houseDetail[this.storeName];
 
         if (AppUtil.isEmptyObject(decentraliedHouse)) return null;
 
@@ -75,7 +87,7 @@ class DecentraliedDetailPage extends Component {
                 decentraliedHouse.facilityItems;
 
         return (
-            <ScrollView onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y)}>
+            <ScrollView onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y, this.storeName)}>
                 <HouseDetailBannerCell
                     data={decentraliedHouse.images}
                     hasVR={hasVR}
@@ -110,8 +122,11 @@ class DecentraliedDetailPage extends Component {
                 />
                 <HouseDetailRecommendCell
                     data={recommendHouseList}
-                    recommendItemClicked={index => {
-
+                    recommendItemClick={index => {
+                        const { type, minRentPrice, id, isFullRent } = recommendHouseList[index];
+                        const pageName = type === 1 ? 'CentraliedDetailPage' : 'DecentraliedDetailPage';
+                        const params = type === 1 ? { estateRoomTypeId: id, rentPrice: minRentPrice } : { roomId: id, isFullRent };
+                        NavigationUtil.goPage(pageName, params);
                     }}
                 />
             </ScrollView >
@@ -119,7 +134,10 @@ class DecentraliedDetailPage extends Component {
     }
 
     render() {
-        const { isTransparent, isLoading, decentraliedHouse } = this.props.houseDetail;
+        const houseDetail = this.props.houseDetail[this.storeName];
+        if (AppUtil.isEmptyObject(houseDetail)) return null;
+
+        const { isTransparent, isLoading, decentraliedHouse } = houseDetail;
 
         return (
             <View style={styles.container}>
@@ -141,10 +159,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    navBarIsTransparent: contentOffsetY =>
-        dispatch(navBarIsTransparent(contentOffsetY)),
-    loadData: (detailType, params, callBack) =>
-        dispatch(loadData(detailType, params, callBack))
+    init: storeName => dispatch(init(storeName)),
+    navBarIsTransparent: (contentOffsetY, storeName) =>
+        dispatch(navBarIsTransparent(contentOffsetY, storeName)),
+    loadData: (detailType, params, storeName, callBack) =>
+        dispatch(loadData(detailType, params, storeName, callBack))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DecentraliedDetailPage);
