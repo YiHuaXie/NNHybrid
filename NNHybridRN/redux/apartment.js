@@ -4,19 +4,30 @@ import { Types } from './base/actions';
 import Network from '../network';
 import { ApiPath } from '../network/ApiService';
 
-export function navBarIsTransparent(contentOffsetY) {
+export const getStoreName = id => {
+    return 'Apartment' + id;
+}
+
+export function init(storeName) {
+    return dispatch => {
+        dispatch({ type: Types.APARTMENT_INIT, storeName });
+    }
+}
+
+export function navBarIsTransparent(storeName, contentOffsetY) {
     return dispatch => {
         const isTransparent = contentOffsetY > 100 ? false : true;
         dispatch({
             type: Types.APARTMENT_NAV_BAR_TRANSPARENT,
-            isTransparent
+            isTransparent,
+            storeName
         });
     }
 }
 
-export function loadData(params, errorCallBack) {
+export function loadData(storeName, params, errorCallBack) {
     return dispatch => {
-        dispatch({ type: Types.APARTMENT_LOAD_DATA });
+        dispatch({ type: Types.APARTMENT_LOAD_DATA, storeName });
         Network
             .my_request({
                 apiPath: ApiPath.ESTATE,
@@ -28,40 +39,64 @@ export function loadData(params, errorCallBack) {
                 console.log(response);
                 dispatch({
                     type: Types.APARTMENT_LOAD_DATA_FINISHED,
-                    apartment: response
+                    apartment: response,
+                    storeName,
                 });
             })
             .catch(error => {
                 if (errorCallBack) errorCallBack(error.message);
-                dispatch({ type: Types.APARTMENT_LOAD_DATA_FINISHED });
+                dispatch({ type: Types.APARTMENT_LOAD_DATA_FINISHED, storeName });
             });
 
     }
 }
 
-const defaultState = {
+const defaultApartment = {
     isTransparent: true,
     apartment: {},
     isLoading: false
-};
+}
+
+const defaultState = {};
 
 export function apartmentReducer(state = defaultState, action) {
     switch (action.type) {
+        case Types.APARTMENT_INIT: {
+            return {
+                ...state,
+                [action.storeName]: {
+                    ...defaultApartment,
+                }
+            }
+        }
         case Types.APARTMENT_LOAD_DATA:
             return {
                 ...state,
-                isLoading: true,
+                [action.storeName]: {
+                    ...state[action.storeName],
+                    isLoading: true,
+                }
+                // isLoading: true,
             }
         case Types.APARTMENT_LOAD_DATA_FINISHED:
             return {
                 ...state,
-                apartment: action.apartment,
-                isLoading: false,
+                [action.storeName]: {
+                    ...state[action.storeName],
+                    apartment: action.apartment,
+                    isLoading: false,
+                }
+                // apartment: action.apartment,
+                // isLoading: false,
             }
         case Types.APARTMENT_NAV_BAR_TRANSPARENT:
             return {
                 ...state,
-                isTransparent: action.isTransparent
+                [action.storeName]: {
+                    ...state[action.storeName],
+                    isTransparent: action.isTransparent
+                }
+                // isTransparent: action.isTransparent
             };
         default:
             return state;

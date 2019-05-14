@@ -23,8 +23,8 @@ const appReducers = combineReducers({
     nav: navReducer,
     home: homeReducer,
     cityList: cityListReducer,
-    apartment: apartmentReducer,
-    houseDetail: houseDetailReducer,
+    apartments: apartmentReducer,
+    houseDetails: houseDetailReducer,
 });
 
 // How to reset the state of a Redux store
@@ -32,10 +32,10 @@ const appReducers = combineReducers({
 export default (state, action) => {
     switch (action.type) {
         case Types.APARTMENT_WILL_UNMOUNT:
-            state.apartment = undefined;
+            delete state.apartments[action.storeName];
             break;
         case Types.HOUSE_DETAIL_WILL_UNMOUNT:
-            state.houseDetail[action.storeName] = undefined;
+            delete state.houseDetails[action.storeName];
             break;
     }
 

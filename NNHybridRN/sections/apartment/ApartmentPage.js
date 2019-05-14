@@ -14,24 +14,36 @@ import AppUtil from '../../utils/AppUtil';
 import { Types } from '../../redux/base/actions';
 
 import { connect } from 'react-redux';
-import { loadData, navBarIsTransparent } from '../../redux/apartment';
+import {
+    init,
+    loadData,
+    navBarIsTransparent,
+    getStoreName
+} from '../../redux/apartment';
 import Toaster from '../../components/common/Toaster';
 import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class ApartmentPage extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.params = this.props.navigation.state.params;
+        this.storeName = getStoreName(this.params.apartmentId);
+
+        this.props.init(this.storeName);
+    }
+
     componentWillMount() {
-        const { loadData, navigation } = this.props;
-        const { apartmentId, isTalent } = navigation.state.params;
-        loadData({
-            estateId: apartmentId,
-            isTalent
-        }, error => Toaster.autoDisapperShow(error));
+        const { apartmentId, isTalent } = this.params;
+
+        const params = { estateId: apartmentId, isTalent };
+        this.props.loadData(this.storeName, params, error => Toaster.autoDisapperShow(error));
     }
 
     componentWillUnmount() {
-        NavigationUtil.dispatch(Types.APARTMENT_WILL_UNMOUNT);
+        NavigationUtil.dispatch(Types.APARTMENT_WILL_UNMOUNT, this.storeName);
     }
 
     _renderApartmentitems(data) {
@@ -53,14 +65,15 @@ class ApartmentPage extends Component {
     }
 
     render() {
-        console.log(this.props.apartment);
-        
-        const { apartment, isTransparent, isLoading } = this.props.apartment;
+        const anApartment = this.props.apartments[this.storeName];
+        if (AppUtil.isEmptyObject(anApartment)) return null;
+
+        const { apartment, isTransparent, isLoading } = anApartment;
         return (
             <View style={styles.container}>
                 <ScrollView
                     onScroll={(e) => {
-                        this.props.navBarIsTransparent(e.nativeEvent.contentOffset.y);
+                        this.props.navBarIsTransparent(this.storeName, e.nativeEvent.contentOffset.y);
                     }}
                 >
                     <ApartmentBannerCell data={apartment.imageUrls} />
@@ -91,13 +104,14 @@ class ApartmentPage extends Component {
     }
 }
 
-const mapStateToProps = state => ({ apartment: state.apartment });
+const mapStateToProps = state => ({ apartments: state.apartments });
 
 const mapDispatchToProps = dispatch => ({
-    loadData: params =>
-        dispatch(loadData(params)),
-    navBarIsTransparent: contentOffsetY =>
-        dispatch(navBarIsTransparent(contentOffsetY))
+    init: storeName => dispatch(init(storeName)),
+    loadData: (storeName, params) =>
+        dispatch(loadData(storeName, params)),
+    navBarIsTransparent: (storeName, contentOffsetY) =>
+        dispatch(navBarIsTransparent(storeName, contentOffsetY))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApartmentPage);

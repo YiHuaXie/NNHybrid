@@ -23,7 +23,7 @@ import AppUtil from '../../utils/AppUtil';
 import { Types } from '../../redux/base/actions';
 import NativeUtil from '../../utils/NativeUtil';
 
-const shareHandler = (decentraliedHouse) => {
+const shareHandler = decentraliedHouse => {
     const { houseName, images } = decentraliedHouse;
     const title = houseName;
     const description = 'NNHybrid Share Descrption';
@@ -34,7 +34,7 @@ const shareHandler = (decentraliedHouse) => {
     NativeUtil.share({ title, description, image, webUrl, message });
 }
 
-const mapViewDidTouched = (decentraliedHouse) => {
+const mapViewDidTouched = decentraliedHouse => {
     const { houseName, address, latitude, longitude } = decentraliedHouse;
 
     NavigationUtil.goPage('AddressOnMapPage', {
@@ -73,12 +73,7 @@ class DecentraliedDetailPage extends Component {
         NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT, this.storeName);
     }
 
-    _renderContentView() {
-        const { houseDetail, navBarIsTransparent } = this.props;
-        const { decentraliedHouse, recommendHouseList } = houseDetail[this.storeName];
-
-        if (AppUtil.isEmptyObject(decentraliedHouse)) return null;
-
+    _renderContentView(decentraliedHouse, recommendHouseList) {
         const hasVR = !AppUtil.isEmptyString(decentraliedHouse.vrUrl);
 
         const facilityData =
@@ -87,7 +82,9 @@ class DecentraliedDetailPage extends Component {
                 decentraliedHouse.facilityItems;
 
         return (
-            <ScrollView onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y, this.storeName)}>
+            <ScrollView onScroll={e => (
+                this.props.navBarIsTransparent(e.nativeEvent.contentOffset.y, this.storeName)
+            )}>
                 <HouseDetailBannerCell
                     data={decentraliedHouse.images}
                     hasVR={hasVR}
@@ -134,14 +131,14 @@ class DecentraliedDetailPage extends Component {
     }
 
     render() {
-        const houseDetail = this.props.houseDetail[this.storeName];
+        const houseDetail = this.props.houseDetails[this.storeName];
         if (AppUtil.isEmptyObject(houseDetail)) return null;
 
-        const { isTransparent, isLoading, decentraliedHouse } = houseDetail;
+        const { isTransparent, isLoading, decentraliedHouse, recommendHouseList } = houseDetail;
 
         return (
             <View style={styles.container}>
-                {this._renderContentView()}
+                {this._renderContentView(decentraliedHouse, recommendHouseList)}
                 <HouseDetailNavigationBar
                     isTransparent={isTransparent}
                     title='房间详情'
@@ -154,9 +151,7 @@ class DecentraliedDetailPage extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    houseDetail: state.houseDetail
-});
+const mapStateToProps = state => ({ houseDetails: state.houseDetails });
 
 const mapDispatchToProps = dispatch => ({
     init: storeName => dispatch(init(storeName)),

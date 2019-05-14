@@ -22,7 +22,7 @@ import {
 import HouseDetailInfoCell from './HouseDetailInfoCell';
 import NativeUtil from '../../utils/NativeUtil';
 
-const shareHandler = (centraliedHouse) => {
+const shareHandler = centraliedHouse => {
     const { estateName, styleName, imageUrls } = centraliedHouse;
 
     const title = `${estateName}.${styleName}`;
@@ -34,7 +34,7 @@ const shareHandler = (centraliedHouse) => {
     NativeUtil.share({ title, description, image, webUrl, message });
 }
 
-const mapViewDidTouched = (centraliedHouse) => {
+const mapViewDidTouched = centraliedHouse => {
     const { estateName, address, latitude, longitude } = centraliedHouse;
 
     NavigationUtil.goPage('AddressOnMapPage', {
@@ -51,21 +51,15 @@ class CentraliedDetailPage extends Component {
         super(props);
 
         this.params = this.props.navigation.state.params;
-        const { estateRoomTypeId, rentPrice } = this.params;
-
-        this.storeName = getStoreName(DetailTypes.Centralied, estateRoomTypeId);
+        this.storeName = getStoreName(DetailTypes.Centralied, this.params.estateRoomTypeId);
 
         this.props.init(this.storeName);
     }
 
     componentWillMount() {
-        const { estateRoomTypeId, rentPrice } = this.params;
-
-        this.storeName = getStoreName(DetailTypes.Centralied, estateRoomTypeId);
-
         this.props.loadData(
             DetailTypes.Centralied,
-            { estateRoomTypeId, rentPrice },
+            this.params,
             this.storeName,
             error => Toaster.autoDisapperShow(error)
         );
@@ -75,18 +69,13 @@ class CentraliedDetailPage extends Component {
         NavigationUtil.dispatch(Types.HOUSE_DETAIL_WILL_UNMOUNT, this.storeName);
     }
 
-    _renderContentView() {
-        const { houseDetail, navBarIsTransparent } = this.props;
-        const { centraliedHouse, recommendHouseList } = houseDetail[this.storeName];
-
-        if (AppUtil.isEmptyObject(centraliedHouse)) return null;
-
+    _renderContentView(centraliedHouse, recommendHouseList) {
         const hasVR = !AppUtil.isEmptyString(centraliedHouse.vrUrl);
 
         return (
-            <ScrollView
-                onScroll={(e) => navBarIsTransparent(e.nativeEvent.contentOffset.y, this.storeName)}
-            >
+            <ScrollView onScroll={e => (
+                this.props.navBarIsTransparent(e.nativeEvent.contentOffset.y, this.storeName)
+            )}>
                 <HouseDetailBannerCell
                     data={centraliedHouse.imageUrls}
                     hasVR={hasVR}
@@ -127,13 +116,13 @@ class CentraliedDetailPage extends Component {
     }
 
     render() {
-        const houseDetail = this.props.houseDetail[this.storeName];
+        const houseDetail = this.props.houseDetails[this.storeName];
         if (AppUtil.isEmptyObject(houseDetail)) return null;
 
-        const { isTransparent, isLoading, centraliedHouse } = houseDetail;
+        const { isTransparent, isLoading, centraliedHouse, recommendHouseList } = houseDetail;
         return (
             <View style={styles.container}>
-                {this._renderContentView()}
+                {this._renderContentView(centraliedHouse, recommendHouseList)}
                 <HouseDetailNavigationBar
                     isTransparent={isTransparent}
                     title='房型详情'
@@ -146,9 +135,7 @@ class CentraliedDetailPage extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    houseDetail: state.houseDetail
-});
+const mapStateToProps = state => ({ houseDetails: state.houseDetails });
 
 const mapDispatchToProps = dispatch => ({
     init: storeName => dispatch(init(storeName)),
