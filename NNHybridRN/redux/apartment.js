@@ -1,6 +1,4 @@
-import React from 'react';
 import { Types } from './base/actions';
-// import CityManager from '../sections/city/CityManager';
 import Network from '../network';
 import { ApiPath } from '../network/ApiService';
 
@@ -36,7 +34,6 @@ export function loadData(storeName, params, errorCallBack) {
                 params
             })
             .then(response => {
-                console.log(response);
                 dispatch({
                     type: Types.APARTMENT_LOAD_DATA_FINISHED,
                     apartment: response,
@@ -76,7 +73,6 @@ export function apartmentReducer(state = defaultState, action) {
                     ...state[action.storeName],
                     isLoading: true,
                 }
-                // isLoading: true,
             }
         case Types.APARTMENT_LOAD_DATA_FINISHED:
             return {
@@ -86,8 +82,6 @@ export function apartmentReducer(state = defaultState, action) {
                     apartment: action.apartment,
                     isLoading: false,
                 }
-                // apartment: action.apartment,
-                // isLoading: false,
             }
         case Types.APARTMENT_NAV_BAR_TRANSPARENT:
             return {
@@ -96,7 +90,6 @@ export function apartmentReducer(state = defaultState, action) {
                     ...state[action.storeName],
                     isTransparent: action.isTransparent
                 }
-                // isTransparent: action.isTransparent
             };
         default:
             return state;
