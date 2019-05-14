@@ -25,23 +25,11 @@
 + 替换掉调试的证书和SDK的key，目前项目中只使用了高德地图；
 + 接着就像运行平常的项目一样运行即可。
 
-## 效果图
+## 项目效果图
 
-**首页**
+![home-w125](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/home.jpg)![apartment-w125](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/apartment.jpg)![houseDetail-w125](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/houseDetail.jpg)
 
-![home](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/home.jpg)
-
-**城市列表**
-
-![cityListPage](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/cityListPage.jpg)
-
-**公寓简介**
-
-![apartment](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/apartment.jpg)
-
-**详情页**
-
-![houseDetail](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/houseDetail.jpg)
+![cityListPage-w125](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/cityListPage.jpg)![share-w125](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/share.jpg)![addressOnMap-w125](https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/addressOnMap.jpg)
 
 
 
