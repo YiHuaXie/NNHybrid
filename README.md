@@ -11,7 +11,7 @@
 ### 环境配置
 
 + 最好有一个vpn
-+ 首先本地要具备RN的环境
++ 首先本地要具备RN的环境（项目中的React版本号为0.58.6）
 + `npm install`
 + `react-native link`
 + 进入NNHybridiOS目录下， `pod install`，最好先`pod repo update`再进行`pod install`
