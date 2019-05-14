@@ -1,7 +1,6 @@
 import { ApiPath } from '../network/ApiService';
 import Network from '../network';
 import { Types } from './base/actions';
-import AppUtil from '../utils/AppUtil';
 
 export const DetailTypes = {
     Centralied: 'Centralied',
@@ -9,7 +8,7 @@ export const DetailTypes = {
 };
 
 export const getStoreName = (detailType, id) => {
-    return detailType + id;
+    return new Date().getTime();
 }
 
 export function init(storeName) {

@@ -3,7 +3,7 @@ import Network from '../network';
 import { ApiPath } from '../network/ApiService';
 
 export const getStoreName = id => {
-    return 'Apartment' + id;
+    return new Date().getTime();
 }
 
 export function init(storeName) {
@@ -34,6 +34,7 @@ export function loadData(storeName, params, errorCallBack) {
                 params
             })
             .then(response => {
+
                 dispatch({
                     type: Types.APARTMENT_LOAD_DATA_FINISHED,
                     apartment: response,
