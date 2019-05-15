@@ -17,13 +17,6 @@ export function init(storeName) {
     }
 }
 
-export function navBarIsTransparent(contentOffsetY, storeName) {
-    return dispatch => {
-        const isTransparent = contentOffsetY > 100 ? false : true;
-        dispatch({ type: Types.HOUSE_DETAIL_NAV_BAR_TRANSPARENT, isTransparent, storeName });
-    }
-}
-
 export function loadData(detailType, params, storeName, callBack) {
     return async dispath => {
         dispath({ type: Types.HOUSE_DETAIL_LOAD_DATA, storeName });
@@ -133,14 +126,6 @@ export function houseDetailReducer(state = defaultState, action) {
                     decentraliedHouse: action.decentraliedHouse,
                     recommendHouseList: action.recommendHouseList,
                     isLoading: false,
-                }
-            }
-        case Types.HOUSE_DETAIL_NAV_BAR_TRANSPARENT:
-            return {
-                ...state,
-                [action.storeName]: {
-                    ...state[action.storeName],
-                    isTransparent: action.isTransparent
                 }
             }
         default:

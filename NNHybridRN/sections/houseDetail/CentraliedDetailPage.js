@@ -15,7 +15,6 @@ import { connect } from 'react-redux';
 import {
     init,
     loadData,
-    navBarIsTransparent,
     DetailTypes,
     getStoreName
 } from '../../redux/houseDetail';
@@ -50,6 +49,7 @@ class CentraliedDetailPage extends Component {
     constructor(props) {
         super(props);
 
+        this.state = { isTransparent: true };
         this.params = this.props.navigation.state.params;
         this.storeName = getStoreName(DetailTypes.Centralied, this.params.estateRoomTypeId);
 
@@ -73,9 +73,14 @@ class CentraliedDetailPage extends Component {
         const hasVR = !AppUtil.isEmptyString(centraliedHouse.vrUrl);
 
         return (
-            <ScrollView onScroll={e => (
-                this.props.navBarIsTransparent(e.nativeEvent.contentOffset.y, this.storeName)
-            )}>
+            <ScrollView
+                onScroll={e => {
+                    const isTransparent = e.nativeEvent.contentOffset.y <= 100;
+                    if (isTransparent !== this.state.isTransparent) {
+                        this.setState({ isTransparent });
+                    }
+                }}
+            >
                 <HouseDetailBannerCell
                     data={centraliedHouse.imageUrls}
                     hasVR={hasVR}
@@ -119,12 +124,12 @@ class CentraliedDetailPage extends Component {
         const houseDetail = this.props.houseDetails[this.storeName];
         if (AppUtil.isEmptyObject(houseDetail)) return null;
 
-        const { isTransparent, isLoading, centraliedHouse, recommendHouseList } = houseDetail;
+        const { isLoading, centraliedHouse, recommendHouseList } = houseDetail;
         return (
             <View style={styles.container}>
                 {this._renderContentView(centraliedHouse, recommendHouseList)}
                 <HouseDetailNavigationBar
-                    isTransparent={isTransparent}
+                    isTransparent={this.state.isTransparent}
                     title='房型详情'
                     backHandler={() => NavigationUtil.goBack()}
                     shareHandler={() => shareHandler(centraliedHouse)}
@@ -139,8 +144,6 @@ const mapStateToProps = state => ({ houseDetails: state.houseDetails });
 
 const mapDispatchToProps = dispatch => ({
     init: storeName => dispatch(init(storeName)),
-    navBarIsTransparent: (contentOffsetY, storeName) =>
-        dispatch(navBarIsTransparent(contentOffsetY, storeName)),
     loadData: (detailType, params, storeName, callBack) =>
         dispatch(loadData(detailType, params, storeName, callBack))
 });

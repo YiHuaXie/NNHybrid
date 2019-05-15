@@ -13,7 +13,6 @@ import NNPlaneLoading from '../../components/common/NNPlaneLoading';
 import { connect } from 'react-redux';
 import {
     init,
-    navBarIsTransparent,
     loadData,
     DetailTypes,
     getStoreName,
@@ -50,7 +49,10 @@ class DecentraliedDetailPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { itemsType: ItemsType.FACILITY_PRIVATE };
+        this.state = {
+            isTransparent: true,
+            itemsType: ItemsType.FACILITY_PRIVATE
+        };
 
         this.params = this.props.navigation.state.params;
         this.storeName = getStoreName(DetailTypes.Decentralied, this.params.roomId);
@@ -82,9 +84,14 @@ class DecentraliedDetailPage extends Component {
                 decentraliedHouse.facilityItems;
 
         return (
-            <ScrollView onScroll={e => (
-                this.props.navBarIsTransparent(e.nativeEvent.contentOffset.y, this.storeName)
-            )}>
+            <ScrollView
+                onScroll={e => {
+                    const isTransparent = e.nativeEvent.contentOffset.y <= 100;
+                    if (isTransparent !== this.state.isTransparent) {
+                        this.setState({ isTransparent });
+                    }
+                }}
+            >
                 <HouseDetailBannerCell
                     data={decentraliedHouse.images}
                     hasVR={hasVR}
@@ -134,13 +141,13 @@ class DecentraliedDetailPage extends Component {
         const houseDetail = this.props.houseDetails[this.storeName];
         if (AppUtil.isEmptyObject(houseDetail)) return null;
 
-        const { isTransparent, isLoading, decentraliedHouse, recommendHouseList } = houseDetail;
+        const { isLoading, decentraliedHouse, recommendHouseList } = houseDetail;
 
         return (
             <View style={styles.container}>
                 {this._renderContentView(decentraliedHouse, recommendHouseList)}
                 <HouseDetailNavigationBar
-                    isTransparent={isTransparent}
+                    isTransparent={this.state.isTransparent}
                     title='房间详情'
                     backHandler={() => NavigationUtil.goBack()}
                     shareHandler={() => shareHandler(decentraliedHouse)}
@@ -155,8 +162,6 @@ const mapStateToProps = state => ({ houseDetails: state.houseDetails });
 
 const mapDispatchToProps = dispatch => ({
     init: storeName => dispatch(init(storeName)),
-    navBarIsTransparent: (contentOffsetY, storeName) =>
-        dispatch(navBarIsTransparent(contentOffsetY, storeName)),
     loadData: (detailType, params, storeName, callBack) =>
         dispatch(loadData(detailType, params, storeName, callBack))
 });

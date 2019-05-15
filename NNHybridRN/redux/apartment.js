@@ -12,17 +12,6 @@ export function init(storeName) {
     }
 }
 
-export function navBarIsTransparent(storeName, contentOffsetY) {
-    return dispatch => {
-        const isTransparent = contentOffsetY > 100 ? false : true;
-        dispatch({
-            type: Types.APARTMENT_NAV_BAR_TRANSPARENT,
-            isTransparent,
-            storeName
-        });
-    }
-}
-
 export function loadData(storeName, params, errorCallBack) {
     return dispatch => {
         dispatch({ type: Types.APARTMENT_LOAD_DATA, storeName });
@@ -84,14 +73,6 @@ export function apartmentReducer(state = defaultState, action) {
                     isLoading: false,
                 }
             }
-        case Types.APARTMENT_NAV_BAR_TRANSPARENT:
-            return {
-                ...state,
-                [action.storeName]: {
-                    ...state[action.storeName],
-                    isTransparent: action.isTransparent
-                }
-            };
         default:
             return state;
     }

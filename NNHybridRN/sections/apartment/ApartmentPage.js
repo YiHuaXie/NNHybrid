@@ -17,7 +17,6 @@ import { connect } from 'react-redux';
 import {
     init,
     loadData,
-    navBarIsTransparent,
     getStoreName
 } from '../../redux/apartment';
 import Toaster from '../../components/common/Toaster';
@@ -28,6 +27,8 @@ class ApartmentPage extends Component {
 
     constructor(props) {
         super(props);
+
+        this.state = { isTransparent: true };
 
         this.params = this.props.navigation.state.params;
         console.log(this.params);
@@ -78,12 +79,15 @@ class ApartmentPage extends Component {
         const anApartment = this.props.apartments[this.storeName];
         if (AppUtil.isEmptyObject(anApartment)) return null;
 
-        const { apartment, isTransparent, isLoading } = anApartment;
+        const { apartment, isLoading } = anApartment;
         return (
             <View style={styles.container}>
                 <ScrollView
-                    onScroll={(e) => {
-                        this.props.navBarIsTransparent(this.storeName, e.nativeEvent.contentOffset.y);
+                    onScroll={e => {
+                        const isTransparent = e.nativeEvent.contentOffset.y <= 100;
+                        if (isTransparent !== this.state.isTransparent) {
+                            this.setState({ isTransparent });
+                        }
                     }}
                 >
                     <ApartmentBannerCell data={apartment.imageUrls} />
@@ -105,7 +109,7 @@ class ApartmentPage extends Component {
                     {this._renderApartmentItems(apartment.estateRoomTypes)}
                 </ScrollView>
                 <ApartmentNavigationBar
-                    isTransparent={isTransparent}
+                    isTransparent={this.state.isTransparent}
                     backHandler={() => NavigationUtil.goBack()}
                 />
                 <NNPlaneLoading show={isLoading} />
@@ -120,8 +124,6 @@ const mapDispatchToProps = dispatch => ({
     init: storeName => dispatch(init(storeName)),
     loadData: (storeName, params) =>
         dispatch(loadData(storeName, params)),
-    navBarIsTransparent: (storeName, contentOffsetY) =>
-        dispatch(navBarIsTransparent(storeName, contentOffsetY))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApartmentPage);
