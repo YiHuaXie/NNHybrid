@@ -15,11 +15,14 @@ const itemSize = { width: 240, height: 190 };
 export default class HomeApartmentCell extends Component {
 
     _renderApartmentItem(item, index) {
+        console.log(item);
         const marginLeft = index === 0 ? 15 : 10;
         const marginRight = index < this.props.apartments.length - 1 ? 0 : 15;
         return (
             <TouchableWithoutFeedback
-            onPress={() => this.props.itemClick(item.estateId, item.isTalent)}>
+            onPress={() => {
+                this.props.itemClick(item.estateId, item.talent);
+            }}>
             <View style={{
                 ...styles.itemContainer,
                 marginLeft: marginLeft,

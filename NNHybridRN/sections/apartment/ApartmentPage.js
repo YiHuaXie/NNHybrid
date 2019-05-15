@@ -30,6 +30,7 @@ class ApartmentPage extends Component {
         super(props);
 
         this.params = this.props.navigation.state.params;
+        console.log(this.params);
         this.storeName = getStoreName(this.params.apartmentId);
 
         this.props.init(this.storeName);
@@ -46,7 +47,15 @@ class ApartmentPage extends Component {
         NavigationUtil.dispatch(Types.APARTMENT_WILL_UNMOUNT, this.storeName);
     }
 
-    _renderApartmentitems(data) {
+    _renderApartmentItemsTitle(data) {
+        if (AppUtil.isEmptyArray(data)) return null;
+
+        return (
+            <Text style={{ ...styles.sectionHeader, marginBottom: 5 }}>房型</Text>
+        );
+    }
+
+    _renderApartmentItems(data) {
         const tmp = [];
         for (const i in data) {
             tmp.push(
@@ -61,6 +70,7 @@ class ApartmentPage extends Component {
                 </TouchableWithoutFeedback>
             );
         }
+
         return tmp;
     }
 
@@ -91,8 +101,8 @@ class ApartmentPage extends Component {
                         {apartment.introduction}
                     </Text>
                     <View style={styles.dividingLine} />
-                    <Text style={{ ...styles.sectionHeader, marginBottom: 5 }}>房型</Text>
-                    {this._renderApartmentitems(apartment.estateRoomTypes)}
+                    {this._renderApartmentItemsTitle(apartment.estateRoomTypes)}
+                    {this._renderApartmentItems(apartment.estateRoomTypes)}
                 </ScrollView>
                 <ApartmentNavigationBar
                     isTransparent={isTransparent}
