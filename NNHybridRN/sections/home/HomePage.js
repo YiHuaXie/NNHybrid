@@ -25,12 +25,13 @@ import { connect } from 'react-redux';
 import {
     loadData,
     selectedCityFinisedOrChanged,
-    navBarIsTransparent,
     showCityLocationTip
 } from '../../redux/home';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 class HomePage extends Component {
+
+    state = { isTransparent: true };
 
     componentWillMount() {
         const { loadData, selectedCityFinisedOrChanged, showCityLocationTip } = this.props;
@@ -93,7 +94,7 @@ class HomePage extends Component {
 
     // 需要用SectionList实现
     render() {
-        const { home, navBarIsTransparent } = this.props;
+        const { home } = this.props;
         const refreshHeader = Refresher.header(home.isLoading, () => {
             this.props.loadData({ cityName: home.cityName, cityId: home.cityId });
         });
@@ -103,7 +104,12 @@ class HomePage extends Component {
             <View style={styles.container}>
                 <ScrollView
                     refreshControl={refreshHeader}
-                    onScroll={e => navBarIsTransparent(e.nativeEvent.contentOffset.y)}
+                    onScroll={e => {
+                        const isTransparent = e.nativeEvent.contentOffset.y <= 100;
+                        if (isTransparent !== this.state.isTransparent) {
+                            this.setState({ isTransparent });
+                        }
+                    }}
                 >
                     <HomeBannerModuleCell
                         banners={home.banners}
@@ -122,11 +128,11 @@ class HomePage extends Component {
                     {!AppUtil.isEmptyArray(home.houses) ? <HomeButtonCell /> : null}
                 </ScrollView>
                 <HomeNavigationBar
-                    isTransparent={home.isTransparent}
+                    isTransparent={this.state.isTransparent}
                     cityName={home.cityName}
                     cityViewTouched={() => NavigationUtil.goPage('CityListPage')}
                 />
-            </View>
+            </View >
         );
     }
 }
@@ -138,8 +144,6 @@ const mapDispatchToProps = dispatch => ({
         dispatch(loadData(selectedCity)),
     selectedCityFinisedOrChanged: (cityName, cityId) =>
         dispatch(selectedCityFinisedOrChanged(cityName, cityId)),
-    navBarIsTransparent: contentOffsetY =>
-        dispatch(navBarIsTransparent(contentOffsetY)),
     showCityLocationTip: callBack =>
         dispatch(showCityLocationTip(callBack))
 });

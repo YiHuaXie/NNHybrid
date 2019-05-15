@@ -20,16 +20,6 @@ export function showCityLocationTip(callBack) {
     }
 }
 
-export function navBarIsTransparent(contentOffsetY) {
-    return dispatch => {
-        const isTransparent = contentOffsetY > 100 ? false : true;
-        dispatch({
-            type: Types.HOME_NAV_BAR_TRANSPARENT,
-            isTransparent
-        });
-    }
-}
-
 export function selectedCityFinisedOrChanged(cityName, cityId) {
     return dispatch => {
         CityManager.saveSelectedCity(cityName, cityId);
@@ -119,7 +109,6 @@ const defaultState = {
     vr: null,
     apartments: [],
     houses: [],
-    isTransparent: true,
     cityName: '',
     cityId: '',
     isLoading: true,
@@ -156,11 +145,6 @@ export function homeReducer(state = defaultState, action) {
                 ...state,
                 error: action.error,
                 isLoading: false
-            };
-        case Types.HOME_NAV_BAR_TRANSPARENT:
-            return {
-                ...state,
-                isTransparent: action.isTransparent
             };
         default:
             return state;
