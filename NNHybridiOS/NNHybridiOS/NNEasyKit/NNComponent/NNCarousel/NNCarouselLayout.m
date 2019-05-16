@@ -1,8 +1,8 @@
 //
 //  NNCarouselLayout.m
-//  NNCarousel
+//  NNEasyKit
 //
-//  Created by NeroXie on 2019/2/17.
+//  Created by NeroXie on 2019/5/16.
 //  Copyright © 2019 NeroXie. All rights reserved.
 //
 
@@ -46,4 +46,5 @@
     
     return self.itemSpacing;
 }
+
 @end

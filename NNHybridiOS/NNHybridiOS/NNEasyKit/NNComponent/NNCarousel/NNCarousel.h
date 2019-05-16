@@ -1,8 +1,8 @@
 //
 //  NNCarousel.h
-//  NNCarousel
+//  NNEasyKit
 //
-//  Created by NeroXie on 2019/2/17.
+//  Created by NeroXie on 2019/5/16.
 //  Copyright © 2019 NeroXie. All rights reserved.
 //
 
@@ -77,15 +77,13 @@ typedef NS_ENUM(NSUInteger, NNCarouselScrollDirection) {
  */
 @property (nonatomic, assign) BOOL infiniteLoop;
 
-// 当不是不限循环的时候，第一项或者最后一项是否需要居中
+/**
+ * First item or last item should be centered when infiniteLoop is no
+ */
 @property (nonatomic, assign) BOOL firstOrLastItemCenterWhenNotInfiniteLoop;
 
-/**
- current page index
- */
 @property (nonatomic, readonly, assign) NNIndexPath currentIndexPath;
 @property (nonatomic, readonly, assign) NSInteger currentItem;
-
 
 /**
  * Scroll to the item you need
@@ -99,8 +97,8 @@ typedef NS_ENUM(NSUInteger, NNCarouselScrollDirection) {
 
 - (void)reloadData;
 
-- (__kindof UICollectionViewCell * _Nullable)currentItemCell;
-- (NSArray<__kindof UICollectionViewCell *> *_Nullable)visibleCells;
+- (__kindof UICollectionViewCell *)currentItemCell;
+- (NSArray<__kindof UICollectionViewCell *> *)visibleCells;
 - (NSArray *)itemsForVisibleItems;
 
 - (void)registerClass:(Class)Class forCellWithReuseIdentifier:(NSString *)identifier;
@@ -108,5 +106,4 @@ typedef NS_ENUM(NSUInteger, NNCarouselScrollDirection) {
 - (__kindof UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
 
 @end
-
 

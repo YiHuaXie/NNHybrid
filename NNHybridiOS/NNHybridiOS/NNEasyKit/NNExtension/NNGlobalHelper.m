@@ -109,15 +109,15 @@ id nn_objc_getWeakAssociatedObject(id object, const void * key) {
 #pragma mark - APP Information
 
 NSString* nn_deviceName(void) {
-    return CurrentDevice.name;
+    return [UIDevice currentDevice].name;
 }
 
 NSString* nn_deviceModel(void) {
-    return CurrentDevice.model;
+    return [UIDevice currentDevice].model;
 }
 
 NSString* nn_systemVersion(void) {
-    return CurrentDevice.systemVersion;
+    return [UIDevice currentDevice].systemVersion;
 }
 
 NSString* nn_deviceModelName(void) {
@@ -205,14 +205,14 @@ NSString* nn_deviceModelName(void) {
 }
 
 NSString* nn_appName(void) {
-    return MainBundle.infoDictionary[@"CFBundleDisplayName"];
+    return [NSBundle mainBundle].infoDictionary[@"CFBundleDisplayName"];
 }
 
 NSString* nn_appVersion(void) {
-    return MainBundle.infoDictionary[@"CFBundleShortVersionString"];
+    return [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"];
 }
 
 NSString* nn_appBuildVersion(void) {
-    return MainBundle.infoDictionary[@"CFBundleVersion"];
+    return [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
 }
 

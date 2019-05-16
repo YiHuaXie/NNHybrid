@@ -11,7 +11,7 @@
 
 @interface NSObject (NNExtension)
 
-/** class name*/
+/** 类名*/
 + (NSString *)nn_classString;
 /** 对象名*/
 - (NSString *)nn_classString;

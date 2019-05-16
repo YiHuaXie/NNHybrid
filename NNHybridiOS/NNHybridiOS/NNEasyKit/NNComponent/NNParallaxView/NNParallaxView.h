@@ -1,14 +1,14 @@
 //
-//  ParallaxView.h
-//  HiSensor
+//  NNParallaxView.h
+//  NNEasyKit
 //
-//  Created by Snow on 2018/6/6.
-//  Copyright © 2018年 Fuheng Tech. All rights reserved.
+//  Created by NeroXie on 2019/5/16.
+//  Copyright © 2019 NeroXie. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ParallaxView : UIView
+@interface NNParallaxView : UIView
 
 @property (nonatomic, readonly, strong) UIImageView *imageView;
 

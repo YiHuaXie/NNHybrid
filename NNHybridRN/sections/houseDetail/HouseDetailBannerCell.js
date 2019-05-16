@@ -8,7 +8,7 @@ import {
 import Swiper from 'react-native-swiper';
 import AppUtil from '../../utils/AppUtil';
 import NNImage from '../../components/common/NNImage';
-import NNParallaxView from '../../components/common/NNParallaxView';
+import ParallaxView from '../../components/common/ParallaxView';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const cellSize = {
@@ -25,11 +25,11 @@ export default class HouseDetailBannerCell extends Component {
                 key={0}
                 onPress={() => this.props.bannerItemClicked()}
             >
-                <NNParallaxView cornerRadius={0} style={styles.image} imageUrl={url}>
+                <ParallaxView cornerRadius={0} style={styles.image} imageUrl={url}>
                     <View style={styles.mask}>
                         <Image style={styles.vrIcon} source={vrIconSource} />
                     </View>
-                </NNParallaxView>
+                </ParallaxView>
             </TouchableWithoutFeedback>
         );
     }

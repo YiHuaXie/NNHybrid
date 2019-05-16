@@ -3,17 +3,17 @@
 // Copyright (c) 2019 NeroXie. All rights reserved.
 //
 
-#import "ParallaxViewManager.h"
-#import "ParallaxView.h"
+#import "NNParallaxViewManager.h"
+#import "NNParallaxView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-#pragma mark - ParallaxView+NNExtension
+#pragma mark - NNParallaxView+NNExtension
 
-@interface ParallaxView (NNExtension)
+@interface NNParallaxView (NNExtension)
 
 @end
 
-@implementation ParallaxView(NNExtension)
+@implementation NNParallaxView(NNExtension)
 
 - (void)setImageUrl:(NSString *)imageUrl {
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
@@ -25,13 +25,9 @@
 
 @end
 
-#pragma mark - ParallaxViewManager
+#pragma mark - NNParallaxViewManager
 
-@interface ParallaxViewManager()
-
-@end
-
-@implementation ParallaxViewManager
+@implementation NNParallaxViewManager
 
 RCT_EXPORT_MODULE();
 
@@ -41,7 +37,7 @@ RCT_EXPORT_VIEW_PROPERTY(imageUrl, NSString);
 RCT_EXPORT_VIEW_PROPERTY(cornerRadius, CGFloat);
 
 - (UIView *)view {
-    ParallaxView *parallaxView = [[ParallaxView alloc] initWithFrame:CGRectZero];
+    NNParallaxView *parallaxView = [[NNParallaxView alloc] initWithFrame:CGRectZero];
     parallaxView.smoothFactor = 0.03;
     parallaxView.imageView.contentMode = UIViewContentModeScaleAspectFill;
     parallaxView.clipsToBounds = YES;

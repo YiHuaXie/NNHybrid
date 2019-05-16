@@ -6,7 +6,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
-import NNParallaxView from '../../components/common/NNParallaxView';
+import ParallaxView from '../../components/common/ParallaxView';
 import NNImage from '../../components/common/NNImage';
 
 const cellHeight = 120 * (AppUtil.windowWidth - 30) / 345.0 + 15;
@@ -22,7 +22,7 @@ export default class HomeVRCell extends Component {
                     onPress={() => {
 
                     }}>
-                    <NNParallaxView
+                    <ParallaxView
                         style={styles.parallax}
                         cornerRadius={8}
                         imageUrl={vr.vrUrl}
@@ -32,7 +32,7 @@ export default class HomeVRCell extends Component {
                             source={require('../../resource/images/home_vr.png')}
                         />
                         <Text style={styles.text}>{vr.content}</Text>
-                    </NNParallaxView>
+                    </ParallaxView>
                 </TouchableWithoutFeedback>
             </View>
         );
@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
         width: 80,
         height: 26,
         resizeMode: 'contain',
-        left: 25,
+        left: 10,
         bottom: 35,
     },
     text: {
         position: 'absolute',
         fontSize: 14,
         color: '#FFFFFF',
-        left: 25,
+        left: 10,
         bottom: 10,
     }
 

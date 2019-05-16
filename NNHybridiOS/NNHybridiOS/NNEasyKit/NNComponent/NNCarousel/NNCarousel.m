@@ -1,8 +1,8 @@
 //
 //  NNCarousel.m
-//  NNCarousel
+//  NNEasyKit
 //
-//  Created by NeroXie on 2019/2/17.
+//  Created by NeroXie on 2019/5/16.
 //  Copyright © 2019 NeroXie. All rights reserved.
 //
 
@@ -137,7 +137,7 @@ UICollectionViewDelegateFlowLayout>
     self.collectionView.delegate = self;
     self.collectionView.pagingEnabled = NO;
     self.collectionView.decelerationRate = 1-0.0076;
-    if ([self.collectionView respondsToSelector:@selector(setPrefetchingEnabled:)]) {
+    if (@available(iOS 10.0, *)) {
         self.collectionView.prefetchingEnabled = NO;
     }
     self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -184,7 +184,7 @@ UICollectionViewDelegateFlowLayout>
     if (self.itemCount <= 0 || !NNIndexPathisValid(indexPath, self.itemCount, MaxSectionCount)) {
         return;
     }
-
+    
     CGPoint offset =
     self.carouselScrollDirection == UICollectionViewScrollDirectionHorizontal ?
     CGPointMake([self _offsetXAtIndexPath:indexPath],
@@ -253,7 +253,7 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)scrollToNearlyItemAtDirection:(NNCarouselScrollDirection)direction animated:(BOOL)animated {
     NNIndexPath indexPath = [self _nearlyIndexPathForCurrentIndexPath:self.currentIndexPath
-                                                                direction:direction];
+                                                            direction:direction];
     [self _scrollToItemAtIndexPath:indexPath animated:animated];
 }
 
@@ -347,7 +347,7 @@ UICollectionViewDelegateFlowLayout>
     }
     
     [self scrollToNearlyItemAtDirection:self.timerSrollDirection
-                                animated:YES];
+                               animated:YES];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -482,7 +482,7 @@ UICollectionViewDelegateFlowLayout>
 #pragma mark - Helper
 
 - (NNIndexPath)_nearlyIndexPathForCurrentIndexPath:(NNIndexPath)indexPath
-                                             direction:(NNCarouselScrollDirection)direction {
+                                         direction:(NNCarouselScrollDirection)direction {
     // 临界区
     if (indexPath.item < 0 || indexPath.item >= self.itemCount) {
         return indexPath;
@@ -639,7 +639,7 @@ UICollectionViewDelegateFlowLayout>
         currentItem = item % self.itemCount;
         currentSection = item / self.itemCount;
     }
-
+    
     return NNIndexPathMake(currentItem, currentSection);
 }
 
@@ -673,7 +673,7 @@ UICollectionViewDelegateFlowLayout>
                      horizontalSpace,
                      self.layout.itemSpacing,
                      horizontalSpace);
-
+    
     return sectionInset;
 }
 
@@ -693,7 +693,7 @@ UICollectionViewDelegateFlowLayout>
                      horizontalSpace,
                      self.layout.sectionInset.bottom,
                      horizontalSpace);
-
+    
     return sectionInset;
 }
 
@@ -713,7 +713,7 @@ UICollectionViewDelegateFlowLayout>
                      horizontalSpace,
                      self.layout.itemSpacing,
                      horizontalSpace);
-
+    
     return sectionInset;
 }
 

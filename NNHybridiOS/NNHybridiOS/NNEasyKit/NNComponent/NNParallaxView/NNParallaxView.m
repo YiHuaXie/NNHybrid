@@ -1,17 +1,17 @@
 //
-//  ParallaxView.m
-//  HiSensor
+//  NNParallaxView.m
+//  NNEasyKit
 //
-//  Created by Snow on 2018/6/6.
-//  Copyright © 2018年 Fuheng Tech. All rights reserved.
+//  Created by NeroXie on 2019/5/16.
+//  Copyright © 2019 NeroXie. All rights reserved.
 //
 
+#import "NNParallaxView.h"
 #import <CoreMotion/CoreMotion.h>
-#import "ParallaxView.h"
 
-@interface ParallaxView ()
+@interface NNParallaxView()
 
-@property (nonatomic, readwrite, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @property (nonatomic, weak) NSLayoutConstraint *constraintCenterX;
 @property (nonatomic, weak) NSLayoutConstraint *constraintCenterY;
@@ -27,7 +27,9 @@
 
 @end
 
-@implementation ParallaxView
+@implementation NNParallaxView
+
+#pragma mark - Init
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -55,19 +57,19 @@
                                                              multiplier:1
                                                                constant:0];
         self.constraintSizeWidth = [NSLayoutConstraint constraintWithItem:self
-                                                              attribute:NSLayoutAttributeWidth
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.imageView
-                                                              attribute:NSLayoutAttributeWidth
-                                                             multiplier:1
-                                                               constant:0];
+                                                                attribute:NSLayoutAttributeWidth
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.imageView
+                                                                attribute:NSLayoutAttributeWidth
+                                                               multiplier:1
+                                                                 constant:0];
         self.constraintSizeHeight = [NSLayoutConstraint constraintWithItem:self
-                                                              attribute:NSLayoutAttributeHeight
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.imageView
-                                                              attribute:NSLayoutAttributeHeight
-                                                             multiplier:1
-                                                               constant:0];
+                                                                 attribute:NSLayoutAttributeHeight
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:self.imageView
+                                                                 attribute:NSLayoutAttributeHeight
+                                                                multiplier:1
+                                                                  constant:0];
         [self addConstraints:@[self.constraintCenterX, self.constraintCenterY, self.constraintSizeWidth, self.constraintSizeHeight]];
         
         self.backgroundColor = [UIColor whiteColor];
@@ -78,16 +80,13 @@
     return self;
 }
 
+#pragma mark - Public
+
 - (void)setMaxOffsetHorizontal:(CGFloat)offsetH vertical:(CGFloat)offsetV {
     self.radiusH = offsetH;
     self.radiusV = offsetV;
     self.constraintSizeWidth.constant = -offsetH*2;
     self.constraintSizeHeight.constant = -offsetV*2;
-}
-
-- (void)setImageOffset:(CGPoint)imageOffset {
-    self.constraintCenterX.constant = imageOffset.x;
-    self.constraintCenterY.constant = imageOffset.y;
 }
 
 /**
@@ -112,15 +111,15 @@
         double yyy = ABS(gyroData.rotationRate.y) < 0.05 ? 0 : gyroData.rotationRate.y;
         
         //低通滤波。防止偏角变化频率过大，产生抖动
-        self.totalRotRateX = [ParallaxView lowPassFilterForSampledValue:xxx+self.totalRotRateX
-                                                withPrePassedValue:self.totalRotRateX
-                                                      smoothFactor:self.smoothFactor];
-        self.totalRotRateY = [ParallaxView lowPassFilterForSampledValue:yyy+self.totalRotRateY
-                                                withPrePassedValue:self.totalRotRateY
-                                                      smoothFactor:self.smoothFactor];
+        self.totalRotRateX = [NNParallaxView lowPassFilterForSampledValue:xxx+self.totalRotRateX
+                                                     withPrePassedValue:self.totalRotRateX
+                                                           smoothFactor:self.smoothFactor];
+        self.totalRotRateY = [NNParallaxView lowPassFilterForSampledValue:yyy+self.totalRotRateY
+                                                     withPrePassedValue:self.totalRotRateY
+                                                           smoothFactor:self.smoothFactor];
         //用阈值修正偏角。将偏角控制在阈值范围内, 将阈值设为1，可以通过设置半径来控制最大偏移量，依据公式 |弧长=圆心角弧度*半径|
-        self.totalRotRateX = [ParallaxView modifiedValue:self.totalRotRateX withThreshold:1];
-        self.totalRotRateY = [ParallaxView modifiedValue:self.totalRotRateY withThreshold:1];
+        self.totalRotRateX = [NNParallaxView modifiedValue:self.totalRotRateX withThreshold:1];
+        self.totalRotRateY = [NNParallaxView modifiedValue:self.totalRotRateY withThreshold:1];
         self.imageOffset = [self offsetFromRotationRate:(CGPoint){self.totalRotRateX, self.totalRotRateY}];
     }];
 }
@@ -134,6 +133,8 @@
     [motionManager stopGyroUpdates];
 }
 
+#pragma mark - Private
+
 + (double)modifiedValue:(double)originalValue withThreshold:(double)threshold {
     NSAssert(threshold > 0, @"Threshold should be positive");
     return originalValue > threshold ? threshold : originalValue < -threshold ? -threshold : originalValue;
@@ -146,6 +147,13 @@
 
 + (double)lowPassFilterForSampledValue:(double)sampled withPrePassedValue:(double)prePass smoothFactor:(double)smoothFactor {
     return sampled * smoothFactor + prePass * (1 - smoothFactor);
+}
+
+#pragma mark - Setter
+
+- (void)setImageOffset:(CGPoint)imageOffset {
+    self.constraintCenterX.constant = imageOffset.x;
+    self.constraintCenterY.constant = imageOffset.y;
 }
 
 @end

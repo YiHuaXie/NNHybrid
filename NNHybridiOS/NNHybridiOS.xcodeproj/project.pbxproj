@@ -22,6 +22,32 @@
 		AE09FE4E2231FFAD003C2F97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE4D2231FFAD003C2F97 /* main.m */; };
 		AE09FE582231FFAE003C2F97 /* NNHybridiOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE572231FFAE003C2F97 /* NNHybridiOSTests.m */; };
 		AE09FE632231FFAE003C2F97 /* NNHybridiOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AE09FE622231FFAE003C2F97 /* NNHybridiOSUITests.m */; };
+		AE0C3B81228D5756005F5DA6 /* NNGlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B42228D5755005F5DA6 /* NNGlobalHelper.m */; };
+		AE0C3B82228D5756005F5DA6 /* NSObject+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B44228D5755005F5DA6 /* NSObject+NNExtension.m */; };
+		AE0C3B83228D5756005F5DA6 /* UIFont+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B45228D5755005F5DA6 /* UIFont+NNExtension.m */; };
+		AE0C3B84228D5756005F5DA6 /* UIView+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B47228D5755005F5DA6 /* UIView+NNExtension.m */; };
+		AE0C3B85228D5756005F5DA6 /* NSString+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B4B228D5755005F5DA6 /* NSString+NNExtension.m */; };
+		AE0C3B86228D5756005F5DA6 /* UICollectionView+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B4D228D5755005F5DA6 /* UICollectionView+NNExtension.m */; };
+		AE0C3B87228D5756005F5DA6 /* UIGestureRecognizer+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B50228D5755005F5DA6 /* UIGestureRecognizer+NNExtension.m */; };
+		AE0C3B88228D5756005F5DA6 /* UIImage+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B55228D5756005F5DA6 /* UIImage+NNExtension.m */; };
+		AE0C3B89228D5756005F5DA6 /* NSTimer+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B56228D5756005F5DA6 /* NSTimer+NNExtension.m */; };
+		AE0C3B8A228D5756005F5DA6 /* UIColor+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B57228D5756005F5DA6 /* UIColor+NNExtension.m */; };
+		AE0C3B8B228D5756005F5DA6 /* UITableView+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B58228D5756005F5DA6 /* UITableView+NNExtension.m */; };
+		AE0C3B8C228D5756005F5DA6 /* UIAlertController+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B59228D5756005F5DA6 /* UIAlertController+NNExtension.m */; };
+		AE0C3B8D228D5756005F5DA6 /* UIControl+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B5B228D5756005F5DA6 /* UIControl+NNExtension.m */; };
+		AE0C3B8E228D5756005F5DA6 /* NNPFSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B60228D5756005F5DA6 /* NNPFSLabel.m */; };
+		AE0C3B8F228D5756005F5DA6 /* CADisplayLink+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B61228D5756005F5DA6 /* CADisplayLink+NNExtension.m */; };
+		AE0C3B90228D5756005F5DA6 /* NNGCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B64228D5756005F5DA6 /* NNGCDTimer.m */; };
+		AE0C3B91228D5756005F5DA6 /* NNPinYin.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B68228D5756005F5DA6 /* NNPinYin.m */; };
+		AE0C3B92228D5756005F5DA6 /* NNCarouselLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B6A228D5756005F5DA6 /* NNCarouselLayout.m */; };
+		AE0C3B93228D5756005F5DA6 /* NNCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B6B228D5756005F5DA6 /* NNCarousel.m */; };
+		AE0C3B94228D5756005F5DA6 /* NNNormalAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B6F228D5756005F5DA6 /* NNNormalAlertView.m */; };
+		AE0C3B95228D5756005F5DA6 /* NNAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B72228D5756005F5DA6 /* NNAlertView.m */; };
+		AE0C3B96228D5756005F5DA6 /* NNLabelStyleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B74228D5756005F5DA6 /* NNLabelStyleLayout.m */; };
+		AE0C3B97228D5756005F5DA6 /* NNParallaxView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B77228D5756005F5DA6 /* NNParallaxView.m */; };
+		AE0C3B98228D5756005F5DA6 /* NNNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B7A228D5756005F5DA6 /* NNNetworkResponse.m */; };
+		AE0C3B99228D5756005F5DA6 /* NNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B7C228D5756005F5DA6 /* NNNetworkService.m */; };
+		AE0C3B9A228D5756005F5DA6 /* NNNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B7F228D5756005F5DA6 /* NNNetworkRequest.m */; };
 		AE17621E2284007500D01C61 /* HouseDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17621B2284007500D01C61 /* HouseDetailTitleCell.m */; };
 		AE17621F2284007500D01C61 /* HouseDetailTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE17621C2284007500D01C61 /* HouseDetailTitleCell.xib */; };
 		AE176223228400F100D01C61 /* DecentraliedHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE176222228400F100D01C61 /* DecentraliedHouse.m */; };
@@ -44,16 +70,12 @@
 		AE687BA6225C68B50054FDA6 /* UIView+BOLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B61225C68B40054FDA6 /* UIView+BOLoading.m */; };
 		AE687BA7225C68B50054FDA6 /* UIViewController+Landspace.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B63225C68B40054FDA6 /* UIViewController+Landspace.m */; };
 		AE687BA8225C68B50054FDA6 /* UIImageView+AnimationSDWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B65225C68B40054FDA6 /* UIImageView+AnimationSDWebImage.m */; };
-		AE687BBD225C68B50054FDA6 /* NNNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B98225C68B40054FDA6 /* NNNetworkResponse.m */; };
-		AE687BBE225C68B50054FDA6 /* NNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B9A225C68B40054FDA6 /* NNNetworkService.m */; };
-		AE687BBF225C68B50054FDA6 /* NNNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B9D225C68B40054FDA6 /* NNNetworkRequest.m */; };
 		AE687BC0225C68B50054FDA6 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687B9F225C68B40054FDA6 /* LocationManager.m */; };
 		AE687BC1225C68B50054FDA6 /* CityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BA0225C68B40054FDA6 /* CityManager.m */; };
 		AE687BD0225C69180054FDA6 /* NNProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BC4225C69180054FDA6 /* NNProgressHUD.m */; };
 		AE687BD1225C69180054FDA6 /* NNRefreshLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BCA225C69180054FDA6 /* NNRefreshLoadingView.m */; };
 		AE687BD2225C69180054FDA6 /* NNRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BCB225C69180054FDA6 /* NNRefreshHeader.m */; };
 		AE687BD3225C69180054FDA6 /* NNRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BCC225C69180054FDA6 /* NNRefreshFooter.m */; };
-		AE687BD4225C69180054FDA6 /* ParallaxView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BCF225C69180054FDA6 /* ParallaxView.m */; };
 		AE687BDF225C69AF0054FDA6 /* ApiBaseResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BD7225C69AF0054FDA6 /* ApiBaseResponse.m */; };
 		AE687BE0225C69AF0054FDA6 /* ApiBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BD8225C69AF0054FDA6 /* ApiBaseRequest.m */; };
 		AE687BEB225C6B330054FDA6 /* UserDefaultKey.m in Sources */ = {isa = PBXBuildFile; fileRef = AE687BE7225C6B330054FDA6 /* UserDefaultKey.m */; };
@@ -75,7 +97,7 @@
 		AE9B72DC228679AC00F9D954 /* NNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72DB228679AC00F9D954 /* NNNavigationController.m */; };
 		AE9B72DF22867A8F00F9D954 /* NativeJumpModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9B72DE22867A8F00F9D954 /* NativeJumpModule.m */; };
 		AEAA8EB02281311800FA1EE6 /* MapLocationViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEAA8EAF2281311800FA1EE6 /* MapLocationViewManager.m */; };
-		AEC86C48225353B400C76C09 /* ParallaxViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C41225353B400C76C09 /* ParallaxViewManager.m */; };
+		AEC86C48225353B400C76C09 /* NNParallaxViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C41225353B400C76C09 /* NNParallaxViewManager.m */; };
 		AEC86C49225353B400C76C09 /* RNBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C44225353B400C76C09 /* RNBaseModule.m */; };
 		AEE4607E22789725003F5D4B /* PlaneLoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */; };
 		AEED90EC225BAC44001B1985 /* NNGlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90B9225BAC44001B1985 /* NNGlobalHelper.m */; };
@@ -149,6 +171,60 @@
 		AE09FE5E2231FFAE003C2F97 /* NNHybridiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NNHybridiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE09FE622231FFAE003C2F97 /* NNHybridiOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NNHybridiOSUITests.m; sourceTree = "<group>"; };
 		AE09FE642231FFAE003C2F97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE0C3B42228D5755005F5DA6 /* NNGlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNGlobalHelper.m; sourceTree = "<group>"; };
+		AE0C3B43228D5755005F5DA6 /* UIGestureRecognizer+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B44228D5755005F5DA6 /* NSObject+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B45228D5755005F5DA6 /* UIFont+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B46228D5755005F5DA6 /* NNDefineMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNDefineMacro.h; sourceTree = "<group>"; };
+		AE0C3B47228D5755005F5DA6 /* UIView+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B48228D5755005F5DA6 /* UIColor+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B49228D5755005F5DA6 /* NSTimer+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B4A228D5755005F5DA6 /* UIImage+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B4B228D5755005F5DA6 /* NSString+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B4C228D5755005F5DA6 /* UIControl+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B4D228D5755005F5DA6 /* UICollectionView+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B4E228D5755005F5DA6 /* UIAlertController+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B4F228D5755005F5DA6 /* UITableView+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B50228D5755005F5DA6 /* UIGestureRecognizer+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B51228D5755005F5DA6 /* NNGlobalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNGlobalHelper.h; sourceTree = "<group>"; };
+		AE0C3B52228D5755005F5DA6 /* UIView+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B53228D5755005F5DA6 /* NSObject+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B54228D5755005F5DA6 /* UIFont+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B55228D5756005F5DA6 /* UIImage+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B56228D5756005F5DA6 /* NSTimer+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B57228D5756005F5DA6 /* UIColor+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B58228D5756005F5DA6 /* UITableView+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B59228D5756005F5DA6 /* UIAlertController+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B5A228D5756005F5DA6 /* UICollectionView+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B5B228D5756005F5DA6 /* UIControl+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B5C228D5756005F5DA6 /* NSString+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B5F228D5756005F5DA6 /* CADisplayLink+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CADisplayLink+NNExtension.h"; sourceTree = "<group>"; };
+		AE0C3B60228D5756005F5DA6 /* NNPFSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNPFSLabel.m; sourceTree = "<group>"; };
+		AE0C3B61228D5756005F5DA6 /* CADisplayLink+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CADisplayLink+NNExtension.m"; sourceTree = "<group>"; };
+		AE0C3B62228D5756005F5DA6 /* NNPFSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNPFSLabel.h; sourceTree = "<group>"; };
+		AE0C3B64228D5756005F5DA6 /* NNGCDTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNGCDTimer.m; sourceTree = "<group>"; };
+		AE0C3B65228D5756005F5DA6 /* NNGCDTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNGCDTimer.h; sourceTree = "<group>"; };
+		AE0C3B67228D5756005F5DA6 /* NNPinYin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNPinYin.h; sourceTree = "<group>"; };
+		AE0C3B68228D5756005F5DA6 /* NNPinYin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNPinYin.m; sourceTree = "<group>"; };
+		AE0C3B6A228D5756005F5DA6 /* NNCarouselLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNCarouselLayout.m; sourceTree = "<group>"; };
+		AE0C3B6B228D5756005F5DA6 /* NNCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNCarousel.m; sourceTree = "<group>"; };
+		AE0C3B6C228D5756005F5DA6 /* NNCarouselLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNCarouselLayout.h; sourceTree = "<group>"; };
+		AE0C3B6D228D5756005F5DA6 /* NNCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNCarousel.h; sourceTree = "<group>"; };
+		AE0C3B6F228D5756005F5DA6 /* NNNormalAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNormalAlertView.m; sourceTree = "<group>"; };
+		AE0C3B70228D5756005F5DA6 /* NNAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNAlertView.h; sourceTree = "<group>"; };
+		AE0C3B71228D5756005F5DA6 /* NNNormalAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNormalAlertView.h; sourceTree = "<group>"; };
+		AE0C3B72228D5756005F5DA6 /* NNAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNAlertView.m; sourceTree = "<group>"; };
+		AE0C3B74228D5756005F5DA6 /* NNLabelStyleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNLabelStyleLayout.m; sourceTree = "<group>"; };
+		AE0C3B75228D5756005F5DA6 /* NNLabelStyleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNLabelStyleLayout.h; sourceTree = "<group>"; };
+		AE0C3B77228D5756005F5DA6 /* NNParallaxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNParallaxView.m; sourceTree = "<group>"; };
+		AE0C3B78228D5756005F5DA6 /* NNParallaxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNParallaxView.h; sourceTree = "<group>"; };
+		AE0C3B7A228D5756005F5DA6 /* NNNetworkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNetworkResponse.m; sourceTree = "<group>"; };
+		AE0C3B7B228D5756005F5DA6 /* NNNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNetworkRequest.h; sourceTree = "<group>"; };
+		AE0C3B7C228D5756005F5DA6 /* NNNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNetworkService.m; sourceTree = "<group>"; };
+		AE0C3B7D228D5756005F5DA6 /* NNNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNetworkResponse.h; sourceTree = "<group>"; };
+		AE0C3B7E228D5756005F5DA6 /* NNNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNetworkService.h; sourceTree = "<group>"; };
+		AE0C3B7F228D5756005F5DA6 /* NNNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNetworkRequest.m; sourceTree = "<group>"; };
+		AE0C3B80228D5756005F5DA6 /* NNEasyKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNEasyKit.h; sourceTree = "<group>"; };
 		AE17621B2284007500D01C61 /* HouseDetailTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseDetailTitleCell.m; sourceTree = "<group>"; };
 		AE17621C2284007500D01C61 /* HouseDetailTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseDetailTitleCell.xib; sourceTree = "<group>"; };
 		AE17621D2284007500D01C61 /* HouseDetailTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseDetailTitleCell.h; sourceTree = "<group>"; };
@@ -193,12 +269,6 @@
 		AE687B64225C68B40054FDA6 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		AE687B65225C68B40054FDA6 /* UIImageView+AnimationSDWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AnimationSDWebImage.m"; sourceTree = "<group>"; };
 		AE687B66225C68B40054FDA6 /* UIScrollView+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+NNExtension.h"; sourceTree = "<group>"; };
-		AE687B98225C68B40054FDA6 /* NNNetworkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNetworkResponse.m; sourceTree = "<group>"; };
-		AE687B99225C68B40054FDA6 /* NNNetworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNetworkRequest.h; sourceTree = "<group>"; };
-		AE687B9A225C68B40054FDA6 /* NNNetworkService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNetworkService.m; sourceTree = "<group>"; };
-		AE687B9B225C68B40054FDA6 /* NNNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNetworkResponse.h; sourceTree = "<group>"; };
-		AE687B9C225C68B40054FDA6 /* NNNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNetworkService.h; sourceTree = "<group>"; };
-		AE687B9D225C68B40054FDA6 /* NNNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNetworkRequest.m; sourceTree = "<group>"; };
 		AE687B9F225C68B40054FDA6 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		AE687BA0225C68B40054FDA6 /* CityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityManager.m; sourceTree = "<group>"; };
 		AE687BA1225C68B40054FDA6 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
@@ -211,8 +281,6 @@
 		AE687BCA225C69180054FDA6 /* NNRefreshLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNRefreshLoadingView.m; sourceTree = "<group>"; };
 		AE687BCB225C69180054FDA6 /* NNRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNRefreshHeader.m; sourceTree = "<group>"; };
 		AE687BCC225C69180054FDA6 /* NNRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNRefreshFooter.m; sourceTree = "<group>"; };
-		AE687BCE225C69180054FDA6 /* ParallaxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxView.h; sourceTree = "<group>"; };
-		AE687BCF225C69180054FDA6 /* ParallaxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxView.m; sourceTree = "<group>"; };
 		AE687BD6225C69AF0054FDA6 /* ApiBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiBaseRequest.h; sourceTree = "<group>"; };
 		AE687BD7225C69AF0054FDA6 /* ApiBaseResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiBaseResponse.m; sourceTree = "<group>"; };
 		AE687BD8225C69AF0054FDA6 /* ApiBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiBaseRequest.m; sourceTree = "<group>"; };
@@ -260,8 +328,8 @@
 		AE9B72DE22867A8F00F9D954 /* NativeJumpModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeJumpModule.m; sourceTree = "<group>"; };
 		AEAA8EAE2281311800FA1EE6 /* MapLocationViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapLocationViewManager.h; sourceTree = "<group>"; };
 		AEAA8EAF2281311800FA1EE6 /* MapLocationViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapLocationViewManager.m; sourceTree = "<group>"; };
-		AEC86C41225353B400C76C09 /* ParallaxViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxViewManager.m; sourceTree = "<group>"; };
-		AEC86C42225353B400C76C09 /* ParallaxViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxViewManager.h; sourceTree = "<group>"; };
+		AEC86C41225353B400C76C09 /* NNParallaxViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNParallaxViewManager.m; sourceTree = "<group>"; };
+		AEC86C42225353B400C76C09 /* NNParallaxViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNParallaxViewManager.h; sourceTree = "<group>"; };
 		AEC86C44225353B400C76C09 /* RNBaseModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBaseModule.m; sourceTree = "<group>"; };
 		AEC86C47225353B400C76C09 /* RNBaseModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBaseModule.h; sourceTree = "<group>"; };
 		AEE4607C22789725003F5D4B /* PlaneLoadingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneLoadingManager.h; sourceTree = "<group>"; };
@@ -374,6 +442,7 @@
 		AE09FE3D2231FFAD003C2F97 /* NNHybridiOS */ = {
 			isa = PBXGroup;
 			children = (
+				AE0C3B40228D5755005F5DA6 /* NNEasyKit */,
 				AE9B72AE2285946A00F9D954 /* Third */,
 				AE687BD5225C69AF0054FDA6 /* ApiRequest */,
 				AEE146C522328CD600685714 /* AppDelegate */,
@@ -404,6 +473,147 @@
 				AE09FE642231FFAE003C2F97 /* Info.plist */,
 			);
 			path = NNHybridiOSUITests;
+			sourceTree = "<group>";
+		};
+		AE0C3B40228D5755005F5DA6 /* NNEasyKit */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B5D228D5756005F5DA6 /* NNComponent */,
+				AE0C3B80228D5756005F5DA6 /* NNEasyKit.h */,
+				AE0C3B41228D5755005F5DA6 /* NNExtension */,
+				AE0C3B79228D5756005F5DA6 /* NNNetwork */,
+			);
+			path = NNEasyKit;
+			sourceTree = "<group>";
+		};
+		AE0C3B41228D5755005F5DA6 /* NNExtension */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B46228D5755005F5DA6 /* NNDefineMacro.h */,
+				AE0C3B51228D5755005F5DA6 /* NNGlobalHelper.h */,
+				AE0C3B42228D5755005F5DA6 /* NNGlobalHelper.m */,
+				AE0C3B53228D5755005F5DA6 /* NSObject+NNExtension.h */,
+				AE0C3B44228D5755005F5DA6 /* NSObject+NNExtension.m */,
+				AE0C3B5C228D5756005F5DA6 /* NSString+NNExtension.h */,
+				AE0C3B4B228D5755005F5DA6 /* NSString+NNExtension.m */,
+				AE0C3B49228D5755005F5DA6 /* NSTimer+NNExtension.h */,
+				AE0C3B56228D5756005F5DA6 /* NSTimer+NNExtension.m */,
+				AE0C3B4E228D5755005F5DA6 /* UIAlertController+NNExtension.h */,
+				AE0C3B59228D5756005F5DA6 /* UIAlertController+NNExtension.m */,
+				AE0C3B5A228D5756005F5DA6 /* UICollectionView+NNExtension.h */,
+				AE0C3B4D228D5755005F5DA6 /* UICollectionView+NNExtension.m */,
+				AE0C3B48228D5755005F5DA6 /* UIColor+NNExtension.h */,
+				AE0C3B57228D5756005F5DA6 /* UIColor+NNExtension.m */,
+				AE0C3B4C228D5755005F5DA6 /* UIControl+NNExtension.h */,
+				AE0C3B5B228D5756005F5DA6 /* UIControl+NNExtension.m */,
+				AE0C3B54228D5755005F5DA6 /* UIFont+NNExtension.h */,
+				AE0C3B45228D5755005F5DA6 /* UIFont+NNExtension.m */,
+				AE0C3B43228D5755005F5DA6 /* UIGestureRecognizer+NNExtension.h */,
+				AE0C3B50228D5755005F5DA6 /* UIGestureRecognizer+NNExtension.m */,
+				AE0C3B4A228D5755005F5DA6 /* UIImage+NNExtension.h */,
+				AE0C3B55228D5756005F5DA6 /* UIImage+NNExtension.m */,
+				AE0C3B4F228D5755005F5DA6 /* UITableView+NNExtension.h */,
+				AE0C3B58228D5756005F5DA6 /* UITableView+NNExtension.m */,
+				AE0C3B52228D5755005F5DA6 /* UIView+NNExtension.h */,
+				AE0C3B47228D5755005F5DA6 /* UIView+NNExtension.m */,
+			);
+			path = NNExtension;
+			sourceTree = "<group>";
+		};
+		AE0C3B5D228D5756005F5DA6 /* NNComponent */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B6E228D5756005F5DA6 /* NNAlertView */,
+				AE0C3B69228D5756005F5DA6 /* NNCarousel */,
+				AE0C3B63228D5756005F5DA6 /* NNGCDTimer */,
+				AE0C3B73228D5756005F5DA6 /* NNLabelStyleLayout */,
+				AE0C3B76228D5756005F5DA6 /* NNParallaxView */,
+				AE0C3B5E228D5756005F5DA6 /* NNPFSLabel */,
+				AE0C3B66228D5756005F5DA6 /* NNPinYin */,
+			);
+			path = NNComponent;
+			sourceTree = "<group>";
+		};
+		AE0C3B5E228D5756005F5DA6 /* NNPFSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B5F228D5756005F5DA6 /* CADisplayLink+NNExtension.h */,
+				AE0C3B61228D5756005F5DA6 /* CADisplayLink+NNExtension.m */,
+				AE0C3B62228D5756005F5DA6 /* NNPFSLabel.h */,
+				AE0C3B60228D5756005F5DA6 /* NNPFSLabel.m */,
+			);
+			path = NNPFSLabel;
+			sourceTree = "<group>";
+		};
+		AE0C3B63228D5756005F5DA6 /* NNGCDTimer */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B65228D5756005F5DA6 /* NNGCDTimer.h */,
+				AE0C3B64228D5756005F5DA6 /* NNGCDTimer.m */,
+			);
+			path = NNGCDTimer;
+			sourceTree = "<group>";
+		};
+		AE0C3B66228D5756005F5DA6 /* NNPinYin */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B67228D5756005F5DA6 /* NNPinYin.h */,
+				AE0C3B68228D5756005F5DA6 /* NNPinYin.m */,
+			);
+			path = NNPinYin;
+			sourceTree = "<group>";
+		};
+		AE0C3B69228D5756005F5DA6 /* NNCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B6D228D5756005F5DA6 /* NNCarousel.h */,
+				AE0C3B6B228D5756005F5DA6 /* NNCarousel.m */,
+				AE0C3B6C228D5756005F5DA6 /* NNCarouselLayout.h */,
+				AE0C3B6A228D5756005F5DA6 /* NNCarouselLayout.m */,
+			);
+			path = NNCarousel;
+			sourceTree = "<group>";
+		};
+		AE0C3B6E228D5756005F5DA6 /* NNAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B70228D5756005F5DA6 /* NNAlertView.h */,
+				AE0C3B72228D5756005F5DA6 /* NNAlertView.m */,
+				AE0C3B71228D5756005F5DA6 /* NNNormalAlertView.h */,
+				AE0C3B6F228D5756005F5DA6 /* NNNormalAlertView.m */,
+			);
+			path = NNAlertView;
+			sourceTree = "<group>";
+		};
+		AE0C3B73228D5756005F5DA6 /* NNLabelStyleLayout */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B75228D5756005F5DA6 /* NNLabelStyleLayout.h */,
+				AE0C3B74228D5756005F5DA6 /* NNLabelStyleLayout.m */,
+			);
+			path = NNLabelStyleLayout;
+			sourceTree = "<group>";
+		};
+		AE0C3B76228D5756005F5DA6 /* NNParallaxView */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B78228D5756005F5DA6 /* NNParallaxView.h */,
+				AE0C3B77228D5756005F5DA6 /* NNParallaxView.m */,
+			);
+			path = NNParallaxView;
+			sourceTree = "<group>";
+		};
+		AE0C3B79228D5756005F5DA6 /* NNNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3B7B228D5756005F5DA6 /* NNNetworkRequest.h */,
+				AE0C3B7F228D5756005F5DA6 /* NNNetworkRequest.m */,
+				AE0C3B7D228D5756005F5DA6 /* NNNetworkResponse.h */,
+				AE0C3B7A228D5756005F5DA6 /* NNNetworkResponse.m */,
+				AE0C3B7E228D5756005F5DA6 /* NNNetworkService.h */,
+				AE0C3B7C228D5756005F5DA6 /* NNNetworkService.m */,
+			);
+			path = NNNetwork;
 			sourceTree = "<group>";
 		};
 		AE1762192284007500D01C61 /* HouseDetail */ = {
@@ -515,7 +725,6 @@
 			children = (
 				AE687BC2225C69180054FDA6 /* NNComponent */,
 				AE687B5A225C68B40054FDA6 /* Extension */,
-				AE687B97225C68B40054FDA6 /* NNNetwork */,
 				AE687B9E225C68B40054FDA6 /* Manager */,
 			);
 			path = Component;
@@ -540,19 +749,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		AE687B97225C68B40054FDA6 /* NNNetwork */ = {
-			isa = PBXGroup;
-			children = (
-				AE687B99225C68B40054FDA6 /* NNNetworkRequest.h */,
-				AE687B9D225C68B40054FDA6 /* NNNetworkRequest.m */,
-				AE687B9B225C68B40054FDA6 /* NNNetworkResponse.h */,
-				AE687B98225C68B40054FDA6 /* NNNetworkResponse.m */,
-				AE687B9C225C68B40054FDA6 /* NNNetworkService.h */,
-				AE687B9A225C68B40054FDA6 /* NNNetworkService.m */,
-			);
-			path = NNNetwork;
-			sourceTree = "<group>";
-		};
 		AE687B9E225C68B40054FDA6 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,7 +767,6 @@
 			children = (
 				AE687BC3225C69180054FDA6 /* NNProgressHUD */,
 				AE687BC6225C69180054FDA6 /* NNRefresh */,
-				AE687BCD225C69180054FDA6 /* NNParallaxView */,
 			);
 			path = NNComponent;
 			sourceTree = "<group>";
@@ -596,15 +791,6 @@
 				AE687BCA225C69180054FDA6 /* NNRefreshLoadingView.m */,
 			);
 			path = NNRefresh;
-			sourceTree = "<group>";
-		};
-		AE687BCD225C69180054FDA6 /* NNParallaxView */ = {
-			isa = PBXGroup;
-			children = (
-				AE687BCE225C69180054FDA6 /* ParallaxView.h */,
-				AE687BCF225C69180054FDA6 /* ParallaxView.m */,
-			);
-			path = NNParallaxView;
 			sourceTree = "<group>";
 		};
 		AE687BD5225C69AF0054FDA6 /* ApiRequest */ = {
@@ -725,8 +911,8 @@
 		AEC86C40225353B400C76C09 /* RCTView */ = {
 			isa = PBXGroup;
 			children = (
-				AEC86C42225353B400C76C09 /* ParallaxViewManager.h */,
-				AEC86C41225353B400C76C09 /* ParallaxViewManager.m */,
+				AEC86C42225353B400C76C09 /* NNParallaxViewManager.h */,
+				AEC86C41225353B400C76C09 /* NNParallaxViewManager.m */,
 				AEE4607C22789725003F5D4B /* PlaneLoadingManager.h */,
 				AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */,
 				AEAA8EAE2281311800FA1EE6 /* MapLocationViewManager.h */,
@@ -1156,25 +1342,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0C3B8B228D5756005F5DA6 /* UITableView+NNExtension.m in Sources */,
+				AE0C3B95228D5756005F5DA6 /* NNAlertView.m in Sources */,
 				AE687BD2225C69180054FDA6 /* NNRefreshHeader.m in Sources */,
+				AE0C3B90228D5756005F5DA6 /* NNGCDTimer.m in Sources */,
 				AEE4607E22789725003F5D4B /* PlaneLoadingManager.m in Sources */,
 				AE687B54225C68360054FDA6 /* NNBaseTableView.m in Sources */,
 				AEED920A225CBBEE001B1985 /* UserDefaultModule.m in Sources */,
+				AE0C3B98228D5756005F5DA6 /* NNNetworkResponse.m in Sources */,
 				AEED90F6225BAC44001B1985 /* UITableView+NNExtension.m in Sources */,
+				AE0C3B92228D5756005F5DA6 /* NNCarouselLayout.m in Sources */,
 				AE9B72CD2285946A00F9D954 /* BHBPopView.m in Sources */,
-				AE687BBD225C68B50054FDA6 /* NNNetworkResponse.m in Sources */,
 				AEED9100225BAC44001B1985 /* NNAlertView.m in Sources */,
 				AE176226228400FF00D01C61 /* CentraliedHouse.m in Sources */,
 				AE176223228400F100D01C61 /* DecentraliedHouse.m in Sources */,
+				AE0C3B9A228D5756005F5DA6 /* NNNetworkRequest.m in Sources */,
 				AEC86C49225353B400C76C09 /* RNBaseModule.m in Sources */,
-				AE687BBF225C68B50054FDA6 /* NNNetworkRequest.m in Sources */,
 				AEED90F5225BAC44001B1985 /* UIColor+NNExtension.m in Sources */,
 				AEED90F2225BAC44001B1985 /* UIGestureRecognizer+NNExtension.m in Sources */,
 				AEED90F7225BAC44001B1985 /* UIAlertController+NNExtension.m in Sources */,
+				AE0C3B8A228D5756005F5DA6 /* UIColor+NNExtension.m in Sources */,
 				AE687B52225C68360054FDA6 /* NNBaseViewModel.m in Sources */,
 				AEED90F1225BAC44001B1985 /* UICollectionView+NNExtension.m in Sources */,
+				AE0C3B82228D5756005F5DA6 /* NSObject+NNExtension.m in Sources */,
 				AE687BD3225C69180054FDA6 /* NNRefreshFooter.m in Sources */,
+				AE0C3B85228D5756005F5DA6 /* NSString+NNExtension.m in Sources */,
+				AE0C3B8E228D5756005F5DA6 /* NNPFSLabel.m in Sources */,
 				AE687BC0225C68B50054FDA6 /* LocationManager.m in Sources */,
+				AE0C3B89228D5756005F5DA6 /* NSTimer+NNExtension.m in Sources */,
 				AEED90FF225BAC44001B1985 /* NNNormalAlertView.m in Sources */,
 				AE687B55225C68360054FDA6 /* NNImageCollectionViewCell.m in Sources */,
 				AE9B72C72285946A00F9D954 /* UIImageView+BHBSetImage.m in Sources */,
@@ -1186,25 +1381,31 @@
 				AEED90F0225BAC44001B1985 /* NSString+NNExtension.m in Sources */,
 				AEED90FD225BAC44001B1985 /* NNCarouselLayout.m in Sources */,
 				AE17623322841FFC00D01C61 /* ShareManager.m in Sources */,
+				AE0C3B8F228D5756005F5DA6 /* CADisplayLink+NNExtension.m in Sources */,
 				AE687B53225C68360054FDA6 /* NNBaseModel.m in Sources */,
 				AE687BA5225C68B50054FDA6 /* UIScrollView+NNExtension.m in Sources */,
+				AE0C3B91228D5756005F5DA6 /* NNPinYin.m in Sources */,
 				AE9B72C82285946A00F9D954 /* UIImage+BHBEffects.m in Sources */,
 				AEED90F4225BAC44001B1985 /* NSTimer+NNExtension.m in Sources */,
 				AE9B72CC2285946A00F9D954 /* BHBItem.m in Sources */,
 				AE687BD0225C69180054FDA6 /* NNProgressHUD.m in Sources */,
-				AE687BBE225C68B50054FDA6 /* NNNetworkService.m in Sources */,
 				AE687BDF225C69AF0054FDA6 /* ApiBaseResponse.m in Sources */,
 				AE9B72DF22867A8F00F9D954 /* NativeJumpModule.m in Sources */,
 				AE09FE4E2231FFAD003C2F97 /* main.m in Sources */,
 				AE687BD1225C69180054FDA6 /* NNRefreshLoadingView.m in Sources */,
 				AEED90EC225BAC44001B1985 /* NNGlobalHelper.m in Sources */,
 				AEED90FA225BAC44001B1985 /* CADisplayLink+NNExtension.m in Sources */,
+				AE0C3B99228D5756005F5DA6 /* NNNetworkService.m in Sources */,
 				AEAA8EB02281311800FA1EE6 /* MapLocationViewManager.m in Sources */,
 				AEED90FC225BAC44001B1985 /* NNPinYin.m in Sources */,
-				AE687BD4225C69180054FDA6 /* ParallaxView.m in Sources */,
+				AE0C3B87228D5756005F5DA6 /* UIGestureRecognizer+NNExtension.m in Sources */,
+				AE0C3B97228D5756005F5DA6 /* NNParallaxView.m in Sources */,
+				AE0C3B8D228D5756005F5DA6 /* UIControl+NNExtension.m in Sources */,
+				AE0C3B8C228D5756005F5DA6 /* UIAlertController+NNExtension.m in Sources */,
 				AE1762292284025100D01C61 /* TagModel.m in Sources */,
 				AE687BA6225C68B50054FDA6 /* UIView+BOLoading.m in Sources */,
 				AE687BC1225C68B50054FDA6 /* CityManager.m in Sources */,
+				AE0C3B88228D5756005F5DA6 /* UIImage+NNExtension.m in Sources */,
 				AE9B72C92285946A00F9D954 /* BHBBottomBar.m in Sources */,
 				AEED90EE225BAC44001B1985 /* UIFont+NNExtension.m in Sources */,
 				AE687AF6225C65090054FDA6 /* SystemConfigPlugin.m in Sources */,
@@ -1215,9 +1416,12 @@
 				AE9B72CE2285946A00F9D954 /* BHBGroup.m in Sources */,
 				AE17621E2284007500D01C61 /* HouseDetailTitleCell.m in Sources */,
 				AEED90FB225BAC44001B1985 /* NNGCDTimer.m in Sources */,
+				AE0C3B94228D5756005F5DA6 /* NNNormalAlertView.m in Sources */,
 				AE687BEB225C6B330054FDA6 /* UserDefaultKey.m in Sources */,
 				AEED90F8225BAC44001B1985 /* UIControl+NNExtension.m in Sources */,
 				AE176230228409DC00D01C61 /* HouseDetailTitleCellManager.m in Sources */,
+				AE0C3B84228D5756005F5DA6 /* UIView+NNExtension.m in Sources */,
+				AE0C3B96228D5756005F5DA6 /* NNLabelStyleLayout.m in Sources */,
 				AE9B72D02285946A00F9D954 /* UIView+BHBAnimation.m in Sources */,
 				AEED90F9225BAC44001B1985 /* NNPFSLabel.m in Sources */,
 				AE9B72DC228679AC00F9D954 /* NNNavigationController.m in Sources */,
@@ -1225,6 +1429,7 @@
 				AE687BA4225C68B50054FDA6 /* UIView+Frame.m in Sources */,
 				AE687BA8225C68B50054FDA6 /* UIImageView+AnimationSDWebImage.m in Sources */,
 				AE687BA7225C68B50054FDA6 /* UIViewController+Landspace.m in Sources */,
+				AE0C3B93228D5756005F5DA6 /* NNCarousel.m in Sources */,
 				AE687C00225C6BD30054FDA6 /* CityModel.m in Sources */,
 				AE9B72CF2285946A00F9D954 /* BHBCenterView.m in Sources */,
 				AE9B72CB2285946A00F9D954 /* UIButton+BHBSetImage.m in Sources */,
@@ -1232,9 +1437,12 @@
 				AEED90FE225BAC44001B1985 /* NNCarousel.m in Sources */,
 				AE9B72D622859EBC00F9D954 /* AddressOnMapViewController.m in Sources */,
 				AE687BE0225C69AF0054FDA6 /* ApiBaseRequest.m in Sources */,
+				AE0C3B86228D5756005F5DA6 /* UICollectionView+NNExtension.m in Sources */,
+				AE0C3B81228D5756005F5DA6 /* NNGlobalHelper.m in Sources */,
 				AE6DD1512268D059006E1022 /* AMapLocationModule.m in Sources */,
+				AE0C3B83228D5756005F5DA6 /* UIFont+NNExtension.m in Sources */,
 				AEED90EF225BAC44001B1985 /* UIView+NNExtension.m in Sources */,
-				AEC86C48225353B400C76C09 /* ParallaxViewManager.m in Sources */,
+				AEC86C48225353B400C76C09 /* NNParallaxViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

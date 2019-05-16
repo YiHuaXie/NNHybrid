@@ -7,6 +7,7 @@
 //
 
 #import "NNLabelStyleLayout.h"
+#import "UIView+NNExtension.h"
 
 static const CGFloat defaultLineSpacing = 5;
 static const CGFloat defaultInterItemSpacing = 5;
@@ -49,7 +50,7 @@ static const CGFloat defaultInterItemSpacing = 5;
             attributes.frame = CGRectMake(self.contentInset.left, self.contentHeight, currentSize.width, currentSize.height);
         } else {
             CGFloat leftUsedWidth = CGRectGetMaxX(lastAttributes.frame) + self.interitemSpacing;
-            if (self.collectionView.width - leftUsedWidth - self.contentInset.right >= currentSize.width) {
+            if (self.collectionView.nn_width - leftUsedWidth - self.contentInset.right >= currentSize.width) {
                 attributes.frame = CGRectMake(leftUsedWidth, lastAttributes.frame.origin.y, currentSize.width, currentSize.height);
             } else {
                 attributes.frame = CGRectMake(self.contentInset.left,  CGRectGetMaxY(lastAttributes.frame) + self.lineSpacing, currentSize.width, currentSize.height);

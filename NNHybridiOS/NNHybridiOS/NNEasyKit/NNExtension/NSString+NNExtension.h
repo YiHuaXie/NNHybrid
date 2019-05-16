@@ -25,8 +25,8 @@
                          joinedByString:(NSString *)joinedByString;
 
 + (CGFloat)nn_widthWithString:(NSString *)string
-                maxHeight:(CGFloat)maxHeight
-                attributes:(NSDictionary *)attributes;
+                    maxHeight:(CGFloat)maxHeight
+                   attributes:(NSDictionary *)attributes;
 
 + (CGFloat)nn_heightWithAttributedString:(NSAttributedString *)attributedString
                                 maxWidth:(CGFloat)maxWidth;
