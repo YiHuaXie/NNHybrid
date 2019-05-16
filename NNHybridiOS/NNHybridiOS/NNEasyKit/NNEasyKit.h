@@ -24,5 +24,6 @@
 #import "UIGestureRecognizer+NNExtension.h"
 #import "UIControl+NNExtension.h"
 #import "UIImage+NNExtension.h"
+#import "UIBarButtonItem+NNExtension.h"
 
 #endif /* NNEasyKit_h */

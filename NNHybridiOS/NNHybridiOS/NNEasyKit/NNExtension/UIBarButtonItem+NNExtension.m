@@ -7,6 +7,8 @@
 //
 
 #import "UIBarButtonItem+NNExtension.h"
+#import "NSString+NNExtension.h"
+#import "UIControl+NNExtension.h"
 
 static CGFloat kButtonSize = 24.0;
 

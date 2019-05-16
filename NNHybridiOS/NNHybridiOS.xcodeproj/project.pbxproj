@@ -53,7 +53,6 @@
 		AE176223228400F100D01C61 /* DecentraliedHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE176222228400F100D01C61 /* DecentraliedHouse.m */; };
 		AE176226228400FF00D01C61 /* CentraliedHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE176225228400FF00D01C61 /* CentraliedHouse.m */; };
 		AE1762292284025100D01C61 /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1762282284025100D01C61 /* TagModel.m */; };
-		AE17622D228404FD00D01C61 /* NNLabelStyleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17622B228404FD00D01C61 /* NNLabelStyleLayout.m */; };
 		AE176230228409DC00D01C61 /* HouseDetailTitleCellManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17622F228409DC00D01C61 /* HouseDetailTitleCellManager.m */; };
 		AE17623322841FFC00D01C61 /* ShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17623222841FFC00D01C61 /* ShareManager.m */; };
 		AE1762362284299900D01C61 /* ShareModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AE1762352284299900D01C61 /* ShareModule.m */; };
@@ -100,27 +99,6 @@
 		AEC86C48225353B400C76C09 /* NNParallaxViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C41225353B400C76C09 /* NNParallaxViewManager.m */; };
 		AEC86C49225353B400C76C09 /* RNBaseModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEC86C44225353B400C76C09 /* RNBaseModule.m */; };
 		AEE4607E22789725003F5D4B /* PlaneLoadingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */; };
-		AEED90EC225BAC44001B1985 /* NNGlobalHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90B9225BAC44001B1985 /* NNGlobalHelper.m */; };
-		AEED90ED225BAC44001B1985 /* NSObject+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90BB225BAC44001B1985 /* NSObject+NNExtension.m */; };
-		AEED90EE225BAC44001B1985 /* UIFont+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90BC225BAC44001B1985 /* UIFont+NNExtension.m */; };
-		AEED90EF225BAC44001B1985 /* UIView+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90BE225BAC44001B1985 /* UIView+NNExtension.m */; };
-		AEED90F0225BAC44001B1985 /* NSString+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90C2225BAC44001B1985 /* NSString+NNExtension.m */; };
-		AEED90F1225BAC44001B1985 /* UICollectionView+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90C4225BAC44001B1985 /* UICollectionView+NNExtension.m */; };
-		AEED90F2225BAC44001B1985 /* UIGestureRecognizer+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90C7225BAC44001B1985 /* UIGestureRecognizer+NNExtension.m */; };
-		AEED90F3225BAC44001B1985 /* UIImage+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90CC225BAC44001B1985 /* UIImage+NNExtension.m */; };
-		AEED90F4225BAC44001B1985 /* NSTimer+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90CD225BAC44001B1985 /* NSTimer+NNExtension.m */; };
-		AEED90F5225BAC44001B1985 /* UIColor+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90CE225BAC44001B1985 /* UIColor+NNExtension.m */; };
-		AEED90F6225BAC44001B1985 /* UITableView+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90CF225BAC44001B1985 /* UITableView+NNExtension.m */; };
-		AEED90F7225BAC44001B1985 /* UIAlertController+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90D0225BAC44001B1985 /* UIAlertController+NNExtension.m */; };
-		AEED90F8225BAC44001B1985 /* UIControl+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90D2225BAC44001B1985 /* UIControl+NNExtension.m */; };
-		AEED90F9225BAC44001B1985 /* NNPFSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90D7225BAC44001B1985 /* NNPFSLabel.m */; };
-		AEED90FA225BAC44001B1985 /* CADisplayLink+NNExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90D8225BAC44001B1985 /* CADisplayLink+NNExtension.m */; };
-		AEED90FB225BAC44001B1985 /* NNGCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90DB225BAC44001B1985 /* NNGCDTimer.m */; };
-		AEED90FC225BAC44001B1985 /* NNPinYin.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90DF225BAC44001B1985 /* NNPinYin.m */; };
-		AEED90FD225BAC44001B1985 /* NNCarouselLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90E1225BAC44001B1985 /* NNCarouselLayout.m */; };
-		AEED90FE225BAC44001B1985 /* NNCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90E2225BAC44001B1985 /* NNCarousel.m */; };
-		AEED90FF225BAC44001B1985 /* NNNormalAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90E6225BAC44001B1985 /* NNNormalAlertView.m */; };
-		AEED9100225BAC44001B1985 /* NNAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED90E9225BAC44001B1985 /* NNAlertView.m */; };
 		AEED920A225CBBEE001B1985 /* UserDefaultModule.m in Sources */ = {isa = PBXBuildFile; fileRef = AEED9209225CBBEE001B1985 /* UserDefaultModule.m */; };
 		CD5F09D2BBC5465493BADE02 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8956F42A4C346D0B5A78DCC /* AntDesign.ttf */; };
 		D21C812D5E67487BAE838A15 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F01703D0434DD8B94B0B4D /* Feather.ttf */; };
@@ -234,8 +212,6 @@
 		AE176225228400FF00D01C61 /* CentraliedHouse.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CentraliedHouse.m; sourceTree = "<group>"; };
 		AE1762272284025100D01C61 /* TagModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
 		AE1762282284025100D01C61 /* TagModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
-		AE17622B228404FD00D01C61 /* NNLabelStyleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNLabelStyleLayout.m; sourceTree = "<group>"; };
-		AE17622C228404FD00D01C61 /* NNLabelStyleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNLabelStyleLayout.h; sourceTree = "<group>"; };
 		AE17622E228409DC00D01C61 /* HouseDetailTitleCellManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HouseDetailTitleCellManager.h; sourceTree = "<group>"; };
 		AE17622F228409DC00D01C61 /* HouseDetailTitleCellManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HouseDetailTitleCellManager.m; sourceTree = "<group>"; };
 		AE17623122841FFC00D01C61 /* ShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareManager.h; sourceTree = "<group>"; };
@@ -335,50 +311,6 @@
 		AEE4607C22789725003F5D4B /* PlaneLoadingManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaneLoadingManager.h; sourceTree = "<group>"; };
 		AEE4607D22789725003F5D4B /* PlaneLoadingManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaneLoadingManager.m; sourceTree = "<group>"; };
 		AEED90B0225BA675001B1985 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		AEED90B9225BAC44001B1985 /* NNGlobalHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNGlobalHelper.m; sourceTree = "<group>"; };
-		AEED90BA225BAC44001B1985 /* UIGestureRecognizer+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90BB225BAC44001B1985 /* NSObject+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90BC225BAC44001B1985 /* UIFont+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90BD225BAC44001B1985 /* NNDefineMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNDefineMacro.h; sourceTree = "<group>"; };
-		AEED90BE225BAC44001B1985 /* UIView+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90BF225BAC44001B1985 /* UIColor+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90C0225BAC44001B1985 /* NSTimer+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90C1225BAC44001B1985 /* UIImage+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90C2225BAC44001B1985 /* NSString+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90C3225BAC44001B1985 /* UIControl+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90C4225BAC44001B1985 /* UICollectionView+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90C5225BAC44001B1985 /* UIAlertController+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90C6225BAC44001B1985 /* UITableView+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90C7225BAC44001B1985 /* UIGestureRecognizer+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90C8225BAC44001B1985 /* NNGlobalHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNGlobalHelper.h; sourceTree = "<group>"; };
-		AEED90C9225BAC44001B1985 /* UIView+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90CA225BAC44001B1985 /* NSObject+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90CB225BAC44001B1985 /* UIFont+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90CC225BAC44001B1985 /* UIImage+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90CD225BAC44001B1985 /* NSTimer+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90CE225BAC44001B1985 /* UIColor+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90CF225BAC44001B1985 /* UITableView+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90D0225BAC44001B1985 /* UIAlertController+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90D1225BAC44001B1985 /* UICollectionView+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90D2225BAC44001B1985 /* UIControl+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90D3225BAC44001B1985 /* NSString+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90D6225BAC44001B1985 /* CADisplayLink+NNExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CADisplayLink+NNExtension.h"; sourceTree = "<group>"; };
-		AEED90D7225BAC44001B1985 /* NNPFSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNPFSLabel.m; sourceTree = "<group>"; };
-		AEED90D8225BAC44001B1985 /* CADisplayLink+NNExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CADisplayLink+NNExtension.m"; sourceTree = "<group>"; };
-		AEED90D9225BAC44001B1985 /* NNPFSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNPFSLabel.h; sourceTree = "<group>"; };
-		AEED90DB225BAC44001B1985 /* NNGCDTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNGCDTimer.m; sourceTree = "<group>"; };
-		AEED90DC225BAC44001B1985 /* NNGCDTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNGCDTimer.h; sourceTree = "<group>"; };
-		AEED90DE225BAC44001B1985 /* NNPinYin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNPinYin.h; sourceTree = "<group>"; };
-		AEED90DF225BAC44001B1985 /* NNPinYin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNPinYin.m; sourceTree = "<group>"; };
-		AEED90E1225BAC44001B1985 /* NNCarouselLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNCarouselLayout.m; sourceTree = "<group>"; };
-		AEED90E2225BAC44001B1985 /* NNCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNCarousel.m; sourceTree = "<group>"; };
-		AEED90E3225BAC44001B1985 /* NNCarouselLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNCarouselLayout.h; sourceTree = "<group>"; };
-		AEED90E4225BAC44001B1985 /* NNCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNCarousel.h; sourceTree = "<group>"; };
-		AEED90E6225BAC44001B1985 /* NNNormalAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNormalAlertView.m; sourceTree = "<group>"; };
-		AEED90E7225BAC44001B1985 /* NNAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNAlertView.h; sourceTree = "<group>"; };
-		AEED90E8225BAC44001B1985 /* NNNormalAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNormalAlertView.h; sourceTree = "<group>"; };
-		AEED90E9225BAC44001B1985 /* NNAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNAlertView.m; sourceTree = "<group>"; };
-		AEED90EB225BAC44001B1985 /* NNEasyKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNEasyKit.h; sourceTree = "<group>"; };
 		AEED9208225CBBEE001B1985 /* UserDefaultModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaultModule.h; sourceTree = "<group>"; };
 		AEED9209225CBBEE001B1985 /* UserDefaultModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserDefaultModule.m; sourceTree = "<group>"; };
 		AFF6AE2C8FE948FF91EB6596 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -449,7 +381,6 @@
 				AE687B3E225C68360054FDA6 /* Base */,
 				AE687B59225C68B40054FDA6 /* Component */,
 				AEED90AB225BA675001B1985 /* GlobalDefine */,
-				AEED90B7225BAC44001B1985 /* NNEasyKit */,
 				AEC86C3F225353B400C76C09 /* RNBridge */,
 				AE687BDA225C69AF0054FDA6 /* Sections */,
 				AE687BE4225C69E70054FDA6 /* SupportedFiles */,
@@ -500,6 +431,8 @@
 				AE0C3B56228D5756005F5DA6 /* NSTimer+NNExtension.m */,
 				AE0C3B4E228D5755005F5DA6 /* UIAlertController+NNExtension.h */,
 				AE0C3B59228D5756005F5DA6 /* UIAlertController+NNExtension.m */,
+				AE687B62225C68B40054FDA6 /* UIBarButtonItem+NNExtension.h */,
+				AE687B5B225C68B40054FDA6 /* UIBarButtonItem+NNExtension.m */,
 				AE0C3B5A228D5756005F5DA6 /* UICollectionView+NNExtension.h */,
 				AE0C3B4D228D5755005F5DA6 /* UICollectionView+NNExtension.m */,
 				AE0C3B48228D5755005F5DA6 /* UIColor+NNExtension.h */,
@@ -648,13 +581,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		AE17622A228404FD00D01C61 /* NNLabelStyleLayout */ = {
+		AE481559228DB0050051F2BF /* RN */ = {
 			isa = PBXGroup;
 			children = (
-				AE17622C228404FD00D01C61 /* NNLabelStyleLayout.h */,
-				AE17622B228404FD00D01C61 /* NNLabelStyleLayout.m */,
+				AE9B72D72286785000F9D954 /* RNContainerViewController.h */,
+				AE9B72D82286785000F9D954 /* RNContainerViewController.m */,
 			);
-			path = NNLabelStyleLayout;
+			path = RN;
 			sourceTree = "<group>";
 		};
 		AE687AE6225C65090054FDA6 /* Plugins */ = {
@@ -733,8 +666,6 @@
 		AE687B5A225C68B40054FDA6 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				AE687B62225C68B40054FDA6 /* UIBarButtonItem+NNExtension.h */,
-				AE687B5B225C68B40054FDA6 /* UIBarButtonItem+NNExtension.m */,
 				AE687B60225C68B40054FDA6 /* UIImageView+AnimationSDWebImage.h */,
 				AE687B65225C68B40054FDA6 /* UIImageView+AnimationSDWebImage.m */,
 				AE687B66225C68B40054FDA6 /* UIScrollView+NNExtension.h */,
@@ -807,11 +738,10 @@
 		AE687BDA225C69AF0054FDA6 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				AE481559228DB0050051F2BF /* RN */,
 				AE9B72D222859E5A00F9D954 /* AddressOnMap */,
 				AE1762192284007500D01C61 /* HouseDetail */,
 				AE687BEC225C6BD30054FDA6 /* City */,
-				AE9B72D72286785000F9D954 /* RNContainerViewController.h */,
-				AE9B72D82286785000F9D954 /* RNContainerViewController.m */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -962,114 +892,6 @@
 				AE687BE7225C6B330054FDA6 /* UserDefaultKey.m */,
 			);
 			path = GlobalDefine;
-			sourceTree = "<group>";
-		};
-		AEED90B7225BAC44001B1985 /* NNEasyKit */ = {
-			isa = PBXGroup;
-			children = (
-				AEED90B8225BAC44001B1985 /* NNExtension */,
-				AEED90D4225BAC44001B1985 /* NNComponent */,
-				AEED90EB225BAC44001B1985 /* NNEasyKit.h */,
-			);
-			path = NNEasyKit;
-			sourceTree = "<group>";
-		};
-		AEED90B8225BAC44001B1985 /* NNExtension */ = {
-			isa = PBXGroup;
-			children = (
-				AEED90BD225BAC44001B1985 /* NNDefineMacro.h */,
-				AEED90C8225BAC44001B1985 /* NNGlobalHelper.h */,
-				AEED90B9225BAC44001B1985 /* NNGlobalHelper.m */,
-				AEED90CA225BAC44001B1985 /* NSObject+NNExtension.h */,
-				AEED90BB225BAC44001B1985 /* NSObject+NNExtension.m */,
-				AEED90D3225BAC44001B1985 /* NSString+NNExtension.h */,
-				AEED90C2225BAC44001B1985 /* NSString+NNExtension.m */,
-				AEED90C0225BAC44001B1985 /* NSTimer+NNExtension.h */,
-				AEED90CD225BAC44001B1985 /* NSTimer+NNExtension.m */,
-				AEED90C5225BAC44001B1985 /* UIAlertController+NNExtension.h */,
-				AEED90D0225BAC44001B1985 /* UIAlertController+NNExtension.m */,
-				AEED90D1225BAC44001B1985 /* UICollectionView+NNExtension.h */,
-				AEED90C4225BAC44001B1985 /* UICollectionView+NNExtension.m */,
-				AEED90BF225BAC44001B1985 /* UIColor+NNExtension.h */,
-				AEED90CE225BAC44001B1985 /* UIColor+NNExtension.m */,
-				AEED90C3225BAC44001B1985 /* UIControl+NNExtension.h */,
-				AEED90D2225BAC44001B1985 /* UIControl+NNExtension.m */,
-				AEED90CB225BAC44001B1985 /* UIFont+NNExtension.h */,
-				AEED90BC225BAC44001B1985 /* UIFont+NNExtension.m */,
-				AEED90BA225BAC44001B1985 /* UIGestureRecognizer+NNExtension.h */,
-				AEED90C7225BAC44001B1985 /* UIGestureRecognizer+NNExtension.m */,
-				AEED90C1225BAC44001B1985 /* UIImage+NNExtension.h */,
-				AEED90CC225BAC44001B1985 /* UIImage+NNExtension.m */,
-				AEED90C6225BAC44001B1985 /* UITableView+NNExtension.h */,
-				AEED90CF225BAC44001B1985 /* UITableView+NNExtension.m */,
-				AEED90C9225BAC44001B1985 /* UIView+NNExtension.h */,
-				AEED90BE225BAC44001B1985 /* UIView+NNExtension.m */,
-			);
-			path = NNExtension;
-			sourceTree = "<group>";
-		};
-		AEED90D4225BAC44001B1985 /* NNComponent */ = {
-			isa = PBXGroup;
-			children = (
-				AE17622A228404FD00D01C61 /* NNLabelStyleLayout */,
-				AEED90D5225BAC44001B1985 /* NNPFSLabel */,
-				AEED90DA225BAC44001B1985 /* NNGCDTimer */,
-				AEED90DD225BAC44001B1985 /* NNPinYin */,
-				AEED90E0225BAC44001B1985 /* NNCarousel */,
-				AEED90E5225BAC44001B1985 /* NNAlertView */,
-			);
-			path = NNComponent;
-			sourceTree = "<group>";
-		};
-		AEED90D5225BAC44001B1985 /* NNPFSLabel */ = {
-			isa = PBXGroup;
-			children = (
-				AEED90D6225BAC44001B1985 /* CADisplayLink+NNExtension.h */,
-				AEED90D7225BAC44001B1985 /* NNPFSLabel.m */,
-				AEED90D8225BAC44001B1985 /* CADisplayLink+NNExtension.m */,
-				AEED90D9225BAC44001B1985 /* NNPFSLabel.h */,
-			);
-			path = NNPFSLabel;
-			sourceTree = "<group>";
-		};
-		AEED90DA225BAC44001B1985 /* NNGCDTimer */ = {
-			isa = PBXGroup;
-			children = (
-				AEED90DB225BAC44001B1985 /* NNGCDTimer.m */,
-				AEED90DC225BAC44001B1985 /* NNGCDTimer.h */,
-			);
-			path = NNGCDTimer;
-			sourceTree = "<group>";
-		};
-		AEED90DD225BAC44001B1985 /* NNPinYin */ = {
-			isa = PBXGroup;
-			children = (
-				AEED90DE225BAC44001B1985 /* NNPinYin.h */,
-				AEED90DF225BAC44001B1985 /* NNPinYin.m */,
-			);
-			path = NNPinYin;
-			sourceTree = "<group>";
-		};
-		AEED90E0225BAC44001B1985 /* NNCarousel */ = {
-			isa = PBXGroup;
-			children = (
-				AEED90E1225BAC44001B1985 /* NNCarouselLayout.m */,
-				AEED90E2225BAC44001B1985 /* NNCarousel.m */,
-				AEED90E3225BAC44001B1985 /* NNCarouselLayout.h */,
-				AEED90E4225BAC44001B1985 /* NNCarousel.h */,
-			);
-			path = NNCarousel;
-			sourceTree = "<group>";
-		};
-		AEED90E5225BAC44001B1985 /* NNAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				AEED90E6225BAC44001B1985 /* NNNormalAlertView.m */,
-				AEED90E7225BAC44001B1985 /* NNAlertView.h */,
-				AEED90E8225BAC44001B1985 /* NNNormalAlertView.h */,
-				AEED90E9225BAC44001B1985 /* NNAlertView.m */,
-			);
-			path = NNAlertView;
 			sourceTree = "<group>";
 		};
 		C9B93B81963A58D79A88DA39 /* Pods */ = {
@@ -1350,54 +1172,40 @@
 				AE687B54225C68360054FDA6 /* NNBaseTableView.m in Sources */,
 				AEED920A225CBBEE001B1985 /* UserDefaultModule.m in Sources */,
 				AE0C3B98228D5756005F5DA6 /* NNNetworkResponse.m in Sources */,
-				AEED90F6225BAC44001B1985 /* UITableView+NNExtension.m in Sources */,
 				AE0C3B92228D5756005F5DA6 /* NNCarouselLayout.m in Sources */,
 				AE9B72CD2285946A00F9D954 /* BHBPopView.m in Sources */,
-				AEED9100225BAC44001B1985 /* NNAlertView.m in Sources */,
 				AE176226228400FF00D01C61 /* CentraliedHouse.m in Sources */,
 				AE176223228400F100D01C61 /* DecentraliedHouse.m in Sources */,
 				AE0C3B9A228D5756005F5DA6 /* NNNetworkRequest.m in Sources */,
 				AEC86C49225353B400C76C09 /* RNBaseModule.m in Sources */,
-				AEED90F5225BAC44001B1985 /* UIColor+NNExtension.m in Sources */,
-				AEED90F2225BAC44001B1985 /* UIGestureRecognizer+NNExtension.m in Sources */,
-				AEED90F7225BAC44001B1985 /* UIAlertController+NNExtension.m in Sources */,
 				AE0C3B8A228D5756005F5DA6 /* UIColor+NNExtension.m in Sources */,
 				AE687B52225C68360054FDA6 /* NNBaseViewModel.m in Sources */,
-				AEED90F1225BAC44001B1985 /* UICollectionView+NNExtension.m in Sources */,
 				AE0C3B82228D5756005F5DA6 /* NSObject+NNExtension.m in Sources */,
 				AE687BD3225C69180054FDA6 /* NNRefreshFooter.m in Sources */,
 				AE0C3B85228D5756005F5DA6 /* NSString+NNExtension.m in Sources */,
 				AE0C3B8E228D5756005F5DA6 /* NNPFSLabel.m in Sources */,
 				AE687BC0225C68B50054FDA6 /* LocationManager.m in Sources */,
 				AE0C3B89228D5756005F5DA6 /* NSTimer+NNExtension.m in Sources */,
-				AEED90FF225BAC44001B1985 /* NNNormalAlertView.m in Sources */,
 				AE687B55225C68360054FDA6 /* NNImageCollectionViewCell.m in Sources */,
 				AE9B72C72285946A00F9D954 /* UIImageView+BHBSetImage.m in Sources */,
-				AEED90F3225BAC44001B1985 /* UIImage+NNExtension.m in Sources */,
 				AE9B72CA2285946A00F9D954 /* BHBPlaySoundTool.m in Sources */,
 				AE9B72D92286785000F9D954 /* RNContainerViewController.m in Sources */,
 				AE9B72D12285946A00F9D954 /* BHBCustomBtn.m in Sources */,
 				AE1762362284299900D01C61 /* ShareModule.m in Sources */,
-				AEED90F0225BAC44001B1985 /* NSString+NNExtension.m in Sources */,
-				AEED90FD225BAC44001B1985 /* NNCarouselLayout.m in Sources */,
 				AE17623322841FFC00D01C61 /* ShareManager.m in Sources */,
 				AE0C3B8F228D5756005F5DA6 /* CADisplayLink+NNExtension.m in Sources */,
 				AE687B53225C68360054FDA6 /* NNBaseModel.m in Sources */,
 				AE687BA5225C68B50054FDA6 /* UIScrollView+NNExtension.m in Sources */,
 				AE0C3B91228D5756005F5DA6 /* NNPinYin.m in Sources */,
 				AE9B72C82285946A00F9D954 /* UIImage+BHBEffects.m in Sources */,
-				AEED90F4225BAC44001B1985 /* NSTimer+NNExtension.m in Sources */,
 				AE9B72CC2285946A00F9D954 /* BHBItem.m in Sources */,
 				AE687BD0225C69180054FDA6 /* NNProgressHUD.m in Sources */,
 				AE687BDF225C69AF0054FDA6 /* ApiBaseResponse.m in Sources */,
 				AE9B72DF22867A8F00F9D954 /* NativeJumpModule.m in Sources */,
 				AE09FE4E2231FFAD003C2F97 /* main.m in Sources */,
 				AE687BD1225C69180054FDA6 /* NNRefreshLoadingView.m in Sources */,
-				AEED90EC225BAC44001B1985 /* NNGlobalHelper.m in Sources */,
-				AEED90FA225BAC44001B1985 /* CADisplayLink+NNExtension.m in Sources */,
 				AE0C3B99228D5756005F5DA6 /* NNNetworkService.m in Sources */,
 				AEAA8EB02281311800FA1EE6 /* MapLocationViewManager.m in Sources */,
-				AEED90FC225BAC44001B1985 /* NNPinYin.m in Sources */,
 				AE0C3B87228D5756005F5DA6 /* UIGestureRecognizer+NNExtension.m in Sources */,
 				AE0C3B97228D5756005F5DA6 /* NNParallaxView.m in Sources */,
 				AE0C3B8D228D5756005F5DA6 /* UIControl+NNExtension.m in Sources */,
@@ -1407,23 +1215,17 @@
 				AE687BC1225C68B50054FDA6 /* CityManager.m in Sources */,
 				AE0C3B88228D5756005F5DA6 /* UIImage+NNExtension.m in Sources */,
 				AE9B72C92285946A00F9D954 /* BHBBottomBar.m in Sources */,
-				AEED90EE225BAC44001B1985 /* UIFont+NNExtension.m in Sources */,
 				AE687AF6225C65090054FDA6 /* SystemConfigPlugin.m in Sources */,
 				AE09FE402231FFAD003C2F97 /* AppDelegate.m in Sources */,
-				AE17622D228404FD00D01C61 /* NNLabelStyleLayout.m in Sources */,
 				AE687B58225C68370054FDA6 /* NNBaseViewController.m in Sources */,
-				AEED90ED225BAC44001B1985 /* NSObject+NNExtension.m in Sources */,
 				AE9B72CE2285946A00F9D954 /* BHBGroup.m in Sources */,
 				AE17621E2284007500D01C61 /* HouseDetailTitleCell.m in Sources */,
-				AEED90FB225BAC44001B1985 /* NNGCDTimer.m in Sources */,
 				AE0C3B94228D5756005F5DA6 /* NNNormalAlertView.m in Sources */,
 				AE687BEB225C6B330054FDA6 /* UserDefaultKey.m in Sources */,
-				AEED90F8225BAC44001B1985 /* UIControl+NNExtension.m in Sources */,
 				AE176230228409DC00D01C61 /* HouseDetailTitleCellManager.m in Sources */,
 				AE0C3B84228D5756005F5DA6 /* UIView+NNExtension.m in Sources */,
 				AE0C3B96228D5756005F5DA6 /* NNLabelStyleLayout.m in Sources */,
 				AE9B72D02285946A00F9D954 /* UIView+BHBAnimation.m in Sources */,
-				AEED90F9225BAC44001B1985 /* NNPFSLabel.m in Sources */,
 				AE9B72DC228679AC00F9D954 /* NNNavigationController.m in Sources */,
 				AE687BA3225C68B50054FDA6 /* UIBarButtonItem+NNExtension.m in Sources */,
 				AE687BA4225C68B50054FDA6 /* UIView+Frame.m in Sources */,
@@ -1434,14 +1236,12 @@
 				AE9B72CF2285946A00F9D954 /* BHBCenterView.m in Sources */,
 				AE9B72CB2285946A00F9D954 /* UIButton+BHBSetImage.m in Sources */,
 				AE687AF5225C65090054FDA6 /* AppDelegatePluginManager.m in Sources */,
-				AEED90FE225BAC44001B1985 /* NNCarousel.m in Sources */,
 				AE9B72D622859EBC00F9D954 /* AddressOnMapViewController.m in Sources */,
 				AE687BE0225C69AF0054FDA6 /* ApiBaseRequest.m in Sources */,
 				AE0C3B86228D5756005F5DA6 /* UICollectionView+NNExtension.m in Sources */,
 				AE0C3B81228D5756005F5DA6 /* NNGlobalHelper.m in Sources */,
 				AE6DD1512268D059006E1022 /* AMapLocationModule.m in Sources */,
 				AE0C3B83228D5756005F5DA6 /* UIFont+NNExtension.m in Sources */,
-				AEED90EF225BAC44001B1985 /* UIView+NNExtension.m in Sources */,
 				AEC86C48225353B400C76C09 /* NNParallaxViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

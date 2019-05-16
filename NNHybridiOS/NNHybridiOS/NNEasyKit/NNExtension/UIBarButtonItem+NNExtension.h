@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NNGlobalHelper.h"
 
 @interface UIBarButtonItem (NNExtension)
 
