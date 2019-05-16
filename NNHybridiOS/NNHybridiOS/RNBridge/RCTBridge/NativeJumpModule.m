@@ -15,24 +15,40 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(jumpToNativePage:(NSString *)page parameters:(NSDictionary *)parameters isModal:(BOOL)isModal) {
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController *viewController = nil;
-        if ([page isEqualToString:@"AddressOnMapViewController"]) {
-            AddressOnMapViewController *vc = [AddressOnMapViewController new];
-            vc.address = parameters[@"address"];
-            vc.name = parameters[@"name"];
-            vc.longitude = [parameters[@"longitude"] doubleValue];
-            vc.latitude = [parameters[@"latitude"] doubleValue];
+        UIViewController *viewController = [NativeJumpModule viewControllerWithName:page parameters:parameters];
+        
+        if (viewController) {
+            UINavigationController *nav = (UINavigationController *)SharedApplication.keyWindow.rootViewController;
             
-            viewController = vc;
+            isModal ?
+            [nav.visibleViewController presentViewController:viewController animated:YES completion:nil] :
+            [nav pushViewController:viewController animated:YES];
         }
-        
-        
-        UINavigationController *nav = (UINavigationController *)SharedApplication.keyWindow.rootViewController;
-        
-        isModal ?
-        [nav.visibleViewController presentViewController:viewController animated:YES completion:nil] :
-        [nav pushViewController:viewController animated:YES];
     });
+}
+
++ (UIViewController *)viewControllerWithName:(NSString *)name parameters:(NSDictionary *)parameters {
+    Class tmpClass = NSClassFromString(name);
+    
+    if (![tmpClass isSubclassOfClass:UIViewController.class]) {
+        return nil;
+    }
+    
+    id instance = [tmpClass new];
+    [parameters enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        objc_property_t property = class_getProperty(tmpClass, [key cStringUsingEncoding:NSUTF8StringEncoding]);
+        if (property) {
+            const char *attrs = property_getAttributes(property);
+            NSString *propertyAttributes = @(attrs);
+            NSArray *attributeItems = [propertyAttributes componentsSeparatedByString:@","];
+            
+            if (![attributeItems containsObject:@"R"]) {
+               [instance setValue:obj forKey:key];
+            }
+        }
+    }];
+    
+    return instance;
 }
 
 @end
