@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    TouchableWithoutFeedback,
     FlatList,
     Text
 } from 'react-native';
@@ -10,6 +9,7 @@ import Swiper from 'react-native-swiper';
 import AppUtil from '../../utils/AppUtil';
 import LinearGradient from 'react-native-linear-gradient';
 import NNImage from '../../components/common/NNImage';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const viewHeight = AppUtil.windowWidth * 82.0 / 75.0;
 const viewWidth = AppUtil.windowWidth;
@@ -28,7 +28,7 @@ class ModuleItem extends Component {
 }
 
 export default class HomeBannerModuleCell extends Component {
-    
+
     _renderBannerItems() {
         const { banners } = this.props;
 
@@ -73,7 +73,11 @@ export default class HomeBannerModuleCell extends Component {
                     keyExtractor={item => `${item.code}`}
                     // contentInset只支持iOS
                     renderItem={({ item, index }) => {
-                        return <ModuleItem itemStyle={{ marginTop: index > 3 ? 10 : 0 }} item={item}/>
+                        return (
+                            <TouchableWithoutFeedback onPress={() => this.props.moduleItemClick(index)}>
+                                <ModuleItem itemStyle={{ marginTop: index > 3 ? 10 : 0 }} item={item} />
+                            </TouchableWithoutFeedback>
+                        );
                     }}
                 />
             </View>

@@ -114,6 +114,9 @@ class HomePage extends Component {
                     <HomeBannerModuleCell
                         banners={home.banners}
                         modules={home.modules}
+                        moduleItemClick = { index => {
+                            NavigationUtil.goPage('SearchHousePage');
+                        }}
                     />
                     <HomeMessageCell messages={home.messages} />
                     <HomeVRCell vr={home.vr} />

@@ -46,6 +46,7 @@ export default class NavigationBar extends Component {
             barStyle: 'default',
             hidden: false
         },
+        backOrClose: 'back',
     };
 
     _backOrCloseButton(text) {
