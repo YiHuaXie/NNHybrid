@@ -40,6 +40,7 @@ PODS:
   - lottie-ios (2.5.3)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
+  - MJExtension (3.0.17)
   - MJRefresh (3.1.15.7)
   - React (0.58.6):
     - React/Core (= 0.58.6)
@@ -125,6 +126,7 @@ DEPENDENCIES:
   - lottie-ios
   - Masonry
   - MBProgressHUD
+  - MJExtension
   - MJRefresh
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
@@ -164,6 +166,7 @@ SPEC REPOS:
     - lottie-ios
     - Masonry
     - MBProgressHUD
+    - MJExtension
     - MJRefresh
     - SDWebImage
     - UMengAnalytics
@@ -212,6 +215,7 @@ SPEC CHECKSUMS:
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   React: 130b87b2d5e2baac646954282cab87be986d98fc
   rn-fetch-blob: 766f85cabd2992300dfa1be2bc9e4e258abc6f04
@@ -224,6 +228,6 @@ SPEC CHECKSUMS:
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   yoga: 32d7ef1081951e9a35a4c72a7be797598b138a48
 
-PODFILE CHECKSUM: 6bf73ee5d3dd3d61db645c864b860905a8390c20
+PODFILE CHECKSUM: e689823a0cfc54f4fc4c09f39c1122d9e5c803a4
 
 COCOAPODS: 1.6.1

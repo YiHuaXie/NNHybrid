@@ -40,6 +40,7 @@ target 'NNHybridiOS' do
   pod 'SDWebImage/GIF'
   pod 'DGActivityIndicatorView'
   pod 'lottie-ios'
+  pod 'MJExtension'
 
   pod 'AMapSearch'
   pod 'AMapLocation'

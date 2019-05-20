@@ -4,6 +4,7 @@ import { cityListReducer } from '../cityList';
 import { homeReducer } from '../home';
 import { houseDetailReducer } from '../houseDetail';
 import { apartmentReducer } from '../apartment';
+import { searchHouseReducer } from '../searchHouse';
 import { Types } from './actions';
 
 // import { rootCom, RootNavigator } from '../../navigator/AppNavigator';
@@ -25,6 +26,7 @@ const appReducers = combineReducers({
     cityList: cityListReducer,
     apartments: apartmentReducer,
     houseDetails: houseDetailReducer,
+    searchHouse: searchHouseReducer,
 });
 
 // How to reset the state of a Redux store

@@ -67,5 +67,7 @@
 /** 根据房源城市同步调整最近访问城市 */
 - (void)fixVisitedCityList;
 
+- (NSArray *)getCityRegionListWithCityId:(NSString *)cityId;
+
 @end
 

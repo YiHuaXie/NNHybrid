@@ -21,13 +21,12 @@ export default class Refresher {
         );
     }
 
-    static footer() {
+    static footer(hasMoreData) {
+        if (!hasMoreData) return null;
+        
         return (
             <View style={{ alignItems: 'center' }}>
-                <ActivityIndicator
-                    style={{ margin: 10 }}
-                    color={AppUtil.app_theme}
-                />
+                <ActivityIndicator style={{ margin: 10 }} color={AppUtil.app_theme} />
                 <Text style={{ color: AppUtil.app_theme, margin: 10 }}>
                     Loading More Data
                 </Text>

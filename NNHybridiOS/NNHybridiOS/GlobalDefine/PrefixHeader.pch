@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 #import "NNEasyKit.h"
-//#import "UIImage+NNExtension.h"
+#import "MJExtension.h"
 //
 #import "ToolMacro.h"
 #import "APIMacro.h"

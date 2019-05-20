@@ -48,6 +48,18 @@
 		AE0C3B98228D5756005F5DA6 /* NNNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B7A228D5756005F5DA6 /* NNNetworkResponse.m */; };
 		AE0C3B99228D5756005F5DA6 /* NNNetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B7C228D5756005F5DA6 /* NNNetworkService.m */; };
 		AE0C3B9A228D5756005F5DA6 /* NNNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3B7F228D5756005F5DA6 /* NNNetworkRequest.m */; };
+		AE0C3BD722924223005F5DA6 /* FilterMenuMoreController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BC322924223005F5DA6 /* FilterMenuMoreController.m */; };
+		AE0C3BD822924223005F5DA6 /* FilterMenuOrderByController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BC422924223005F5DA6 /* FilterMenuOrderByController.m */; };
+		AE0C3BD922924223005F5DA6 /* BaseFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BC622924223005F5DA6 /* BaseFilterCell.m */; };
+		AE0C3BDA22924223005F5DA6 /* FilterMenuRentalController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BC722924223005F5DA6 /* FilterMenuRentalController.m */; };
+		AE0C3BDB22924223005F5DA6 /* FilterMenuBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BCB22924223005F5DA6 /* FilterMenuBottomBar.m */; };
+		AE0C3BDC22924223005F5DA6 /* FilterMenuRentTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BCE22924223005F5DA6 /* FilterMenuRentTypeController.m */; };
+		AE0C3BDE22924223005F5DA6 /* FilterMenuGeographicController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BD322924223005F5DA6 /* FilterMenuGeographicController.m */; };
+		AE0C3BDF22924223005F5DA6 /* FHTFilterMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BD422924223005F5DA6 /* FHTFilterMenu.m */; };
+		AE0C3BE322924431005F5DA6 /* ConditionFilterPriceSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BE222924431005F5DA6 /* ConditionFilterPriceSlider.m */; };
+		AE0C3BE62292467C005F5DA6 /* FilterSubmenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BE52292467C005F5DA6 /* FilterSubmenuCell.m */; };
+		AE0C3BE922924733005F5DA6 /* MenuAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BE822924733005F5DA6 /* MenuAreaModel.m */; };
+		AE0C3BEC22924FBE005F5DA6 /* FHTFilterMenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AE0C3BEB22924FBE005F5DA6 /* FHTFilterMenuManager.m */; };
 		AE17621E2284007500D01C61 /* HouseDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AE17621B2284007500D01C61 /* HouseDetailTitleCell.m */; };
 		AE17621F2284007500D01C61 /* HouseDetailTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE17621C2284007500D01C61 /* HouseDetailTitleCell.xib */; };
 		AE176223228400F100D01C61 /* DecentraliedHouse.m in Sources */ = {isa = PBXBuildFile; fileRef = AE176222228400F100D01C61 /* DecentraliedHouse.m */; };
@@ -203,6 +215,30 @@
 		AE0C3B7E228D5756005F5DA6 /* NNNetworkService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNNetworkService.h; sourceTree = "<group>"; };
 		AE0C3B7F228D5756005F5DA6 /* NNNetworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NNNetworkRequest.m; sourceTree = "<group>"; };
 		AE0C3B80228D5756005F5DA6 /* NNEasyKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NNEasyKit.h; sourceTree = "<group>"; };
+		AE0C3BC322924223005F5DA6 /* FilterMenuMoreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterMenuMoreController.m; sourceTree = "<group>"; };
+		AE0C3BC422924223005F5DA6 /* FilterMenuOrderByController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterMenuOrderByController.m; sourceTree = "<group>"; };
+		AE0C3BC522924223005F5DA6 /* FilterMenuRentTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterMenuRentTypeController.h; sourceTree = "<group>"; };
+		AE0C3BC622924223005F5DA6 /* BaseFilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFilterCell.m; sourceTree = "<group>"; };
+		AE0C3BC722924223005F5DA6 /* FilterMenuRentalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterMenuRentalController.m; sourceTree = "<group>"; };
+		AE0C3BC922924223005F5DA6 /* FHTFilterMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHTFilterMenu.h; sourceTree = "<group>"; };
+		AE0C3BCA22924223005F5DA6 /* FilterMenuGeographicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterMenuGeographicController.h; sourceTree = "<group>"; };
+		AE0C3BCB22924223005F5DA6 /* FilterMenuBottomBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterMenuBottomBar.m; sourceTree = "<group>"; };
+		AE0C3BCD22924223005F5DA6 /* BaseFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFilterCell.h; sourceTree = "<group>"; };
+		AE0C3BCE22924223005F5DA6 /* FilterMenuRentTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterMenuRentTypeController.m; sourceTree = "<group>"; };
+		AE0C3BCF22924223005F5DA6 /* FilterMenuOrderByController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterMenuOrderByController.h; sourceTree = "<group>"; };
+		AE0C3BD022924223005F5DA6 /* FilterMenuMoreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterMenuMoreController.h; sourceTree = "<group>"; };
+		AE0C3BD222924223005F5DA6 /* FilterMenuRentalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterMenuRentalController.h; sourceTree = "<group>"; };
+		AE0C3BD322924223005F5DA6 /* FilterMenuGeographicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterMenuGeographicController.m; sourceTree = "<group>"; };
+		AE0C3BD422924223005F5DA6 /* FHTFilterMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHTFilterMenu.m; sourceTree = "<group>"; };
+		AE0C3BD622924223005F5DA6 /* FilterMenuBottomBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterMenuBottomBar.h; sourceTree = "<group>"; };
+		AE0C3BE122924431005F5DA6 /* ConditionFilterPriceSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConditionFilterPriceSlider.h; sourceTree = "<group>"; };
+		AE0C3BE222924431005F5DA6 /* ConditionFilterPriceSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionFilterPriceSlider.m; sourceTree = "<group>"; };
+		AE0C3BE42292467C005F5DA6 /* FilterSubmenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterSubmenuCell.h; sourceTree = "<group>"; };
+		AE0C3BE52292467C005F5DA6 /* FilterSubmenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterSubmenuCell.m; sourceTree = "<group>"; };
+		AE0C3BE722924733005F5DA6 /* MenuAreaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuAreaModel.h; sourceTree = "<group>"; };
+		AE0C3BE822924733005F5DA6 /* MenuAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuAreaModel.m; sourceTree = "<group>"; };
+		AE0C3BEA22924FBE005F5DA6 /* FHTFilterMenuManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FHTFilterMenuManager.h; sourceTree = "<group>"; };
+		AE0C3BEB22924FBE005F5DA6 /* FHTFilterMenuManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FHTFilterMenuManager.m; sourceTree = "<group>"; };
 		AE17621B2284007500D01C61 /* HouseDetailTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseDetailTitleCell.m; sourceTree = "<group>"; };
 		AE17621C2284007500D01C61 /* HouseDetailTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseDetailTitleCell.xib; sourceTree = "<group>"; };
 		AE17621D2284007500D01C61 /* HouseDetailTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseDetailTitleCell.h; sourceTree = "<group>"; };
@@ -549,6 +585,35 @@
 			path = NNNetwork;
 			sourceTree = "<group>";
 		};
+		AE0C3BC222924223005F5DA6 /* FHTFilterMenu */ = {
+			isa = PBXGroup;
+			children = (
+				AE0C3BE42292467C005F5DA6 /* FilterSubmenuCell.h */,
+				AE0C3BE52292467C005F5DA6 /* FilterSubmenuCell.m */,
+				AE0C3BCD22924223005F5DA6 /* BaseFilterCell.h */,
+				AE0C3BC622924223005F5DA6 /* BaseFilterCell.m */,
+				AE0C3BE122924431005F5DA6 /* ConditionFilterPriceSlider.h */,
+				AE0C3BE222924431005F5DA6 /* ConditionFilterPriceSlider.m */,
+				AE0C3BC922924223005F5DA6 /* FHTFilterMenu.h */,
+				AE0C3BD422924223005F5DA6 /* FHTFilterMenu.m */,
+				AE0C3BD622924223005F5DA6 /* FilterMenuBottomBar.h */,
+				AE0C3BCB22924223005F5DA6 /* FilterMenuBottomBar.m */,
+				AE0C3BCA22924223005F5DA6 /* FilterMenuGeographicController.h */,
+				AE0C3BD322924223005F5DA6 /* FilterMenuGeographicController.m */,
+				AE0C3BD022924223005F5DA6 /* FilterMenuMoreController.h */,
+				AE0C3BC322924223005F5DA6 /* FilterMenuMoreController.m */,
+				AE0C3BCF22924223005F5DA6 /* FilterMenuOrderByController.h */,
+				AE0C3BC422924223005F5DA6 /* FilterMenuOrderByController.m */,
+				AE0C3BD222924223005F5DA6 /* FilterMenuRentalController.h */,
+				AE0C3BC722924223005F5DA6 /* FilterMenuRentalController.m */,
+				AE0C3BC522924223005F5DA6 /* FilterMenuRentTypeController.h */,
+				AE0C3BCE22924223005F5DA6 /* FilterMenuRentTypeController.m */,
+				AE0C3BE722924733005F5DA6 /* MenuAreaModel.h */,
+				AE0C3BE822924733005F5DA6 /* MenuAreaModel.m */,
+			);
+			path = FHTFilterMenu;
+			sourceTree = "<group>";
+		};
 		AE1762192284007500D01C61 /* HouseDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,6 +803,7 @@
 		AE687BDA225C69AF0054FDA6 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				AE0C3BC222924223005F5DA6 /* FHTFilterMenu */,
 				AE481559228DB0050051F2BF /* RN */,
 				AE9B72D222859E5A00F9D954 /* AddressOnMap */,
 				AE1762192284007500D01C61 /* HouseDetail */,
@@ -849,6 +915,8 @@
 				AEAA8EAF2281311800FA1EE6 /* MapLocationViewManager.m */,
 				AE17622E228409DC00D01C61 /* HouseDetailTitleCellManager.h */,
 				AE17622F228409DC00D01C61 /* HouseDetailTitleCellManager.m */,
+				AE0C3BEA22924FBE005F5DA6 /* FHTFilterMenuManager.h */,
+				AE0C3BEB22924FBE005F5DA6 /* FHTFilterMenuManager.m */,
 			);
 			path = RCTView;
 			sourceTree = "<group>";
@@ -1165,10 +1233,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE0C3B8B228D5756005F5DA6 /* UITableView+NNExtension.m in Sources */,
+				AE0C3BE922924733005F5DA6 /* MenuAreaModel.m in Sources */,
 				AE0C3B95228D5756005F5DA6 /* NNAlertView.m in Sources */,
 				AE687BD2225C69180054FDA6 /* NNRefreshHeader.m in Sources */,
 				AE0C3B90228D5756005F5DA6 /* NNGCDTimer.m in Sources */,
 				AEE4607E22789725003F5D4B /* PlaneLoadingManager.m in Sources */,
+				AE0C3BDB22924223005F5DA6 /* FilterMenuBottomBar.m in Sources */,
 				AE687B54225C68360054FDA6 /* NNBaseTableView.m in Sources */,
 				AEED920A225CBBEE001B1985 /* UserDefaultModule.m in Sources */,
 				AE0C3B98228D5756005F5DA6 /* NNNetworkResponse.m in Sources */,
@@ -1181,13 +1251,16 @@
 				AE0C3B8A228D5756005F5DA6 /* UIColor+NNExtension.m in Sources */,
 				AE687B52225C68360054FDA6 /* NNBaseViewModel.m in Sources */,
 				AE0C3B82228D5756005F5DA6 /* NSObject+NNExtension.m in Sources */,
+				AE0C3BDC22924223005F5DA6 /* FilterMenuRentTypeController.m in Sources */,
 				AE687BD3225C69180054FDA6 /* NNRefreshFooter.m in Sources */,
 				AE0C3B85228D5756005F5DA6 /* NSString+NNExtension.m in Sources */,
 				AE0C3B8E228D5756005F5DA6 /* NNPFSLabel.m in Sources */,
 				AE687BC0225C68B50054FDA6 /* LocationManager.m in Sources */,
 				AE0C3B89228D5756005F5DA6 /* NSTimer+NNExtension.m in Sources */,
 				AE687B55225C68360054FDA6 /* NNImageCollectionViewCell.m in Sources */,
+				AE0C3BD722924223005F5DA6 /* FilterMenuMoreController.m in Sources */,
 				AE9B72C72285946A00F9D954 /* UIImageView+BHBSetImage.m in Sources */,
+				AE0C3BDA22924223005F5DA6 /* FilterMenuRentalController.m in Sources */,
 				AE9B72CA2285946A00F9D954 /* BHBPlaySoundTool.m in Sources */,
 				AE9B72D92286785000F9D954 /* RNContainerViewController.m in Sources */,
 				AE9B72D12285946A00F9D954 /* BHBCustomBtn.m in Sources */,
@@ -1196,8 +1269,10 @@
 				AE0C3B8F228D5756005F5DA6 /* CADisplayLink+NNExtension.m in Sources */,
 				AE687B53225C68360054FDA6 /* NNBaseModel.m in Sources */,
 				AE687BA5225C68B50054FDA6 /* UIScrollView+NNExtension.m in Sources */,
+				AE0C3BEC22924FBE005F5DA6 /* FHTFilterMenuManager.m in Sources */,
 				AE0C3B91228D5756005F5DA6 /* NNPinYin.m in Sources */,
 				AE9B72C82285946A00F9D954 /* UIImage+BHBEffects.m in Sources */,
+				AE0C3BD822924223005F5DA6 /* FilterMenuOrderByController.m in Sources */,
 				AE9B72CC2285946A00F9D954 /* BHBItem.m in Sources */,
 				AE687BD0225C69180054FDA6 /* NNProgressHUD.m in Sources */,
 				AE687BDF225C69AF0054FDA6 /* ApiBaseResponse.m in Sources */,
@@ -1212,11 +1287,14 @@
 				AE0C3B8C228D5756005F5DA6 /* UIAlertController+NNExtension.m in Sources */,
 				AE1762292284025100D01C61 /* TagModel.m in Sources */,
 				AE687BA6225C68B50054FDA6 /* UIView+BOLoading.m in Sources */,
+				AE0C3BD922924223005F5DA6 /* BaseFilterCell.m in Sources */,
 				AE687BC1225C68B50054FDA6 /* CityManager.m in Sources */,
+				AE0C3BDF22924223005F5DA6 /* FHTFilterMenu.m in Sources */,
 				AE0C3B88228D5756005F5DA6 /* UIImage+NNExtension.m in Sources */,
 				AE9B72C92285946A00F9D954 /* BHBBottomBar.m in Sources */,
 				AE687AF6225C65090054FDA6 /* SystemConfigPlugin.m in Sources */,
 				AE09FE402231FFAD003C2F97 /* AppDelegate.m in Sources */,
+				AE0C3BDE22924223005F5DA6 /* FilterMenuGeographicController.m in Sources */,
 				AE687B58225C68370054FDA6 /* NNBaseViewController.m in Sources */,
 				AE9B72CE2285946A00F9D954 /* BHBGroup.m in Sources */,
 				AE17621E2284007500D01C61 /* HouseDetailTitleCell.m in Sources */,
@@ -1234,9 +1312,11 @@
 				AE0C3B93228D5756005F5DA6 /* NNCarousel.m in Sources */,
 				AE687C00225C6BD30054FDA6 /* CityModel.m in Sources */,
 				AE9B72CF2285946A00F9D954 /* BHBCenterView.m in Sources */,
+				AE0C3BE322924431005F5DA6 /* ConditionFilterPriceSlider.m in Sources */,
 				AE9B72CB2285946A00F9D954 /* UIButton+BHBSetImage.m in Sources */,
 				AE687AF5225C65090054FDA6 /* AppDelegatePluginManager.m in Sources */,
 				AE9B72D622859EBC00F9D954 /* AddressOnMapViewController.m in Sources */,
+				AE0C3BE62292467C005F5DA6 /* FilterSubmenuCell.m in Sources */,
 				AE687BE0225C69AF0054FDA6 /* ApiBaseRequest.m in Sources */,
 				AE0C3B86228D5756005F5DA6 /* UICollectionView+NNExtension.m in Sources */,
 				AE0C3B81228D5756005F5DA6 /* NNGlobalHelper.m in Sources */,

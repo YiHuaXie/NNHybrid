@@ -190,6 +190,21 @@ static ConstString defaultCityId = @"330100";
     [StandardUserDefaults synchronize];
 }
 
+- (NSArray *)getCityRegionListWithCityId:(NSString *)cityId {
+    NSArray *array = self.cityList;
+    NSArray *regionList = nil;
+    if (array.count) {
+        for (NSDictionary *city in array) {
+            if ([nn_makeSureString(city[@"id"]) isEqualToString:nn_makeSureString(cityId)]) {
+                regionList = city[@"children"];
+                break;
+            }
+        }
+    }
+    
+    return regionList;
+}
+
 - (NSArray *)cityList {
     return [StandardUserDefaults objectForKey:kInitCityList];
 }
