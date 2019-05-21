@@ -14,6 +14,13 @@ import EachHouseCell from '../../components/common/EachHouseCell';
 
 class SearchHousePage extends Component {
 
+    constructor(props) {
+        super(props);
+
+        const { cityId } = this.props.navigation.state.params;
+        this.filterParams = { cityId, fullRentType: '1' };
+    }
+
     componentWillMount() {
         this._loadData(true);
     }
@@ -34,14 +41,11 @@ class SearchHousePage extends Component {
     }
 
     _loadData(isRefresh) {
+        console.log(this.filterParams);
+
         const { loadData, searchHouse } = this.props;
 
-        const params = {
-            cityId: '330100',
-            fullRentType: '1'
-        }
-
-        loadData(params, isRefresh ? 1 : searchHouse.currentPage, error => Toaster.autoDisapperShow(error));
+        loadData(this.filterParams, isRefresh ? 1 : searchHouse.currentPage, error => Toaster.autoDisapperShow(error));
     }
 
     render() {
@@ -64,7 +68,20 @@ class SearchHousePage extends Component {
                     backOrCloseHandler={() => NavigationUtil.goBack()}
                     title='搜房'
                 />
-                <SearchFilterMenu style={styles.filterMenu} />
+                <SearchFilterMenu
+                    style={styles.filterMenu}
+                    cityId={this.filterParams.cityId}
+                    onUpdateParameters={({ nativeEvent: { filterParams } }) => {
+                        this.filterParams = {
+                            ...this.filterParams,
+                            ...filterParams,
+                        };
+
+                        console.log(this.filterParams);
+
+                    }}
+                    onChangeParameters={() => this._loadData(true)}
+                />
             </View>
         );
     }

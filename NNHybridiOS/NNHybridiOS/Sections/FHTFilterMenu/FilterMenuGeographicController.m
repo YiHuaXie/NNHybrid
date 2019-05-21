@@ -61,6 +61,14 @@ typedef NS_ENUM(NSInteger, AnimationType) {
 
 #pragma mark - Lifecycle
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.cityId = SharedCityManager.selectedCityId;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -493,6 +501,16 @@ typedef NS_ENUM(NSInteger, AnimationType) {
 
 }
 
+#pragma mark - Setter
+
+- (void)setCityId:(NSString *)cityId {
+    if (![cityId isEqualToString:_cityId]) {
+        _areaData = nil;
+    }
+    
+    _cityId = cityId;
+}
+
 #pragma mark - Getter
 
 - (NSArray *)areaData {
@@ -504,8 +522,7 @@ typedef NS_ENUM(NSInteger, AnimationType) {
         model.children = @[];
         [tmp addObject:model];
         
-        NSString *cityId = SharedCityManager.selectedCityId;
-        for (NSDictionary *dict in [SharedCityManager getCityRegionListWithCityId:cityId]) {
+        for (NSDictionary *dict in [SharedCityManager getCityRegionListWithCityId:self.cityId]) {
             [MenuAreaModel mj_setupObjectClassInArray:^NSDictionary *{
                 return @{@"children" : @"MenuZoneModel"};
             }];

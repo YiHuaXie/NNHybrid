@@ -122,7 +122,7 @@ class HomePage extends Component {
                         banners={home.banners}
                         modules={home.modules}
                         moduleItemClick={index => {
-                            NavigationUtil.goPage('SearchHousePage');
+                            NavigationUtil.goPage('SearchHousePage', { cityId: home.cityId });
                         }}
                     />
                     <HomeMessageCell messages={home.messages} />

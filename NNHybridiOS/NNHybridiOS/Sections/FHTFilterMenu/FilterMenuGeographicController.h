@@ -10,4 +10,6 @@
 
 @interface FilterMenuGeographicController : UIViewController
 
+@property (nonatomic, copy) NSString *cityId;
+
 @end

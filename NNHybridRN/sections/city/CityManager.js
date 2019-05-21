@@ -8,7 +8,7 @@ import LocationUtil from '../../utils/LocationUtil';
 const UserDefault = NativeModules.UserDefaultModule;
 
 const defaultCityName = '杭州市';
-const defaultCityId = '330100';
+export const defaultCityId = '330100';
 
 const VISITED_CITIES = 'visitedCities';
 const SELECTED_CITY = 'selectedCity';
