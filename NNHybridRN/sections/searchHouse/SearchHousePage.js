@@ -9,19 +9,12 @@ import { connect } from 'react-redux';
 import { loadData } from '../../redux/searchHouse';
 import Toaster from '../../components/common/Toaster';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import Refresher from '../../components/common/Refresher';
+import NNRefreshFlatList from '../../components/common/NNRefreshFlatList';
 import EachHouseCell from '../../components/common/EachHouseCell';
 
 class SearchHousePage extends Component {
 
     componentWillMount() {
-        // const params = {
-        //     cityId: '330100',
-        //     fullRentType: '1',
-        //     pageNo: 1,
-        //     pageSize: 10,
-        // }
-        // this.props.loadData(params, error => Toaster.autoDisapperShow(error));
         this._loadData(true);
     }
 
@@ -41,40 +34,30 @@ class SearchHousePage extends Component {
     }
 
     _loadData(isRefresh) {
-        const { loadData, currentPage } = this.props;
+        const { loadData, searchHouse } = this.props;
 
         const params = {
             cityId: '330100',
             fullRentType: '1'
         }
 
-        loadData(params, isRefresh ? 1 : currentPage, error => Toaster.autoDisapperShow(error));
+        loadData(params, isRefresh ? 1 : searchHouse.currentPage, error => Toaster.autoDisapperShow(error));
     }
 
     render() {
-        const { searchHouse} = this.props;
+        const { searchHouse } = this.props;
 
         return (
             <View style={styles.container}>
-                {/* 关于加载更多，FlatList会多次调用onEndReached函数，另外就是onMomentumScrollBegin的调用时机可能会比onEndReached来的晚*/}
-                <FlatList
+                <NNRefreshFlatList
                     style={{ marginTop: AppUtil.fullNavigationBarHeight + 44 }}
                     showsHorizontalScrollIndicator={false}
                     data={searchHouse.houseList}
                     keyExtractor={item => `${item.id}`}
                     renderItem={({ item, index }) => this._renderHouseCell(item, index)}
-                    refreshControl={Refresher.header(searchHouse.isRefreshing, () => this._loadData(true))}
-                    // ListFooterComponent={() => Refresher.footer(searchHouse.hideLoadingMore)}
-                    // onEndReachedThreshold={0.5}
-                    // onMomentumScrollBegin={() => this.canLoadMore = true}
-                    // onEndReached={() => {
-                    //     setTimeout(() => {
-                    //         if (this.canLoadMore) {
-                    //             this._loadData(false);
-                    //             this.canLoadMore = false;
-                    //         }
-                    //     }, 100);
-                    // }}
+                    refreshState={searchHouse.refreshState}
+                    onHeaderRefresh={() => this._loadData(true)}
+                    onFooterRefresh={() => this._loadData(false)}
                 />
                 <NavigationBar
                     navBarStyle={{ position: 'absolute' }}
@@ -82,7 +65,6 @@ class SearchHousePage extends Component {
                     title='搜房'
                 />
                 <SearchFilterMenu style={styles.filterMenu} />
-
             </View>
         );
     }

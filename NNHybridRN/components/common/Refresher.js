@@ -4,14 +4,15 @@ import {
     Text,
     ActivityIndicator,
     RefreshControl,
+    StyleSheet
 } from 'react-native';
 import AppUtil from '../../utils/AppUtil';
 
 export default class Refresher {
-    static header(refreshing, onRefresh) {
+    static header({ title, refreshing, onRefresh }) {
         return (
             <RefreshControl
-                title={'Loading'}
+                title={title}
                 titleColor={AppUtil.app_theme}
                 colors={[AppUtil.app_theme]}
                 refreshing={refreshing}
@@ -21,16 +22,29 @@ export default class Refresher {
         );
     }
 
-    static footer(hasMoreData) {
-        if (!hasMoreData) return null;
-        
+    static footer(title) {
         return (
-            <View style={{ alignItems: 'center' }}>
-                <ActivityIndicator style={{ margin: 10 }} color={AppUtil.app_theme} />
-                <Text style={{ color: AppUtil.app_theme, margin: 10 }}>
-                    Loading More Data
+            <View style={styles.footerContainer} >
+                <ActivityIndicator size="small" color={AppUtil.app_theme} />
+                <Text style={[styles.footerText, { marginLeft: 7 }]}>
+                    {title}
                 </Text>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    footerContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        height: 44,
+    },
+    footerText: {
+        fontSize: 14,
+        color: AppUtil.app_theme
+    }
+});

@@ -95,8 +95,15 @@ class HomePage extends Component {
     // 需要用SectionList实现
     render() {
         const { home } = this.props;
-        const refreshHeader = Refresher.header(home.isLoading, () => {
-            this.props.loadData({ cityName: home.cityName, cityId: home.cityId });
+        const refreshHeader = Refresher.header({
+            title: '正在加载中...',
+            refreshing: home.isLoading,
+            onRefresh: () => {
+                this.props.loadData({
+                    cityName: home.cityName,
+                    cityId: home.cityId
+                });
+            }
         });
 
         if (home.error) { Toaster.autoDisapperShow(home.error); }
@@ -114,7 +121,7 @@ class HomePage extends Component {
                     <HomeBannerModuleCell
                         banners={home.banners}
                         modules={home.modules}
-                        moduleItemClick = { index => {
+                        moduleItemClick={index => {
                             NavigationUtil.goPage('SearchHousePage');
                         }}
                     />
