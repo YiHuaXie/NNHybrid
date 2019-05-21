@@ -4,8 +4,6 @@ import {
     Text,
     StyleSheet,
     FlatList,
-    ActivityIndicator,
-    RefreshControl,
     TouchableOpacity,
 } from 'react-native';
 import { PropTypes } from 'prop-types';
@@ -13,23 +11,25 @@ import AppUtil from '../../utils/AppUtil';
 import Refresher from '../common/Refresher';
 
 export const RefreshState = {
-    Idle: 0,
-    HeaderRefreshing: 1,
-    FooterRefreshing: 2,
-    NoMoreData: 3,
-    Failure: 4,
-    EmptyData: 5,
+    Idle: 'Idle',
+    HeaderRefreshing: 'HeaderRefreshing',
+    FooterRefreshing: 'FooterRefreshing',
+    NoMoreData: 'NoMoreData',
+    Failure: 'Failure',
+    EmptyData: 'EmptyData',
 };
 
 export default class NNRefreshFlatList extends Component {
 
     static propTypes = {
-        refreshState: PropTypes.number,
+        refreshState: PropTypes.string,
         onHeaderRefresh: PropTypes.func,
         onFooterRefresh: PropTypes.func,
         data: PropTypes.array,
 
         listRef: PropTypes.any,
+
+        headerRefreshingText: PropTypes.string,
 
         footerRefreshingText: PropTypes.string,
         footerFailureText: PropTypes.string,
@@ -45,7 +45,8 @@ export default class NNRefreshFlatList extends Component {
     };
 
     static defaultProps = {
-        footerRefreshingText: '数据加载中…',
+        headerRefreshingText: '数据加载中...',
+        footerRefreshingText: '数据加载中...',
         footerFailureText: '点击重新加载',
         footerNoMoreDataText: '已加载全部数据',
         footerEmptyDataText: '暂时没有相关数据',
@@ -54,7 +55,7 @@ export default class NNRefreshFlatList extends Component {
     onHeaderRefresh = () => {
         const { onHeaderRefresh } = this.props;
 
-        if (this.shouldStartHeaderRefreshing()) {
+        if (this.headerShouldRefreshing()) {
             onHeaderRefresh(RefreshState.HeaderRefreshing)
         }
     }
@@ -62,12 +63,12 @@ export default class NNRefreshFlatList extends Component {
     onEndReached = () => {
         const { onFooterRefresh } = this.props;
 
-        if (this.shouldStartFooterRefreshing()) {
+        if (this.footerShouldRefreshing()) {
             onFooterRefresh && onFooterRefresh(RefreshState.FooterRefreshing)
         }
     }
 
-    shouldStartHeaderRefreshing = () => {
+    headerShouldRefreshing = () => {
         const { refreshState } = this.props;
 
         if (refreshState == RefreshState.HeaderRefreshing ||
@@ -78,9 +79,9 @@ export default class NNRefreshFlatList extends Component {
         return true;
     }
 
-    shouldStartFooterRefreshing = () => {
+    footerShouldRefreshing = () => {
         const { refreshState, data } = this.props;
-        if (data.length == 0) {
+        if (AppUtil.isEmptyArray(data)) {
             return false;
         }
 
@@ -88,10 +89,10 @@ export default class NNRefreshFlatList extends Component {
     }
 
     render() {
-        const { renderItem, refreshState, ...rest } = this.props;
+        const { renderItem, refreshState, headerRefreshingText, ...rest } = this.props;
 
         const refreshControl = Refresher.header({
-            title: '数据加载中…',
+            title: headerRefreshingText,
             refreshing: refreshState == RefreshState.HeaderRefreshing,
             onRefresh: this.onHeaderRefresh
         });
@@ -141,7 +142,7 @@ export default class NNRefreshFlatList extends Component {
                 );
 
                 const pressHandler = () => {
-                    if (data.length == 0) {
+                    if (AppUtil.isEmptyArray(data)) {
                         onHeaderRefresh && onHeaderRefresh(RefreshState.HeaderRefreshing);
                     } else {
                         onFooterRefresh && onFooterRefresh(RefreshState.FooterRefreshing);

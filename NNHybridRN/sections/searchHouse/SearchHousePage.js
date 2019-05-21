@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import NavigationBar from '../../navigator/NavigationBar';
 import NavigationUtil from '../../utils/NavigationUtil';
 import SearchFilterMenu from './SearchFilterMenu';
