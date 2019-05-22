@@ -54,7 +54,6 @@ class SearchHousePage extends Component {
         return (
             <View style={styles.container} ref='container'>
                 <NNRefreshFlatList
-                    ref='listView'
                     style={{ marginTop: AppUtil.fullNavigationBarHeight + 44 }}
                     showsHorizontalScrollIndicator={false}
                     data={searchHouse.houseList}
@@ -75,15 +74,10 @@ class SearchHousePage extends Component {
                     subwayData={home.subwayData}
                     containerRef={this.refs.container}
                     onUpdateParameters={({ nativeEvent: { filterParams } }) => {
-                        console.log('sdasdsadasdas');
-                        console.log(filterParams);
-                        
                         this.filterParams = {
                             ...this.filterParams,
                             ...filterParams,
                         };
-                        // console.log(this.filterParams);
-
                     }}
                     onChangeParameters={() => this._loadData(true)}
                 />
