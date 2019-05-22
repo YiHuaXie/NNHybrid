@@ -40,13 +40,10 @@ export function loadSubwayData(cityId) {
             apiVersion: '1.0',
             params: { cityId }
         }).then(response => {
-            console.log(response);
             dispatch({
                 type: Types.HOME_LOAD_SUBWAY_DATA_FINISHED,
                 subwayData: response.subwayRouteInfo,
             });
-
-            CityManager.saveSubwayData(response.subwayRouteInfo)
         }).catch(error => {
             console.log(error);
             dispatch({

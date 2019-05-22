@@ -43,8 +43,6 @@ class SearchHousePage extends Component {
     }
 
     _loadData(isRefresh) {
-        console.log(this.filterParams);
-
         const { loadData, searchHouse } = this.props;
 
         loadData(this.filterParams, isRefresh ? 1 : searchHouse.currentPage, error => Toaster.autoDisapperShow(error));
@@ -77,13 +75,14 @@ class SearchHousePage extends Component {
                     subwayData={home.subwayData}
                     containerRef={this.refs.container}
                     onUpdateParameters={({ nativeEvent: { filterParams } }) => {
+                        console.log('sdasdsadasdas');
                         console.log(filterParams);
                         
                         this.filterParams = {
                             ...this.filterParams,
                             ...filterParams,
                         };
-                        console.log(this.filterParams);
+                        // console.log(this.filterParams);
 
                     }}
                     onChangeParameters={() => this._loadData(true)}

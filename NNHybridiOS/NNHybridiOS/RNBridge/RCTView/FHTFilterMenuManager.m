@@ -17,6 +17,8 @@
 #import "FilterMenuMoreController.h"
 #import "FilterMenuRentalController.h"
 
+static ConstString kFilterParams = @"filterParams";
+
 @interface FHTFilterMenu (RNBridge)
 
 @property (nonatomic, copy) RCTBubblingEventBlock onUpdateParameters;
@@ -102,18 +104,41 @@ RCT_EXPORT_METHOD(showFilterMenuOnView:(nonnull NSNumber *)containerTag filterMe
     [filterMenu resetFilter];
     
     __weak FHTFilterMenu *weakFilterMenu = filterMenu;
-    
-    NNSenderBlock didSetFilterHandler =  ^(NSDictionary *params) {
-        NSLog(@"%@", params);
-        NSDictionary *dict = @{@"filterParams": nn_makeSureDictionary(params)};
-        BLOCK_EXEC(weakFilterMenu.onUpdateParameters, dict);
+
+    rentTypeVC.didSetFilterHandler = ^(NSDictionary * _Nonnull params) {
+        BLOCK_EXEC(weakFilterMenu.onUpdateParameters, @{kFilterParams: params});
     };
     
-    rentTypeVC.didSetFilterHandler = [didSetFilterHandler copy];
-    geographicVC.didSetFilterHandler = [didSetFilterHandler copy];
-    rentalVC.didSetFilterHandler = [didSetFilterHandler copy];
-    moreVC.didSetFilterHandler = [didSetFilterHandler copy];
-    orderByVC.didSetFilterHandler = [didSetFilterHandler copy];
+    geographicVC.didSetFilterHandler = ^(NSDictionary * _Nonnull params) {
+        NSMutableDictionary *tmpParams = [@{@"regionId": nn_makeSureString(params[@"regionId"]),
+                                            @"zoneIds": nn_makeSureArray(params[@"zoneIds"]),
+                                            @"subwayRouteId": nn_makeSureString(params[@"subwayRouteId"]),
+                                            @"subwayStationCodes": nn_makeSureArray(params[@"subwayStationCodes"])} mutableCopy];
+        
+        BLOCK_EXEC(weakFilterMenu.onUpdateParameters, @{kFilterParams: [tmpParams copy]});
+    };
+    
+
+    rentalVC.didSetFilterHandler = ^(NSDictionary * _Nonnull params) {
+        NSDictionary *tmpParams = @{@"minPrice": nn_makeSureString(params[@"minPirce"]),
+                                    @"maxPrice": nn_makeSureString(params[@"maxPrice"])};
+        BLOCK_EXEC(weakFilterMenu.onUpdateParameters, @{kFilterParams: tmpParams});
+    };
+    
+    moreVC.didSetFilterHandler = ^(NSDictionary * _Nonnull params) {
+        NSArray *typeArray = params[@"typeArray"];
+        NSString *type = typeArray.count == 1 ? (typeArray.lastObject)[@"type"] : @"";
+        
+        NSDictionary *tmpParams = @{@"roomAttributeTags": params[@"highlightArray"],
+                                    @"chamberCounts": params[@"chamberArray"],
+                                    @"type": type};
+        
+        BLOCK_EXEC(weakFilterMenu.onUpdateParameters, @{kFilterParams: tmpParams});
+    };
+    
+    orderByVC.didSetFilterHandler = ^(NSDictionary * _Nonnull params) {
+        BLOCK_EXEC(weakFilterMenu.onUpdateParameters, @{kFilterParams: params});
+    };
     
     filterMenu.filterDidChangedHandler = ^(FHTFilterMenu * _Nonnull filterMenu, id<FHTFilterController>  _Nonnull filterController) {
         BLOCK_EXEC(weakFilterMenu.onChangeParameters, nil);
