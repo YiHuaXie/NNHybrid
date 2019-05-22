@@ -25,7 +25,8 @@ import { connect } from 'react-redux';
 import {
     loadData,
     selectedCityFinisedOrChanged,
-    showCityLocationTip
+    showCityLocationTip,
+    loadSubwayData
 } from '../../redux/home';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
@@ -34,16 +35,18 @@ class HomePage extends Component {
     state = { isTransparent: true };
 
     componentWillMount() {
-        const { loadData, selectedCityFinisedOrChanged, showCityLocationTip } = this.props;
+        const { loadData, selectedCityFinisedOrChanged, showCityLocationTip, loadSubwayData } = this.props;
 
         CityManager.cityLocation((cityName, cityId) => {
             selectedCityFinisedOrChanged(cityName, cityId);
             loadData({ cityName, cityId });
+            loadSubwayData(cityId);
         });
 
         DeviceEventEmitter.addListener('selectedCityChaged', ({ cityName, cityId }) => {
             selectedCityFinisedOrChanged(cityName, cityId);
             loadData({ cityName, cityId });
+            loadSubwayData(cityId);
         });
 
         showCityLocationTip(locationCity => {
@@ -113,6 +116,7 @@ class HomePage extends Component {
                     refreshControl={refreshHeader}
                     onScroll={e => {
                         const isTransparent = e.nativeEvent.contentOffset.y <= 100;
+                        // this.navi.setNativeProps({ isTransparent });
                         if (isTransparent !== this.state.isTransparent) {
                             this.setState({ isTransparent });
                         }
@@ -122,7 +126,7 @@ class HomePage extends Component {
                         banners={home.banners}
                         modules={home.modules}
                         moduleItemClick={index => {
-                            NavigationUtil.goPage('SearchHousePage', { cityId: home.cityId });
+                            NavigationUtil.goPage('SearchHousePage');
                         }}
                     />
                     <HomeMessageCell messages={home.messages} />
@@ -138,6 +142,7 @@ class HomePage extends Component {
                     {!AppUtil.isEmptyArray(home.houses) ? <HomeButtonCell /> : null}
                 </ScrollView>
                 <HomeNavigationBar
+                    // ref={e => this.navi = e}
                     isTransparent={this.state.isTransparent}
                     cityName={home.cityName}
                     cityViewTouched={() => NavigationUtil.goPage('CityListPage')}
@@ -155,7 +160,8 @@ const mapDispatchToProps = dispatch => ({
     selectedCityFinisedOrChanged: (cityName, cityId) =>
         dispatch(selectedCityFinisedOrChanged(cityName, cityId)),
     showCityLocationTip: callBack =>
-        dispatch(showCityLocationTip(callBack))
+        dispatch(showCityLocationTip(callBack)),
+    loadSubwayData: cityId => dispatch(loadSubwayData(cityId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

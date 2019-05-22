@@ -37,6 +37,7 @@ export const ApiPath = {
     QUICKPAY: '/myhome/api/quickPay',                // 快捷支付
     INTELLIGENTESTATE: '/myhome/api/intelligentEstate', // 快捷支付
     COUPON: '/myhome/api/coupon',                    // 优惠券
+    COREBASE: '/myhome/api/core/base',               //基础信息
 };
 
 export const baseUrl = type => {

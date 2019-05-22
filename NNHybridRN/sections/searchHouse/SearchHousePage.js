@@ -17,8 +17,10 @@ class SearchHousePage extends Component {
     constructor(props) {
         super(props);
 
-        const { cityId } = this.props.navigation.state.params;
-        this.filterParams = { cityId, fullRentType: '1' };
+        this.filterParams = {
+            cityId: this.props.home.cityId,
+            fullRentType: '1'
+        };
     }
 
     componentWillMount() {
@@ -49,11 +51,12 @@ class SearchHousePage extends Component {
     }
 
     render() {
-        const { searchHouse } = this.props;
+        const { home, searchHouse } = this.props;
 
         return (
-            <View style={styles.container}>
+            <View style={styles.container} ref='container'>
                 <NNRefreshFlatList
+                    ref='listView'
                     style={{ marginTop: AppUtil.fullNavigationBarHeight + 44 }}
                     showsHorizontalScrollIndicator={false}
                     data={searchHouse.houseList}
@@ -70,13 +73,16 @@ class SearchHousePage extends Component {
                 />
                 <SearchFilterMenu
                     style={styles.filterMenu}
-                    cityId={this.filterParams.cityId}
+                    cityId={`${home.cityId}`}
+                    subwayData={home.subwayData}
+                    containerRef={this.refs.container}
                     onUpdateParameters={({ nativeEvent: { filterParams } }) => {
+                        console.log(filterParams);
+                        
                         this.filterParams = {
                             ...this.filterParams,
                             ...filterParams,
                         };
-
                         console.log(this.filterParams);
 
                     }}
@@ -87,7 +93,7 @@ class SearchHousePage extends Component {
     }
 }
 
-const mapStateToProps = state => ({ searchHouse: state.searchHouse });
+const mapStateToProps = state => ({ home: state.home, searchHouse: state.searchHouse });
 
 const mapDispatchToProps = dispatch => ({
     loadData: (params, currentPage, errorCallBack) =>

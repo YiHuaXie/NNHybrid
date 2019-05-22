@@ -7,6 +7,7 @@
 //
 
 #import "FHTFilterMenuManager.h"
+#import <React/RCTUIManager.h>
 #import <objc/runtime.h>
 
 #import "FHTFilterMenu.h"
@@ -54,31 +55,56 @@
 @implementation FHTFilterMenuManager
 
 RCT_EXPORT_MODULE();
+
 RCT_EXPORT_VIEW_PROPERTY(onUpdateParameters, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onChangeParameters, RCTBubblingEventBlock);
+
 RCT_CUSTOM_VIEW_PROPERTY(cityId, NSString, FHTFilterMenu) {
     FilterMenuGeographicController *vc = view.filterControllers[1];
     vc.cityId = (NSString *)json;
 };
 
+RCT_CUSTOM_VIEW_PROPERTY(subwayData, NSArray, FHTFilterMenu) {
+    FilterMenuGeographicController *vc = view.filterControllers[1];
+    vc.originalSubwayData = (NSArray *)json;
+};
+
+
+RCT_EXPORT_METHOD(showFilterMenuOnView:(nonnull NSNumber *)containerTag filterMenuTag:(nonnull NSNumber *)filterMenuTag) {
+    RCTUIManager *uiManager = self.bridge.uiManager;
+    dispatch_async(uiManager.methodQueue, ^{
+        [uiManager addUIBlock:^(RCTUIManager *uiManager, NSDictionary<NSNumber *,UIView *> *viewRegistry) {
+            UIView *view = viewRegistry[containerTag];
+            FHTFilterMenu *filterMenu = (FHTFilterMenu *)viewRegistry[filterMenuTag];
+            [filterMenu showFilterMenuOnView:view];
+        }];
+    });
+}
+
+- (dispatch_queue_t)methodQueue {
+    return dispatch_get_main_queue();
+}
+
 - (UIView *)view {
-    FilterMenuRentTypeController *rentTypeVC = [[FilterMenuRentTypeController alloc] initWithStyle:UITableViewStylePlain];
+    FilterMenuRentTypeController *rentTypeVC =
+    [[FilterMenuRentTypeController alloc] initWithStyle:UITableViewStylePlain];
     FilterMenuGeographicController *geographicVC = [FilterMenuGeographicController new];
-    FilterMenuRentalController *rentalVC = [[FilterMenuRentalController alloc] initWithStyle:UITableViewStylePlain];
+    FilterMenuRentalController *rentalVC =
+    [[FilterMenuRentalController alloc] initWithStyle:UITableViewStylePlain];
     FilterMenuMoreController *moreVC = [FilterMenuMoreController new];
-    FilterMenuOrderByController *orderByVC = [[FilterMenuOrderByController alloc] initWithStyle:UITableViewStylePlain];
+    FilterMenuOrderByController *orderByVC =
+    [[FilterMenuOrderByController alloc] initWithStyle:UITableViewStylePlain];
     
-    FHTFilterMenu *filterMenu = [[FHTFilterMenu alloc] initWithFrame:CGRectMake(0, FULL_NAVIGATION_BAR_HEIGHT, SCREEN_WIDTH, 44)];
+    CGRect frame = CGRectMake(0, FULL_NAVIGATION_BAR_HEIGHT, SCREEN_WIDTH, 44);
+    FHTFilterMenu *filterMenu = [[FHTFilterMenu alloc] initWithFrame:frame];
     filterMenu.filterControllers = @[rentTypeVC, geographicVC, rentalVC, moreVC, orderByVC];
-    
-    UINavigationController *nav = (UINavigationController *)SharedApplication.keyWindow.rootViewController;
-    [filterMenu showFilterMenuOnView:nav.visibleViewController.view];
     [filterMenu dismissSubmenu:NO];
     [filterMenu resetFilter];
     
     __weak FHTFilterMenu *weakFilterMenu = filterMenu;
     
     NNSenderBlock didSetFilterHandler =  ^(NSDictionary *params) {
+        NSLog(@"%@", params);
         NSDictionary *dict = @{@"filterParams": nn_makeSureDictionary(params)};
         BLOCK_EXEC(weakFilterMenu.onUpdateParameters, dict);
     };

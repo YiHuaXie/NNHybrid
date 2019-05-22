@@ -11,5 +11,6 @@
 @interface FilterMenuGeographicController : UIViewController
 
 @property (nonatomic, copy) NSString *cityId;
+@property (nonatomic, copy) NSArray *originalSubwayData;
 
 @end

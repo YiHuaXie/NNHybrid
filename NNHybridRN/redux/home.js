@@ -32,6 +32,31 @@ export function selectedCityFinisedOrChanged(cityName, cityId) {
     }
 }
 
+export function loadSubwayData(cityId) {
+    return dispatch => {
+        Network.my_request({
+            apiPath: ApiPath.COREBASE,
+            apiMethod: 'subwayRouteInfoList',
+            apiVersion: '1.0',
+            params: { cityId }
+        }).then(response => {
+            console.log(response);
+            dispatch({
+                type: Types.HOME_LOAD_SUBWAY_DATA_FINISHED,
+                subwayData: response.subwayRouteInfo,
+            });
+
+            CityManager.saveSubwayData(response.subwayRouteInfo)
+        }).catch(error => {
+            console.log(error);
+            dispatch({
+                type: Types.HOME_LOAD_SUBWAY_DATA_FINISHED,
+                subwayData: []
+            });
+        });
+    }
+}
+
 export function loadData(selectedCity) {
     return dispatch => {
         dispatch({ type: Types.HOME_LOAD_DATA });
@@ -108,6 +133,7 @@ const defaultState = {
     messages: [],
     vr: null,
     apartments: [],
+    subwayData: [],
     houses: [],
     cityName: '',
     cityId: '',
@@ -139,6 +165,11 @@ export function homeReducer(state = defaultState, action) {
                 houses: action.houses,
                 isLoading: false,
                 error: null
+            }
+        case Types.HOME_LOAD_SUBWAY_DATA_FINISHED:
+            return {
+                ...state,
+                subwayData: action.subwayData
             }
         case Types.HOME_LOAD_DATA_FAIL:
             return {

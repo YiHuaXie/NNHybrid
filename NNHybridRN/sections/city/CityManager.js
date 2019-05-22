@@ -14,7 +14,6 @@ const VISITED_CITIES = 'visitedCities';
 const SELECTED_CITY = 'selectedCity';
 const LOCATION_CITY = 'locationCity';
 
-
 export default class CityManager {
 
     constructor() {
@@ -147,6 +146,7 @@ export default class CityManager {
     static async cityLocation(callBack) {
         try {
             const selectedCity = await this.getSelectedCity();
+            console.log(selectedCity);
             if (selectedCity) {
                 callBack(selectedCity.cityName, selectedCity.cityId);
                 return;

@@ -73,7 +73,6 @@ const void * _Nonnull keyDidSetFilterHandler = @"didSetFilterHandler";
 @implementation FHTFilterMenu
 @synthesize maskingView=_maskingView, contentView=_contentView;
 
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {

@@ -511,6 +511,11 @@ typedef NS_ENUM(NSInteger, AnimationType) {
     _cityId = cityId;
 }
 
+- (void)setOriginalSubwayData:(NSArray *)originalSubwayData {
+    _originalSubwayData = originalSubwayData;
+    _subwayData = nil;
+}
+
 #pragma mark - Getter
 
 - (NSArray *)areaData {
@@ -544,7 +549,7 @@ typedef NS_ENUM(NSInteger, AnimationType) {
         model.subwayStationInfo = @[];
         [tmp addObject:model];
         
-//        [tmp addObjectsFromArray:[MenuSubwayRouteModel mj_objectArrayWithKeyValuesArray:[MYCities shareInstance].subwayData]];
+        [tmp addObjectsFromArray:[MenuSubwayRouteModel mj_objectArrayWithKeyValuesArray:self.originalSubwayData]];
         
         _subwayData = [tmp copy];
     }
