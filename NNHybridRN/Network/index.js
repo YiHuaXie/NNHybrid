@@ -138,7 +138,7 @@ export default class Network {
         return promise
             .then(response => {
                 response.code = parseInt(response.code);
-                // if (code === 1011) response.code = 0;
+                if (response.code === 1011) response.code = 0;
 
                 switch (response.code) {
                     case CodeType.SUCCESS:

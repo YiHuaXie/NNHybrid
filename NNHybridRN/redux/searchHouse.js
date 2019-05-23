@@ -21,17 +21,22 @@ export function loadData(params, currentPage, errorCallBack) {
                 }
             })
             .then(response => {
-                const hasMoreData = currentPage < response.totalPages;
+                const tmpResponse = AppUtil.makeSureObject(response);
+                const hasMoreData = currentPage < tmpResponse.totalPages;
                 dispatch({
                     type: Types.SEARCH_HOUSE_LOAD_DATA_SUCCESS,
                     currentPage: ++currentPage,
-                    houseList: response.resultList,
+                    houseList: AppUtil.makeSureArray(tmpResponse.resultList) ,
                     hasMoreData,
                 });
             })
             .catch(error => {
                 if (errorCallBack) errorCallBack(error.message);
-                dispatch({ type: Types.SEARCH_HOUSE_LOAD_DATA_FAIL });
+
+                const action = { type: Types.SEARCH_HOUSE_LOAD_DATA_FAIL };
+                if (currentPage == 1) action.houseList = [];
+
+                dispatch(action);
             });
     }
 }
@@ -60,6 +65,7 @@ export function searchHouseReducer(state = defaultState, action) {
             return {
                 ...state,
                 refreshState: RefreshState.Failure,
+                houseList: action.houseList ? action.houseList : state.houseList
             }
         }
         case Types.SEARCH_HOUSE_LOAD_DATA_SUCCESS: {
