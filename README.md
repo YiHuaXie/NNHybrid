@@ -27,6 +27,7 @@
 
 ## 项目效果图
 
+![home](./screenshots/home.jpg)
 <img width="150" height="451.2" src="https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/home.jpg"/><img width="150" height="504.6" src="https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/apartment.jpg"/><img width="150" height="480" src="https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/houseDetail.jpg"/>
 
 <img width="150" height="266.8" src="https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/cityListPage.jpg"/><img width="150" height="266.8" src="https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/share.jpg"/><img width="150" height="266.8" src="https://nnhybrid.oss-cn-hangzhou.aliyuncs.com/addressOnMap.jpg"/>
