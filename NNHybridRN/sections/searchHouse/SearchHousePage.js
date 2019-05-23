@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import NavigationBar from '../../navigator/NavigationBar';
 import NavigationUtil from '../../utils/NavigationUtil';
-import SearchFilterMenu from './SearchFilterMenu';
+import SearchFilterMenu, { FilterMenuType } from './SearchFilterMenu';
 import AppUtil from '../../utils/AppUtil';
 
 import { connect } from 'react-redux';
@@ -16,6 +16,11 @@ class SearchHousePage extends Component {
 
     constructor(props) {
         super(props);
+
+        this.params = this.props.navigation.state.params;
+        if (!this.params['filterMenuType']) {
+            this.params.filterMenuType = FilterMenuType.NONE;
+        } 
 
         this.filterParams = {
             cityId: this.props.home.cityId,
@@ -73,6 +78,7 @@ class SearchHousePage extends Component {
                     cityId={`${home.cityId}`}
                     subwayData={home.subwayData}
                     containerRef={this.refs.container}
+                    filterMenuType={this.params.filterMenuType}
                     onUpdateParameters={({ nativeEvent: { filterParams } }) => {
                         this.filterParams = {
                             ...this.filterParams,

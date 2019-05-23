@@ -74,7 +74,7 @@ export default class HomeBannerModuleCell extends Component {
                     // contentInset只支持iOS
                     renderItem={({ item, index }) => {
                         return (
-                            <TouchableWithoutFeedback onPress={() => this.props.moduleItemClick(index)}>
+                            <TouchableWithoutFeedback onPress={() => this.props.moduleItemClick(item)}>
                                 <ModuleItem itemStyle={{ marginTop: index > 3 ? 10 : 0 }} item={item} />
                             </TouchableWithoutFeedback>
                         );

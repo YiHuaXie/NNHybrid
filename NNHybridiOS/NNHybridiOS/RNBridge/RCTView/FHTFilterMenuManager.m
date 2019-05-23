@@ -10,7 +10,6 @@
 #import <React/RCTUIManager.h>
 #import <objc/runtime.h>
 
-#import "FHTFilterMenu.h"
 #import "FilterMenuRentTypeController.h"
 #import "FilterMenuGeographicController.h"
 #import "FilterMenuOrderByController.h"
@@ -19,11 +18,28 @@
 
 static ConstString kFilterParams = @"filterParams";
 
-@interface FHTFilterMenu (RNBridge)
+typedef NS_ENUM(NSInteger, FilterMenuType) {
+    FilterMenuTypeNone,
+    FilterMenuTypeEntireRent,    //整租
+    FilterMenuTypeSharedRent,    //合租
+    FilterMenuTypeApartment,     //独栋公寓
+    FilterMenuTypeBelowThousand, //千元房源
+    FilterMenuTypePayMonthly,    //月付
+    FilterMenuTypeVR,            //VR
+};
 
-@property (nonatomic, copy) RCTBubblingEventBlock onUpdateParameters;
-@property (nonatomic, copy) RCTBubblingEventBlock onChangeParameters;
+@implementation RCTConvert (FHTFilterMenu)
 
+RCT_ENUM_CONVERTER(FilterMenuType,
+                   (@{@"None": @(FilterMenuTypeNone),
+                      @"EntireRent": @(FilterMenuTypeEntireRent),
+                      @"SharedRent": @(FilterMenuTypeSharedRent),
+                      @"Apartment": @(FilterMenuTypeApartment),
+                      @"BelowThousand": @(FilterMenuTypeBelowThousand),
+                      @"PayMonthly": @(FilterMenuTypePayMonthly),
+                      @"VR":@(FilterMenuTypeVR)}),
+                   FilterMenuTypeNone,
+                   integerValue);
 @end
 
 @implementation FHTFilterMenu (RNBridge)
@@ -52,6 +68,43 @@ static ConstString kFilterParams = @"filterParams";
     return objc_getAssociatedObject(self, @selector(onChangeParameters));
 }
 
+- (void)setFilterMenuType:(FilterMenuType)filterMenuType {
+    switch (filterMenuType) {
+        case FilterMenuTypeEntireRent: {
+            UIViewController *vc = (UIViewController *)self.filterControllers[0];
+            [vc presetWithOptionTitles:@[@"整租"]];
+        }
+            break;
+        case FilterMenuTypeSharedRent: {
+            UIViewController *vc = (UIViewController *)self.filterControllers[0];
+            [vc presetWithOptionTitles:@[@"合租"]];
+        }
+            break;
+        case FilterMenuTypeApartment: {
+            UIViewController *vc = (UIViewController *)self.filterControllers[3];
+            [vc presetWithOptionTitles:@[@"房源类型/独栋公寓"]];
+        }
+            break;
+        case FilterMenuTypeBelowThousand: {
+            UIViewController *vc = (UIViewController *)self.filterControllers[2];
+            [vc presetWithOptionTitles:@[@"1500以下"]];
+        }
+            break;
+        case FilterMenuTypePayMonthly: {
+            UIViewController *vc = (UIViewController *)self.filterControllers[3];
+            [vc presetWithOptionTitles:@[@"房源亮点/月付"]];
+        }
+            break;
+        case FilterMenuTypeVR: {
+            UIViewController *vc = (UIViewController *)self.filterControllers[3];
+            [vc presetWithOptionTitles:@[@"房源亮点/VR"]];
+        }
+            break;
+        default:
+            break;
+    }
+};
+
 @end
 
 @implementation FHTFilterMenuManager
@@ -60,6 +113,7 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_VIEW_PROPERTY(onUpdateParameters, RCTBubblingEventBlock);
 RCT_EXPORT_VIEW_PROPERTY(onChangeParameters, RCTBubblingEventBlock);
+RCT_EXPORT_VIEW_PROPERTY(filterMenuType, FilterMenuType);
 
 RCT_CUSTOM_VIEW_PROPERTY(cityId, NSString, FHTFilterMenu) {
     FilterMenuGeographicController *vc = view.filterControllers[1];
@@ -70,7 +124,6 @@ RCT_CUSTOM_VIEW_PROPERTY(subwayData, NSArray, FHTFilterMenu) {
     FilterMenuGeographicController *vc = view.filterControllers[1];
     vc.originalSubwayData = (NSArray *)json;
 };
-
 
 RCT_EXPORT_METHOD(showFilterMenuOnView:(nonnull NSNumber *)containerTag filterMenuTag:(nonnull NSNumber *)filterMenuTag) {
     RCTUIManager *uiManager = self.bridge.uiManager;
@@ -103,6 +156,7 @@ RCT_EXPORT_METHOD(showFilterMenuOnView:(nonnull NSNumber *)containerTag filterMe
     [filterMenu dismissSubmenu:NO];
     [filterMenu resetFilter];
     
+    [rentTypeVC presetWithOptionTitles:@[]];
     __weak FHTFilterMenu *weakFilterMenu = filterMenu;
 
     rentTypeVC.didSetFilterHandler = ^(NSDictionary * _Nonnull params) {

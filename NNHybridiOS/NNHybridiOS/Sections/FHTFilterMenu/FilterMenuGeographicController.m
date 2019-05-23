@@ -162,10 +162,10 @@ typedef NS_ENUM(NSInteger, AnimationType) {
     self.secondLayerIndex = secondLayerIndex;
     self.thirdLayerIndexs = nn_makeSureArray(thirdLayerIndexs);
 
-    self.firstLayerData =
-    [SharedLocationManager locationAuthorizedDenied] ?
-    @[@"区域", @"地铁"] :
-    @[@"区域", @"地铁", @"周边"];
+    self.firstLayerData =  @[@"区域", @"地铁"];
+//    [SharedLocationManager locationAuthorizedDenied] ?
+//    @[@"区域", @"地铁"] :
+//    @[@"区域", @"地铁", @"周边"];
     self.secondLayerData = [self _nextLayerDataWithCurrentLayerTableView:self.firstLayerTableView
                                                              atIndexPath:[NSIndexPath indexPathForRow:firstLayerIndex inSection:0]];
     self.thirdLayerData = [self _nextLayerDataWithCurrentLayerTableView:self.secondLayerTableView

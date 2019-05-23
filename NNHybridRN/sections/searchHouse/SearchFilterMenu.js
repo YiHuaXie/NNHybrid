@@ -4,6 +4,16 @@ import { requireNativeComponent, NativeModules, findNodeHandle } from 'react-nat
 const FilterMenu = requireNativeComponent('FHTFilterMenu', SearchFilterMenu);
 const filterMenuManager = NativeModules.FHTFilterMenuManager;
 
+export const FilterMenuType = {
+    NONE: 'None',
+    ENTIRERENT: 'EntireRent',
+    SHAREDRENT: 'SharedRent',
+    APARTMENT: 'Apartment',
+    BELOWTHOUSAND: 'BelowThousand',
+    PAYMONTHLY: 'PayMonthly',
+    VR: 'VR'
+}
+
 export default class SearchFilterMenu extends Component {
 
     componentDidUpdate() {

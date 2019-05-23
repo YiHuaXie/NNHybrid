@@ -7,6 +7,18 @@
 //
 
 #import <React/RCTViewManager.h>
+#import "FHTFilterMenu.h"
+
+@interface FHTFilterMenu (RNBridge)
+
+@property (nonatomic, copy) RCTBubblingEventBlock onUpdateParameters;
+@property (nonatomic, copy) RCTBubblingEventBlock onChangeParameters;
+
+@end
+
+@interface RCTConvert (FHTFilterMenu)
+
+@end
 
 @interface FHTFilterMenuManager : RCTViewManager <RCTBridgeModule>
 
