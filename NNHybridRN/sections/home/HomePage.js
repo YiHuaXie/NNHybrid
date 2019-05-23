@@ -20,7 +20,7 @@ import HomeButtonCell from './HomeButtonCell';
 import Refresher from '../../components/common/Refresher';
 import Toaster from '../../components/common/Toaster';
 import CityManager from '../city/CityManager';
-import { FilterMenuType } from '../../sections/searchHouse/SearchFilterMenu';
+
 import { connect } from 'react-redux';
 import {
     loadData,
@@ -125,12 +125,7 @@ class HomePage extends Component {
                     <HomeBannerModuleCell
                         banners={home.banners}
                         modules={home.modules}
-                        moduleItemClick={item => {
-                            // NavigationUtil.goPage('SearchHousePage', {
-                            //     filterMenuType: FilterMenuType.BELOWTHOUSAND
-                            // });
-                            NavigationUtil.goPageWithCode(item.code);
-                        }}
+                        moduleItemClick={item => NavigationUtil.goPageWithCode(item.code)}
                     />
                     <HomeMessageCell messages={home.messages} />
                     <HomeVRCell vr={home.vr} />

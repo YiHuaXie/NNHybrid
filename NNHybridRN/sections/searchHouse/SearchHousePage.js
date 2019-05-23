@@ -18,6 +18,7 @@ class SearchHousePage extends Component {
         super(props);
 
         this.params = this.props.navigation.state.params;
+
         if (!this.params['filterMenuType']) {
             this.params.filterMenuType = FilterMenuType.NONE;
         } 
