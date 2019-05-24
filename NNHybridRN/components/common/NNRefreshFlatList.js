@@ -135,12 +135,6 @@ export default class NNRefreshFlatList extends Component {
                     <View style={styles.footerContainer} />
                 );
             case RefreshState.Failure: {
-                const defaultFooterFailureComponent = (
-                    <View style={styles.footerContainer}>
-                        <Text style={styles.footerText}>{footerFailureText}</Text>
-                    </View>
-                );
-
                 const pressHandler = () => {
                     if (AppUtil.isEmptyArray(data)) {
                         onHeaderRefresh && onHeaderRefresh(RefreshState.HeaderRefreshing);
@@ -149,28 +143,30 @@ export default class NNRefreshFlatList extends Component {
                     }
                 };
 
-                return (
+                const defaultFooterFailureComponent = (
                     <TouchableOpacity onPress={() => pressHandler()}>
-                        {footerFailureComponent ? footerFailureComponent : defaultFooterFailureComponent}
+                        <View style={styles.footerContainer}>
+                            <Text style={styles.footerText}>{footerFailureText}</Text>
+                        </View>
                     </TouchableOpacity>
                 );
+
+                return footerFailureComponent ? footerFailureComponent : defaultFooterFailureComponent;
             }
             case RefreshState.EmptyData: {
-                const defaultFooterEmptyDataComponent = (
-                    <View style={styles.footerContainer}>
-                        <Text style={styles.footerText}>{footerEmptyDataText}</Text>
-                    </View>
-                );
-
                 const pressHandler = () => {
                     onHeaderRefresh && onHeaderRefresh(RefreshState.HeaderRefreshing);
                 };
 
-                return (
-                    <TouchableOpacity onPress={() => pressHandler()}>
-                        {footerEmptyDataComponent ? footerEmptyDataComponent : defaultFooterEmptyDataComponent}
+                const defaultFooterEmptyDataComponent = (
+                    <TouchableOpacity onPress={() => pressHandler}>
+                        <View style={styles.footerContainer}>
+                            <Text style={styles.footerText}>{footerEmptyDataText}</Text>
+                        </View>
                     </TouchableOpacity>
                 );
+
+                return footerEmptyDataComponent ? footerEmptyDataComponent : defaultFooterEmptyDataComponent;
             }
             case RefreshState.FooterRefreshing: {
                 const defaultFooterRefreshingComponent = Refresher.footer(footerRefreshingText);

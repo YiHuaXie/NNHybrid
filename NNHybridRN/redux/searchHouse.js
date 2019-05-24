@@ -7,7 +7,7 @@ import AppUtil from '../utils/AppUtil';
 export function loadData(params, currentPage, errorCallBack) {
     return dispatch => {
         dispatch({ type: currentPage == 1 ? Types.SEARCH_HOUSE_LOAD_DATA : Types.SEARCH_HOUSE_LOAD_MORE_DATA });
-        console.log(currentPage);
+        // console.log(currentPage);
 
         Network
             .my_request({
@@ -23,10 +23,11 @@ export function loadData(params, currentPage, errorCallBack) {
             .then(response => {
                 const tmpResponse = AppUtil.makeSureObject(response);
                 const hasMoreData = currentPage < tmpResponse.totalPages;
+                const houseList = AppUtil.makeSureArray(tmpResponse.resultList);
                 dispatch({
                     type: Types.SEARCH_HOUSE_LOAD_DATA_SUCCESS,
                     currentPage: ++currentPage,
-                    houseList: AppUtil.makeSureArray(tmpResponse.resultList) ,
+                    houseList,
                     hasMoreData,
                 });
             })
@@ -34,7 +35,10 @@ export function loadData(params, currentPage, errorCallBack) {
                 if (errorCallBack) errorCallBack(error.message);
 
                 const action = { type: Types.SEARCH_HOUSE_LOAD_DATA_FAIL };
-                if (currentPage == 1) action.houseList = [];
+                if (currentPage == 1) {
+                    action.houseList = []
+                    action.currentPage = 1;
+                };
 
                 dispatch(action);
             });
@@ -65,7 +69,8 @@ export function searchHouseReducer(state = defaultState, action) {
             return {
                 ...state,
                 refreshState: RefreshState.Failure,
-                houseList: action.houseList ? action.houseList : state.houseList
+                houseList: action.houseList ? action.houseList : state.houseList,
+                currentPage: action.currentPage,
             }
         }
         case Types.SEARCH_HOUSE_LOAD_DATA_SUCCESS: {

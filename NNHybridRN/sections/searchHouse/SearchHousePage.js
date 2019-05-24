@@ -11,6 +11,7 @@ import Toaster from '../../components/common/Toaster';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import NNRefreshFlatList from '../../components/common/NNRefreshFlatList';
 import EachHouseCell from '../../components/common/EachHouseCell';
+import PlaceholderView from '../../components/common/PlaceholderView';
 
 class SearchHousePage extends Component {
 
@@ -21,7 +22,7 @@ class SearchHousePage extends Component {
 
         if (!this.params['filterMenuType']) {
             this.params.filterMenuType = FilterMenuType.NONE;
-        } 
+        }
 
         this.filterParams = {
             cityId: this.props.home.cityId,
@@ -54,6 +55,29 @@ class SearchHousePage extends Component {
         loadData(this.filterParams, isRefresh ? 1 : searchHouse.currentPage, error => Toaster.autoDisapperShow(error));
     }
 
+    footerEmptyDataComponent = () => {
+        return (
+            <PlaceholderView
+                height={AppUtil.windowHeight - AppUtil.fullNavigationBarHeight - 44}
+                imageSource={require('../../resource/images/placeHolder/placeholder_house.png')}
+                tipText='真的没了'
+                infoText='更换筛选条件试试吧'
+            />
+        );
+    }
+
+    footerFailureComponent = data => {
+        return AppUtil.isEmptyArray(data) ? (
+            <PlaceholderView
+                height={AppUtil.windowHeight - AppUtil.fullNavigationBarHeight - 44}
+                imageSource={require('../../resource/images/placeHolder/placeholder_error.png')}
+                tipText='出了点小问题'
+                needReload={true}
+                reloadHandler={() => this._loadData(true)}
+            />
+        ) : null;
+    }
+
     render() {
         const { home, searchHouse } = this.props;
 
@@ -68,6 +92,8 @@ class SearchHousePage extends Component {
                     refreshState={searchHouse.refreshState}
                     onHeaderRefresh={() => this._loadData(true)}
                     onFooterRefresh={() => this._loadData(false)}
+                    footerEmptyDataComponent={this.footerEmptyDataComponent()}
+                    footerFailureComponent={this.footerFailureComponent(searchHouse.houseList)}
                 />
                 <NavigationBar
                     navBarStyle={{ position: 'absolute' }}

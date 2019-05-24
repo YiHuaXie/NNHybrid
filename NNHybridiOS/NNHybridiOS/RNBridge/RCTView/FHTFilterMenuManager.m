@@ -174,7 +174,7 @@ RCT_EXPORT_METHOD(showFilterMenuOnView:(nonnull NSNumber *)containerTag filterMe
     
 
     rentalVC.didSetFilterHandler = ^(NSDictionary * _Nonnull params) {
-        NSDictionary *tmpParams = @{@"minPrice": nn_makeSureString(params[@"minPirce"]),
+        NSDictionary *tmpParams = @{@"minPrice": nn_makeSureString(params[@"minPrice"]),
                                     @"maxPrice": nn_makeSureString(params[@"maxPrice"])};
         BLOCK_EXEC(weakFilterMenu.onUpdateParameters, @{kFilterParams: tmpParams});
     };
