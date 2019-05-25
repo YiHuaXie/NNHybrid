@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     View,
     Text,
@@ -9,6 +9,7 @@ import {
 import AppUtil from '../../utils/AppUtil';
 
 export default class Refresher {
+
     static header({ title, refreshing, onRefresh }) {
         return (
             <RefreshControl

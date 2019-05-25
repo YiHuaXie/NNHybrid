@@ -36,10 +36,10 @@ export default class NNRefreshFlatList extends Component {
         footerNoMoreDataText: PropTypes.string,
         footerEmptyDataText: PropTypes.string,
 
-        footerRefreshingComponent: PropTypes.any,
-        footerFailureComponent: PropTypes.any,
-        footerNoMoreDataComponent: PropTypes.any,
-        footerEmptyDataComponent: PropTypes.any,
+        footerRefreshingComponent: PropTypes.element,
+        footerFailureComponent: PropTypes.element,
+        footerNoMoreDataComponent: PropTypes.element,
+        footerEmptyDataComponent: PropTypes.element,
 
         renderItem: PropTypes.func,
     };

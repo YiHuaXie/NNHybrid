@@ -106,13 +106,13 @@ class SearchHousePage extends Component {
                     subwayData={home.subwayData}
                     containerRef={this.refs.container}
                     filterMenuType={this.params.filterMenuType}
+                    onChangeParameters={() => this._loadData(true)}
                     onUpdateParameters={({ nativeEvent: { filterParams } }) => {
                         this.filterParams = {
                             ...this.filterParams,
                             ...filterParams,
                         };
                     }}
-                    onChangeParameters={() => this._loadData(true)}
                 />
             </View>
         );
