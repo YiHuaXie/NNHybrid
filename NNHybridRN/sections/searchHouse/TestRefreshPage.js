@@ -1,52 +1,192 @@
 import React, { Component } from 'react';
-import {
-    SectionList,
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    DeviceEventEmitter
-} from 'react-native';
-
-import RefreshScrollView, { RefreshState } from '../../components/refresh/RefreshScrollView';
+import { StyleSheet, View } from 'react-native';
+import NavigationBar from '../../navigator/NavigationBar';
+import NavigationUtil from '../../utils/NavigationUtil';
+import SearchFilterMenu, { FilterMenuType } from './SearchFilterMenu';
 import AppUtil from '../../utils/AppUtil';
 
-export default class TestRefreshPage extends Component {
+import { connect } from 'react-redux';
+import { loadData } from '../../redux/searchHouse';
+import Toaster from '../../components/common/Toaster';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+// import NNRefreshFlatList, { RefreshState } from '../../components/common/NNRefreshFlatList';
+import RefreshFlatList from '../../components/refresh/RefreshFlatList';
+import EachHouseCell from '../../components/common/EachHouseCell';
+import PlaceholderView from '../../components/common/PlaceholderView';
+import { FooterRefreshState } from '../../components/refresh/RefreshConst';
 
-    state = { refreshState: RefreshState.Idle }
+class TestRefreshPage extends Component {
 
-    _onRefresh() {
-        this.setState({ refreshState: RefreshState.HeaderRefreshing });
+    constructor(props) {
+        super(props);
 
-        let timer = setTimeout(() => {
-            clearTimeout(timer);
-            alert('刷新成功');
-            this.refs.scrollView.endRefresh();
-        }, 1500);
+        this.params = this.props.navigation.state.params;
+
+        if (!this.params['filterMenuType']) {
+            this.params.filterMenuType = FilterMenuType.NONE;
+        }
+
+        this.filterParams = {
+            cityId: this.props.home.cityId,
+            fullRentType: '1'
+        };
+    }
+
+    componentWillMount() {
+        this._loadData(true);
+    }
+
+    _renderHouseCell(item, index) {
+        return (
+            <TouchableWithoutFeedback
+                key={index}
+                onPress={() => {
+                    const { type, minRentPrice, id, isFullRent } = item;
+                    const pageName = type === 1 ? 'CentraliedDetailPage' : 'DecentraliedDetailPage';
+                    const params = type === 1 ? { estateRoomTypeId: id, rentPrice: minRentPrice } : { roomId: id, isFullRent };
+                    NavigationUtil.goPage(pageName, params);
+                }}>
+                <EachHouseCell house={item} />
+            </TouchableWithoutFeedback>
+        );
+    }
+
+    _loadData(isRefresh) {
+        const { loadData, searchHouse } = this.props;
+
+        loadData(this.filterParams, isRefresh ? 1 : searchHouse.currentPage, error => Toaster.autoDisapperShow(error));
+    }
+
+    // footerEmptyDataComponent = () => {
+    //     return (
+    //         <PlaceholderView
+    //             height={AppUtil.windowHeight - AppUtil.fullNavigationBarHeight - 44}
+    //             imageSource={require('../../resource/images/placeHolder/placeholder_house.png')}
+    //             tipText='真的没了'
+    //             infoText='更换筛选条件试试吧'
+    //         />
+    //     );
+    // }
+
+    // footerFailureComponent = data => {
+    //     return AppUtil.isEmptyArray(data) ? (
+    //         <PlaceholderView
+    //             height={AppUtil.windowHeight - AppUtil.fullNavigationBarHeight - 44}
+    //             imageSource={require('../../resource/images/placeHolder/placeholder_error.png')}
+    //             tipText='出了点小问题'
+    //             needReload={true}
+    //             reloadHandler={() => this._loadData(true)}
+    //         />
+    //     ) : null;
+    // }
+
+    footerRefreshComponent(footerRefreshState, data) {
+        switch(footerRefreshState) {
+            case FooterRefreshState.Failure: {
+                return AppUtil.isEmptyArray(data) ? (
+                    <PlaceholderView
+                        height={AppUtil.windowHeight - AppUtil.fullNavigationBarHeight - 44}
+                        imageSource={require('../../resource/images/placeHolder/placeholder_error.png')}
+                        tipText='出了点小问题'
+                        needReload={true}
+                        reloadHandler={() => this._loadData(true)}
+                    />
+                ) : null;
+            }
+            case FooterRefreshState.EmptyData: {
+                return (
+                    <PlaceholderView
+                        height={AppUtil.windowHeight - AppUtil.fullNavigationBarHeight - 44}
+                        imageSource={require('../../resource/images/placeHolder/placeholder_house.png')}
+                        tipText='真的没了'
+                        infoText='更换筛选条件试试吧'
+                    />
+                );
+            }
+            default:
+                return null;
+        }
     }
 
     render() {
+        const { home, searchHouse } = this.props;
+
         return (
-            <RefreshScrollView
-                onHeaderRefresh={this._onRefresh.bind(this)}
-                // refreshState={this.state.refreshState}
-                ref="scrollView"
-            //其他你需要设定的属性(包括ScrollView的属性)
-            >
-                <View style={styles.content}>
-                    <Text>下拉刷新ScrollView</Text>
-                </View>
-            </RefreshScrollView>
+            <View style={styles.container} ref='container'>
+                <RefreshFlatList
+                    ref='flatList'
+                    style={{ marginTop: AppUtil.fullNavigationBarHeight + 44 }}
+                    showsHorizontalScrollIndicator={false}
+                    data={searchHouse.houseList}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={({ item, index }) => this._renderHouseCell(item, index)}
+                    onHeaderRefresh={() => this._loadData(true)}
+                    onFooterRefresh={() => this._loadData(false)}
+                    footerRefreshState={searchHouse.footerRefreshState}
+                    footerRefreshComponent={footerRefreshState => this.footerRefreshComponent(footerRefreshState, searchHouse.houseList)}
+                    // footerEmptyDataComponent={this.footerEmptyDataComponent()}
+                    // footerFailureComponent={this.footerFailureComponent(searchHouse.houseList)}
+                />
+                {/* <NNRefreshFlatList
+                    ref='flatList'
+                    listRef='contentView'
+                    style={{ marginTop: AppUtil.fullNavigationBarHeight + 44 }}
+                    showsHorizontalScrollIndicator={false}
+                    data={searchHouse.houseList}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={({ item, index }) => this._renderHouseCell(item, index)}
+                    refreshState={searchHouse.refreshState}
+                    onHeaderRefresh={() => this._loadData(true)}
+                    onFooterRefresh={() => this._loadData(false)}
+                    footerEmptyDataComponent={this.footerEmptyDataComponent()}
+                    footerFailureComponent={this.footerFailureComponent(searchHouse.houseList)}
+                /> */}
+                <NavigationBar
+                    navBarStyle={{ position: 'absolute' }}
+                    backOrCloseHandler={() => NavigationUtil.goBack()}
+                    title='搜房'
+                />
+                <SearchFilterMenu
+                    style={styles.filterMenu}
+                    cityId={`${home.cityId}`}
+                    subwayData={home.subwayData}
+                    containerRef={this.refs.container}
+                    filterMenuType={this.params.filterMenuType}
+                    onChangeParameters={() => this._loadData(true)}
+                    onUpdateParameters={({ nativeEvent: { filterParams } }) => {
+                        this.filterParams = {
+                            ...this.filterParams,
+                            ...filterParams,
+                        };
+                    }}
+                />
+            </View>
         );
     }
 }
 
+const mapStateToProps = state => ({ home: state.home, searchHouse: state.searchHouse2 });
+
+const mapDispatchToProps = dispatch => ({
+    loadData: (params, currentPage, errorCallBack) =>
+        dispatch(loadData(params, currentPage, errorCallBack)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TestRefreshPage);
+
 const styles = StyleSheet.create({
-    content: {
-        width: AppUtil.windowWidth,
-        height: AppUtil.windowHeight,
-        backgroundColor: 'yellow',
-        justifyContent: 'center',
-        alignItems: 'center'
+    container: {
+        flex: 1,
+        backgroundColor: '#FFFFFF'
     },
+    navigation: {
+        position: 'absolute',
+    },
+    filterMenu: {
+        backgroundColor: '#FFFFFF',
+        height: 44,
+        width: AppUtil.windowWidth,
+        position: 'absolute',
+        marginTop: AppUtil.fullNavigationBarHeight,
+    }
 });
