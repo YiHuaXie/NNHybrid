@@ -17,6 +17,7 @@
     "react-native-img-cache": "^1.6.0",
     "react-native-linear-gradient": "^2.5.4",
     "react-native-parallax-scroll-view": "^0.21.3",
+    "react-native-ptr-control": "^1.1.4",
     "react-native-root-toast": "^3.0.2",
     "react-native-storage": "^1.0.1",
     "react-native-swiper": "^1.5.14",

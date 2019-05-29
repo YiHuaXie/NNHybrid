@@ -19,6 +19,7 @@ import ApartmentPage from '../sections/apartment/ApartmentPage';
 import DecentraliedDetailPage from '../sections/houseDetail/DecentraliedDetailPage';
 import CentraliedDetailPage from '../sections/houseDetail/CentraliedDetailPage';
 import SearchHousePage from '../sections/searchHouse/SearchHousePage';
+import TestRefreshPage from '../sections/searchHouse/TestRefreshPage';
 
 // dynamic modal transition
 const IOS_MODAL_ROUTES = ['CityListPage'];
@@ -71,6 +72,10 @@ const MainNavigator = createStackNavigator({
     SearchHousePage: {
         ...sharedParams,
         screen: SearchHousePage,
+    },
+    TestRefreshPage: {
+        ...sharedParams,
+        screen: TestRefreshPage,
     }
 }, {
         transitionConfig: dynamicModalTransition

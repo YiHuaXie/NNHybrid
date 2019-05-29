@@ -53,7 +53,7 @@ export function loadData(detailType, params, storeName, callBack) {
 
 /**
  * 分散式房源详情
- * @param {{}}} params 
+ * @param {{}} params 
  */
 function loadDecentraliedDetail(params) {
     return Network.my_request({
@@ -66,7 +66,7 @@ function loadDecentraliedDetail(params) {
 
 /**
  * 集中式房源详情
- * @param {{}}} params 
+ * @param {{}} params 
  */
 function loadCentraliedDetail(params) {
     return Network.my_request({

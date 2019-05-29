@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { loadData } from '../../redux/searchHouse';
 import Toaster from '../../components/common/Toaster';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import NNRefreshFlatList from '../../components/common/NNRefreshFlatList';
+import NNRefreshFlatList, { RefreshState } from '../../components/common/NNRefreshFlatList';
 import EachHouseCell from '../../components/common/EachHouseCell';
 import PlaceholderView from '../../components/common/PlaceholderView';
 
@@ -33,6 +33,31 @@ class SearchHousePage extends Component {
     componentWillMount() {
         this._loadData(true);
     }
+
+    // componentWillReceiveProps() {
+    //     const {searchHouse } = this.props;
+
+    //     if (searchHouse.refreshState === RefreshState.HeaderRefreshing) {
+    //         const flatList = this.refs.flatList.refs.contentView;
+    //         console.log('scrollToOffset');
+
+    //         flatList.scrollToOffset({
+    //             animated: true,
+    //             offset: -AppUtil.fullNavigationBarHeight - 44
+    //         });
+    //     }
+    // }
+
+    // componentWillUpdate() {
+    //     const { refreshState } = this.props.searchHouse;
+    //     if (refreshState == RefreshState.HeaderRefreshing) {
+    //         const flatList = this.refs.flatList.refs.contentView;
+    //         flatList.scrollToOffset({
+    //             animated: true,
+    //             offset: -AppUtil.fullNavigationBarHeight - 44
+    //         });
+    //     }
+    // }
 
     _renderHouseCell(item, index) {
         return (
@@ -81,9 +106,22 @@ class SearchHousePage extends Component {
     render() {
         const { home, searchHouse } = this.props;
 
+        if (searchHouse.refreshState === RefreshState.HeaderRefreshing) {
+            const flatList = this.refs.flatList.refs.contentView;
+            console.log('scrollToOffset');
+
+            flatList.scrollToOffset({
+                animated: true,
+                offset: 0
+                //  -AppUtil.fullNavigationBarHeight - 44
+            });
+        }
+
         return (
             <View style={styles.container} ref='container'>
                 <NNRefreshFlatList
+                    ref='flatList'
+                    listRef='contentView'
                     style={{ marginTop: AppUtil.fullNavigationBarHeight + 44 }}
                     showsHorizontalScrollIndicator={false}
                     data={searchHouse.houseList}
