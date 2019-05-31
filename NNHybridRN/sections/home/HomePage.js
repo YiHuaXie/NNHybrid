@@ -82,11 +82,10 @@ class HomePage extends Component {
                 <TouchableWithoutFeedback
                     key={i}
                     onPress={() => {
-                        NavigationUtil.goPage('TestRefreshPage');
-                        // const { type, minRentPrice, id, isFullRent } = houses[i];
-                        // const pageName = type === 1 ? 'CentraliedDetailPage' : 'DecentraliedDetailPage';
-                        // const params = type === 1 ? { estateRoomTypeId: id, rentPrice: minRentPrice } : { roomId: id, isFullRent };
-                        // NavigationUtil.goPage(pageName, params);
+                        const { type, minRentPrice, id, isFullRent } = houses[i];
+                        const pageName = type === 1 ? 'CentraliedDetailPage' : 'DecentraliedDetailPage';
+                        const params = type === 1 ? { estateRoomTypeId: id, rentPrice: minRentPrice } : { roomId: id, isFullRent };
+                        NavigationUtil.goPage(pageName, params);
                     }}>
                     <EachHouseCell house={houses[i]} />
                 </TouchableWithoutFeedback>

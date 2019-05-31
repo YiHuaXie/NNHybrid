@@ -5,7 +5,6 @@ import { homeReducer } from '../home';
 import { houseDetailReducer } from '../houseDetail';
 import { apartmentReducer } from '../apartment';
 import { searchHouseReducer } from '../searchHouse';
-import { searchHouseReducer2 } from '../searchHouse2';
 import { Types } from './actions';
 
 // import { rootCom, RootNavigator } from '../../navigator/AppNavigator';
@@ -28,7 +27,6 @@ const appReducers = combineReducers({
     apartments: apartmentReducer,
     houseDetails: houseDetailReducer,
     searchHouse: searchHouseReducer,
-    searchHouse2: searchHouseReducer2,
 });
 
 // How to reset the state of a Redux store
@@ -40,6 +38,9 @@ export default (state, action) => {
             break;
         case Types.HOUSE_DETAIL_WILL_UNMOUNT:
             delete state.houseDetails[action.storeName];
+            break;
+        case Types.SEARCH_HOUSE_WILL_UNMOUNT:
+                delete state.searchHouse;
             break;
     }
 

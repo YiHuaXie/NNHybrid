@@ -19,7 +19,8 @@ export const FooterRefreshState = {
 
 // 下拉刷新默认props
 export const defaultHeaderProps = {
-    headerRefreshState: HeaderRefreshState.Idle,
+    // headerRefreshState: HeaderRefreshState.Idle,
+    headerIsRefreshing: false,
     headerHeight: defaultHeight,
     headerIdleText: '下拉可以刷新',
     headerPullingText: '松开立即刷新',

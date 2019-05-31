@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        height: 44,
+        height: 60,
     },
     footerText: {
         fontSize: 14,
