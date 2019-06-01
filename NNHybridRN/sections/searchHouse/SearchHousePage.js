@@ -15,7 +15,7 @@ import PlaceholderView from '../../components/common/PlaceholderView';
 import { FooterRefreshState } from '../../components/refresh/RefreshConst';
 
 
-class TestRefreshPage extends Component {
+class SearchHousePage extends Component {
 
     constructor(props) {
         super(props);
@@ -37,7 +37,7 @@ class TestRefreshPage extends Component {
     }
 
     componentWillUnmount() {
-        NavigationUtil.dispatch(Types.SEARCH_HOUSE_WILL_UNMOUNT2);
+        NavigationUtil.dispatch(Types.SEARCH_HOUSE_WILL_UNMOUNT);
     }
 
     _renderHouseCell(item, index) {
@@ -139,7 +139,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(loadData(params, currentPage, errorCallBack)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TestRefreshPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchHousePage);
 
 const styles = StyleSheet.create({
     container: {

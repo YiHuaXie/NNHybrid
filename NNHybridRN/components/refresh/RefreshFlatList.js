@@ -17,6 +17,8 @@ import {
     FooterRefreshState,
     defaultHeaderProps,
     defaultFooterProps,
+    defaultHeaderRefreshComponent,
+    defaultFooterRefreshComponent
 } from './RefreshConst';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -53,11 +55,11 @@ const arrowOrActivityComponent = (headerRefreshState, arrowAnimation) => {
     }
 }
 
-// /**
-//  * 头部刷新组件的Text组件
-//  * @param {RefreshState} refreshState   刷新状态
-//  * @param {{}} props 控件的props 
-//  */
+/**
+ * 头部刷新组件的Text组件
+ * @param {RefreshState} refreshState   刷新状态
+ * @param {{}} props 控件的props 
+ */
 const headerTitleComponent = (headerRefreshState, props) => {
     const { headerIdleText, headerPullingText, headerRefreshingText } = props;
 
@@ -142,8 +144,18 @@ export default class RefreshFlatList extends Component {
 
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps === this.props && nextState === this.state) return false;
+        // if (nextProps.headerIsRefreshing === false && nextState.headerRefreshState === this.state.headerRefreshState) {
+        //     return false;
+        // }
+
+        return true;
+    }
+
     componentWillReceiveProps(nextProps) {
         const { headerIsRefreshing, listRef } = nextProps;
+
 
         if (headerIsRefreshing !== this.props.headerIsRefreshing) {
             // console.log('调用一下'+ headerIsRefreshing + this.props.headerIsRefreshing);
@@ -153,9 +165,7 @@ export default class RefreshFlatList extends Component {
 
             this.refs[listRef].scrollToOffset({ animated: true, offset });
             this.setState({ headerRefreshState });
-        }
-
-        return true;
+        } 
     }
 
     /**
@@ -167,10 +177,7 @@ export default class RefreshFlatList extends Component {
 
         if (headerRefreshComponent) {
             return (
-                <View style={{
-                    marginTop: -this.headerHeight,
-                    height: this.headerHeight
-                }}>
+                <View style={{ marginTop: -this.headerHeight, height: this.headerHeight }}>
                     {headerRefreshComponent(headerRefreshState, this.offsetY)}
                 </View>
             );
@@ -197,16 +204,16 @@ export default class RefreshFlatList extends Component {
         const {
             footerRefreshState,
 
-            footerRefreshingText,
-            footerFailureText,
-            footerNoMoreDataText,
-            footerEmptyDataText,
+            // footerRefreshingText,
+            // footerFailureText,
+            // footerNoMoreDataText,
+            // footerEmptyDataText,
 
             footerRefreshComponent,
 
-            onHeaderRefresh,
-            onFooterRefresh,
-            data,
+            // onHeaderRefresh,
+            // onFooterRefresh,
+            // data,
         } = this.props;
 
         if (footerRefreshComponent) {
@@ -214,70 +221,71 @@ export default class RefreshFlatList extends Component {
             if (component) return component;
         }
 
-        // 这里要重新写过 
-        switch (footerRefreshState) {
-            case FooterRefreshState.Idle: {
-                return (
-                    <View style={styles.footerContainer} />
-                );
-            }
-            case FooterRefreshState.Refreshing: {
-                return (
-                    <View style={styles.footerContainer} >
-                        <ActivityIndicator size="small" color={AppUtil.app_theme} />
-                        <Text style={[styles.footerText, { marginLeft: 7 }]}>
-                            {footerRefreshingText}
-                        </Text>
-                    </View>
-                );
-            }
-            case FooterRefreshState.Failure: {
-                const pressHandler = () => {
-                    if (AppUtil.isEmptyArray(data)) {
-                        onHeaderRefresh && onHeaderRefresh();
-                    } else {
-                        onFooterRefresh && onFooterRefresh();
-                    }
-                };
+        return defaultFooterRefreshComponent({ ...this.props });
+        // switch (footerRefreshState) {
+        //     case FooterRefreshState.Idle: {
+        //         return (
+        //             <View style={styles.footerContainer} />
+        //         );
+        //     }
+        //     case FooterRefreshState.Refreshing: {
+        //         return (
+        //             <View style={styles.footerContainer} >
+        //                 <ActivityIndicator size="small" color={AppUtil.app_theme} />
+        //                 <Text style={[styles.footerText, { marginLeft: 7 }]}>
+        //                     {footerRefreshingText}
+        //                 </Text>
+        //             </View>
+        //         );
+        //     }
+        //     case FooterRefreshState.Failure: {
+        //         const pressHandler = () => {
+        //             if (AppUtil.isEmptyArray(data)) {
+        //                 onHeaderRefresh && onHeaderRefresh();
+        //             } else {
+        //                 onFooterRefresh && onFooterRefresh();
+        //             }
+        //         };
 
-                return (
-                    <TouchableOpacity onPress={() => pressHandler()}>
-                        <View style={styles.footerContainer}>
-                            <Text style={styles.footerText}>{footerFailureText}</Text>
-                        </View>
-                    </TouchableOpacity>
-                );
-            }
-            case FooterRefreshState.EmptyData: {
-                return (
-                    <TouchableOpacity onPress={() => { onHeaderRefresh && onHeaderRefresh(); }}>
-                        <View style={styles.footerContainer}>
-                            <Text style={styles.footerText}>{footerEmptyDataText}</Text>
-                        </View>
-                    </TouchableOpacity>
-                );
-            }
-            case FooterRefreshState.NoMoreData: {
-                return (
-                    <View style={styles.footerContainer} >
-                        <Text style={styles.footerText}>
-                            {footerNoMoreDataText}
-                        </Text>
-                    </View>
-                );
-            }
-        }
+        //         return (
+        //             <TouchableOpacity onPress={() => pressHandler()}>
+        //                 <View style={styles.footerContainer}>
+        //                     <Text style={styles.footerText}>{footerFailureText}</Text>
+        //                 </View>
+        //             </TouchableOpacity>
+        //         );
+        //     }
+        //     case FooterRefreshState.EmptyData: {
+        //         return (
+        //             <TouchableOpacity onPress={() => { onHeaderRefresh && onHeaderRefresh(); }}>
+        //                 <View style={styles.footerContainer}>
+        //                     <Text style={styles.footerText}>{footerEmptyDataText}</Text>
+        //                 </View>
+        //             </TouchableOpacity>
+        //         );
+        //     }
+        //     case FooterRefreshState.NoMoreData: {
+        //         return (
+        //             <View style={styles.footerContainer} >
+        //                 <Text style={styles.footerText}>
+        //                     {footerNoMoreDataText}
+        //                 </Text>
+        //             </View>
+        //         );
+        //     }
+        // }
 
-        return null;
+        // return null;
     }
 
     render() {
         return (
             <FlatList
                 {...this.props}
-                ref='flatList'
-                scrollEventThrottle={16}
+                ref={this.props.listRef}
+                // scrollEventThrottle={16}
                 onScroll={event => this._onScroll(event)}
+                onMomentumScrollEnd={event => this._onMomentumScrollEnd(event)}
                 onScrollEndDrag={event => this._onScrollEndDrag(event)}
                 onScrollBeginDrag={event => this._onScrollBeginDrag(event)}
                 onEndReached={this._onEndReached}
@@ -309,7 +317,9 @@ export default class RefreshFlatList extends Component {
      */
     _onScroll(event) {
         this.offsetY = event.nativeEvent.contentOffset.y;
-
+        console.log('_onScroll');
+        console.log(this.state);
+        console.log(this.offsetY);
         if (this.isDragging) {
             if (!this._isRefreshing()) {
                 if (this.offsetY <= -this.headerHeight) {
@@ -341,29 +351,62 @@ export default class RefreshFlatList extends Component {
     _onScrollBeginDrag(event) {
         this.isDragging = true;
         this.offsetY = event.nativeEvent.contentOffset.y;
+        console.log('_onScrollBeginDrag');
+        console.log(this.state);
+        console.log(this.offsetY);
     }
 
+    _onScrollEndDrag(event) {
+        this.isDragging = false;
+        this.offsetY = event.nativeEvent.contentOffset.y;
+        console.log('_onScrollEndDrag');
+        console.log(this.state);
+        console.log(this.offsetY);
+        
+
+        const { listRef, onHeaderRefresh } = this.props;
+
+        if (!this._isRefreshing()) {
+            if (this.state.headerRefreshState === HeaderRefreshState.Pulling) {
+                this.refs[listRef].scrollToOffset({ animated: true, offset: -this.headerHeight });
+                this.setState({ headerRefreshState: HeaderRefreshState.Refreshing });
+                onHeaderRefresh && onHeaderRefresh();
+            }
+        } else {
+            if (this.offsetY <= 0) {
+                this.refs[listRef].scrollToOffset({ animated: true, offset: -this.headerHeight });
+            }
+        }   
+    }
     /**
      * 列表结束拖拽
      * @private
      * @param {{}} event
      */
-    _onScrollEndDrag(event) {
-        this.isDragging = false;
+    _onMomentumScrollEnd(event) {
         this.offsetY = event.nativeEvent.contentOffset.y;
+        console.log('_onMomentumScrollEnd');
+        console.log(this.state);
+        console.log(this.offsetY);
+        // this.isDragging = false;
+        // this.offsetY = event.nativeEvent.contentOffset.y;
+        // console.log(this.state);
+        // console.log(this.offsetY);
+        
 
-        if (!this._isRefreshing()) {
-            if (this.state.headerRefreshState === HeaderRefreshState.Pulling) {
-                this.props.onHeaderRefresh && this.props.onHeaderRefresh();
-            }
-        } else {
-            if (this.offsetY <= 0) {
-                this.refs[this.props.listRef].scrollToOffset({
-                    animated: true,
-                    offset: -this.headerHeight
-                });
-            }
-        }
+        // const { listRef, onHeaderRefresh } = this.props;
+
+        // if (!this._isRefreshing()) {
+        //     if (this.state.headerRefreshState === HeaderRefreshState.Pulling) {
+        //         this.refs[listRef].scrollToOffset({ animated: true, offset: -this.headerHeight });
+        //         this.setState({ headerRefreshState: HeaderRefreshState.Refreshing });
+        //         onHeaderRefresh && onHeaderRefresh();
+        //     }
+        // } else {
+        //     if (this.offsetY <= 0) {
+        //         this.refs[listRef].scrollToOffset({ animated: true, offset: -this.headerHeight });
+        //     }
+        // }
     }
 
     /**
