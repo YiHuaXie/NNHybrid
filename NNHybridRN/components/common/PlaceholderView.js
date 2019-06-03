@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { PropTypes } from 'prop-types';
 import AppUtil from '../../utils/AppUtil';
-import NNImage from '../common/NNImage';
+import NNImage from './NNImage';
 
 export default class PlaceholderView extends Component {
 

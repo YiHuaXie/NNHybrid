@@ -27,9 +27,21 @@
 
 ## 项目效果图
 
-<img width="150" height="451.2" src="./screenshots/home.jpg"/><img width="150" height="504.6" src="./screenshots/apartment.jpg"/><img width="150" height="480" src="./screenshots/houseDetail.jpg"/>
+#### 首页
+![home](./screenshots/home.jpg)
 
-<img width="150" height="266.8" src="./screenshots/cityListPage.jpg"/><img width="150" height="266.8" src="./screenshots/share.jpg"/><img width="150" height="266.8" src="./screenshots/addressOnMap.jpg"/>
+#### 搜房
+![searchHouse](./screenshots/searchHouse.gif)
+
+#### 城市列表
+![cityListPage](./screenshots/cityListPage.jpg)
+
+#### 公寓简介
+![apartment](./screenshots/apartment.jpg)
+
+#### 房型/房间详情页
+![houseDetail](./screenshots/houseDetail.gif)
+
 
 
 
