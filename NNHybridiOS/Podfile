@@ -33,7 +33,7 @@ target 'NNHybridiOS' do
   pod 'IQKeyboardManager'
   pod 'Masonry'
   pod 'MBProgressHUD'
-  pod 'AFNetworking'
+#  pod 'AFNetworking'
   pod 'MJRefresh'
   pod 'JSONModel'
   pod 'SDWebImage'
@@ -41,6 +41,7 @@ target 'NNHybridiOS' do
   pod 'DGActivityIndicatorView'
   pod 'lottie-ios'
   pod 'MJExtension'
+  pod 'NNEasyKit'
 
   pod 'AMapSearch'
   pod 'AMapLocation'
