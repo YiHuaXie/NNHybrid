@@ -70,6 +70,11 @@ RCT_ENUM_CONVERTER(FilterMenuType,
 
 - (void)setFilterMenuType:(FilterMenuType)filterMenuType {
     switch (filterMenuType) {
+        case FilterMenuTypeNone: {
+            UIViewController *vc = (UIViewController *)self.filterControllers[0];
+            [vc presetWithOptionTitles:@[@"不限"]];
+        }
+            break;
         case FilterMenuTypeEntireRent: {
             UIViewController *vc = (UIViewController *)self.filterControllers[0];
             [vc presetWithOptionTitles:@[@"整租"]];
