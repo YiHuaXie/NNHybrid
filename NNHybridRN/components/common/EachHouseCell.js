@@ -46,12 +46,13 @@ export default class EachHouseCell extends Component {
             return {
                 house: house,
                 imageUrl: house.imageUrl,
+                isVr: house.isVr,
                 title: house.name,
                 subTitle: strings.join(' | '),
                 price: parseInt(house.minRentPrice),
                 address: house.distanceInfo,
                 isOrgAuth: house.isOrgAuth,
-                allTags: allTags
+                allTags: allTags,
             }
         } else if (!AppUtil.isEmptyObject(nextProps.apartment)
             && prevState.apartment !== nextProps.apartment) {
@@ -68,18 +69,25 @@ export default class EachHouseCell extends Component {
                 price: parseInt(apartment.price),
                 address: apartment.distanceInfo,
                 isOrgAuth: apartment.isOrgAuth,
+                isVr: apartmen.isVr,
             }
         }
 
         return null;
     }
 
-    addressIcon = () => (
-        <Image
-            style={styles.addressIcon}
-            source={require('../../resource/images/location.png')}
-        />
-    )
+    _renderVRContent(isVr) {
+        return (
+            isVr ?
+                <View style={styles.vrMask}>
+                    <Image
+                        style={styles.vrIcon}
+                        source={require('../../resource/images/house_vr.png')}
+                    />
+                </View> :
+                null
+        );
+    }
 
     _renderAuthImageAndTitle() {
         const { isOrgAuth, title } = this.state;
@@ -156,7 +164,7 @@ export default class EachHouseCell extends Component {
     }
 
     render() {
-        const { imageUrl } = this.state;
+        const { imageUrl, isVr } = this.state;
         return (
             <View style={styles.container}>
                 <NNImage
@@ -164,6 +172,7 @@ export default class EachHouseCell extends Component {
                     source={{ uri: imageUrl }}
                     placeholder={AppUtil.placeholderImage}
                 />
+                {this._renderVRContent(isVr)}
                 <View style={styles.rightContent}>
                     {this._renderAuthImageAndTitle()}
                     {this._renderSubTitleAndPrice()}
@@ -188,6 +197,22 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginRight: 15,
         borderRadius: 4,
+    },
+    vrMask: {
+        position: 'absolute',
+        width: 120,
+        height: 90,
+        marginLeft: 15,
+        marginRight: 15,
+        borderRadius: 4,
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    vrIcon: {
+        width: 27,
+        height: 27,
+        resizeMode: 'cover'
     },
     rightContent: {
         marginRight: 15,

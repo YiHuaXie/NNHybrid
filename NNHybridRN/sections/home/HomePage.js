@@ -128,7 +128,7 @@ class HomePage extends Component {
                         moduleItemClick={item => NavigationUtil.goPageWithCode(item.code)}
                     />
                     <HomeMessageCell messages={home.messages} />
-                    <HomeVRCell vr={home.vr} />
+                    <HomeVRCell vr={home.vr} vrItemClick={() => NavigationUtil.goPageWithCode(7001)}/>
                     {this._addDividingLine(!AppUtil.isEmptyArray(home.messages) || home.vr)}
                     {!AppUtil.isEmptyArray(home.apartments) ? <HomeSectioHeader title='品牌公寓' showMore={true} /> : null}
                     <HomeApartmentCell
@@ -137,10 +137,9 @@ class HomePage extends Component {
                     />
                     {!AppUtil.isEmptyArray(home.houses) ? <HomeSectioHeader title='猜你喜欢' showMore={false} /> : null}
                     {this._renderHouseitems(home.houses)}
-                    {!AppUtil.isEmptyArray(home.houses) ? <HomeButtonCell /> : null}
+                    {!AppUtil.isEmptyArray(home.houses) ? <HomeButtonCell moreHouseHandler={() => NavigationUtil.goPageWithCode(7000)} /> : null}
                 </ScrollView>
                 <HomeNavigationBar
-                    // ref={e => this.navi = e}
                     isTransparent={this.state.isTransparent}
                     cityName={home.cityName}
                     cityViewTouched={() => NavigationUtil.goPage('CityListPage')}

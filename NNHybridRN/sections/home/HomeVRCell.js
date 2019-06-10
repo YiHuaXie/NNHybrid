@@ -19,9 +19,7 @@ export default class HomeVRCell extends Component {
         return (
             <View style={styles.container}>
                 <TouchableWithoutFeedback
-                    onPress={() => {
-
-                    }}>
+                    onPress={() => this.props.vrItemClick()}>
                     <ParallaxView
                         style={styles.parallax}
                         cornerRadius={8}

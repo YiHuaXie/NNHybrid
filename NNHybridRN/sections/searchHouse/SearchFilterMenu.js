@@ -16,12 +16,14 @@ export const FilterMenuType = {
 
 export default class SearchFilterMenu extends Component {
 
-    componentDidUpdate() {
+    showSubMenuOnView(container) {
         const filterMenuTag = findNodeHandle(this.refs.filterMenu);
-        const containerTag = findNodeHandle(this.props.containerRef);
-        if (filterMenuTag && containerTag) filterMenuManager.showFilterMenuOnView(containerTag, filterMenuTag);
+        const containerTag = findNodeHandle(container);
+        if (filterMenuTag && containerTag) {
+            filterMenuManager.showFilterMenuOnView(containerTag, filterMenuTag);
+        }
     }
-    
+
     render() {
         return <FilterMenu ref='filterMenu' {...this.props} />;
     }

@@ -14,13 +14,13 @@ import EachHouseCell from '../../components/common/EachHouseCell';
 import PlaceholderView from '../../components/common/PlaceholderView';
 import { FooterRefreshState } from '../../components/refresh/RefreshConst';
 
-
 class SearchHousePage extends Component {
 
     constructor(props) {
         super(props);
 
         this.params = this.props.navigation.state.params;
+        this.pageFirstLoad = true;
 
         if (!this.params['filterMenuType']) {
             this.params.filterMenuType = FilterMenuType.NONE;
@@ -33,7 +33,7 @@ class SearchHousePage extends Component {
     }
 
     componentDidMount() {
-        this._loadData(true);
+        this.refs.filterMenu.showSubMenuOnView(this.refs.container);
     }
 
     componentWillUnmount() {
@@ -94,7 +94,7 @@ class SearchHousePage extends Component {
         const { home, searchHouse } = this.props;
 
         return (
-            <View style={styles.container} ref='container'>
+            <View ref='container' style={styles.container} >
                 <RefreshFlatList
                     ref='flatList'
                     style={{ marginTop: AppUtil.fullNavigationBarHeight + 44 }}
@@ -114,6 +114,7 @@ class SearchHousePage extends Component {
                     title='搜房'
                 />
                 <SearchFilterMenu
+                    ref='filterMenu'
                     style={styles.filterMenu}
                     cityId={`${home.cityId}`}
                     subwayData={home.subwayData}
@@ -125,6 +126,11 @@ class SearchHousePage extends Component {
                             ...this.filterParams,
                             ...filterParams,
                         };
+                        
+                        if (this.pageFirstLoad) {
+                            this._loadData(true);
+                            this.pageFirstLoad = false;
+                        }
                     }}
                 />
             </View>

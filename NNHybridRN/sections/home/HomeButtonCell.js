@@ -7,7 +7,9 @@ export default class HomeButtonCell extends Component {
     render() {
         return (
             <View style={styles.container} >
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
+                    onPress={() => this.props.moreHouseHandler()}
+                >
                     <View style={styles.button}>
                         <Text style={styles.title}>查看更多房源</Text>
                     </View>

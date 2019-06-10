@@ -16,6 +16,8 @@ const PageForCodeMap = {
     '6005': { page: 'SearchHousePage', params: { filterMenuType: FilterMenuType.APARTMENT } },
     '6006': { page: 'SearchHousePage', params: { filterMenuType: FilterMenuType.ENTIRERENT } },
     '6007': { page: 'SearchHousePage', params: { filterMenuType: FilterMenuType.SHAREDRENT } },
+    '7000': { page: 'SearchHousePage', params: { filterMenuType: FilterMenuType.NONE } },
+    '7001': { page: 'SearchHousePage', params: { filterMenuType: FilterMenuType.VR } }
 };
 
 export default class NavigationUtil {
