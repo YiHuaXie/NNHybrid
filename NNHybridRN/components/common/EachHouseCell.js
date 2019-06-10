@@ -159,7 +159,11 @@ export default class EachHouseCell extends Component {
         const { imageUrl } = this.state;
         return (
             <View style={styles.container}>
-                <NNImage style={styles.leftImage} source={{ uri: imageUrl }} />
+                <NNImage
+                    style={styles.leftImage}
+                    source={{ uri: imageUrl }}
+                    placeholder={AppUtil.placeholderImage}
+                />
                 <View style={styles.rightContent}>
                     {this._renderAuthImageAndTitle()}
                     {this._renderSubTitleAndPrice()}

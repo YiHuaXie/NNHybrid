@@ -47,7 +47,11 @@ export default class HouseDetailBannerCell extends Component {
                     key={hasVR ? i : i + 1}
                     onPress={() => this.props.bannerItemClicked()}
                 >
-                    <NNImage style={styles.image} source={{ uri: data[i] }} />
+                    <NNImage
+                        style={styles.image}
+                        source={{ uri: data[i] }}
+                        placeholder={AppUtil.placeholderImage}
+                    />
                 </TouchableWithoutFeedback>
             );
         }

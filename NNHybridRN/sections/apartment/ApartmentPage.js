@@ -31,7 +31,7 @@ class ApartmentPage extends Component {
         this.state = { isTransparent: true };
 
         this.params = this.props.navigation.state.params;
-        console.log(this.params);
+        
         this.storeName = getStoreName(this.params.apartmentId);
 
         this.props.init(this.storeName);

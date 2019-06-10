@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import { CachedImage } from 'react-native-img-cache';
 import { PropTypes } from 'prop-types';
 
@@ -32,7 +32,8 @@ export default class NNImage extends Component {
     static propTypes = {
         source: PropTypes.any.isRequired,
         style: PropTypes.object.isRequired,
-        enableAdaptation: PropTypes.bool
+        enableAdaptation: PropTypes.bool,
+        placeholder: PropTypes.number,
     }
 
     static defaultProps = {
@@ -40,7 +41,9 @@ export default class NNImage extends Component {
         style: {}
     }
 
-    state = {};
+    state = {
+        showPlaceholder: true,
+    };
 
     componentWillMount() {
         const { style, source, enableAdaptation } = this.props;
@@ -70,11 +73,22 @@ export default class NNImage extends Component {
     }
 
     render() {
-        const { style, source, enableAdaptation } = this.props;
+        const { style, source, enableAdaptation, placeholder } = this.props;
+        const { showPlaceholder } = this.state;
         const newStyle = !enableAdaptation ? style : { ...style, width: this.state.width, height: this.state.height };
 
         return (
-            <CachedImage style={newStyle} source={source} />
+            showPlaceholder && placeholder ?
+                <View>
+                    <CachedImage style={newStyle} source={placeholder} resizeMode='cover' />
+                    <CachedImage
+                        style={{ width: 1, height: 1 }}
+                        source={source}
+                        onLoadStart={() => this.setState({ showPlaceholder: true })}
+                        onLoad={() => this.setState({ showPlaceholder: false })}
+                    />
+                </View> :
+                <CachedImage style={newStyle} source={source} />
         );
     }
 }

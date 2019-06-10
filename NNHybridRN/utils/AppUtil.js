@@ -24,6 +24,8 @@ export default {
     iOS: Platform.OS === 'ios',
     android: Platform.OS === 'android',
     
+    placeholderImage: require('../resource/images/placeHolder/image_placeholder.png'),
+
     isEmptyObject: obj => {
         for (var n in obj) { return false }
         return true;

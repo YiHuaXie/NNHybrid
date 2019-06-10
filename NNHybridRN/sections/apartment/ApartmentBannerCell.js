@@ -17,6 +17,7 @@ export default class ApartmentBannerCell extends Component {
                     key={i}
                     style={{ ...styles.image }}
                     source={{ uri: data[i] }}
+                    placeholder={AppUtil.placeholderImage}
                 />
             );
         }

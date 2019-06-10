@@ -20,38 +20,39 @@ export default class HomeApartmentCell extends Component {
         const marginRight = index < this.props.apartments.length - 1 ? 0 : 15;
         return (
             <TouchableWithoutFeedback
-            onPress={() => {
-                this.props.itemClick(item.estateId, item.talent);
-            }}>
-            <View style={{
-                ...styles.itemContainer,
-                marginLeft: marginLeft,
-                marginRight: marginRight
-            }}>
-                <View style={styles.itemImageContainer}>
-                    <NNImage
-                        style={styles.itemImage}
-                        source={{ uri: item.imageUrl }}
-                    />
-                </View>
-                <Text style={styles.itemTitle}>{item.estateName}</Text>
-                <View style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    marginLeft: 15,
-                    marginRight: 15,
-                    marginTop: 10
+                onPress={() => {
+                    this.props.itemClick(item.estateId, item.talent);
                 }}>
-                    <Text style={styles.itemPirce}>
-                        {`¥${item.minPrice}`}
-                        <Text style={{ ...styles.itemPirce, fontSize: 10 }}>/月</Text>
-                    </Text>
-                    <Text style={styles.itemCount}>
-                        {item.roomCount <= 0 ? '已满房' : `${item.roomCount}套`}
-                    </Text>
+                <View style={{
+                    ...styles.itemContainer,
+                    marginLeft: marginLeft,
+                    marginRight: marginRight
+                }}>
+                    <View style={styles.itemImageContainer}>
+                        <NNImage
+                            style={styles.itemImage}
+                            source={{ uri: item.imageUrl }}
+                            placeholder={AppUtil.placeholderImage}
+                        />
+                    </View>
+                    <Text style={styles.itemTitle}>{item.estateName}</Text>
+                    <View style={{
+                        flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginLeft: 15,
+                        marginRight: 15,
+                        marginTop: 10
+                    }}>
+                        <Text style={styles.itemPirce}>
+                            {`¥${item.minPrice}`}
+                            <Text style={{ ...styles.itemPirce, fontSize: 10 }}>/月</Text>
+                        </Text>
+                        <Text style={styles.itemCount}>
+                            {item.roomCount <= 0 ? '已满房' : `${item.roomCount}套`}
+                        </Text>
+                    </View>
                 </View>
-            </View>
             </TouchableWithoutFeedback>
         );
     }

@@ -20,7 +20,11 @@ class ModuleItem extends Component {
         const { item } = this.props;
         return (
             <View style={[styles.moduleItem, this.props.itemStyle]}>
-                <NNImage style={styles.moduleItemImage} source={{ uri: item.picUrl }} />
+                <NNImage
+                    style={styles.moduleItemImage}
+                    source={{ uri: item.picUrl }}
+                    placeholder={AppUtil.placeholderImage}
+                />
                 <Text style={styles.moduleItemTitle}>{item.title}</Text>
             </View>
         );
